@@ -14,7 +14,7 @@ import "google/type/date.proto";
 option go_package = "go.protobuf.standards.exchange/standards/open/v1";
 
 
-// Transfer Agency KPI Report
+// Transfer Agency KPI Report for governance oversight and reporting for UCITS funds
 message RT000ZR69 {
     // The effective date as of which the data is accurate
     google.type.Date effective_date = 1;
@@ -81,7 +81,7 @@ message RT000ZR69 {
         bool transfer_inward_stop = 11;
         // Whether the client has a stop on transfers out
         bool transfer_out_stop = 12;
-        // The subscriptions of the client
+        // The subscriptions (i.e. the share class holdings) of the client
         repeated Subscription subscriptions = 13;
         // Definition of a client subscription
         message Subscription {
@@ -122,9 +122,9 @@ message RT000ZR69 {
             // The number of unsettled units
             double unsettled_units = 5;
             // The nav of the subscription per unit
-            double nav_per_unit = 6;
+            google.type.Money nav_per_unit = 6;
             // The current total value of the subscription
-            double total_value = 7;
+            google.type.Money total_value = 7;
         }
         // The share of total shares - unsettled
         double percent_total_shares = 14;
@@ -132,62 +132,9 @@ message RT000ZR69 {
         google.type.Money account_value = 15;
         // The share of total aum - unsettled
         double percent_total_aum = 16;
+        // The list of transactions made by the account
+        repeated Transaction transactions = 17;
     }
-    // The largest N account holders by AUM.
-    repeated Account largest_shareholders = 6;
-    // List of blocked accounts
-    repeated Account blocked_accounts = 7;
-    // List of PEP accounts
-    repeated Account pep_accounts = 8;
-    // List of new accounts last 3 months
-    repeated Account new_accounts_last_three_months = 9;
-    // List of high risk accounts
-    repeated Account high_risk_accounts = 10;
-    // Definition of a Transfer Agency Breach
-    message TransferAgencyBreach {
-        // The date of the breach
-        google.type.Date effective_date = 1;
-        // The date the breach was identified
-        google.type.Date identification_date = 2;
-        // The date the breach was resolved
-        google.type.Date resolution_date = 3;
-        // Description of the breach
-        string description = 4;
-        // Whether the breach is active or not
-        bool active = 5;
-        // Resolution of the breach and underlying source of issue
-        string resolution_commentary = 6;
-    }
-    // Transfer agency breaches in the last twelve months
-    repeated TransferAgencyBreach transfer_agency_breaches = 11;
-    // Definition of a Transfer Agency Error
-    message TransferAgencyError {
-        // The date of the error
-        google.type.Date effective_date = 1;
-        // The date the error was identified
-        google.type.Date identification_date = 2;
-        // The date the error was resolved
-        google.type.Date resolution_date = 3;
-        // Description of the breach
-        string description = 4;
-        // Whether the error has been resolved or not
-        bool resolved = 5;
-        // Resolution of the breach and underlying source of issue
-        string resolution_commentary = 6;
-    }
-    // Recent transfer agency errors. Convention is to report last twelve months
-    repeated TransferAgencyError transfer_agency_errors = 12;
-    // Definition of a late trade events
-    message LateTradeEvent {
-        // The date of the event
-        google.type.Date effective_date = 1;
-        // Cause of the late trade
-        string cause = 2;
-        // Resolution of the breach and underlying source of issue
-        string resolution = 3;
-    }
-    // Recent late trade events. Convention is to report last twelve months.
-    repeated LateTradeEvent late_trade_events = 13;
     // Definition of a transaction
     message Transaction {
         // The resource name of the client
@@ -240,14 +187,82 @@ message RT000ZR69 {
         // The number of settled units subscribed to or redeeemed
         double units = 7;
         // The nav of the subscription per unit at which the transaction was priced
-        double nav_per_unit = 9;
+        google.type.Money nav_per_unit = 9;
         // The current total value of the transaction
-        double total_value = 10;
+        google.type.Money total_value = 10;
+        // Enumerations of transaction types
+        enum TransactionType {
+            TRANSACTION_TYPE_UNSPECIFIED = 0;
+            // Purchase of shares in the specified share class
+            SUBSCRIPTION = 1;
+            // Redemption of shares from the specified share class
+            REDEMPTION = 2;
+            // Movement between accounts for a single share class (ISIN), for example from PartyA to PartyB
+            TRANSFER = 3;
+            // Movement between share classes (i.e. ISIN) for a single account, for example PartyA switches their holdings of ShareClassA for holdings of ShareClassB
+            SWITCH = 4;
+        }
+        // The type of transaction
+        TransactionType transaction_type = 11;
     }
+    // The largest N account holders by AUM.
+    repeated Account largest_shareholders = 6;
+    // List of blocked accounts
+    repeated Account blocked_accounts = 7;
+    // List of PEP accounts
+    repeated Account pep_accounts = 8;
+    // List of new accounts last 3 months
+    repeated Account new_accounts_last_three_months = 9;
+    // List of high risk accounts
+    repeated Account high_risk_accounts = 10;
+    // Largest N accounts by transaction volume
+    repeated Account largest_accounts_by_transaction_volume = 11;
+    // Definition of a Transfer Agency Breach or Error
+    message TransferAgencyBreachOrError {
+        // The date of the breach
+        google.type.Date effective_date = 1;
+        // The date the breach was identified
+        google.type.Date identification_date = 2;
+        // The date the breach was resolved
+        google.type.Date resolution_date = 3;
+        // Enumerations of the types of the breach or error.
+        enum Type {
+            SEVERITY_UNSPECIFIED = 0;
+            // A breach or error the nature of which requires reporting to the regulator
+            REGULATORY_BREACH = 1;
+            // An breach or error that should be logged and reported internally
+            INTERNAL_BREACH = 2;
+            // An error that should be noted, but does not need to be reported
+            ERROR = 3;
+        }
+        // The type of severity of the breach or error.
+        Type type = 4;
+        // Description of the breach
+        string description = 5;
+        // Whether the breach is active or not
+        bool active = 6;
+        // Resolution of the breach and underlying source of issue
+        string resolution_commentary = 7;
+    }
+    // Transfer agency breaches in the last twelve months
+    repeated TransferAgencyBreachOrError transfer_agency_breaches = 12;
+    // Recent transfer agency errors. Convention is to report last twelve months
+    repeated TransferAgencyBreachOrError transfer_agency_errors = 13;
+    // Definition of a late trade events
+    message LateTradeEvent {
+        // The date of the event
+        google.type.Date effective_date = 1;
+        // Cause of the late trade
+        string cause = 2;
+        // Resolution of the breach and underlying source of issue
+        string resolution = 3;
+    }
+    // Recent late trade events. Convention is to report last twelve months.
+    repeated LateTradeEvent late_trade_events = 14;
     // List of suspicious transactions in the format:
-    repeated Transaction suspicious_transactions = 14;
+    repeated Transaction suspicious_transactions = 15;
     // List of transactions related to PEP accounts in the format:
-    repeated Transaction pep_transactions = 15;
+    repeated Transaction pep_transactions = 16;
 }
 
 // Batch set of RT000ZR69 responses
