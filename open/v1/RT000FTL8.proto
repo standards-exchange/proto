@@ -14,23 +14,24 @@ import "google/type/date.proto";
 option go_package = "go.protobuf.standards.exchange/standards/open/v1";
 
 
-// Fund Accounting KPI Report
-// FUND ACCOUNTING, OPERATIONAL
+// Fund Accounting KPI Report for governance oversight and reporting for UCITS funds
 message RT000FTL8 {
     // The effective date as of which the data is accurate
     google.type.Date effective_date = 1;
     // The date data was produced
     google.type.Date production_date = 3;
+    // The date of the latest portfolio valuation
+    google.type.Date valuation_date = 4;
     // The legal identifier of the umbrella
     // Should conform to: https://openfunds.org/OFST005010 (Umbrella)
     // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
-    string umbrella_fund = 4;
+    string umbrella_fund = 5;
     // Name of the relevant sub-fund
     // Should conform to: https://openfunds.org/OFST010110 (Legal Fund Name Only)
     // Refers to the Sub-Fund in the case of an umbrella structure
     // or Fund in the case of a standalone structure
     // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
-    string fund = 5;
+    string fund = 6;
     // The Assets Under Management Definition
     message AssetsUnderManagement {
         // The effective date
@@ -39,6 +40,14 @@ message RT000FTL8 {
         google.type.Money aum_base_currency = 2;
         // The assets under management as of the effective date in the reporting currency
         google.type.Money aum_reporting_currency = 3;
+        // The change in AUM from the previous month in assets under management as of the effective date in the base currency of the fund
+        google.type.Money monthly_change_aum_base_currency = 4;
+        // The change in AUM from the previous month in assets under management as of the effective date in the reporting currency
+        google.type.Money monthly_change_aum_reporting_currency = 5;
+        // The change in AUM from the previous quarter in assets under management as of the effective date in the base currency of the fund
+        google.type.Money quarterly_change_aum_base_currency = 6;
+        // The change in AUM from the previous quarter in assets under management as of the effective date in the reporting currency
+        google.type.Money quarterly_change_aum_reporting_currency = 7;
     }
     // Time series of historic AUM data
     // Convention is to provide 12 months of history
@@ -304,6 +313,21 @@ message RT000FTL8 {
     }
     // Recent invoices paid. Convention is to provide 6 months of history.
     repeated Invoice recent_invoices = 15;
+    // Definition of a Swing Pricing Events.
+    message SwingPricingEvent {
+        // The effective date on which swing pricing was applied
+        google.type.Date effective_date = 1;
+        // The threshold that was used to evaluate whether swing pricing should be applied
+        google.type.Money swing_threshold = 2;
+        // The adjustment factor applied to the nav to account for the anticipated effective of subscriptions or redemptions
+        double swing_factor = 3;
+        // The NAV before the swing factor had been applied
+        google.type.Money nav_without_swing_factor = 4;
+        // The NAV after the swing factor had been applied
+        google.type.Money nav_with_swing_factor = 5;
+    }
+    // The list of Swing Pricing events within the fund. Convention is to provide 12 months history. Swing pricing is a method used by collective investment schemes to adjust the net asset value (NAV) of the fund in order to protect existing shareholders from the negative impact of large purchases or redemptions by new or existing shareholders. This is done by adjusting the NAV of the fund to reflect the anticipated costs associated with buying or selling the underlying assets of the fund. The adjustment is typically made by charging or crediting a "swing factor" to the NAV of the fund, which is based on the size of the purchase or redemption relative to the fund's assets under management (AUM). The goal of swing pricing is to ensure that the costs of buying and selling assets are borne by those who cause the costs, rather than by all shareholders of the fund.
+    repeated SwingPricingEvent swing_pricing_events = 16;
 }
 
 // Batch set of RT000FTL8 responses
