@@ -1,0 +1,73 @@
+syntax = "proto3";
+
+package standards.open.v1;
+
+import "google/api/annotations.proto";
+import "google/api/field_behavior.proto";
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/any.proto";
+
+option go_package = "go.protobuf.standards.exchange/standards/open/v1";
+
+// Message defining an data file resource.
+message DataFile {
+  // Created time of the reportTemplate.
+  google.protobuf.Timestamp create_time = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
+  // Update time of the reportTemplate.
+  google.protobuf.Timestamp update_time = 4 [(google.api.field_behavior) = OUTPUT_ONLY];
+  // Data standard type of the data file's marshalled data
+  string type = 5;
+  // The data of the file
+  google.protobuf.Any data = 6;
+  // Field Annotations
+  map<string, FieldAnnotation> field_annotations = 7;
+  // Attachments
+  map<string, FileAttachment>  file_attachments = 8;
+
+  // File Attachment message definition
+  message FileAttachment {
+    // The name of the file attachment
+    string display_name = 1;
+    // The type of the file attachment. Supported extensions include .pdf, .xlsx, .xls
+    string mime_type = 2;
+    // File extension
+    string file_extension = 3;
+    // The bytes containing the file attachment.
+    bytes file_bytes = 4;
+  }
+
+  // Field Annotation message definition
+  message FieldAnnotation {
+    // Reference field key in the flat object structure where the field name is preceded by all parent level object
+    // names separated by a '.'.
+    string reference_key = 1;
+    // Person responsible for completing the field
+    repeated string responsible_individuals = 2;
+    // Status of the field
+    FieldState field_status = 3;
+    // FieldStatus emum
+    enum FieldState {
+      // FIELD_STATE_UNSPECIFIED
+      FIELD_STATE_UNSPECIFIED = 0;
+      // COMPLETED
+      COMPLETED = 1;
+      // IN_PROGRESS
+      IN_PROGRESS = 2;
+      // PENDING_APPROVAL
+      PENDING_APPROVAL = 3;
+      // APPROVED
+      APPROVED = 4;
+    }
+    // Comments on field
+    repeated string comments = 4;
+    // Field description
+    string field_description = 5;
+    // Update time of field
+    google.protobuf.Timestamp update_time = 6;
+    // Field Tags
+    repeated string tags = 7;
+    // File Attachment Reference
+    repeated string file_attachments = 8;
+  }
+}
