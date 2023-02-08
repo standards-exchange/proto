@@ -156,7 +156,7 @@ message RT0005M37 {
         // The own
         OwnershipType ownership_type = 6;
         // If PRIVATE, then the shareholders owning more than 10% or more of the entity
-        repeated SignificantShareholder shareholders = 7;
+//        repeated SignificantShareholder shareholders = 7;
       }
       // Complete if the `SignificantShareholder` is a legal entity
       LegalEntity legal_entity_ownership_details = 5;
