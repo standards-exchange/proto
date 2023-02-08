@@ -208,7 +208,7 @@ message RT0005M37 {
     // non-resident customers are located
     repeated string top_five_countries = 28;
     // Q15. To the closest value, provide Q15a the number of employees
-    int64 number_of_employees = 29;
+    int32 number_of_employees = 29;
     // Q15. To the closest value, provide Q15b total assets
     google.type.Money total_assets = 30;
     // Q16. Confirm that all responses provided in this section are representative of all the LE's branches.
@@ -283,4 +283,351 @@ message RT0005M37 {
     // Q18b. If appropriate, provide any further information / context to the answers in this section.
     string further_information = 32;
   }
+  // Section 2. Information related to the products and services offered
+  ProductsAndServices products_and_services = 4;
+  // Definition of AML, CTF and Sanctions Program Section
+  message AMLAndCTFAndSanctionsProgram {
+    // Q19 Does the Entity have a programme that sets minimum AML, CTF and Sanctions standards regarding the components in questions 19a-19o. If NO, explain.
+    YesNoExplain entity_has_program_that_sets_minimum_aml_ctf_and_sanctions_standards = 1;
+    // Definition of further information related to the AML,CTF and Sactions program
+    message AMLCTFAndSanctionsProgram {
+      // Q19a Appointed Officer with sufficient experience/expertise
+      YesNoExplain appointed_officer_with_sufficient_experience = 1;
+      // Q19b Cash reporting
+      YesNoExplain cash_reporting = 2;
+      // Q19c CDD
+      YesNoExplain CDD = 3;
+      // Q19d EDD
+      YesNoExplain EDD = 4;
+      // Q19e Beneficial Ownership
+      YesNoExplain beneficial_ownership = 5;
+      // Q19f Independent Testing
+      YesNoExplain independent_testing = 6;
+      // Q19g Periodic Review
+      YesNoExplain periodic_review = 7;
+      // Q19h Policies and Procedures
+      YesNoExplain policies_and_procedures = 8;
+      // Q19i Risk Assessment
+      YesNoExplain risk_assessment = 9;
+      // Q19j Sanctions
+      YesNoExplain sanctions = 10;
+      // Q19k PEP Screening
+      YesNoExplain pep_screening = 11;
+      // Q19l Adverse Information Screening
+      YesNoExplain adverse_information_screening = 12;
+      // Q19m Suspicious Activity Reporting
+      YesNoExplain suspicious_activity_reporting = 13;
+      // Q19o Suspicious Activity Reporting
+      YesNoExplain transaction_monitoring = 14;
+    }
+    // Q19a-Q19o. Provide further information on the AML, CTF and Sanctions program stanards
+    AMLCTFAndSanctionsProgram aml_ctf_and_sanctions_program = 2;
+    // Q20 How many full time employees are in the Entity's AML, CTF & Sanctions Compliance Department?
+    int32 how_many_full_time_employees_in_aml_ctf_and_sanctions_program = 3;
+    // Q21 Is the Entity's AML, CTF & Sanctions policy approved at least annually by the Board or equivalent Senior Management Committee? If NO, explain.
+    YesNoExplain policy_approved_at_least_annually_by_senior_committee = 4;
+    // Q22 Does the Board or equivalent Senior Management Committee receive regular reporting on the status of the AML, CTF & Sanctions programme? If NO, explain.
+    YesNoExplain senior_management_committee_receives_regular_programme_reporting = 5;
+    // Q23 & Q23a. Does the Entity use third parties to carry out any components of its AML, CTF & Sanctions programme? If YES, explain.
+    YesExplainNo use_third_parties = 6;
+    // Q24 & Q24a. Confirm that all responses provided in the above Section AML, CTF & SANCTIONS Programme are representative of all the LE's branches
+    // If NO, explain by clarifying which questions the differences relate to and the branches that his applies to.
+    YesNoExplain representative_of_branches = 7;
+    // Q24b. If appropriate, provide any further information / context to the answers in this section.
+    string further_information = 32;
+  }
+  // Section 3. Information related to the AML, CTF and Sanctions program
+  AMLAndCTFAndSanctionsProgram aml_ctf_and_sanctions_program = 5;
+  // Definition of the Anti Bribery and Corruption section
+  message AntiBriberyAndCorruption {
+    // Q25 Has the Entity documented policies and procedures consistent with applicable ABC regulations and
+    // requirements to [reasonably] prevent, detect and report bribery and corruption? If NO, explain
+    YesNoExplain documented_anti_bribery_and_corruption_policies_and_procedures = 1;
+    // Q26 Does the Entity have an enterprise wide programme that sets minimum ABC standards? If NO, explain
+    YesNoExplain enterprise_wide_programme = 2;
+    // Q27 Has the Entity appointed a designated officer or officers with sufficient experience/expertise
+    // responsible for coordinating the ABC programme? If NO, explain
+    YesNoExplain appointed_designated_officer_or_officers_with_sufficient_experience = 3;
+    // Q28 Does the Entity have adequate staff with appropriate levels of experience/expertise to
+    //  implement the ABC programme? If NO, explain
+    YesNoExplain entity_has_adequate_staff_with_appropriate_experience_to_implement_abc_programme = 4;
+    // Q30a Does the Entity have a global ABC policy that:
+    // Prohibits the giving and receiving of bribes? This includes promising, offering, giving, solicitation or
+    // receiving of anything of value, directly or indirectly, if improperly intended to influence action or obtain an
+    // advantage? If NO, explain.
+    YesNoExplain entity_has_global_abc_policy_prohibiting_bribes = 5;
+    // Q30b Does the Entity have a global ABC policy that:
+    // Includes enhanced requirements regarding interaction with public officials? If NO, explain.
+    YesNoExplain entity_has_global_abc_policy_that_includes_enhanced_requirements_for_interacting_with_public_officials = 6;
+    // Q30b Does the Entity have a global ABC policy that:
+    // Includes a prohibition against the falsification of books and records
+    // (this may be within the ABC policy or any other policy applicable to the Legal Entity)? If NO, explain
+    YesNoExplain entity_has_global_abc_policy_that_includes_a_prohibition_against_the_falsification_of_books_and_records = 7;
+    // Q31 Does the Entity have controls in place to monitor the effectiveness of their ABC programme? If NO, explain.
+    YesNoExplain entity_has_controls_in_place_to_monitor_abc_programme = 8;
+    // Q32 Does the Entity's Board or Senior Management Committee receive regular Management Information on ABC matters?
+    // If NO, explain
+    YesNoExplain board_or_senior_management_receives_regular_information_on_abc_matters = 9;
+    // Q33 & Q33a Does the Entity perform an Enterprise Wide ABC risk assessment? If NO, explain. If YES, provide the frequency.
+    YesNoAndExplain entity_performs_enterprise_wide_abc_risk_assessment = 10;
+    // Q34 Does the Entity have an ABC residual risk rating that is the net result of the controls
+    // effectiveness and the inherent risk assessment? If NO, explain
+    YesNoExplain entity_has_abc_residual_risk_rating = 11;
+    // Q35a Does the Entity's ABC EWRA cover:
+    // Potential liability created by intermediaries and other third-party providers as appropriate. If NO, explain
+    YesNoExplain entity_ewra_covers_liability_created_by_intermediaries = 12;
+    // Q35b Does the Entity's ABC EWRA cover:
+    // Corruption risks associated with the countries and industries in which the Entity does business, directly or through intermediaries.
+    // If NO, explain
+    YesNoExplain entity_ewra_covers_corruption_risks_by_country = 13;
+    // Q35c Does the Entity's ABC EWRA cover:
+    // Transactions, products or services, including those that involve state-owned or state- controlled entities or public officials.
+    // If NO, explain
+    YesNoExplain entity_ewra_covers_transaction_products_or_services_involving_state_entities_or_public_officials = 14;
+    // Q35d Does the Entity's ABC EWRA cover:
+    // Corruption risks associated with gifts and hospitality, hiring/internships, charitable donations and political contributions.
+    // If NO, explain
+    YesNoExplain entity_ewra_covers_risks_associated_with_gifts_and_hospitality = 15;
+    // Q35d Does the Entity's ABC EWRA cover:
+    // Changes in business activities that may materially increase the Entity's corruption risk.
+    // If NO, explain
+    YesNoExplain entity_ewra_covers_changes_in_business_activities_that_may_increase_risk = 16;
+    // Q36 Does the Entity's internal audit function or other independent third party cover ABC Policies and Procedures?
+    // If NO, explain
+    YesNoExplain entity_internal_audit_function_covers_abc_policies_and_procedures = 17;
+    // Q37a Does the Entity provide mandatory ABC training to::
+    // Board and senior Committee Management.
+    // If NO, explain
+    YesNoExplain entity_provides_mandatory_abc_training_to_board_and_senior_management_committee = 18;
+    // Q37b Does the Entity provide mandatory ABC training to::
+    // 1st Line of Defence.
+    // If NO, explain
+    YesNoExplain entity_provides_mandatory_abc_training_to_first_line_of_defence = 19;
+    // Q37c Does the Entity provide mandatory ABC training to::
+    // 2nd Line of Defence.
+    // If NO, explain
+    YesNoExplain entity_provides_mandatory_abc_training_to_second_line_of_defence = 20;
+    // Q37d Does the Entity provide mandatory ABC training to::
+    // 3rd Line of Defence.
+    // If NO, explain
+    YesNoExplain entity_provides_mandatory_abc_training_to_third_line_of_defence = 21;
+    // Q37e Does the Entity provide mandatory ABC training to::
+    // 3rd parties to which specific compliance activities subject to ABC risk have been outsourced
+    // If NO, explain
+    YesNoExplain entity_provides_mandatory_abc_training_to_third_parties_subject_to_abc_risk = 22;
+    // Q37e Does the Entity provide mandatory ABC training to::
+    // Non-employed workers as appropriate (contractors/consultants)
+    // If NO, explain
+    YesNoExplain entity_provides_mandatory_abc_training_to_non_employed_workers_as_appropriate = 23;
+    // Q38 Does the Entity provide ABC training that is targeted to specific roles, responsibilities and activities?
+    // If NO, explain
+    YesNoExplain entity_provides_abc_training_targeted_to_specific_roles_responsibilities_activities = 24;
+    // Q39 & Q39a Confirm that all responses provided in the above Section Anti Bribery & Corruption are representative of all the LE's branches
+    // If NO, clarify which questions the difference/s relate to and the branch/es that this applies to.
+    YesNoExplain representative_of_branches = 25;
+    // Q39b. If appropriate, provide any further information / context to the answers in this section.
+    string further_information = 26;
+
+  }
+  // Section 4. Information related to the Anti Bribery and Corruption section program
+  AMLAndCTFAndSanctionsProgram anti_bribery_and_corruption = 6;
+  // Definition of the AML, CTF & Sanctions Policies & Procedures
+  message AMLAndCTFAndSanctionsPoliciesAndProcedures {
+    // Q40a Has the Entity documented policies and procedures consistent with applicable AML, CTF & Sanctions regulations and requirements to reasonably prevent, detect and report:
+    // Money laundering
+    // If NO, explain
+    YesNoExplain entity_has_documented_policies_and_procedures_for_money_laundering = 1;
+    // Q40b Has the Entity documented policies and procedures consistent with applicable AML, CTF & Sanctions regulations and requirements to reasonably prevent, detect and report:
+    // Terrorist financing
+    // If NO, explain
+    YesNoExplain entity_has_documented_policies_and_procedures_for_terrorist_financing = 2;
+    // Q40c Has the Entity documented policies and procedures consistent with applicable AML, CTF & Sanctions regulations and requirements to reasonably prevent, detect and report:
+    // Sanctions violations
+    // If NO, explain
+    YesNoExplain entity_has_documented_policies_and_procedures_for_sanctions_violations = 3;
+    // Q41 Are the Entity's policies and procedures updated at least annually? If NO, explain
+    YesNoExplain policies_updated_at_least_annually = 4;
+    // Q42a & Q42a1 Are the Entity's policies and procedures gapped against/compared to: US Standards. If YES, does the entity retain a record of results
+    YesNoAndExplain policies_gapped_against_usa_standards = 5;
+    // Q42b & Q42b1 Are the Entity's policies and procedures gapped against/compared to: EU Standards. If YES, does the entity retain a record of results
+    YesNoAndExplain policies_gapped_against_eu_standards = 6;
+    // Q43a Does the Entity have policies and procedures that (If NO, explain):
+    // Prohibit the opening and keeping of anonymous and fictitious named accounts
+    YesNoExplain policies_that_prohibit_opening_and_keeping_anonymous_and_fictitious_named_accounts = 7;
+    // Q43b Does the Entity have policies and procedures that (If NO, explain):
+    // Prohibit the opening and keeping of accounts for unlicensed banks and/or NBFIs
+    YesNoExplain policies_that_prohibit_opening_accounts_for_unlicensed_banks_and_or_nbfis = 8;
+    // Q43c Does the Entity have policies and procedures that (If NO, explain):
+    // Prohibit dealing with other entities that provide banking services to unlicensed banks
+    YesNoExplain policies_that_prohibit_dealing_with_entities_providing_banking_to_unlicensed_banks = 9;
+    // Q43d Does the Entity have policies and procedures that (If NO, explain):
+    // Prohibit accounts/relationships with shell banks
+    YesNoExplain policies_that_prohibit_accounts_or_relationships_with_shell_banks = 10;
+    // Q43e Does the Entity have policies and procedures that (If NO, explain):
+    // Prohibit dealing with another entity that provides services to shell banks
+    YesNoExplain policies_that_prohibit_dealing_with_another_entity_that_provides_services_to_shell_banks = 11;
+    // Q43f Does the Entity have policies and procedures that (If NO, explain):
+    // Prohibit opening and keeping of accounts for Section 311 designated entities
+    YesNoExplain policies_that_prohibit_accounts_for_section_311_entities = 12;
+    // Q43g Does the Entity have policies and procedures that (If NO, explain):
+    // Prohibit opening and keeping of accounts for any of unlicensed/unregulated remittance agents, exchanges houses,
+    // casa de cambio, bureaux de change or money transfer agents
+    YesNoExplain policies_that_prohibit_accounts_for_unlicensed_or_regulated_remittance_agents_or_exchange_houses_or_money_transfer_agents = 13;
+    // Q43h Does the Entity have policies and procedures that (If NO, explain):
+    // Assess the risks of relationships with domestic and foreign PEPs, including their family and close associates
+    YesNoExplain policies_that_assess_risks_of_relationships_with_peps = 14;
+    // Q43i Does the Entity have policies and procedures that (If NO, explain):
+    // Define escalation processes for financial crime risk issues
+    YesNoExplain policies_that_define_escalation_process_for_financial_crime = 15;
+    // Q43j Does the Entity have policies and procedures that (If NO, explain):
+    // Define the process, where appropriate, for terminating existing customer relationships due to financial crime risk
+    YesNoExplain policies_that_define_process_for_terminating_existing_customer_relationships_due_to_financial_crime_risk = 16;
+    // Q43k Does the Entity have policies and procedures that (If NO, explain):
+    // Specify how potentially suspicious activity identified by employees is to be escalated and investigated
+    YesNoExplain policies_that_specify_how_suspicious_activities_are_escalated = 17;
+    // Q43l Does the Entity have policies and procedures that (If NO, explain):
+    // Outline the processes regarding screening for sanctions, PEPs and negative media
+    YesNoExplain policies_that_outline_process_for_screening_for_sanctions_peps_and_negative_media = 18;
+    // Q43m Does the Entity have policies and procedures that (If NO, explain):
+    // Outline the processes for the maintenance of internal "watchlists"
+    YesNoExplain policies_that_outline_process_for_maintenance_of_internal_watchlists = 19;
+    // Q44 Has the Entity defined a risk tolerance statement or similar document which defines a risk boundary around their business? If NO, explain.
+    YesNoExplain entity_had_defined_a_risk_tolerance_statement = 20;
+    // Q45 Does the Entity have a record retention procedures that comply with applicable laws? If NO, explain. If YES, what is the retention period.
+    YesNoAndExplain entity_has_record_retention_procedure = 21;
+    // Q46 & Q46a Confirm that all responses provided in the above Section POLICIES & PROCEDURES are representative of all the LE's branches
+    // If NO, clarify which questions the difference/s relate to and the branch/es that this applies to.
+    YesNoExplain representative_of_branches = 25;
+    // Q46b. If appropriate, provide any further information / context to the answers in this section.
+    string further_information = 26;
+  }
+  // Section 5. Information related to the AML, CTF and Sanctions Policies and Procedures
+  AMLAndCTFAndSanctionsPoliciesAndProcedures aml_ctf_and_sanctions_policies_and_procedures = 7;
+  // Definition of the AML, CTF & Sanctions Risk Assessment
+  message AMLAndCTFAndSanctionsRiskAssessment {
+    // Q47a Does the Entity's AML & CTF EWRA cover the following inherent risk component (if NO, explain) - Client
+    YesNoExplain entity_aml_and_ctf_ewra_covers_client_risk_component = 1;
+    // Q47b Does the Entity's AML & CTF EWRA cover the following inherent risk component (if NO, explain) - Product
+    YesNoExplain entity_aml_and_ctf_ewra_covers_product_risk_component = 2;
+    // Q47c Does the Entity's AML & CTF EWRA cover the following inherent risk component (if NO, explain) - Channel
+    YesNoExplain entity_aml_and_ctf_ewra_covers_channel_risk_component = 3;
+    // Q47d Does the Entity's AML & CTF EWRA cover the following inherent risk component (if NO, explain) - Geography
+    YesNoExplain entity_aml_and_ctf_ewra_covers_geography_risk_component = 4;
+    // Q48a Does the Entity's AML & CTF EWRA cover the following controls effectiveness component (if NO, explain) - Transaction Monitoring
+    YesNoExplain entity_aml_and_ctf_ewra_covers_transaction_monitoring_effectiveness_component = 5;
+    // Q48b Does the Entity's AML & CTF EWRA cover the following controls effectiveness component (if NO, explain) - Customer Due Diligence
+    YesNoExplain entity_aml_and_ctf_ewra_covers_customer_due_diligence_effectiveness_component = 6;
+    // Q48c Does the Entity's AML & CTF EWRA cover the following controls effectiveness component (if NO, explain) - PEP Identification
+    YesNoExplain entity_aml_and_ctf_ewra_covers_pep_identification_effectiveness_component = 7;
+    // Q48d Does the Entity's AML & CTF EWRA cover the following controls effectiveness component (if NO, explain) - Transaction Screening
+    YesNoExplain entity_aml_and_ctf_ewra_covers_transaction_screening_effectiveness_component = 8;
+    // Q48e Does the Entity's AML & CTF EWRA cover the following controls effectiveness component (if NO, explain) - Name Screening against Adverse Media & Negative News
+    YesNoExplain entity_aml_and_ctf_ewra_covers_name_screening_effectiveness_component = 9;
+    // Q48f Does the Entity's AML & CTF EWRA cover the following controls effectiveness component (if NO, explain) - Training and Education
+    YesNoExplain entity_aml_and_ctf_ewra_covers_training_and_education_effectiveness_component = 10;
+    // Q48g Does the Entity's AML & CTF EWRA cover the following controls effectiveness component (if NO, explain) - Governance
+    YesNoExplain entity_aml_and_ctf_ewra_covers_governance_effectiveness_component = 11;
+    // Q48h Does the Entity's AML & CTF EWRA cover the following controls effectiveness component (if NO, explain) - Management Information
+    YesNoExplain entity_aml_and_ctf_ewra_covers_management_information_effectiveness_component = 12;
+    // Q49 Has the Entity's AML & CTF EWRA been completed in the last 12 months? If N, provide the date when the last AML & CTF EWRA was completed.
+    YesNoExplain entity_aml_and_ctf_ewra_completed_in_the_last_12_months = 13;
+    // Q50a Does the Entity's Sanctions EWRA cover the following inherent risk component (if NO, explain) - Client
+    YesNoExplain entity_sanctions_ewra_covers_client_risk_component = 14;
+    // Q50b Does the Entity's Sanctions EWRA cover the following inherent risk component (if NO, explain) - Product
+    YesNoExplain entity_sanctions_ewra_covers_product_risk_component = 15;
+    // Q50c Does the Entity's Sanctions EWRA cover the following inherent risk component (if NO, explain) - Channel
+    YesNoExplain entity_sanctions_ewra_covers_channel_risk_component = 16;
+    // Q50d Does the Entity's Sanctions EWRA cover the following inherent risk component (if NO, explain) - Geography
+    YesNoExplain entity_sanctions_ewra_covers_geography_risk_component = 17;
+    // Q51a Does the Entity's Sanctions EWRA cover the following controls effectiveness component (if NO, explain) - Customer Due Diligence
+    YesNoExplain entity_sanctions_ewra_covers_customer_due_diligence_effectiveness_component = 18;
+    // Q51b Does the Entity's Sanctions EWRA cover the following controls effectiveness component (if NO, explain) - Transaction Screening
+    YesNoExplain entity_sanctions_ewra_covers_transaction_screening_effectiveness_component = 19;
+    // Q51c Does the Entity's Sanctions EWRA cover the following controls effectiveness component (if NO, explain) - Name Screening
+    YesNoExplain entity_sanctions_ewra_covers_name_screening_effectiveness_component = 20;
+    // Q51d Does the Entity's Sanctions EWRA cover the following controls effectiveness component (if NO, explain) - List Management
+    YesNoExplain entity_sanctions_ewra_covers_list_management_effectiveness_component = 21;
+    // Q51e Does the Entity's Sanctions EWRA cover the following controls effectiveness component (if NO, explain) - Training and Education
+    YesNoExplain entity_sanctions_ewra_covers_training_and_education_effectiveness_component = 22;
+    // Q51f Does the Entity's Sanctions EWRA cover the following controls effectiveness component (if NO, explain) - Governance
+    YesNoExplain entity_sanctions_ewra_covers_governance_effectiveness_component = 23;
+    // Q51g Does the Entity's Sanctions EWRA cover the following controls effectiveness component (if NO, explain) - Management Information
+    YesNoExplain entity_sanctions_ewra_covers_management_information_effectiveness_component = 24;
+    // Q52 & Q52a Has the Entity's Sanctions EWRA been completed in the last 12 months? If N, provide the date when the last Sanctions EWRA was completed.
+    YesNoExplain entity_sanctions_ewra_completed_in_the_last_12_months = 25;
+    // Q53 & Q53a Confirm that all responses provided in the above section are representative of all the LE's branches
+    // If NO, clarify which questions the difference/s relate to and the branch/es that this applies to.
+    YesNoExplain representative_of_branches = 26;
+    // Q53b. If appropriate, provide any further information / context to the answers in this section.
+    string further_information = 27;
+  }
+  // Section 6. Information related to the AML, CTF and Sanctions Risk Assessment
+  AMLAndCTFAndSanctionsRiskAssessment aml_ctf_and_sanctions_risk_assessment = 8;
+  // Definition of KYC, CDD and EDD information
+  message KYCAndCDDAndEDD {
+    // Q54 Does the Entity verify the identity of the customer? If NO, explain
+    YesNoExplain entity_verifies_identity_of_customer = 1;
+    // Q55 Do the Entity's policies and procedures set out when CDD must be completed, e.g. at the time of onboarding or within 30 days? If NO, explain
+    YesNoExplain policies_and_procedures_set_out_when_cdd_must_be_completed = 2;
+    // Q56a Does the Entity gather and retain Ownership structure information when conducting CDD? If NO, explain.
+    YesNoExplain entity_gathers_ownership_structure_information = 3;
+    // Q56b Does the Entity gather and retain Customer identification information when conducting CDD? If NO, explain.
+    YesNoExplain entity_gathers_customer_identification_information = 4;
+    // Q56c Does the Entity gather and retain Expected activity information when conducting CDD? If NO, explain.
+    YesNoExplain entity_gathers_expected_activity_information = 5;
+    // Q56d Does the Entity gather and retain Nature of business/employment information when conducting CDD? If NO, explain.
+    YesNoExplain entity_gathers_nature_of_business_information = 6;
+    // Q56e Does the Entity gather and retain Product usage information when conducting CDD? If NO, explain.
+    YesNoExplain entity_gathers_product_usage_information = 7;
+    // Q56f Does the Entity gather and retain Purpose and nature of relationship information when conducting CDD? If NO, explain.
+    YesNoExplain entity_gathers_purpose_and_nature_of_relationship_information = 8;
+    // Q56g Does the Entity gather and retain Source of funds information when conducting CDD? If NO, explain.
+    YesNoExplain entity_gathers_source_of_funds_information = 9;
+    // Q57a Is the Ultimate beneficial ownership identified. If NO, explain.
+    YesNoExplain ultimate_beneficial_ownership_identified = 10;
+    // Q57a1 Are ultimate beneficial owners verified?. If NO, explain.
+    YesNoExplain ultimate_beneficial_ownership_verified = 11;
+    // Q57b Are the Authorised signatories (where applicable) identified. If NO, explain.
+    YesNoExplain authorised_signatories_identified = 12;
+    // Q57c Are the key controllers identified. If NO, explain.
+    YesNoExplain key_controllers_identified = 13;
+    // Q57 Are the other relevant parties identified. If NO, explain.
+    YesNoExplain other_relevant_parties_identified = 14;
+    // Q58 What is the Entity’s minimum (lowest) threshold applied to beneficial ownership identification? Complete as a decimal e.g. 10% as 0.1
+    double lowest_threshold_applied_to_beneficial_ownership = 15;
+    // Q59 Does the due diligence process result in customers receiving a risk classification? If NO, explain.
+    YesNoExplain due_diligence_process_results_in_risk_classification = 16;
+    // Q60a If YES to Q59, is the following factor / criteria used to determine risk classification - Product Usage.
+    bool product_usage_informs_risk_classification = 17;
+    // Q60b If YES to Q59, is the following factor / criteria used to determine risk classification - Geography.
+    bool geography_informs_risk_classification = 18;
+    // Q60c If YES to Q59, is the following factor / criteria used to determine risk classification - Business Type/Industry.
+    bool business_type_informs_risk_classification = 19;
+    // Q60d If YES to Q59, is the following factor / criteria used to determine risk classification - Legal Entity type.
+    bool legal_entity_type_informs_risk_classification = 20;
+    // Q60e If YES to Q59, is the following factor / criteria used to determine risk classification - Adverse Information.
+    bool adverse_information_type_informs_risk_classification = 21;
+    // Q60f If YES to Q59, is the following factor / criteria used to determine risk classification - Other (if YES, specify).
+    YesNoExplain any_other_information_informs_risk_classification = 22;
+    // Q61 Does the Entity have a risk based approach to screening customers for adverse media/negative news?
+    YesNoAndExplain entity_has_risk_based_approach_to_screening_customers_for_adverse_media = 23;
+    // Q62a If YES to Q61, does the entity apply its risk based approach to screening customers for adverse media at onboarding
+    YesNoExplain risk_based_approach_to_customer_screening_for_adverse_media_applied_at_onboarding = 24;
+    // Q62b If YES to Q61, does the entity apply its risk based approach to screening customers for adverse media at KYC renewal
+    YesNoExplain risk_based_approach_to_customer_screening_for_adverse_media_applied_at_kyc_renewal = 25;
+    // Q62c If YES to Q61, does the entity apply its risk based approach to screening customers for adverse media at a Trigger event
+    YesNoExplain risk_based_approach_to_customer_screening_for_adverse_media_applied_at_trigger_event = 26;
+    // Q64 What is the method used by the Entity to screen for adverse media / negative news?
+    string method_used_to_screen_for_adverse_media = 27;
+    // Q64 Does the Entity have a risk based approach to screening customers and connected parties to determine
+    // whether they are PEPs, or controlled by PEPs?
+    YesNoAndExplain entity_has_risk_based_approach_to_screening_for_pep_connections = 28;
+  }
+  // Section 7. Information related to KYC, CDD and EDD
+  AMLAndCTFAndSanctionsRiskAssessment kyc_and_cdd_and_edd = 9;
+}
+
+// Batch set of RT0005M37 responses
+message RT0005M37_batch {
+  repeated RT0005M37 response = 1;
 }
