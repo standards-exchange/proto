@@ -59,228 +59,228 @@ message RT0005M37 {
   string financial_institution_name = 1;
   // The three letter ISO code of the country in which the LE is located
   string country = 2;
-  // Definition of Entity and Ownership section
-  message EntityAndOwnership {
-    // Q1.1. The full legal name of the entity
-    string legal_name = 1;
-    // Information about a foreign branch
-    message Branch {
-      // The name of the branch
-      string branch_name = 1;
-      // The country in which the branch is located (the three letter ISO code)
-      string location = 2;
-    }
-    // Q1.2 List all foreign branches covered by this questionnaire.
-    repeated Branch covered_branches = 2;
-    // Q1.3 The full legal (registered) address of the entity
-    string legal_address = 3;
-    // Q1.4 The full primary business address of the entity
-    string business_address = 4;
-    // Q1.5 The date in which the entity was incorporated
-    google.type.Date date_of_incorporation = 5;
-    // Enumerations of ownership type
-    enum OwnershipType {
-      // The ownership type is unspecified
-      OWNERSHIP_TYPE_UNSPECIFIED = 0;
-      // Member owned / mutual
-      MEMBER_OR_MUTUAL = 1;
-      // Government or state owned by more than 25%
-      GOVERNMENT_OR_STATE = 2;
-      // Privately owned
-      PRIVATE = 3;
-    }
-    // Q1.6 Select the ownership type
-    OwnershipType ownership_type = 6;
-    // Information to be provided if publicly traded
-    message TradedSecurityIdentifier {
-      // Enumerations of financial identifiers
-      enum FinancialInstrumentIdentifier {
-        // Source not specified by the user.
-        IDENTIFIER_UNSPECIFIED = 0;
-        // FIGI (Financial_Instrument Global Identifier). To look up the FIGI navigate to www.openfigi.org.
-        FIGI = 1;
-        // PermID (Refinitiv Permanent Identifier). To look up the PermID
-        PERM_ID = 2;
-      }
-      // Codification chosen to identify the financial instrument
-      FinancialInstrumentIdentifier financial_identifier = 4;
-      // Identifier of the affected instrument
-      string instrument = 5;
-    }
-    // Q1.6aa If publicly traded, provide the primary security identifier the traded instrument
-    TradedSecurityIdentifier security_identifier = 7;
-    // The definition of a beneficial owner resource
-    message SignificantShareholder {
-      // The resource name of the client
-      string display_name = 1;
-      // Types of account holders
-      enum BeneficialOwnerType {
-        // Beneficial owner unspecified
-        TYPE_UNSPECIFIED = 0;
-        // The beneficial owner is a natural person
-        NATURAL_PERSON = 1;
-        // The beneficial owner is a legal entity
-        LEGAL_ENTITY = 2;
-      }
-      // The type of beneficial owner
-      BeneficialOwnerType beneficial_owner_type = 2;
-      // The ultimate effective interest in the legal entity on a look through basis
-      double beneficial_ownership = 3;
-      // Information relating to a natural person
-      message NaturalPerson {
-        // The first name
-        string given_name = 1;
-        // The last name
-        string family_name = 2;
-        // The phone number including country code
-        string phone_number = 3;
-        // The email address of the manager
-        string email_address = 4;
-        // The three letter ISO code of the country of residence
-        string country_of_residence = 5;
-        // Place of address
-        string address = 6;
-      }
-      // Complete if the beneficial person is a natural person
-      NaturalPerson natural_person_ownership_details = 4;
-      // Information relating to a legal beneficial owner
-      message LegalEntity {
-        // The name of the company
-        string legal_name = 1;
-        // The registered office of the company
-        string registered_office = 2;
-        // The LEI identifier of the company (if available)
-        string LEI = 3;
-        // The directors or managers of the legal entity
-        repeated NaturalPerson directors_or_managers = 4;
-        // The own
-        OwnershipType ownership_type = 6;
-        // If PRIVATE, then the shareholders owning more than 10% or more of the entity
-//        repeated SignificantShareholder shareholders = 7;
-      }
-      // Complete if the `SignificantShareholder` is a legal entity
-      LegalEntity legal_entity_ownership_details = 5;
-    }
-    // Q1.6d1 If privately owned, provide details of shareholders with a holding of 10%
-    // or more up the ownership chain
-    repeated SignificantShareholder significant_shareholders = 8;
-    // If privately owned, has a beneficial ownership structure chart been attached?
-    YesNoExplain structure_chart = 9;
-    // Provide the % of the entity's total shares composed of bearer shares (for example 10% enter as 0.1)
-    float percent_bearer_shares = 10;
-    // Q1.8 Does the entity operate any of its branches, operate under an Offshore Banking License (OBL)?
-    bool any_branches_under_offshore_banking_license = 11;
-    // Q1.8a, List any branches operate under offshore banking license (if TRUE to Q1.8)
-    repeated Branch branches_under_offshore_banking_license = 12;
-    // Q1.9 Provide the name of the primary financial regulator / supervisory authority
-    string financial_regulator_or_supervisory_authority = 13;
-    // Q1.10 The LEI identifier of the company (if available)
-    string LEI = 14;
-    // Q1.11 Provide the full legal name of the ultimate parent (if different from the entity completing the DDQ)
-    string ultimate_parent_legal_name = 15;
-    // Q1.12 Jurisdiction of licensing authority and regulator of ultimate parent (ISO three country code)
-    string jurisdiction_of_licensing_authority_and_regulator_of_ultimate_parent = 16;
-    // Q13a. Mark true if an applicable business area - Retail banking.
-    bool retail_banking = 17;
-    // Q13b. Mark true if an applicable business area - Private Banking / Wealth Management.
-    bool private_banking_wealth_management = 18;
-    // Q13c. Mark true if an applicable business area - Commercial Banking.
-    bool commercial_banking = 19;
-    // Q13d. Mark true if an applicable business area - Transactional Banking.
-    bool transactional_banking = 20;
-    // Q13e. Mark true if an applicable business area - Investment Banking.
-    bool investment_banking = 21;
-    // Q13f. Mark true if an applicable business area - Financial Markets Trading.
-    bool financial_markets_trading = 22;
-    // Q13g. Mark true if an applicable business area - Securities Services / Custody.
-    bool securities_services_or_custody = 23;
-    // Q13h. Mark true if an applicable business area - Broker / Dealer.
-    bool broker_dealer = 24;
-    // Q13i. Mark true if an applicable business area - Multilateral Development Bank.
-    bool multilateral_development_bank = 25;
-    // Q13j. Mark true if an applicable business area - Other.
-    string other_business_area = 26;
-    // Q14. Does the Entity have a significant (10% or more) portfolio of non-resident customers or does it
-    // derive more than 10% of its revenue from non-resident customers? (Non-resident means customers primarily
-    //  resident in a different jurisdiction to the location where bank service are provided.)
-    bool significant_non_resident_customers = 27;
-    // If TRUE to Q14a, list the three letter ISO codes of the top five countries where
-    // non-resident customers are located
-    repeated string top_five_countries = 28;
-    // Q15. To the closest value, provide Q15a the number of employees
-    int64 number_of_employees = 29;
-    // Q15. To the closest value, provide Q15b total assets
-    google.type.Money total_assets = 30;
-    // Q16. Confirm that all responses provided in this section are representative of all the LE's branches.
-    // If NO, explain by clarifying which questions the differences relate to and the branches that his applies to.
-    YesNoExplain representative_of_branches = 31;
-    // Q16b. If appropriate, provide any further information / context to the answers in this section.
-    string further_information = 32;
-  }
-  // Section 1. Information related to legal entity and its ownership
-  EntityAndOwnership entity_and_ownership = 3;
-  // Definition of Products & Services section
-  message ProductsAndServices {
-    // Q17a. Does the entity offer Correspondent banking.
-    bool offers_correspondent_banking = 1;
-    // Q17a2 If TRUE to Q17a. Does the entity offer Correspondent banking, does the Entity offer Correspondent
-    // Banking services to domestic banks?
-    YesNoAndExplain offers_correspondent_banking_to_domestic_banks = 2;
-    // Q17a3 If TRUE to Q17a. Does the entity offer Correspondent banking, does the Entity allow domestic bank clients to
-    // provide downstream relationships? If Yes, describe.
-    YesNoAndExplain offers_correspondent_banking_and_allows_domestic_clients_to_provide_downstream_relationships = 3;
-    // Q17a4 If TRUE to Q17a. Does the entity offer Correspondent banking, does the Entity have processes and procedures
-    // in place to identify downstream relationships with domestic banks?
-    YesNoAndExplain   offers_correspondent_banking_and_has_procedures_in_place_to_identify_downstream_relationships_with_domestic_banks = 4;
-    // Q17a5 If TRUE to Q17a. Does the entity offer Correspondent banking, does the Entity offer Correspondent
-    // Banking services to foreign banks?
-    YesNoAndExplain offers_correspondent_banking_to_foreign_banks = 5;
-    // Q17a6 If TRUE to Q17a. Does the entity offer Correspondent banking, does the Entity allow foreign bank clients to
-    // provide downstream relationships? If Yes, describe.
-    YesNoAndExplain offers_correspondent_banking_and_allows_foreign_clients_to_provide_downstream_relationships = 6;
-    // Q17a7 If TRUE to Q17a. Does the entity offer Correspondent banking, does the Entity have processes and procedures
-    // in place to identify downstream relationships with foreign banks?
-    YesNoAndExplain offers_correspondent_banking_and_has_procedures_in_place_to_identify_foreign_relationships_with_domestic_banks = 7;
-    // Q17a8 If TRUE to Q17a. Does the entity offer Correspondent banking, does the Entity offer correspondent banking
-    //services to regulated MSBs/MVTS?
-    YesNoAndExplain offers_correspondent_banking_to_regulated_msbs_and_mvts = 8;
-    // Q17a8 If TRUE to Q17a. Does the entity offer Correspondent banking, does the Entity offer correspondent banking
-    //services to regulated MSBs/MVTS?
-    YesNoAndExplain offers_correspondent_banking_and_has_processes_to_identify_downstream_relationships_with_msb_and_mvts = 9;
-    // Q17b. Does the entity offer Private Banking?
-    bool offers_private_banking = 10;
-    // Q17c. Does the entity offer Trade Finance?
-    bool offers_trade_finance = 11;
-    // Q17d. Does the entity offer Payable Through Accounts?
-    bool offers_payable_through_accounts = 12;
-    // Q17e. Does the entity offer Stored Value Instruments?
-    bool offers_stored_value_instruments = 13;
-    // Q17f. Does the entity offer Cross Border Bulk Cash Delivery?
-    bool offers_cross_border_bulk_cash_delivery = 14;
-    // Q17g. Does the entity offer Domestic Bulk Cash Delivery?
-    bool offers_domestic_bulk_cash_delivery = 15;
-    // Q17h. Does the entity offer International Cash Letter?
-    bool offers_international_cash_letter = 16;
-    // Q17i. Does the entity offer Remote Deposit Capture?
-    bool offers_remote_deposit_capture = 17;
-    // Q17j. Does the entity offer Virtual / Digital Currencies?
-    bool offers_virtual_digital_currencies = 18;
-    // Q17k. Does the entity offer Low Price Securities?
-    bool offers_low_price_securities = 19;
-    // Q17l. Does the entity offer Hold Mail?
-    bool offers_hold_mail = 20;
-    // Q17m. Does the entity offer Cross Border Remittances?
-    bool offers_cross_border_remittances = 21;
-    // Q17n. Does the entity offer Services to walk-in customers (non-account holders)?
-    bool offers_service_to_walkin_customers = 22;
-    // Q17o. Does the entity offer Sponsoring Private ATMs?
-    bool offers_sponsoring_private_atms = 23;
-    // Q17p. Does the entity offer Other high risk products and services identified by the Entity?
-    bool offers_sponsoring_other_high_risk_products_and_services = 24;
-    // Q18. Confirm that all responses provided in the above Section PRODUCTS & SERVICES are representative of all the LE's branches
-    // If NO, explain by clarifying which questions the differences relate to and the branches that his applies to.
-    YesNoExplain representative_of_branches = 25;
-    // Q18b. If appropriate, provide any further information / context to the answers in this section.
-    string further_information = 32;
-  }
+//  // Definition of Entity and Ownership section
+//  message EntityAndOwnership {
+//    // Q1.1. The full legal name of the entity
+//    string legal_name = 1;
+//    // Information about a foreign branch
+//    message Branch {
+//      // The name of the branch
+//      string branch_name = 1;
+//      // The country in which the branch is located (the three letter ISO code)
+//      string location = 2;
+//    }
+//    // Q1.2 List all foreign branches covered by this questionnaire.
+//    repeated Branch covered_branches = 2;
+//    // Q1.3 The full legal (registered) address of the entity
+//    string legal_address = 3;
+//    // Q1.4 The full primary business address of the entity
+//    string business_address = 4;
+//    // Q1.5 The date in which the entity was incorporated
+//    google.type.Date date_of_incorporation = 5;
+//    // Enumerations of ownership type
+//    enum OwnershipType {
+//      // The ownership type is unspecified
+//      OWNERSHIP_TYPE_UNSPECIFIED = 0;
+//      // Member owned / mutual
+//      MEMBER_OR_MUTUAL = 1;
+//      // Government or state owned by more than 25%
+//      GOVERNMENT_OR_STATE = 2;
+//      // Privately owned
+//      PRIVATE = 3;
+//    }
+//    // Q1.6 Select the ownership type
+//    OwnershipType ownership_type = 6;
+//    // Information to be provided if publicly traded
+//    message TradedSecurityIdentifier {
+//      // Enumerations of financial identifiers
+//      enum FinancialInstrumentIdentifier {
+//        // Source not specified by the user.
+//        IDENTIFIER_UNSPECIFIED = 0;
+//        // FIGI (Financial_Instrument Global Identifier). To look up the FIGI navigate to www.openfigi.org.
+//        FIGI = 1;
+//        // PermID (Refinitiv Permanent Identifier). To look up the PermID
+//        PERM_ID = 2;
+//      }
+//      // Codification chosen to identify the financial instrument
+//      FinancialInstrumentIdentifier financial_identifier = 4;
+//      // Identifier of the affected instrument
+//      string instrument = 5;
+//    }
+//    // Q1.6aa If publicly traded, provide the primary security identifier the traded instrument
+//    TradedSecurityIdentifier security_identifier = 7;
+//    // The definition of a beneficial owner resource
+//    message SignificantShareholder {
+//      // The resource name of the client
+//      string display_name = 1;
+//      // Types of account holders
+//      enum BeneficialOwnerType {
+//        // Beneficial owner unspecified
+//        TYPE_UNSPECIFIED = 0;
+//        // The beneficial owner is a natural person
+//        NATURAL_PERSON = 1;
+//        // The beneficial owner is a legal entity
+//        LEGAL_ENTITY = 2;
+//      }
+//      // The type of beneficial owner
+//      BeneficialOwnerType beneficial_owner_type = 2;
+//      // The ultimate effective interest in the legal entity on a look through basis
+//      double beneficial_ownership = 3;
+//      // Information relating to a natural person
+//      message NaturalPerson {
+//        // The first name
+//        string given_name = 1;
+//        // The last name
+//        string family_name = 2;
+//        // The phone number including country code
+//        string phone_number = 3;
+//        // The email address of the manager
+//        string email_address = 4;
+//        // The three letter ISO code of the country of residence
+//        string country_of_residence = 5;
+//        // Place of address
+//        string address = 6;
+//      }
+//      // Complete if the beneficial person is a natural person
+//      NaturalPerson natural_person_ownership_details = 4;
+//      // Information relating to a legal beneficial owner
+//      message LegalEntity {
+//        // The name of the company
+//        string legal_name = 1;
+//        // The registered office of the company
+//        string registered_office = 2;
+//        // The LEI identifier of the company (if available)
+//        string LEI = 3;
+//        // The directors or managers of the legal entity
+//        repeated NaturalPerson directors_or_managers = 4;
+//        // The own
+//        OwnershipType ownership_type = 6;
+//        // If PRIVATE, then the shareholders owning more than 10% or more of the entity
+////        repeated SignificantShareholder shareholders = 7;
+//      }
+//      // Complete if the `SignificantShareholder` is a legal entity
+//      LegalEntity legal_entity_ownership_details = 5;
+//    }
+//    // Q1.6d1 If privately owned, provide details of shareholders with a holding of 10%
+//    // or more up the ownership chain
+//    repeated SignificantShareholder significant_shareholders = 8;
+//    // If privately owned, has a beneficial ownership structure chart been attached?
+//    YesNoExplain structure_chart = 9;
+//    // Provide the % of the entity's total shares composed of bearer shares (for example 10% enter as 0.1)
+//    float percent_bearer_shares = 10;
+//    // Q1.8 Does the entity operate any of its branches, operate under an Offshore Banking License (OBL)?
+//    bool any_branches_under_offshore_banking_license = 11;
+//    // Q1.8a, List any branches operate under offshore banking license (if TRUE to Q1.8)
+//    repeated Branch branches_under_offshore_banking_license = 12;
+//    // Q1.9 Provide the name of the primary financial regulator / supervisory authority
+//    string financial_regulator_or_supervisory_authority = 13;
+//    // Q1.10 The LEI identifier of the company (if available)
+//    string LEI = 14;
+//    // Q1.11 Provide the full legal name of the ultimate parent (if different from the entity completing the DDQ)
+//    string ultimate_parent_legal_name = 15;
+//    // Q1.12 Jurisdiction of licensing authority and regulator of ultimate parent (ISO three country code)
+//    string jurisdiction_of_licensing_authority_and_regulator_of_ultimate_parent = 16;
+//    // Q13a. Mark true if an applicable business area - Retail banking.
+//    bool retail_banking = 17;
+//    // Q13b. Mark true if an applicable business area - Private Banking / Wealth Management.
+//    bool private_banking_wealth_management = 18;
+//    // Q13c. Mark true if an applicable business area - Commercial Banking.
+//    bool commercial_banking = 19;
+//    // Q13d. Mark true if an applicable business area - Transactional Banking.
+//    bool transactional_banking = 20;
+//    // Q13e. Mark true if an applicable business area - Investment Banking.
+//    bool investment_banking = 21;
+//    // Q13f. Mark true if an applicable business area - Financial Markets Trading.
+//    bool financial_markets_trading = 22;
+//    // Q13g. Mark true if an applicable business area - Securities Services / Custody.
+//    bool securities_services_or_custody = 23;
+//    // Q13h. Mark true if an applicable business area - Broker / Dealer.
+//    bool broker_dealer = 24;
+//    // Q13i. Mark true if an applicable business area - Multilateral Development Bank.
+//    bool multilateral_development_bank = 25;
+//    // Q13j. Mark true if an applicable business area - Other.
+//    string other_business_area = 26;
+//    // Q14. Does the Entity have a significant (10% or more) portfolio of non-resident customers or does it
+//    // derive more than 10% of its revenue from non-resident customers? (Non-resident means customers primarily
+//    //  resident in a different jurisdiction to the location where bank service are provided.)
+//    bool significant_non_resident_customers = 27;
+//    // If TRUE to Q14a, list the three letter ISO codes of the top five countries where
+//    // non-resident customers are located
+//    repeated string top_five_countries = 28;
+//    // Q15. To the closest value, provide Q15a the number of employees
+//    int64 number_of_employees = 29;
+//    // Q15. To the closest value, provide Q15b total assets
+//    google.type.Money total_assets = 30;
+//    // Q16. Confirm that all responses provided in this section are representative of all the LE's branches.
+//    // If NO, explain by clarifying which questions the differences relate to and the branches that his applies to.
+//    YesNoExplain representative_of_branches = 31;
+//    // Q16b. If appropriate, provide any further information / context to the answers in this section.
+//    string further_information = 32;
+//  }
+//  // Section 1. Information related to legal entity and its ownership
+//  EntityAndOwnership entity_and_ownership = 3;
+//  // Definition of Products & Services section
+//  message ProductsAndServices {
+//    // Q17a. Does the entity offer Correspondent banking.
+//    bool offers_correspondent_banking = 1;
+//    // Q17a2 If TRUE to Q17a. Does the entity offer Correspondent banking, does the Entity offer Correspondent
+//    // Banking services to domestic banks?
+//    YesNoAndExplain offers_correspondent_banking_to_domestic_banks = 2;
+//    // Q17a3 If TRUE to Q17a. Does the entity offer Correspondent banking, does the Entity allow domestic bank clients to
+//    // provide downstream relationships? If Yes, describe.
+//    YesNoAndExplain offers_correspondent_banking_and_allows_domestic_clients_to_provide_downstream_relationships = 3;
+//    // Q17a4 If TRUE to Q17a. Does the entity offer Correspondent banking, does the Entity have processes and procedures
+//    // in place to identify downstream relationships with domestic banks?
+//    YesNoAndExplain   offers_correspondent_banking_and_has_procedures_in_place_to_identify_downstream_relationships_with_domestic_banks = 4;
+//    // Q17a5 If TRUE to Q17a. Does the entity offer Correspondent banking, does the Entity offer Correspondent
+//    // Banking services to foreign banks?
+//    YesNoAndExplain offers_correspondent_banking_to_foreign_banks = 5;
+//    // Q17a6 If TRUE to Q17a. Does the entity offer Correspondent banking, does the Entity allow foreign bank clients to
+//    // provide downstream relationships? If Yes, describe.
+//    YesNoAndExplain offers_correspondent_banking_and_allows_foreign_clients_to_provide_downstream_relationships = 6;
+//    // Q17a7 If TRUE to Q17a. Does the entity offer Correspondent banking, does the Entity have processes and procedures
+//    // in place to identify downstream relationships with foreign banks?
+//    YesNoAndExplain offers_correspondent_banking_and_has_procedures_in_place_to_identify_foreign_relationships_with_domestic_banks = 7;
+//    // Q17a8 If TRUE to Q17a. Does the entity offer Correspondent banking, does the Entity offer correspondent banking
+//    //services to regulated MSBs/MVTS?
+//    YesNoAndExplain offers_correspondent_banking_to_regulated_msbs_and_mvts = 8;
+//    // Q17a8 If TRUE to Q17a. Does the entity offer Correspondent banking, does the Entity offer correspondent banking
+//    //services to regulated MSBs/MVTS?
+//    YesNoAndExplain offers_correspondent_banking_and_has_processes_to_identify_downstream_relationships_with_msb_and_mvts = 9;
+//    // Q17b. Does the entity offer Private Banking?
+//    bool offers_private_banking = 10;
+//    // Q17c. Does the entity offer Trade Finance?
+//    bool offers_trade_finance = 11;
+//    // Q17d. Does the entity offer Payable Through Accounts?
+//    bool offers_payable_through_accounts = 12;
+//    // Q17e. Does the entity offer Stored Value Instruments?
+//    bool offers_stored_value_instruments = 13;
+//    // Q17f. Does the entity offer Cross Border Bulk Cash Delivery?
+//    bool offers_cross_border_bulk_cash_delivery = 14;
+//    // Q17g. Does the entity offer Domestic Bulk Cash Delivery?
+//    bool offers_domestic_bulk_cash_delivery = 15;
+//    // Q17h. Does the entity offer International Cash Letter?
+//    bool offers_international_cash_letter = 16;
+//    // Q17i. Does the entity offer Remote Deposit Capture?
+//    bool offers_remote_deposit_capture = 17;
+//    // Q17j. Does the entity offer Virtual / Digital Currencies?
+//    bool offers_virtual_digital_currencies = 18;
+//    // Q17k. Does the entity offer Low Price Securities?
+//    bool offers_low_price_securities = 19;
+//    // Q17l. Does the entity offer Hold Mail?
+//    bool offers_hold_mail = 20;
+//    // Q17m. Does the entity offer Cross Border Remittances?
+//    bool offers_cross_border_remittances = 21;
+//    // Q17n. Does the entity offer Services to walk-in customers (non-account holders)?
+//    bool offers_service_to_walkin_customers = 22;
+//    // Q17o. Does the entity offer Sponsoring Private ATMs?
+//    bool offers_sponsoring_private_atms = 23;
+//    // Q17p. Does the entity offer Other high risk products and services identified by the Entity?
+//    bool offers_sponsoring_other_high_risk_products_and_services = 24;
+//    // Q18. Confirm that all responses provided in the above Section PRODUCTS & SERVICES are representative of all the LE's branches
+//    // If NO, explain by clarifying which questions the differences relate to and the branches that his applies to.
+//    YesNoExplain representative_of_branches = 25;
+//    // Q18b. If appropriate, provide any further information / context to the answers in this section.
+//    string further_information = 32;
+//  }
 }
