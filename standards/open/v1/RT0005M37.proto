@@ -337,7 +337,7 @@ message RT0005M37 {
     string further_information = 32;
   }
   // Section 3. Information related to the AML, CTF and Sanctions program
-  AMLAndCTFAndSanctionsProgram aml_ctf_and_sanctions_program = 5;
+  AMLAndCTFAndSanctionsProgram aml_and_ctf_and_sanctions_program = 5;
   // Definition of the Anti Bribery and Corruption section
   message AntiBriberyAndCorruption {
     // Q25 Has the Entity documented policies and procedures consistent with applicable ABC regulations and
