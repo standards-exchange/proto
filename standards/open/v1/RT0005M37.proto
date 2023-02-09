@@ -97,9 +97,9 @@ message RT0005M37 {
       enum FinancialInstrumentIdentifier {
         // Source not specified by the user.
         IDENTIFIER_UNSPECIFIED = 0;
-        // FIGI (Financial_Instrument Global Identifier). To look up the FIGI navigate to www.openfigi.org.
+        // FIGI (Financial Instrument Global Identifier). To look up the FIGI navigate to https://www.openfigi.com/.
         FIGI = 1;
-        // PermID (Refinitiv Permanent Identifier). To look up the PermID
+        // PermID (Refinitiv Permanent Identifier). To look up the PermID navigate to https://permid.org/
         PERM_ID = 2;
       }
       // Codification chosen to identify the financial instrument
@@ -622,9 +622,32 @@ message RT0005M37 {
     // Q64 Does the Entity have a risk based approach to screening customers and connected parties to determine
     // whether they are PEPs, or controlled by PEPs?
     YesNoAndExplain entity_has_risk_based_approach_to_screening_for_pep_connections = 28;
+    // Q65a If YES to Q64, does the entity apply its risk based approach to screening customers and connected parties to determine
+    //  whether they are PEPs, or controlled by PEPs at onboarding
+    YesNoExplain entity_has_risk_based_approach_to_screening_for_pep_connections_at_onboarding = 29;
+    // Q65b If YES to Q64, does the entity apply its risk based approach to screening customers and connected parties to determine
+    //  whether they are PEPs, or controlled by PEPs at KYC renewal
+    YesNoExplain entity_has_risk_based_approach_to_screening_for_pep_connections_at_kyc_renewal = 30;
+    // Q65c If YES to Q64, does the entity apply its risk based approach to screening customers and connected parties to determine
+    // whether they are PEPs, or controlled by PEPs at a Trigger event
+    YesNoExplain entity_has_risk_based_approach_to_screening_for_pep_connections_at_trigger_event = 31;
+    // Q66 What is the method used by the Entity to screen PEPs?
+    string method_used_by_entity_to_screen_peps = 32;
+    // Q67 Does the Entity have policies, procedures and processes to review and escalate potential matches from screening customers and connected parties to determine whether they are PEPs, or controlled by PEPs? If NO, explain
+    YesNoExplain policies_and_procedures_in_place_to_review_pep_matches = 33;
+    // Q68a Does the Entity have a process to review and update customer information based on KYC renewal
+    YesNoExplain process_to_review_and_update_customer_information_on_kyc_renewal = 34;
+    // Q68b Does the Entity have a process to review and update customer information based on Trigger Event
+    YesNoExplain process_to_review_and_update_customer_information_on_trigger_event = 35;
+    // Q69 Does the Entity maintain and report metrics on current and past periodic or trigger event due diligence reviews?
+    YesNoExplain entity_maintains_and_reports_metrics_on_current_and_past_periodic_or_trigger_dd_reviews = 36;
+    // Q70a Are Non-account customers subject to EDD and/or are restricted, or prohibited by the Entity's FCC programme? If YES (i.e. restricted), please provide details.
+    YesExplainNo non_account_customers_restricted_by_fcc_programme = 37;
+    // Q70b Are Non-resident customers subject to EDD and/or are restricted, or prohibited by the Entity's FCC programme? If YES (i.e. restricted), please provide details.
+    YesNoExplain non_resident_customers_restricted_by_fcc_programme = 38;
   }
   // Section 7. Information related to KYC, CDD and EDD
-  AMLAndCTFAndSanctionsRiskAssessment kyc_and_cdd_and_edd = 9;
+  KYCAndCDDAndEDD kyc_and_cdd_and_edd = 9;
 }
 
 // Batch set of RT0005M37 responses
