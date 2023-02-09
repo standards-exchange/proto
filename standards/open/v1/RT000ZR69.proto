@@ -172,11 +172,11 @@ message RT000ZR69 {
             BBGID = 6;
             // Reuters RIC - Reuters instrument code
             RIC = 7;
-            // FIGI - Financial_Instrument Global Identifier
+            // FIGI - (Financial Instrument Global Identifier). To look up the FIGI navigate to https://www.openfigi.com/.
             FIGI = 8;
             // LEI - Legal Entity Identifier
             LEI = 9;
-            // PermID - Refinitiv Permanent Identifiers
+            // PermID - (Refinitiv Permanent Identifier). To look up the PermID navigate to https://permid.org/
             PERM_ID = 10;
         }
         // Codification chosen to identify the share class
