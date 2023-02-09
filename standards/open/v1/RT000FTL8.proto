@@ -328,6 +328,40 @@ message RT000FTL8 {
     }
     // The list of Swing Pricing events within the fund. Convention is to provide 12 months history. Swing pricing is a method used by collective investment schemes to adjust the net asset value (NAV) of the fund in order to protect existing shareholders from the negative impact of large purchases or redemptions by new or existing shareholders. This is done by adjusting the NAV of the fund to reflect the anticipated costs associated with buying or selling the underlying assets of the fund. The adjustment is typically made by charging or crediting a "swing factor" to the NAV of the fund, which is based on the size of the purchase or redemption relative to the fund's assets under management (AUM). The goal of swing pricing is to ensure that the costs of buying and selling assets are borne by those who cause the costs, rather than by all shareholders of the fund.
     repeated SwingPricingEvent swing_pricing_events = 16;
+    // Definition of NAV information shared per share class at a point in time.
+    message PerShareClassNAV {
+        // The effective date
+        google.type.Date effective_date = 1;
+        // Enumerations of financial identifiers
+        enum FinancialInstrumentIdentifier {
+            // Source not specified by the user.
+            IDENTIFIER_UNSPECIFIED = 0;
+            // FIGI (Financial Instrument Global Identifier). To look up the FIGI navigate to https://www.openfigi.com/.
+            FIGI = 1;
+            // PermID (Refinitiv Permanent Identifier). To look up the PermID navigate to https://permid.org/
+            PERM_ID = 2;
+        }
+        // Codification chosen to identify the financial instrument
+        FinancialInstrumentIdentifier financial_identifier = 2;
+        // The global identifier of the share class
+        string share_class_id = 3;
+        // Extension that identifies the share class.
+        // Should conform to: https://openfunds.org/OFST020050 (Share Class Extension)
+        string share_class_extension = 4;
+        // The number of issued units of the share class
+        double units = 5;
+        // The nav per unit in the base currency at at the effective_date
+        google.type.Money nav_per_unit_base_currency = 6;
+        // The current total nav of the share class in the base currency
+        google.type.Money total_nav_base_currency = 7;
+        // The nav per unit in the reporting currency at at the effective_date
+        google.type.Money nav_per_unit_reporting_currency = 8;
+        // The current total nav of the share class in the reporting currency
+        google.type.Money total_nav_reporting_currency = 9;
+    }
+    // The time series of share class specific nav information
+    // Convention is to provide 12 months of monthly data.
+    repeated PerShareClassNAV per_share_class_nav_historical = 17;
 }
 
 // Batch set of RT000FTL8 responses
