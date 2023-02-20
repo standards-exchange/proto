@@ -1,0 +1,135 @@
+syntax = "proto3";
+
+package alis.fx.resources.types.v1;
+
+import "google/api/annotations.proto";
+import "google/api/client.proto";
+import "google/api/resource.proto";
+import "google/type/money.proto";
+import "google/type/postal_address.proto";
+import "google/type/phone_number.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/timestamp.proto";
+import "google/type/date.proto";
+
+option go_package = "go.protobuf.alis.services/alis/fx/resources/types/v1";
+
+// Due Diligence Questionnaire (DDQ) on a Fund Accounting provider to assess their ongoing suitability.
+message RT000QY46 {
+    // Response where a NO requires further information
+    message YesNoExplain {
+        enum Response {
+            RESPONSE_UNSPECIFIED = 0;
+            YES = 1;
+            NO = 2;
+        }
+        // Yes / No response.
+        Response response = 1;
+        // Explanation if the answer is `NO`
+        string explanation = 2;
+     }
+    // Response where a YES requires further information
+    message YesExplainNo {
+        enum Response {
+            RESPONSE_UNSPECIFIED = 0;
+            YES = 1;
+            NO = 2;
+        }
+        // Yes / No response.
+        Response response = 1;
+        // Explanation if the answer is `YES`
+        string explanation = 2;
+    }
+    // The preparer's name
+    string preparer_name = 1;
+    // The preparer's position
+    string preparer_position = 2;
+    // The preparer's email
+    string preparer_email = 3;
+    // The date the questionnaire was prepared
+    google.type.Date preparation_date = 4;
+    // The reviewer's name
+    string reviewer_name = 5;
+    // The reviewer's position
+    string reviewer_position = 6;
+    // The reviewer's email
+    string reviewer_email = 7;
+    // The date the questionnaire was prepared
+    google.type.Date review_date = 8;
+    // General information about the company
+    message  CompanyInformation {
+        // The name of the company
+        string company_name = 1;
+        // The registered office of the company
+        string registered_office = 2;
+        // The LEI identifier of the company (if available)
+        string LEI = 3;
+        // Definition of a director of the company
+        message Director {
+            // The first name
+            string given_name = 1;
+            // The last name
+            string family_name = 2;
+            // The phone number including country code
+            string phone_number = 3;
+            // The email address of the manager
+            string email_address = 4;
+            // The three letter ISO code of the country of residence
+            string country_of_residence = 5;
+            // Whether the director is an independent director (false if an executive director)
+            bool independent = 6;
+        }
+        // Information regarding the directors of the company
+        repeated Director directors = 4;
+        // Has a structure chart containing general information about the legal structure chart of the company including parent entities / persons
+        // with a greater than 15% interest in the entity been attached? If NO, explain.
+        YesNoExplain structure_chart = 5;
+        // Has a PDF of the latest financial statements been attached?
+        YesNoExplain financial_statements = 6;
+        // Definition of a executive of the company
+        message Executive {
+            // The first name
+            string given_name = 1;
+            // The last name
+            string family_name = 2;
+            // The executive's position
+            string position = 3;
+        }
+        // List the executives / seniors leaders of the organisation
+        repeated Executive leadership = 7;
+        // The name of the company's auditors
+        string auditors = 8;
+        // Enumeration of regulatory bodies
+        enum Regulator {
+            REGULATOR_UNSPECIFIED = 0;
+            // The Commission de Surveillance du Secteur Financier in Luxembourg
+            LUX_CSSF = 1;
+            // The Banque centrale du Luxembourg (BCL)  of Luxembourg
+            LUX_BCL = 2;
+        }
+        // List the regulatory bodies that have responsibility for your company
+        repeated Regulator regulatory_bodies = 9;
+        // Information regarding an on-site audit by a Regulatory Authority
+        message OnSiteAudit {
+            // Date of the On Site Audit
+            google.type.Date audit_date = 1;
+            // Regulatory Authority that conducted the audit
+            Regulator regulator = 2;
+            // Description of findings
+            string findings = 3;
+        }
+        // Describe all on-site audits by a regulatory authority in the last three years
+        repeated OnSiteAudit list_and_describe_on_site_audits = 10;
+        // Briefly describe if the company is exposed to any ongoing lawsuits or legal proceedings
+        repeated string ongoing_lawsuits_or_legal_proceedings = 11;
+    }
+    // Please provide this information about the organisation and structure
+    CompanyInformation company_information = 9;
+    // Information about the control functions within the company
+    message ControlsAndCompliance {}
+    // Information about data privacy within the company
+    message TechnologyAndDataPrivacy {}
+    // Information about Fund Accounting Services within the company
+    message FundAccountingServices {}
+}
