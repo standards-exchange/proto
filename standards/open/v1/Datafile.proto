@@ -12,6 +12,11 @@ option go_package = "github.com/standards-exchange/protobuf-go/standards/open/v1
 
 // Message defining an data file resource.
 message DataFile {
+  // Fully qualified resource name
+  // Format: datafiles/{name}
+  // Example: datafiles/1234ABC
+  string name = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+
   // Created time of the reportTemplate.
   google.protobuf.Timestamp create_time = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
   // Update time of the reportTemplate.
