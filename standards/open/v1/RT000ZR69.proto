@@ -30,6 +30,81 @@ message RT000ZR69 {
     // or Fund in the case of a standalone structure
     // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
     string fund = 5;
+    // The definition of data related to process
+    message ProcessVolumeAndAccuracy {
+        // The calendar month for which the rate is being measured
+        google.type.Date measurement_month = 1;
+        // Total number of transactions settled during the month, excluding cash dividends
+        // i.e. subscriptions, redemptions, switches in/out, dividend and trailer fee reinvestments."
+        int32 transactions_processed = 2;
+        // The number of STP transactions processed (transactions that came across via an automated method versus manual
+        // for example fax/post..etc)
+        int32 stp_transactions_processed = 3;
+        // The STP transaction rate (stp_transactions_processed / transactions_processed)
+        double stp_transaction_rate = 4;
+        //  Number of TA transactions processed correctly as a percentage of total number of TA transactions settled during the reporting month.
+        double transaction_process_accuracy = 5;
+        //  Number of TA transactional errors identified during the reporting month.
+        int32 number_of_ta_transactional_errors_identified = 6;
+        //  Number of TA operational errors identified during the reporting month.
+        int32 number_of_ta_operational_errors_identified = 7;
+        // Value in the fund reporting currency of errors identified during the reporting month
+        google.type.Money value_of_identified_errors = 8;
+    }
+    // The last thirteen months of transaction process rate data
+    repeated ProcessVolumeAndAccuracy transaction_process_volume_and_accuracy = 6;
+    // Transfer agency breaches in the last thirteen months
+    repeated TransferAgencyBreachOrError transfer_agency_breaches = 7;
+    // Recent transfer agency errors. Convention is to report last thirteen months
+    repeated TransferAgencyBreachOrError transfer_agency_errors = 8;
+    // Recent late trade events. Convention is to report last twelve months.
+    repeated LateTradeEvent late_trade_events = 9;
+    // Recent complains. Convention is to report last thirteen months
+    repeated Complaint complaints = 10;
+    // The number of complaints in the last month
+    int32 complaints_in_last_month = 11;
+    // The number of upheld complaints in the last month
+    int32 complaints_upheld_in_last_month = 12;
+    // The number of complaints not upheld in the last month
+    int32 complaints_not_upheld_in_last_month = 13;
+    // Definition of the section containing transaction information
+    message TransactionLevelInformation {
+        // List of suspicious transactions in the format:
+        repeated Transaction suspicious_transactions = 1;
+        // List of transactions related to PEP accounts
+        repeated Transaction pep_transactions = 2;
+        // List of transactions with a late cash receipt
+        repeated Transaction late_cash_receipt_transactions = 3;
+    }
+    // Transaction level information to be provided
+    TransactionLevelInformation transaction_information = 14;
+    //  Number of accounts which had "In Good Order" AML/KYC status at month end.
+    int32 accounts_in_good_order = 15;
+    //  Number of accounts which had "Not In Good Order" AML/KYC status at month end.
+    int32 accounts_not_in_good_order = 16;
+    // Definition of account level information to be shared
+    message AccountLevelInformation {
+        // The largest N account holders by AUM.
+        repeated Account largest_shareholders = 1;
+        // List of blocked accounts
+        repeated Account blocked_accounts = 2;
+        // List of PEP accounts
+        repeated Account pep_accounts = 3;
+        // List of new accounts last 3 months
+        repeated Account new_accounts_last_three_months = 4;
+        // List of high risk accounts
+        repeated Account high_risk_accounts = 5;
+        // Largest N accounts by transaction volume
+        repeated Account largest_accounts_by_transaction_volume = 6;
+        // Accounts that have holdings and have dealt within the last thirteen months
+        repeated Account active_accounts = 7;
+        // Accounts blocked for AML reasons
+        repeated Account accounts_blocked_for_aml_reasons = 8;
+        // Accounts created in the last thirteen months from high risk countries
+        repeated Account new_accounts_from_high_risk_countries = 9;
+    }
+    // Account level information to be shared
+    AccountLevelInformation account_level_information = 17;
     // The definition of an account resource
     message Account {
         // The resource name of the client
@@ -57,9 +132,15 @@ message RT000ZR69 {
             ACTIVE = 1;
             // Account status inactive
             INACTIVE = 2;
+            // The account is blocked
+            BLOCKED = 3;
+            // The account is in the process of being onboarded, but not blocked
+            ONBOARDING = 4;
         }
+        // The address of the account
+        string address = 7;
         // The risk categorization of the client (i.e. low, medium or high)
-        Risk risk = 7;
+        Risk risk = 8;
         // Enumerations of the risk categorizations
         enum Risk {
             // Client risk unspecified
@@ -72,17 +153,23 @@ message RT000ZR69 {
             HIGH = 3;
         }
         // Whether the client has a purchase stop
-        bool purchase_stop = 8;
+        bool purchase_stop = 9;
         // Whether the client has a redemption stop
-        bool redemption_stop = 9;
+        bool redemption_stop = 10;
         // Whether the client has a stop on redemptions settling
-        bool stop_red_settle = 10;
+        bool stop_red_settle = 11;
         // Whether the client has a stop on transfers in
-        bool transfer_inward_stop = 11;
+        bool transfer_inward_stop = 12;
         // Whether the client has a stop on transfers out
-        bool transfer_out_stop = 12;
+        bool transfer_out_stop = 13;
+        // Whether there is a stop on the account for PEP reasons
+        bool stop_pep = 14;
+        // Whether there is a stop on the account for AML reasons
+        bool stop_aml = 15;
+        // If there is a stop, what is the stop date
+        google.type.Date stop_date = 16;
         // The subscriptions (i.e. the share class holdings) of the client
-        repeated Subscription subscriptions = 13;
+        repeated Subscription subscriptions = 17;
         // Definition of a client subscription
         message Subscription {
             // The global identifier of the share class
@@ -127,13 +214,19 @@ message RT000ZR69 {
             google.type.Money total_value = 7;
         }
         // The share of total shares - unsettled
-        double percent_total_shares = 14;
+        double percent_total_shares = 18;
         // The total value of the account
-        google.type.Money account_value = 15;
+        google.type.Money account_value = 19;
         // The share of total aum - unsettled
-        double percent_total_aum = 16;
+        double percent_total_aum = 20;
         // The list of transactions made by the account
-        repeated Transaction transactions = 17;
+        repeated Transaction transactions = 21;
+        // The date the account was created
+        google.type.Date account_creation_date = 22;
+        // The date the account was active and onboarded
+        google.type.Date account_active_date = 23;
+        // The date of the last AML refresh
+        google.type.Date last_aml_refresh_date = 24;
     }
     // Definition of a transaction
     message Transaction {
@@ -192,6 +285,7 @@ message RT000ZR69 {
         google.type.Money total_value = 10;
         // Enumerations of transaction types
         enum TransactionType {
+            // The transaction type is unspecified
             TRANSACTION_TYPE_UNSPECIFIED = 0;
             // Purchase of shares in the specified share class
             SUBSCRIPTION = 1;
@@ -204,19 +298,54 @@ message RT000ZR69 {
         }
         // The type of transaction
         TransactionType transaction_type = 11;
+        // The trade date of the transaction
+        google.type.Date trade_date = 12;
+        // The settlement date of the transaction
+        google.type.Date settlement_date = 13;
+        // Enumerations of transaction source types
+        enum SourceType {
+            // Source type unspecified
+            SOURCE_TYPE_UNSPECIFIED = 0;
+            // Fax
+            FAX = 1;
+            // Email
+            EMAIL = 2;
+            // Telephone
+            TELEPHONE = 3;
+            // SWIFT
+            SWIFT = 4;
+            // API
+            API = 5;
+            // BlockChain
+            BLOCK_CHAIN = 6;
+        }
+        // The transaction source type
+        SourceType source_type = 14;
+        // The source of the transaction
+        string source = 15;
     }
-    // The largest N account holders by AUM.
-    repeated Account largest_shareholders = 6;
-    // List of blocked accounts
-    repeated Account blocked_accounts = 7;
-    // List of PEP accounts
-    repeated Account pep_accounts = 8;
-    // List of new accounts last 3 months
-    repeated Account new_accounts_last_three_months = 9;
-    // List of high risk accounts
-    repeated Account high_risk_accounts = 10;
-    // Largest N accounts by transaction volume
-    repeated Account largest_accounts_by_transaction_volume = 11;
+    // Definition of a Complaint
+    message Complaint {
+        // The date of the complaint
+        google.type.Date effective_date = 1;
+        // Description of the complaint
+        string description = 2;
+        // The account information related to the complainant (if applicable)
+        Account complainant_account = 3;
+        // Resolution of the complaint
+        string resolution = 4;
+        // Whether the complaint was upheld
+        bool complaint_upheld = 5;
+    }
+    // Definition of a late trade events
+    message LateTradeEvent {
+        // The date of the event
+        google.type.Date effective_date = 1;
+        // Cause of the late trade
+        string cause = 2;
+        // Resolution of the breach and underlying source of issue
+        string resolution = 3;
+    }
     // Definition of a Transfer Agency Breach or Error
     message TransferAgencyBreachOrError {
         // The date of the breach
@@ -244,25 +373,6 @@ message RT000ZR69 {
         // Resolution of the breach and underlying source of issue
         string resolution_commentary = 7;
     }
-    // Transfer agency breaches in the last twelve months
-    repeated TransferAgencyBreachOrError transfer_agency_breaches = 12;
-    // Recent transfer agency errors. Convention is to report last twelve months
-    repeated TransferAgencyBreachOrError transfer_agency_errors = 13;
-    // Definition of a late trade events
-    message LateTradeEvent {
-        // The date of the event
-        google.type.Date effective_date = 1;
-        // Cause of the late trade
-        string cause = 2;
-        // Resolution of the breach and underlying source of issue
-        string resolution = 3;
-    }
-    // Recent late trade events. Convention is to report last twelve months.
-    repeated LateTradeEvent late_trade_events = 14;
-    // List of suspicious transactions in the format:
-    repeated Transaction suspicious_transactions = 15;
-    // List of transactions related to PEP accounts in the format:
-    repeated Transaction pep_transactions = 16;
 }
 
 // Batch set of RT000ZR69 responses
