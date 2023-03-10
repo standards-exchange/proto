@@ -21,15 +21,16 @@ message DataFile {
   google.protobuf.Timestamp create_time = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
   // Update time of the reportTemplate.
   google.protobuf.Timestamp update_time = 4 [(google.api.field_behavior) = OUTPUT_ONLY];
+
   // Data standard type of the data file's marshalled data
   string type = 5;
   // The data of the file
   google.protobuf.Any data = 6;
+
   // Field Annotations
   map<string, FieldAnnotation> field_annotations = 7;
   // Attachments
   map<string, FileAttachment>  file_attachments = 8;
-
   // File Attachment message definition
   message FileAttachment {
     // The name of the file attachment
@@ -41,7 +42,6 @@ message DataFile {
     // The bytes containing the file attachment.
     bytes file_bytes = 4;
   }
-
   // Field Annotation message definition
   message FieldAnnotation {
     // Reference field key in the flat object structure where the field name is preceded by all parent level object
@@ -75,4 +75,11 @@ message DataFile {
     // File Attachment Reference
     repeated string file_attachments = 8;
   }
+
+  // The display name of the data room file
+  string display_name = 9;
+  // DataRoom Reference
+  string dataroom_reference = 10;
+  // The reference to the user who is owner of the dataRoomFile.
+  string owner = 11;
 }
