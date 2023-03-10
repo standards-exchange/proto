@@ -16,7 +16,8 @@ message DataFile {
   // Format: datafiles/{name}
   // Example: datafiles/1234ABC
   string name = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
-
+  // The display name of the data room file
+  string display_name = 2;
   // Created time of the reportTemplate.
   google.protobuf.Timestamp create_time = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
   // Update time of the reportTemplate.
@@ -76,10 +77,9 @@ message DataFile {
     repeated string file_attachments = 8;
   }
 
-  // The display name of the data room file
-  string display_name = 9;
+
   // DataRoom Reference
-  string dataroom_reference = 10;
+  string dataroom_reference = 9;
   // The reference to the user who is owner of the dataRoomFile.
-  string owner = 11;
+  string owner = 10;
 }
