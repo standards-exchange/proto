@@ -53,21 +53,37 @@ message RT000FTL8 {
     // Convention is to provide 12 months of history
     repeated AssetsUnderManagement assets_under_management_monthly = 7;
     // Definition of NAV timeliness information to be provided each month
-    message NAVTimeliness {
+    message NAVTimelinessAndAccuracy {
         // The year for which the NAV timeliness is being reported
         int32 year = 1;
         // The month for which the NAV timeliness is being reported
         int32 month = 2;
-        // Nav timeliness this reporting period
-        double percent_nav_timeliness = 3;
-        // Comments from the fund accounting delegate on NAV timeliness
-        string comments = 4;
+        // Number of NAVs calculated during the month
+        int32 navs_calculated_count = 3;
+        //  Percentage of total NAVs delivered within the agreed timescale during the reporting month.
+        double percent_nav_timeliness = 4;
+        //  Total Number of Fund Accounting Delegate Delayed NAVs
+        int32 number_of_fund_accounting_delayed_navs = 5;
+        //  Total Number of Non-Fund Accounting Delayed NAVs
+        int32 number_of_non_fund_accounting_delayed_navs = 6;
+        //  Percentage of valuations produced during the reporting month where no error(s) has been identified. This percentage is not impacted by errors where the root cause was identified as not the Fund Accounting delegate.
+        double accuracy_of_nav_calculations = 7;
+        // Number of material incidents (where materiality is defined by the board)
+        int32 material_incidents_count = 8;
+        // Number of non-material incidents (where materiality is defined by the board)
+        int32 non_material_incidents_count = 9;
+        //  Total number of valuations which were priced incorrectly over the entire error period.
+        int32 incorrect_valuations_count = 10;
+        //  Total number of material valuations errors over the entire error period (where materiality is defined by the board).
+        int32 material_and_incorrect_valuations_count = 11;
+        // Comments from the fund accounting delegate on NAV timeliness and accuracy
+        string comments = 20;
     }
     // The time series of historic NAV timeliness on a monthly basis
     // Convention is to provide 12 months of history
-    repeated NAVTimeliness nav_timeliness_monthly = 8;
+    repeated NAVTimelinessAndAccuracy nav_timeliness_and_accuracy_monthly = 8;
     // Definition of a NAV calculation error
-    message NAVCalculationError {
+    message NAVCalculationErrorInformation {
         // The date of the error
         google.type.Date effective_date = 1;
         // The date the error was identified
@@ -85,7 +101,7 @@ message RT000FTL8 {
     }
     // Recent NAV Calculation Errors.
     // Convention is to provide 12 months of history
-    repeated NAVCalculationError nav_calculation_errors = 9;
+    repeated NAVCalculationErrorInformation nav_calculation_errors = 9;
     // Definition of a pricing error occurred in the pricing of a share class
     message SecurityPricingError {
         // The date of the error
