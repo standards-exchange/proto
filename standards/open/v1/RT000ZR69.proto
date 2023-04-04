@@ -10,101 +10,121 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/field_mask.proto";
 import "google/protobuf/timestamp.proto";
 import "google/type/date.proto";
+import "google/type/month.proto";
+import "standards/open/v1/metric.proto";
+import "standards/open/v1/rag.proto";
 
 option go_package = "github.com/standards-exchange/protobuf-go/standards/open/v1";
 
 
-// Transfer Agency KPI Report for governance oversight and reporting for UCITS funds
+// Transfer Agency Monthly KPI & MI Report for governance oversight and reporting for UCITS funds
 message RT000ZR69 {
-    // The effective date as of which the data is accurate
-    google.type.Date effective_date = 1;
-    // The date data was produced
-    google.type.Date production_date = 3;
-    // The legal identifier of the umbrella
-    // Should conform to: https://openfunds.org/OFST005010 (Umbrella)
-    // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
-    string umbrella_fund = 4;
-    // Name of the relevant sub-fund
-    // Should conform to: https://openfunds.org/OFST010110 (Legal Fund Name Only)
-    // Refers to the Sub-Fund in the case of an umbrella structure
-    // or Fund in the case of a standalone structure
-    // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
-    string fund = 5;
-    // The definition of data related to process
-    message ProcessVolumeAndAccuracy {
-        // The calendar month for which the rate is being measured
-        google.type.Date measurement_month = 1;
+    // Definition of an overview message
+    message Overview {
+        // The effective date as of which the data is accurate
+        google.type.Date effective_date = 1;
+        // The reporting year
+        int32 reporting_year = 2;
+        // The reporting month
+        google.type.Month reporting_month = 3;
+        // The date data was produced
+        google.type.Date production_date = 4;
+        // The legal identifier of the umbrella
+        // Should conform to: https://openfunds.org/OFST005010 (Umbrella)
+        // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
+        string umbrella_fund = 5;
+        // Name of the relevant sub-fund
+        // Should conform to: https://openfunds.org/OFST010110 (Legal Fund Name Only)
+        // Refers to the Sub-Fund in the case of an umbrella structure
+        // or Fund in the case of a standalone structure
+        // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
+        string fund = 6;
+        // Aggregation entity
+        // The name of the entity at which metrics should be aggregated for downstream reporting purposes
+        string aggregation_entity = 8;
+    }
+    // Overview of the Transfer Monthly KPI & MI Report
+    Overview overview = 1;
+    // Definition of metrics
+    message Metrics {
         // Total number of transactions settled during the month, excluding cash dividends
-        // i.e. subscriptions, redemptions, switches in/out, dividend and trailer fee reinvestments."
-        int32 transactions_processed = 2;
+        // i.e. subscriptions, redemptions, switches in/out, dividend and trailer fee reinvestments.
+        repeated MonthlyRAGMetric transactions_processed = 1;
         // The number of STP transactions processed (transactions that came across via an automated method versus manual
         // for example fax/post..etc)
-        int32 stp_transactions_processed = 3;
+        repeated MonthlyRAGMetric stp_transactions_processed = 2;
         // The STP transaction rate (stp_transactions_processed / transactions_processed)
-        double stp_transaction_rate = 4;
+        repeated MonthlyRAGMetric stp_transaction_rate = 3;
         //  Number of TA transactions processed correctly as a percentage of total number of TA transactions settled during the reporting month.
-        double transaction_process_accuracy = 5;
+        repeated MonthlyRAGMetric transaction_process_accuracy = 4;
         //  Number of TA transactional errors identified during the reporting month.
-        int32 number_of_ta_transactional_errors_identified = 6;
+        repeated MonthlyRAGMetric number_of_ta_transactional_errors_identified = 5;
         //  Number of TA operational errors identified during the reporting month.
-        int32 number_of_ta_operational_errors_identified = 7;
+        repeated MonthlyRAGMetric number_of_ta_operational_errors_identified = 6;
         // Value in the fund reporting currency of errors identified during the reporting month
-        google.type.Money value_of_identified_errors = 8;
+        repeated MonthlyRAGMetric value_of_identified_errors = 7;
+        // The number of complaints in the last month
+        repeated MonthlyRAGMetric complaints_in_last_month = 8;
+        // The number of upheld complaints in the last month
+        repeated MonthlyRAGMetric complaints_upheld_in_last_month = 9;
+        // The number of complaints not upheld in the last month
+        repeated MonthlyRAGMetric complaints_not_upheld_in_last_month = 10;
+        //  Number of accounts which had "In Good Order" AML/KYC status at month end.
+        repeated MonthlyRAGMetric accounts_in_good_order = 11;
+        //  Number of accounts which had "Not In Good Order" AML/KYC status at month end.
+        repeated MonthlyRAGMetric accounts_not_in_good_order = 12;
+        //  Number of same-day estimate reports sent
+        repeated MonthlyRAGMetric estimate_reports = 13;
+        //  Percentage of same-day estimate reports delayed by >15min
+        repeated MonthlyRAGMetric estimate_reports_delayed = 14;
+        //  Percentage of same-day estimate reports with an error
+        repeated MonthlyRAGMetric estimate_reports_error = 15;
+        //  Number of next-day confirmed reports sent
+        repeated MonthlyRAGMetric confirmed_reports = 16;
+        //  Percentage of next-day confirmed reports delayed by >15min
+        repeated MonthlyRAGMetric confirmed_reports_delayed = 17;
+        //  Percentage of next-day confirmed reports with an error
+        repeated MonthlyRAGMetric confirmed_reports_error = 18;
+        // The average amount of time (seconds) taken to respond to an email query
+        repeated MonthlyRAGMetric average_email_query_time = 19;
+        // The average amount of time (seconds) taken to respond to an phone query
+        repeated MonthlyRAGMetric average_phone_query_time = 20;
+        //  Number of system issues that occurred during the month.
+        repeated MonthlyRAGMetric system_issues = 21;
     }
-    // The last thirteen months of transaction process rate data
-    repeated ProcessVolumeAndAccuracy transaction_process_volume_and_accuracy = 6;
+    // The transfer agency metrics (KPIs) over the reporting period
+    Metrics metrics = 20;
     // Transfer agency breaches in the last thirteen months
-    repeated TransferAgencyBreachOrError transfer_agency_breaches = 7;
-    // Recent transfer agency errors. Convention is to report last thirteen months
-    repeated TransferAgencyBreachOrError transfer_agency_errors = 8;
+    repeated TransferAgencyBreach transfer_agency_breaches = 51;
     // Recent late trade events. Convention is to report last twelve months.
-    repeated LateTradeEvent late_trade_events = 9;
+    repeated LateTradeEvent late_trade_events = 53;
     // Recent complains. Convention is to report last thirteen months
-    repeated Complaint complaints = 10;
-    // The number of complaints in the last month
-    int32 complaints_in_last_month = 11;
-    // The number of upheld complaints in the last month
-    int32 complaints_upheld_in_last_month = 12;
-    // The number of complaints not upheld in the last month
-    int32 complaints_not_upheld_in_last_month = 13;
-    // Definition of the section containing transaction information
-    message TransactionLevelInformation {
-        // List of suspicious transactions in the format:
-        repeated Transaction suspicious_transactions = 1;
-        // List of transactions related to PEP accounts
-        repeated Transaction pep_transactions = 2;
-        // List of transactions with a late cash receipt
-        repeated Transaction late_cash_receipt_transactions = 3;
-    }
-    // Transaction level information to be provided
-    TransactionLevelInformation transaction_information = 14;
-    //  Number of accounts which had "In Good Order" AML/KYC status at month end.
-    int32 accounts_in_good_order = 15;
-    //  Number of accounts which had "Not In Good Order" AML/KYC status at month end.
-    int32 accounts_not_in_good_order = 16;
-    // Definition of account level information to be shared
-    message AccountLevelInformation {
-        // The largest N account holders by AUM.
-        repeated Account largest_shareholders = 1;
-        // List of blocked accounts
-        repeated Account blocked_accounts = 2;
-        // List of PEP accounts
-        repeated Account pep_accounts = 3;
-        // List of new accounts last 3 months
-        repeated Account new_accounts_last_three_months = 4;
-        // List of high risk accounts
-        repeated Account high_risk_accounts = 5;
-        // Largest N accounts by transaction volume
-        repeated Account largest_accounts_by_transaction_volume = 6;
-        // Accounts that have holdings and have dealt within the last thirteen months
-        repeated Account active_accounts = 7;
-        // Accounts blocked for AML reasons
-        repeated Account accounts_blocked_for_aml_reasons = 8;
-        // Accounts created in the last thirteen months from high risk countries
-        repeated Account new_accounts_from_high_risk_countries = 9;
-    }
-    // Account level information to be shared
-    AccountLevelInformation account_level_information = 17;
+    repeated Complaint complaints = 54;
+    // List of suspicious transactions in the format:
+    repeated Transaction suspicious_transactions = 55;
+    // List of transactions related to PEP accounts
+    repeated Transaction pep_transactions = 56;
+    // List of transactions with a late cash receipt
+    repeated Transaction late_cash_receipt_transactions = 57;
+    // The largest N account holders by AUM.
+    repeated Account largest_shareholders = 71;
+    // List of blocked accounts
+    repeated Account blocked_accounts = 72;
+    // List of PEP accounts
+    repeated Account pep_accounts = 73;
+    // List of new accounts last 3 months
+    repeated Account new_accounts_last_three_months = 74;
+    // List of high risk accounts
+    repeated Account high_risk_accounts = 75;
+    // Largest N accounts by transaction volume
+    repeated Account largest_accounts_by_transaction_volume = 76;
+    // Accounts that have holdings and have dealt within the last thirteen months
+    repeated Account active_accounts = 77;
+    // Accounts blocked for AML reasons
+    repeated Account accounts_blocked_for_aml_reasons = 78;
+    // Accounts created in the last thirteen months from high risk countries
+    repeated Account new_accounts_from_high_risk_countries = 79;
+
     // The definition of an account resource
     message Account {
         // The resource name of the client
@@ -347,7 +367,7 @@ message RT000ZR69 {
         string resolution = 3;
     }
     // Definition of a Transfer Agency Breach or Error
-    message TransferAgencyBreachOrError {
+    message TransferAgencyBreach {
         // The date of the breach
         google.type.Date effective_date = 1;
         // The date the breach was identified
