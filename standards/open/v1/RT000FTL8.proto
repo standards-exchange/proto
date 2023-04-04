@@ -10,28 +10,75 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/field_mask.proto";
 import "google/protobuf/timestamp.proto";
 import "google/type/date.proto";
+import "google/type/month.proto";
+import "standards/open/v1/metric.proto";
+import "standards/open/v1/rag.proto";
 
 option go_package = "github.com/standards-exchange/protobuf-go/standards/open/v1";
 
 
-// Fund Accounting KPI Report for governance oversight and reporting for UCITS funds
+// Fund Accounting Monthly KPI & MI Report for governance oversight and reporting for UCITS funds
 message RT000FTL8 {
-    // The effective date as of which the data is accurate
-    google.type.Date effective_date = 1;
-    // The date data was produced
-    google.type.Date production_date = 3;
-    // The date of the latest portfolio valuation
-    google.type.Date valuation_date = 4;
-    // The legal identifier of the umbrella
-    // Should conform to: https://openfunds.org/OFST005010 (Umbrella)
-    // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
-    string umbrella_fund = 5;
-    // Name of the relevant sub-fund
-    // Should conform to: https://openfunds.org/OFST010110 (Legal Fund Name Only)
-    // Refers to the Sub-Fund in the case of an umbrella structure
-    // or Fund in the case of a standalone structure
-    // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
-    string fund = 6;
+    // Definition of an overview message
+    message Overview {
+        // The effective date as of which the data is accurate
+        google.type.Date effective_date = 1;
+        // The reporting year
+        int32 reporting_year = 101;
+        // The reporting month
+        google.type.Month reporting_month = 102;
+        // The date data was produced
+        google.type.Date production_date = 3;
+        // The date of the latest portfolio valuation
+        google.type.Date valuation_date = 4;
+        // The legal identifier of the umbrella
+        // Should conform to: https://openfunds.org/OFST005010 (Umbrella)
+        // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
+        string umbrella_fund = 5;
+        // Name of the relevant sub-fund
+        // Should conform to: https://openfunds.org/OFST010110 (Legal Fund Name Only)
+        // Refers to the Sub-Fund in the case of an umbrella structure
+        // or Fund in the case of a standalone structure
+        // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
+        string fund = 6;
+        // Aggregation entity
+        // The name of the entity at which metrics should be aggregated for downstream reporting purposes
+        string aggregation_entity = 7;
+    }
+    // Overview of the Fund Accounting Monthly KPI & MI Report
+    Overview overview = 2;
+    // Definition of metrics
+    message Metrics {
+        // Number of NAVs calculated during the month
+        repeated MonthlyRAGMetric navs_calculated = 1;
+        //  Percentage of total NAVs delivered within the agreed timescale during the reporting month.
+        repeated MonthlyRAGMetric percent_nav_timeliness = 2;
+        //  Percentage of total NAVs delivered within the agreed timescale during the reporting month, excluding non-provider
+        //  caused delays.
+        repeated MonthlyRAGMetric percent_nav_timeliness_excluding_non_provider_delays = 3;
+        //  Total Number of Fund Accounting Delegate Delayed NAVs
+        repeated MonthlyRAGMetric total_fund_accounting_delayed_navs = 4;
+        //  Total Number of Non-Fund Accounting Delayed NAVs
+        repeated MonthlyRAGMetric non_fund_accounting_delayed_navs = 5;
+        //  Percentage of valuations produced during the reporting month where no error(s) has been identified. This percentage is not impacted by errors where the root cause was identified as not the Fund Accounting delegate.
+        repeated MonthlyRAGMetric nav_calculation_accuracy = 6;
+        //  Total number of valuations which were priced incorrectly over the entire error period.
+        repeated MonthlyRAGMetric non_material_nav_errors = 7;
+        //  Total number of material valuations errors over the entire error period (where materiality is defined by the board).
+        repeated MonthlyRAGMetric material_nav_errors = 8;
+        //  Number of cash reconciliations reported between 31 to 60 days
+        repeated MonthlyRAGMetric cash_reconciliations_31_to_60_days = 9;
+        //  Number of cash reconciliations reported greater than or equal to 61 days
+        repeated MonthlyRAGMetric cash_reconciliations_more_than_60_days = 10;
+        //  Number of stock reconciliations reported between 31 to 60 days
+        repeated MonthlyRAGMetric stock_reconciliations_31_to_60_days = 11;
+        //  Number of stock reconciliations reported greater than or equal to 61 days
+        repeated MonthlyRAGMetric stock_reconciliations_more_than_60_days = 12;
+        //  Number of system issues that occurred during the month.
+        repeated MonthlyRAGMetric system_issues = 13;
+    }
+    // KPIs & key quantitative metrics for the current and preceding 12 periods
+    Metrics metrics = 20;
     // The Assets Under Management Definition
     message AssetsUnderManagement {
         // The effective date
@@ -49,39 +96,9 @@ message RT000FTL8 {
         // The change in AUM from the previous quarter in assets under management as of the effective date in the reporting currency
         google.type.Money quarterly_change_aum_reporting_currency = 7;
     }
-    // Time series of historic AUM data
+    // Time series of historic month-end AUM data
     // Convention is to provide 12 months of history
-    repeated AssetsUnderManagement assets_under_management_monthly = 7;
-    // Definition of NAV timeliness information to be provided each month
-    message NAVTimelinessAndAccuracy {
-        // The year for which the NAV timeliness is being reported
-        int32 year = 1;
-        // The month for which the NAV timeliness is being reported
-        int32 month = 2;
-        // Number of NAVs calculated during the month
-        int32 navs_calculated_count = 3;
-        //  Percentage of total NAVs delivered within the agreed timescale during the reporting month.
-        double percent_nav_timeliness = 4;
-        //  Total Number of Fund Accounting Delegate Delayed NAVs
-        int32 number_of_fund_accounting_delayed_navs = 5;
-        //  Total Number of Non-Fund Accounting Delayed NAVs
-        int32 number_of_non_fund_accounting_delayed_navs = 6;
-        //  Percentage of valuations produced during the reporting month where no error(s) has been identified. This percentage is not impacted by errors where the root cause was identified as not the Fund Accounting delegate.
-        double accuracy_of_nav_calculations = 7;
-        // Number of material incidents (where materiality is defined by the board)
-        int32 material_incidents_count = 8;
-        // Number of non-material incidents (where materiality is defined by the board)
-        int32 non_material_incidents_count = 9;
-        //  Total number of valuations which were priced incorrectly over the entire error period.
-        int32 incorrect_valuations_count = 10;
-        //  Total number of material valuations errors over the entire error period (where materiality is defined by the board).
-        int32 material_and_incorrect_valuations_count = 11;
-        // Comments from the fund accounting delegate on NAV timeliness and accuracy
-        string comments = 20;
-    }
-    // The time series of historic NAV timeliness on a monthly basis
-    // Convention is to provide 12 months of history
-    repeated NAVTimelinessAndAccuracy nav_timeliness_and_accuracy_monthly = 8;
+    repeated AssetsUnderManagement assets_under_management_monthly = 51;
     // Definition of a NAV calculation error
     message NAVCalculationErrorInformation {
         // The date of the error
@@ -99,9 +116,8 @@ message RT000FTL8 {
         // Other Comments
         repeated string comments = 8;
     }
-    // Recent NAV Calculation Errors.
-    // Convention is to provide 12 months of history
-    repeated NAVCalculationErrorInformation nav_calculation_errors = 9;
+    // Last 13 months of NAV Calculation Errors
+    repeated NAVCalculationErrorInformation nav_calculation_errors = 52;
     // Definition of a pricing error occurred in the pricing of a share class
     message SecurityPricingError {
         // The date of the error
@@ -146,10 +162,10 @@ message RT000FTL8 {
         // Remediation
         string remediation = 8;
         // Comments
-        repeated string comment = 9;
+        repeated string comments = 9;
     }
     // Recent instrument pricing errors. Convention is to provide 12 months of history.
-    repeated SecurityPricingError security_pricing_errors = 10;
+    repeated SecurityPricingError security_pricing_errors = 53;
     // Definition of a stale security
     message StaleSecurity {
         // Enumerations of financial identifiers
@@ -191,7 +207,7 @@ message RT000FTL8 {
         repeated string comments = 6;
     }
     // Stale prices as of effective date
-    repeated StaleSecurity stale_securities = 11;
+    repeated StaleSecurity stale_securities = 54;
     // Definition of a break that occurred in agreement on the non-cash holdings of a sub-fund
     message StockBreak {
         // The date of the stock break
@@ -239,7 +255,7 @@ message RT000FTL8 {
         repeated string comment = 9;
     }
     // Recent Stock Breaks greater than 5 days. Convention is to provide 12 months of history.
-    repeated StockBreak stock_breaks = 12;
+    repeated StockBreak stock_breaks = 55;
     // Definition of break that has occurred in agreement on the cash holdings of a sub-fund
     message CashBreak {
         // The date of the stock break
@@ -258,7 +274,7 @@ message RT000FTL8 {
         repeated string comment = 7;
     }
     // Recent Cash Breaks greater than 5 days. Convention is to provide 12 months of history.
-    repeated CashBreak cash_breaks = 13;
+    repeated CashBreak cash_breaks = 56;
     // Definition of a Total Expense Ratio
     message TotalExpenseRatio {
         // The date of the TER (should be the last day of the relevant month)
@@ -307,7 +323,7 @@ message RT000FTL8 {
         repeated string comments = 10;
     }
     // The timeseries of TERs per share class. Convention is to provide 12 months of history.
-    repeated TotalExpenseRatio total_expense_ratios = 14;
+    repeated TotalExpenseRatio total_expense_ratios = 57;
     // Definition of an invoice
     message Invoice {
         // The invoice date
@@ -328,7 +344,7 @@ message RT000FTL8 {
         google.type.Money fund_specific_amount = 8;
     }
     // Recent invoices paid. Convention is to provide 6 months of history.
-    repeated Invoice recent_invoices = 15;
+    repeated Invoice recent_invoices = 58;
     // Definition of a Swing Pricing Events.
     message SwingPricingEvent {
         // The effective date on which swing pricing was applied
@@ -343,7 +359,7 @@ message RT000FTL8 {
         google.type.Money nav_with_swing_factor = 5;
     }
     // The list of Swing Pricing events within the fund. Convention is to provide 12 months history. Swing pricing is a method used by collective investment schemes to adjust the net asset value (NAV) of the fund in order to protect existing shareholders from the negative impact of large purchases or redemptions by new or existing shareholders. This is done by adjusting the NAV of the fund to reflect the anticipated costs associated with buying or selling the underlying assets of the fund. The adjustment is typically made by charging or crediting a "swing factor" to the NAV of the fund, which is based on the size of the purchase or redemption relative to the fund's assets under management (AUM). The goal of swing pricing is to ensure that the costs of buying and selling assets are borne by those who cause the costs, rather than by all shareholders of the fund.
-    repeated SwingPricingEvent swing_pricing_events = 16;
+    repeated SwingPricingEvent swing_pricing_events = 59;
     // Definition of NAV information shared per share class at a point in time.
     message PerShareClassNAV {
         // The effective date
@@ -377,7 +393,7 @@ message RT000FTL8 {
     }
     // The time series of share class specific nav information
     // Convention is to provide 12 months of monthly data.
-    repeated PerShareClassNAV per_share_class_nav_historical = 17;
+    repeated PerShareClassNAV per_share_class_nav_historical = 60;
 }
 
 // Batch set of RT000FTL8 responses
