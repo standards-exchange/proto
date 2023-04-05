@@ -1,0 +1,1102 @@
+syntax = "proto3";
+
+package standards.open.v1;
+
+import "google/type/money.proto";
+import "google/protobuf/descriptor.proto";
+import "standards/open/v1/yesno.proto";
+import "standards/open/v1/fieldOptionsExtentions.proto";
+
+option go_package = "github.com/standards-exchange/protobuf-go/standards/open/v1";
+
+// The CSSF self-assessment questionnaire to be submitted annually by Undertakings for Collective Investment as per Circular CSSF 21/790. See https://www.cssf.lu/en/Document/circular-cssf-21-790/
+message RT0009DB1 {
+    // Definition of questions related to a fund specific cost
+    message FundSpecificExplanation {
+        // The CSSF of the fund / sub-fund
+        string cssf_code = 1;
+        // The name of the fund to which the financial instrument belongs. // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information.
+        string fund_name = 2;
+        // Description of the cost
+        string explanation = 3;
+    }
+    // Definition of Information on Entity section
+    message EntityInformation {
+        // Name of the entity
+        string entity_name = 1 [
+            (standards.open.v1.fdx_options).question = "Name of the entity",
+            (standards.open.v1.fdx_options).h1 = "Information on the entity",
+            (standards.open.v1.fdx_options).h2 = "Information on the entity"
+        ];
+        // The CSSF entity code
+        string cssf_code = 2 [
+            (standards.open.v1.fdx_options).question = "CSSF code.",
+            (standards.open.v1.fdx_options).h1 = "Information on the entity",
+            (standards.open.v1.fdx_options).h2 = "Information on the entity"
+        ];
+        // The address street and number of the entity
+        string address_street_and_number = 3 [
+            (standards.open.v1.fdx_options).question = "Address - Street & N°",
+            (standards.open.v1.fdx_options).h1 = "Information on the entity",
+            (standards.open.v1.fdx_options).h2 = "Information on the entity"
+        ];
+        // The address postal code of the entity
+        string postal_code_and_city = 4 [
+            (standards.open.v1.fdx_options).question = "Address - Postcode & City",
+            (standards.open.v1.fdx_options).h1 = "Information on the entity",
+            (standards.open.v1.fdx_options).h2 = "Information on the entity"
+        ];
+        // What is the number of staff members (including the management) involved/dealing with AML/CFT?
+        int32 number_of_staff_dealing_with_aml_cft = 5 [
+            (standards.open.v1.fdx_options).question = "What is the number of staff members (including the management) involved/dealing with AML/CFT?",
+            (standards.open.v1.fdx_options).h1 = "Information on the entity",
+            (standards.open.v1.fdx_options).h2 = "Information on the entity"
+        ];
+        // Enumeration of license types
+        enum License {
+            LICENSE_UNSPECIFIED = 0;
+            UCITS = 1;
+            AIF = 2;
+            MONEY_MARKET = 3;
+        }
+        // What licenses does the entity have
+        repeated License licenses = 6 [
+            (standards.open.v1.fdx_options).h1 = "Information on the entity",
+            (standards.open.v1.fdx_options).h2 = "Information on the entity",
+            (standards.open.v1.fdx_options).question = "Entity's license(s)"
+        ];
+        // Financial year end of the entity
+        string entity_year_end = 7 [
+            (standards.open.v1.fdx_options).h1 = "Information on the entity",
+            (standards.open.v1.fdx_options).h2 = "Information on the entity",
+            (standards.open.v1.fdx_options).question = "What is the entity's year end?",
+            (standards.open.v1.fdx_options).description = "Must be in the format YYYY-MM-DD",
+            (standards.open.v1.fdx_options).validation = "^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$"
+        ];
+        // Latest CSSF AML / CFT Risk Scoring
+        string latest_risk_scoring = 9 [
+            (standards.open.v1.fdx_options).h1 = "Information on the entity",
+            (standards.open.v1.fdx_options).h2 = "AML/CFT Risk Scoring",
+            (standards.open.v1.fdx_options).question = "What is the latest CSSF AML/CFT Risk Scoring?"
+        ];
+    }
+    // Information regarding the entity
+    EntityInformation entity_information = 1;
+    // Definition of a manager of a fund
+    message Manager {
+        // The first name
+        string first_name = 1;
+        // The last name
+        string last_name = 2;
+        // The phone number including country code
+        string phone_number = 3;
+        // The email address of the manager
+        string email_address = 4;
+        // The three letter ISO code of the country of residence
+        string country_of_residence = 5;
+    }
+    // Information regarding Members of the Management of the Fund
+    repeated Manager managers = 2;
+    // Definition for Descriptive information to be provided
+    message DescriptiveInformation {
+        // Definition for data to be provided per fund (i.e. sub-fund or standalone fund).
+        message DescriptiveFundInformation {
+            // CSSF Code of the (sub-)fund
+            string cssf_code = 1 [
+                (standards.open.v1.fdx_options).question = "CSSF Code of the (sub-)fund"
+            ];
+            // Name of the (sub-)fund
+            string fund_name = 2 [
+                (standards.open.v1.fdx_options).question = "Name of the (sub-)fund"
+            ];
+            // ISO code (https://en.wikipedia.org/wiki/ISO_4217) of base currency of (sub-)fund
+            string fund_currency = 4 [
+                (standards.open.v1.fdx_options).question = "ISO code of base currency of (sub-)fund",
+                (standards.open.v1.fdx_options).description = "ISO code (https://en.wikipedia.org/wiki/ISO_4217) of base currency of (sub-)fund"
+            ];
+            // Active at any time during the year
+            bool active_during_year = 5 [
+                (standards.open.v1.fdx_options).question = "Was the (sub-)fund active at any time during the year?"
+            ];
+            // Applicable nav materiality threshold (see CSSF circular 02/77)
+            double materiality_threshold = 6 [
+                (standards.open.v1.fdx_options).question = "What is the applicable materiality threshold?",
+                (standards.open.v1.fdx_options).description = "The materiality threshold refers to the threshold applicable for NAV errors in accordance with Circular CSSF 02/77 (e.g. 1% for equity funds) for UCITS and UCIs, respectively the threshold decided by the Management of the Fund for SIFs and SICARs on the basis of specific internal rules. The materiality threshold applies throughout the questionnaire when reference is made to material, materiality threshold or material portion"
+            ];
+            // Active at year end
+            bool active_at_year_end = 7 [
+                (standards.open.v1.fdx_options).question = "Was the (sub-)fund active at year end?"
+            ];
+            // Whether in liquidation
+            bool in_liquidation = 8 [
+                (standards.open.v1.fdx_options).question = "Is the (sub-)fund in liquidation?"
+            ];
+            // Whether open ended
+            bool open_ended = 9 [
+                (standards.open.v1.fdx_options).question = "Is the (sub-)fund open-ended?"
+            ];
+            // Whether in a lock-up period
+            bool in_lockup_period = 10 [
+                (standards.open.v1.fdx_options).question = "Is the (sub-)fund in a lock-up period?"
+            ];
+            // Whether redemptions suspended at year-end
+            bool redemptions_suspended_at_year_end = 11 [
+                (standards.open.v1.fdx_options).question = "Were redemptions of the (sub-)fund suspended at year-end"
+            ];
+            // frequency of investor redemptions
+            string redemption_frequency = 12 [
+                (standards.open.v1.fdx_options).question = "What is the frequency of investor redemptions?",
+                (standards.open.v1.fdx_options).description = "For example, DAILY, MONTHLY, QUARTERLY, ANNUAL"
+            ];
+        }
+        // Descriptive information per (sub-)fund
+        repeated DescriptiveFundInformation fund_descriptions = 9 [
+            (standards.open.v1.fdx_options).h1 = "1.	DESCRIPTIVE INFORMATION",
+            (standards.open.v1.fdx_options).number = "1",
+            (standards.open.v1.fdx_options).question = "Specify the status at year end for each sub-fund that have been active at any time during the year",
+            (standards.open.v1.fdx_options).description = "Note the CSSF provides an Excel table for submission"
+        ];
+        // 2. Did the Fund record any capital transaction(s) in its accounts for any (sub-)fund during the year?
+        YesNo subscriptions = 10 [
+            (standards.open.v1.fdx_options).h1 = "1.	DESCRIPTIVE INFORMATION",
+            (standards.open.v1.fdx_options).number = "2a.",
+            (standards.open.v1.fdx_options).question = "Did the Fund record any capital transaction(s) in its accounts for any (sub-)fund during the year? Subscriptions"
+
+        ];
+        YesNo redemptions = 11 [
+            (standards.open.v1.fdx_options).h1 = "1.	DESCRIPTIVE INFORMATION",
+            (standards.open.v1.fdx_options).number = "2a.",
+            (standards.open.v1.fdx_options).question = "Did the Fund record any capital transaction(s) in its accounts for any (sub-)fund during the year? Redemptions"
+        ];
+        // Invested in a.	Money Market Instruments
+        YesNo invested_in_money_market_instruments = 12 [
+            (standards.open.v1.fdx_options).h1 = "1.	DESCRIPTIVE INFORMATION",
+            (standards.open.v1.fdx_options).number = "3.a",
+            (standards.open.v1.fdx_options).question = "In which types of investments was the Fund invested at year-end (direct investments, except where otherwise specified)? Money Market Instruments"
+        ];
+        // Invested in b.	Deposits (term / cash)
+        YesNo invested_in_deposits = 13 [
+            (standards.open.v1.fdx_options).h1 = "1.	DESCRIPTIVE INFORMATION",
+            (standards.open.v1.fdx_options).number = "3.b.",
+            (standards.open.v1.fdx_options).question = "In which types of investments was the Fund invested at year-end (direct investments, except where otherwise specified)? b.	Deposits (term / cash)"
+        ];
+        // Invested in c.	Repurchase transactions (repo/reverse repo)
+        YesNo invested_in_repo_transactions = 14 [
+            (standards.open.v1.fdx_options).h1 = "1.	DESCRIPTIVE INFORMATION",
+            (standards.open.v1.fdx_options).number = "3.c",
+            (standards.open.v1.fdx_options).question = "In which types of investments was the Fund invested at year-end (direct investments, except where otherwise specified)? c.	Repurchase transactions (repo/reverse repo)"
+        ];
+        // Invested in d.	Securities lending
+        YesNo invested_in_securities_lending = 15 [
+            (standards.open.v1.fdx_options).h1 = "1.	DESCRIPTIVE INFORMATION",
+            (standards.open.v1.fdx_options).number = "3.d",
+            (standards.open.v1.fdx_options).question = "In which types of investments was the Fund invested at year-end (direct investments, except where otherwise specified)? d.	Securities lending"
+        ];
+        // Invested in e.	Listed equities
+        YesNo invested_in_listed_equities = 16 [
+            (standards.open.v1.fdx_options).h1 = "1.	DESCRIPTIVE INFORMATION",
+            (standards.open.v1.fdx_options).number = "3.e",
+            (standards.open.v1.fdx_options).question = "In which types of investments was the Fund invested at year-end (direct investments, except where otherwise specified)? e.	Listed equities"
+        ];
+        // Invested in f.	Corporate bonds
+        YesNo invested_in_corporate_bonds = 17 [
+            (standards.open.v1.fdx_options).h1 = "1.	DESCRIPTIVE INFORMATION",
+            (standards.open.v1.fdx_options).number = "3.f",
+            (standards.open.v1.fdx_options).question = "In which types of investments was the Fund invested at year-end (direct investments, except where otherwise specified)? f.	Corporate bonds"
+        ];
+        // Invested in g.	Government / Municipal bonds
+        YesNo invested_in_government_or_municipal_bonds = 18 [
+            (standards.open.v1.fdx_options).h1 = "1.	DESCRIPTIVE INFORMATION",
+            (standards.open.v1.fdx_options).number = "3.g",
+            (standards.open.v1.fdx_options).question = "In which types of investments was the Fund invested at year-end (direct investments, except where otherwise specified)? g.	Government / Municipal bonds"
+        ];
+        // Invested in h.	Real Estate Investment Trusts (REITs)
+        YesNo invested_in_reits = 19 [
+            (standards.open.v1.fdx_options).h1 = "1.	DESCRIPTIVE INFORMATION",
+            (standards.open.v1.fdx_options).number = "3.h",
+            (standards.open.v1.fdx_options).question = "In which types of investments was the Fund invested at year-end (direct investments, except where otherwise specified)? h.	Real Estate Investment Trusts (REITs)"
+        ];
+        // Invested in i.	Convertible bonds
+        YesNo invested_in_convertible_bonds = 20 [
+            (standards.open.v1.fdx_options).h1 = "1.	DESCRIPTIVE INFORMATION",
+            (standards.open.v1.fdx_options).number = "3.i",
+            (standards.open.v1.fdx_options).question = "In which types of investments was the Fund invested at year-end (direct investments, except where otherwise specified)? i.	Convertible bonds"
+        ];
+        // Invested in j.	Loans / Private credits
+        YesNo invested_in_loans_or_private_credits = 21 [
+            (standards.open.v1.fdx_options).h1 = "1.	DESCRIPTIVE INFORMATION",
+            (standards.open.v1.fdx_options).number = "3.j",
+            (standards.open.v1.fdx_options).question = "In which types of investments was the Fund invested at year-end (direct investments, except where otherwise specified)? j.	Loans / Private credits"
+        ];
+        // Invested in k.	Structured / Securitized products
+        YesNo invested_in_structured_or_securitized_products = 22 [
+            (standards.open.v1.fdx_options).h1 = "1.	DESCRIPTIVE INFORMATION",
+            (standards.open.v1.fdx_options).number = "3.k",
+            (standards.open.v1.fdx_options).question = "In which types of investments was the Fund invested at year-end (direct investments, except where otherwise specified)? k.	Structured / Securitized products"
+        ];
+        // Invested in l.	Equity derivatives
+        YesNo invested_in_equity_derivatives = 23 [
+            (standards.open.v1.fdx_options).h1 = "1.	DESCRIPTIVE INFORMATION",
+            (standards.open.v1.fdx_options).number = "3.l",
+            (standards.open.v1.fdx_options).question = "In which types of investments was the Fund invested at year-end (direct investments, except where otherwise specified)? l.	Equity derivatives"
+        ];
+        // Invested in m.	Fixed income derivatives
+        YesNo invested_in_fixed_income_derivatives = 24 [
+            (standards.open.v1.fdx_options).h1 = "1.	DESCRIPTIVE INFORMATION",
+            (standards.open.v1.fdx_options).number = "3.m",
+            (standards.open.v1.fdx_options).question = "In which types of investments was the Fund invested at year-end (direct investments, except where otherwise specified)? m.	Fixed income derivatives"
+        ];
+        // Invested in n.	Credit derivatives
+        YesNo invested_in_credit_derivatives = 25 [
+            (standards.open.v1.fdx_options).h1 = "1.	DESCRIPTIVE INFORMATION",
+            (standards.open.v1.fdx_options).number = "3.n",
+            (standards.open.v1.fdx_options).question = "In which types of investments was the Fund invested at year-end (direct investments, except where otherwise specified)? n.	Credit derivatives"
+        ];
+        // Invested in o.	FX derivatives
+        YesNo invested_in_fx_derivatives = 26 [
+            (standards.open.v1.fdx_options).h1 = "1.	DESCRIPTIVE INFORMATION",
+            (standards.open.v1.fdx_options).number = "3.o",
+            (standards.open.v1.fdx_options).question = "In which types of investments was the Fund invested at year-end (direct investments, except where otherwise specified)? o.	FX derivatives"
+        ];
+        // Invested in p.	Commodity derivatives
+        YesNo invested_in_commodity_derivatives = 27 [
+            (standards.open.v1.fdx_options).h1 = "1.	DESCRIPTIVE INFORMATION",
+            (standards.open.v1.fdx_options).number = "3.p",
+            (standards.open.v1.fdx_options).question = "In which types of investments was the Fund invested at year-end (direct investments, except where otherwise specified)? p.	Commodity derivatives"
+        ];
+        // Invested in q.	Other derivatives
+        YesNo invested_in_other_derivatives = 28 [
+            (standards.open.v1.fdx_options).h1 = "1.	DESCRIPTIVE INFORMATION",
+            (standards.open.v1.fdx_options).number = "3.q",
+            (standards.open.v1.fdx_options).question = "In which types of investments was the Fund invested at year-end (direct investments, except where otherwise specified)? q.	Other derivatives"
+        ];
+        // Invested in r.	Hedge funds (HF)
+        YesNo invested_in_hedge_funds = 29 [
+            (standards.open.v1.fdx_options).h1 = "1.	DESCRIPTIVE INFORMATION",
+            (standards.open.v1.fdx_options).number = "3.r",
+            (standards.open.v1.fdx_options).question = "In which types of investments was the Fund invested at year-end (direct investments, except where otherwise specified)? r.	Hedge funds (HF)"
+        ];
+        // Invested in s.	Real estate / Infrastructure / Renewables (direct or indirect)
+        YesNo invested_in_real_estate_infrastructure_or_renewables = 30 [
+            (standards.open.v1.fdx_options).h1 = "1.	DESCRIPTIVE INFORMATION",
+            (standards.open.v1.fdx_options).number = "3.s",
+            (standards.open.v1.fdx_options).question = "In which types of investments was the Fund invested at year-end (direct investments, except where otherwise specified)? s.	Real estate / Infrastructure / Renewables (direct or indirect)"
+        ];
+        // Invested in t.	Private equity (direct or indirect)
+        YesNo invested_in_private_equity = 31 [
+            (standards.open.v1.fdx_options).h1 = "1.	DESCRIPTIVE INFORMATION",
+            (standards.open.v1.fdx_options).number = "3.t",
+            (standards.open.v1.fdx_options).question = "In which types of investments was the Fund invested at year-end (direct investments, except where otherwise specified)? t.	Private equity (direct or indirect)"
+        ];
+        // Invested in u.	Open-ended funds (excl. HF/RE/PE)
+        YesNo invested_in_open_ended_funds = 32 [
+            (standards.open.v1.fdx_options).h1 = "1.	DESCRIPTIVE INFORMATION",
+            (standards.open.v1.fdx_options).number = "3.u",
+            (standards.open.v1.fdx_options).question = "In which types of investments was the Fund invested at year-end (direct investments, except where otherwise specified)? u.	Open-ended funds (excl. HF/RE/PE)"
+        ];
+        // Invested in v.	Closed-ended funds (excl. HF/RE/PE)
+        YesNo invested_in_closed_ended_funds = 33 [
+            (standards.open.v1.fdx_options).h1 = "1.	DESCRIPTIVE INFORMATION",
+            (standards.open.v1.fdx_options).number = "3.v",
+            (standards.open.v1.fdx_options).question = "In which types of investments was the Fund invested at year-end (direct investments, except where otherwise specified)? v.	Closed-ended funds (excl. HF/RE/PE)"
+        ];
+        // Invested in w.	Physical assets (direct investments in real/tangible assets, excl. RE/Infrastructure/Renewables)
+        YesNo invested_in_physical_assets_direct = 34 [
+            (standards.open.v1.fdx_options).h1 = "1.	DESCRIPTIVE INFORMATION",
+            (standards.open.v1.fdx_options).number = "3.w",
+            (standards.open.v1.fdx_options).question = "In which types of investments was the Fund invested at year-end (direct investments, except where otherwise specified)? w.	Physical assets (direct investments in real/tangible assets, excl. RE/Infrastructure/Renewables)"
+        ];
+        // Invested in x.	Physical assets (indirect investments in real/tangible assets, excl. RE/Infrastructure/Renewables)
+        YesNo invested_in_physical_assets_indirect = 35 [
+            (standards.open.v1.fdx_options).h1 = "1.	DESCRIPTIVE INFORMATION",
+            (standards.open.v1.fdx_options).number = "3.x",
+            (standards.open.v1.fdx_options).question = "In which types of investments was the Fund invested at year-end (direct investments, except where otherwise specified)? x.	Physical assets (indirect investments in real/tangible assets, excl. RE/Infrastructure/Renewables)"
+        ];
+        // Invested in y.	Other
+        YesNo invested_in_other_assets = 36 [
+            (standards.open.v1.fdx_options).h1 = "1.	DESCRIPTIVE INFORMATION",
+            (standards.open.v1.fdx_options).number = "3.y",
+            (standards.open.v1.fdx_options).question = "In which types of investments was the Fund invested at year-end (direct investments, except where otherwise specified)? y.	Other"
+        ];
+        // Invested in y.	Other
+        string other_assets = 37 [
+            (standards.open.v1.fdx_options).h1 = "1.	DESCRIPTIVE INFORMATION",
+            (standards.open.v1.fdx_options).number = "3.y.b",
+            (standards.open.v1.fdx_options).question = "If the answer to Q3.y. is YES, specify the investment(s) / type(s) considered",
+            (standards.open.v1.fdx_options).conditional = "investedInOtherAssets?1:2"
+        ];
+        // Any (sub-)fund invested at year-end at the level of its portfolio in a special purpose vehicle?
+        YesNo invested_in_spv = 38 [
+            (standards.open.v1.fdx_options).h1 = "1.	DESCRIPTIVE INFORMATION",
+            (standards.open.v1.fdx_options).number = "4",
+            (standards.open.v1.fdx_options).question = "Was any (sub-)fund invested at year-end at the level of its portfolio in a special purpose vehicle (SPV) or other similar intermediate vehicles/entities for facilitating the investment in the underlying assets?"
+        ];
+        // Number of SPVs invested in
+        int32 number_of_spvs = 39 [
+            (standards.open.v1.fdx_options).h1 = "1.	DESCRIPTIVE INFORMATION",
+            (standards.open.v1.fdx_options).number = "4.1",
+            (standards.open.v1.fdx_options).question = "If the answer to Q4. is YES, specify the number of sub-funds investing in SPVs or other similar intermediate vehicles/entities for facilitating the investment in the underlying assets?",
+            (standards.open.v1.fdx_options).conditional = "investedInSpv?1:2"
+        ];
+    }
+    // Descriptive information
+    DescriptiveInformation descriptive_information = 3;
+    // Definition of questions relating to the organization of the fund
+    message Organisation {
+        // Extraordinary General Meetings
+        YesNo extraordinary_general_meetings = 1 [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+            (standards.open.v1.fdx_options).number = "1",
+            (standards.open.v1.fdx_options).question = "Did the Management of the Fund convene any extraordinary general meeting which was organized during the year?"
+        ];
+        // Explain extraordinary general meetings
+        string extraordinary_general_meetings_explain = 2 [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+            (standards.open.v1.fdx_options).number = "1.1",
+            (standards.open.v1.fdx_options).question = "If the answer to Q1. is YES, explain",
+            (standards.open.v1.fdx_options).conditional = "extraordinaryGeneralMeetings?1:2"
+        ];
+        // How many formal meetings of the Management of the Fund have taken place during the financial year?
+        int32 number_formal_management_meetings = 3 [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+            (standards.open.v1.fdx_options).number = "2",
+            (standards.open.v1.fdx_options).question = "How many formal meetings of the Management of the Fund have taken place during the financial year?"
+        ];
+        // Were all the meetings subject to documented minutes?
+        YesNo documented_minutes = 4 [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+            (standards.open.v1.fdx_options).number = "3",
+            (standards.open.v1.fdx_options).question = "Were all the meetings subject to documented minutes?"
+        ];
+        // Explain why meetings not subject to minutes
+        string documented_minutes_explain = 5 [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+            (standards.open.v1.fdx_options).number = "3.1",
+            (standards.open.v1.fdx_options).question = "If the answer to Q3. is YES, explain",
+            (standards.open.v1.fdx_options).conditional = "documentedMinutes?2:1"
+        ];
+        // Has any member of the Management of the Fund resigned during the year?
+        YesNo management_resignations = 6 [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+            (standards.open.v1.fdx_options).number = "4",
+            (standards.open.v1.fdx_options).question = "Has any member of the Management of the Fund resigned during the year?"
+        ];
+        // If the answer to Q4. is YES, how many members of the Management of the Fund have resigned during the year?
+        int32 number_of_management_resignations = 7 [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+            (standards.open.v1.fdx_options).number = "4",
+            (standards.open.v1.fdx_options).question = "4.1.	If the answer to Q4. is YES, how many members of the Management of the Fund have resigned during the year?",
+            (standards.open.v1.fdx_options).conditional = "managementResignations?1:2"
+        ];
+        // Message defining the description of subjects covered in the meetings held by the Management of the Fund during the financial year
+        message ManagementSubjects {
+            // Oversight of delegated activities - IFM
+            YesNo delegate_oversight_ifm = 1 [
+                (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+                (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+                (standards.open.v1.fdx_options).number = "5.a.i",
+                (standards.open.v1.fdx_options).question = "Was the following subject covered in meetings held my the Management of the Fund during the financial year: Oversight of delegated activities - IFM"
+            ];
+            // Oversight of delegated activities - Central Administration
+            YesNo delegate_oversight_central_administration = 2 [
+                (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+                (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+                (standards.open.v1.fdx_options).number = "5.a.ii",
+                (standards.open.v1.fdx_options).question = "Was the following subject covered in meetings held my the Management of the Fund during the financial year: Oversight of delegated activities - Central Administration"
+            ];
+            // Oversight of delegated activities - Transfer / Registrar Agent
+            YesNo delegate_oversight_central_transfer_or_registrar_agent = 3 [
+                (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+                (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+                (standards.open.v1.fdx_options).number = "5.a.iiI",
+                (standards.open.v1.fdx_options).question = "Was the following subject covered in meetings held my the Management of the Fund during the financial year: Oversight of delegated activities - Transfer / Registrar Agent"
+            ];
+            // Oversight of delegated activities - Distributor
+            YesNo delegate_oversight_central_distributor = 4 [
+                (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+                (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+                (standards.open.v1.fdx_options).number = "5.a.iv",
+                (standards.open.v1.fdx_options).question = "Was the following subject covered in meetings held my the Management of the Fund during the financial year: Oversight of delegated activities - Distributor(s)"
+            ];
+            // Oversight of delegated activities - Portfolio Manager(s)
+            YesNo delegate_oversight_central_portfolio_manager = 5 [
+                (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+                (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+                (standards.open.v1.fdx_options).number = "5.a.v",
+                (standards.open.v1.fdx_options).question = "Was the following subject covered in meetings held my the Management of the Fund during the financial year: Oversight of delegated activities - Portfolio Manager(s)"
+            ];
+            // Oversight of delegated activities - Investment Adviser(s)
+            YesNo delegate_oversight_central_investment_adviser = 6 [
+                (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+                (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+                (standards.open.v1.fdx_options).number = "5.a.vi",
+                (standards.open.v1.fdx_options).question = "Was the following subject covered in meetings held my the Management of the Fund during the financial year: Oversight of delegated activities - Investment Adviser(s)"
+            ];
+            // Other Subjects - Portfolio Management of the Fund
+            YesNo other_subjects_portfolio_management = 7 [
+                (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+                (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+                (standards.open.v1.fdx_options).number = "5.b",
+                (standards.open.v1.fdx_options).question = "Was the following subject covered in meetings held my the Management of the Fund during the financial year: Other Subjects - Portfolio Management of the Fund"
+            ];
+            // Other Subjects - Risk management and risks of the Fund
+            YesNo other_subjects_risk_management_and_risks = 8 [
+                (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+                (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+                (standards.open.v1.fdx_options).number = "5.c",
+                (standards.open.v1.fdx_options).question = "Was the following subject covered in meetings held my the Management of the Fund during the financial year: Other Subjects - Risk management and risks of the Fund"
+            ];
+            // Other Subjects - Cyber/IT Risk
+            YesNo other_subjects_cyber_and_it_risk = 9 [
+                (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+                (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+                (standards.open.v1.fdx_options).number = "5.d",
+                (standards.open.v1.fdx_options).question = "Was the following subject covered in meetings held my the Management of the Fund during the financial year: Other Subjects - Cyber/IT Risk"
+            ];
+            // Other Subjects - Fund development and performance of Fund
+            YesNo other_subjects_fund_development_and_performance = 10 [
+                (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+                (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+                (standards.open.v1.fdx_options).number = "5.e",
+                (standards.open.v1.fdx_options).question = "Was the following subject covered in meetings held my the Management of the Fund during the financial year: Other Subjects - Fund development and performance of Fund"
+            ];
+            // Other Subjects - Investment compliance
+            YesNo other_subjects_investment_compliance = 11 [
+                (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+                (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+                (standards.open.v1.fdx_options).number = "5.f",
+                (standards.open.v1.fdx_options).question = "Was the following subject covered in meetings held my the Management of the Fund during the financial year: Other Subjects - Investment compliance"
+            ];
+            // Other Subjects - Valuation / NAV determination
+            YesNo other_subjects_valuation_or_nav_determination = 12 [
+                (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+                (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+                (standards.open.v1.fdx_options).number = "5.g",
+                (standards.open.v1.fdx_options).question = "Was the following subject covered in meetings held my the Management of the Fund during the financial year: Other Subjects - Valuation / NAV determination"
+            ];
+            // Other Subjects - Fees / Expenses charged to Fund, including total expense ratios
+            YesNo other_subjects_fees_and_expenses_including_total_expense_ratios = 13 [
+                (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+                (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+                (standards.open.v1.fdx_options).number = "5.h",
+                (standards.open.v1.fdx_options).question = "Was the following subject covered in meetings held my the Management of the Fund during the financial year: Other Subjects - Fees / Expenses charged to Fund, including total expense ratios"
+            ];
+            // Other Subjects - Capital transactions at the level of the Fund (e.g. subscriptions, redemptions, distributions, liquidity management tools, capital calls, etc...)
+            YesNo other_subjects_capital_transactions_at_fund_level = 14 [
+                (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+                (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+                (standards.open.v1.fdx_options).number = "5.i",
+                (standards.open.v1.fdx_options).question = "Was the following subject covered in meetings held my the Management of the Fund during the financial year: Other Subjects - Capital transactions at the level of the Fund (e.g. subscriptions, redemptions, distributions, liquidity management tools, capital calls, etc...)"
+            ];
+            // Other Subjects - Conflicts of interests
+            YesNo other_subjects_conflicts_of_interests = 15 [
+                (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+                (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+                (standards.open.v1.fdx_options).number = "5.j",
+                (standards.open.v1.fdx_options).question = "Was the following subject covered in meetings held my the Management of the Fund during the financial year: Other Subjects - Conflicts of interests"
+            ];
+            // Other Subjects - AML/CFT
+            YesNo other_subjects_aml_and_cft = 16 [
+                (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+                (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+                (standards.open.v1.fdx_options).number = "5.k",
+                (standards.open.v1.fdx_options).question = "Was the following subject covered in meetings held my the Management of the Fund during the financial year: Other Subjects - AML/CFT"
+            ];
+            // Other Subjects - Central Administration / Accounting issues in the Fund
+            YesNo other_subjects_central_admin_and_accounting_issues = 17 [
+                (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+                (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+                (standards.open.v1.fdx_options).number = "5.l",
+                (standards.open.v1.fdx_options).question = "Was the following subject covered in meetings held my the Management of the Fund during the financial year: Other Subjects - Central Administration / Accounting issues in the Fund"
+            ];
+            // Other Subjects - Marketing
+            YesNo other_subjects_marketing = 18 [
+                (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+                (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+                (standards.open.v1.fdx_options).number = "5.m",
+                (standards.open.v1.fdx_options).question = "Was the following subject covered in meetings held my the Management of the Fund during the financial year: Other Subjects - Marketing"
+            ];
+            // Other Subjects - Relationship with Depositary
+            YesNo other_subjects_relationship_with_depository = 19  [
+                (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+                (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+                (standards.open.v1.fdx_options).number = "5.n",
+                (standards.open.v1.fdx_options).question = "Was the following subject covered in meetings held my the Management of the Fund during the financial year: Other Subjects - Relationship with Depositary"
+            ];
+            // Other Subjects - Regulatory developments
+            YesNo other_subjects_regulatory_developments = 20  [
+                (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+                (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+                (standards.open.v1.fdx_options).number = "5.o",
+                (standards.open.v1.fdx_options).question = "Was the following subject covered in meetings held my the Management of the Fund during the financial year: Other Subjects - Regulatory developments"
+            ];
+            // Other Subjects - Other
+            YesNo other_subjects_other = 21  [
+                (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+                (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+                (standards.open.v1.fdx_options).number = "5.p",
+                (standards.open.v1.fdx_options).question = "Was the following subject covered in meetings held my the Management of the Fund during the financial year: Other Subjects - Other"
+            ];
+            // Other Subjects - Other - Explaination
+            string other_subjects_other_explain = 22  [
+                (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+                (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+                (standards.open.v1.fdx_options).number = "5.p",
+                (standards.open.v1.fdx_options).question = "If the answer to Q5.p. is YES, specify the subject(s)",
+                (standards.open.v1.fdx_options).conditional = "otherSubjectsOther?1:2"
+            ];
+        }
+        // Subjects covered in management meetings
+        ManagementSubjects management_subjects = 8 [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+            (standards.open.v1.fdx_options).number = "5",
+            (standards.open.v1.fdx_options).question = "5.	Which subjects were covered in the meetings held by the Management of the Fund during the financial year? ",
+            (standards.open.v1.fdx_options).description = "The non-exhaustive list of subjects as set out hereafter corresponds to the subjects that the CSSF would expect the Management of the Fund to (potentially) discuss during the financial year. Depending on the set-up of the Fund, elements in the list might not be applicable. On that basis, for instance: - If a Fund did not appoint a distributor, the answer to question 5.a.iv. is NA. - If a Fund did appoint a distributor, but no meeting of the Management of the Fund did concern the distributor(s), the answer to the question 5.a.iv. is No."
+        ];
+        // Management training - professional
+        YesNo management_attended_trainings_professional = 22  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+            (standards.open.v1.fdx_options).number = "6.a",
+            (standards.open.v1.fdx_options).question = "Did the Management of the Fund attend trainings during the year? a.	professional training(s) update and develop their skills"
+        ];
+        // Management didn't attend professional training - explain
+        string no_management_training_professional_explain = 23  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+            (standards.open.v1.fdx_options).number = "6.a.explain",
+            (standards.open.v1.fdx_options).question = "If the Management of the Fund didn't attend professional trainings during the year - explain",
+            (standards.open.v1.fdx_options).conditional = "managementAttendedTrainingsProfessional?2:1"
+        ];
+        // Management training - AML / CFT
+        YesNo management_attended_trainings_aml_cft = 24  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+            (standards.open.v1.fdx_options).number = "6.a",
+            (standards.open.v1.fdx_options).question = "Did the Management of the Fund attend trainings during the year? b.	AML/CFT training(s)"
+        ];
+        // Management didn't attend professional training - explain
+        string no_management_training_aml_cft_explain = 25  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+            (standards.open.v1.fdx_options).number = "6.a.explain",
+            (standards.open.v1.fdx_options).question = "If the Management of the Fund didn't attend AML / CFT trainings during the year - explain",
+            (standards.open.v1.fdx_options).conditional = "managementAttendedTrainingsAmlCft?2:1"
+        ];
+        // List of delegates and services providers to test for deficiencies
+        message DelegatesAndServiceProviderDeficiencies {
+            // Any material organizational deficiency regarding legal, regulatory or contractual responsibilities - IFM
+            YesNo material_deficiency_ifm = 1 [
+                (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+                (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+                (standards.open.v1.fdx_options).number = "7.a",
+                (standards.open.v1.fdx_options).question = "Did the fund identify any material deficiency which had or could have had an impact on the fund and its investors (IFM)?"
+            ];
+            // Any material organizational deficiency regarding legal, regulatory or contractual responsibilities - IFM - Explain
+            string material_deficiency_ifm_explain = 2 [
+                (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+                (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+                (standards.open.v1.fdx_options).number = "7.a.explain",
+                (standards.open.v1.fdx_options).question = "If Y to Q7.a, explain",
+                (standards.open.v1.fdx_options).conditional = "materialDeficiencyIfm?1:2"
+            ];
+            // Any material organizational deficiency regarding legal, regulatory or contractual responsibilities - Central Administration
+            YesNo material_deficiency_central_administration = 3 [
+                (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+                (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+                (standards.open.v1.fdx_options).number = "7.b",
+                (standards.open.v1.fdx_options).question = "Did the fund identify any material deficiency which had or could have had an impact on the fund and its investors (Central Administration)?"
+            ];
+            // Any material organizational deficiency regarding legal, regulatory or contractual responsibilities - Central Administration - Explain
+            string material_deficiency_central_administration_explain = 4 [
+                (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+                (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+                (standards.open.v1.fdx_options).number = "7.b.explain",
+                (standards.open.v1.fdx_options).question = "If Y to Q7.b, explain",
+                (standards.open.v1.fdx_options).conditional = "materialDeficiencyCentralAdministration?1:2"
+            ];
+            // Any material organizational deficiency regarding legal, regulatory or contractual responsibilities - Transfer / Registrar Agent
+            YesNo material_deficiency_transfer_agent = 5 [
+                (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+                (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+                (standards.open.v1.fdx_options).number = "7.c",
+                (standards.open.v1.fdx_options).question = "Did the fund identify any material deficiency which had or could have had an impact on the fund and its investors (Transfer / Registrar Agent)?"
+            ];
+            // Any material organizational deficiency regarding legal, regulatory or contractual responsibilities - Transfer / Registrar Agent - Explain
+            string material_deficiency_transfer_agent_explain = 6 [
+                (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+                (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+                (standards.open.v1.fdx_options).number = "7.c.explain",
+                (standards.open.v1.fdx_options).question = "If Y to Q7.c, explain",
+                (standards.open.v1.fdx_options).conditional = "materialDeficiencyTransferAgent?1:2"
+            ];
+            // Any material organizational deficiency regarding legal, regulatory or contractual responsibilities - Distributor(s)
+            YesNo material_deficiency_distributor = 7 [
+                (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+                (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+                (standards.open.v1.fdx_options).number = "7.d",
+                (standards.open.v1.fdx_options).question = "Did the fund identify any material deficiency which had or could have had an impact on the fund and its investors (Distributor(s))?"
+            ];
+            // Any material organizational deficiency regarding legal, regulatory or contractual responsibilities - Distributor(s) - Explain
+            string material_deficiency_distributor_explain = 8 [
+                (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+                (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+                (standards.open.v1.fdx_options).number = "7.d.explain",
+                (standards.open.v1.fdx_options).question = "If Y to Q7.d, explain",
+                (standards.open.v1.fdx_options).conditional = "materialDeficiencyDistributor?1:2"
+            ];
+            // Any material organizational deficiency regarding legal, regulatory or contractual responsibilities - Portfolio Manager(s)
+            YesNo material_deficiency_portfolio_manager = 9 [
+                (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+                (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+                (standards.open.v1.fdx_options).number = "7.e",
+                (standards.open.v1.fdx_options).question = "Did the fund identify any material deficiency which had or could have had an impact on the fund and its investors (Portfolio Manager(s))?"
+            ];
+            // Any material organizational deficiency regarding legal, regulatory or contractual responsibilities - Portfolio Manager(s) - Explain
+            string material_deficiency_portfolio_manager_explain = 10 [
+                (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+                (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+                (standards.open.v1.fdx_options).number = "7.e.explain",
+                (standards.open.v1.fdx_options).question = "If Y to Q7.e, explain",
+                (standards.open.v1.fdx_options).conditional = "materialDeficiencyPortfolioManager?1:2"
+            ];
+            // Any material organizational deficiency regarding legal, regulatory or contractual responsibilities - Investment Adviser(s)
+            YesNo material_deficiency_investment_adviser = 11 [
+                (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+                (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+                (standards.open.v1.fdx_options).number = "7.f",
+                (standards.open.v1.fdx_options).question = "Did the fund identify any material deficiency which had or could have had an impact on the fund and its investors (Investment Adviser(s))?"
+            ];
+            // Any material organizational deficiency regarding legal, regulatory or contractual responsibilities - Investment Adviser(s) - Explain
+            string material_deficiency_investment_adviser_explain = 12 [
+                (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+                (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+                (standards.open.v1.fdx_options).number = "7.f.explain",
+                (standards.open.v1.fdx_options).question = "If Y to Q7.f, explain",
+                (standards.open.v1.fdx_options).conditional = "materialDeficiencyInvestmentAdviser?1:2"
+            ];
+            // Any material organizational deficiency regarding legal, regulatory or contractual responsibilities - Other
+            YesNo material_deficiency_other = 13 [
+                (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+                (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+                (standards.open.v1.fdx_options).number = "7.g",
+                (standards.open.v1.fdx_options).question = "Did the fund identify any material deficiency which had or could have had an impact on the fund and its investors (Other)?"
+            ];
+            // Any material organizational deficiency regarding legal, regulatory or contractual responsibilities - Other - Explain
+            string material_deficiency_other_explain = 14 [
+                (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+                (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+                (standards.open.v1.fdx_options).number = "7.g.explain",
+                (standards.open.v1.fdx_options).question = "If Y to Q7.g, specify the delegate(s) / service provider(s)",
+                (standards.open.v1.fdx_options).conditional = "materialDeficiencyOther?1:2"
+            ];
+            // Any material organizational deficiency regarding legal, regulatory or contractual responsibilities - Other
+            YesNo material_deficiency_depository = 15 [
+                (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+                (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+                (standards.open.v1.fdx_options).number = "7.h",
+                (standards.open.v1.fdx_options).question = "Did the fund identify any material deficiency which had or could have had an impact on the fund and its investors (Other)?"
+            ];
+            // Any material organizational deficiency regarding legal, regulatory or contractual responsibilities - Depository - Explain
+            string material_deficiency_depository_explain = 16 [
+                (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+                (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+                (standards.open.v1.fdx_options).number = "7.h.explain",
+                (standards.open.v1.fdx_options).question = "If Y to Q7.h, explain",
+                (standards.open.v1.fdx_options).conditional = "materialDeficiencyDepository?1:2"
+            ];
+        }
+        // Management training - AML / CFT
+        DelegatesAndServiceProviderDeficiencies any_material_deficiency_regarding_delegate = 26  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+            (standards.open.v1.fdx_options).number = "7",
+            (standards.open.v1.fdx_options).question = "Did the Fund identify any material organizational deficiency regarding legal, regulatory or contractual responsibilities for one of its delegates/service providers (including depositary) which had or could have had an impact on the Fund and its investors during the year?"
+        ];
+        // Minimum Capital Requirements
+        YesNo met_minimum_capital_requirements = 27  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+            (standards.open.v1.fdx_options).number = "8",
+            (standards.open.v1.fdx_options).question = "Did the Fund meet at year-end the minimum capital requirement as laid down in the applicable sectorial law?"
+        ];
+        // If the answer to met_minimum_capital_requirements is NO, did the Fund convene an Extraordinary General Meeting and/or inform the CSSF in accordance with the applicable sectorial laws?
+        YesNo cap_reqs_extraordinary_general_meeting_and_inform_cssf = 28  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+            (standards.open.v1.fdx_options).number = "8.1",
+            (standards.open.v1.fdx_options).question = "If the answer to Q8. is NO, did the Fund convene an Extraordinary General Meeting and/or inform the CSSF in accordance with the applicable sectorial laws?",
+            (standards.open.v1.fdx_options).conditional = "metMinimumCapitalRequirements?2:1"
+        ];
+        // If the answer to cap_reqs_extraordinary_general_meeting_and_inform_cssf is NO, explain
+        string cap_reqs_extraordinary_general_meeting_and_inform_cssf_explain = 29  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+            (standards.open.v1.fdx_options).number = "8.1.1",
+            (standards.open.v1.fdx_options).question = "If the answer to Q8.1 is NO, explain",
+            (standards.open.v1.fdx_options).conditional = "capReqsExtraordinaryGeneralMeetingAndInformCssf?2:1"
+        ];
+        // Requests regarding issues related to functioning of fund
+        YesNo received_request_from_foreign_competent_authority_concerning_potential_issue = 30  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+            (standards.open.v1.fdx_options).number = "9",
+            (standards.open.v1.fdx_options).question = "Did the Fund or a service provider of the Fund receive during the year a specific request from a foreign national competent authority concerning a potential issue in relation to the functioning of the Fund?"
+        ];
+        // If the answer to received_request_from_foreign_competent_authority_concerning_potential_issue is YES, explain
+        string received_request_from_foreign_competent_authority_concerning_potential_issue_explain = 31  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+            (standards.open.v1.fdx_options).number = "9.1",
+            (standards.open.v1.fdx_options).question = "If the answer to Q9 is YES, explain",
+            (standards.open.v1.fdx_options).conditional = "receivedRequestFromForeignCompetentAuthorityConcerningPotentialIssue?1:2"
+        ];
+        // Requests regarding issues related to functioning of fund
+        YesNo received_request_from_foreign_competent_authority_concerning_wrongdoings = 32  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+            (standards.open.v1.fdx_options).number = "10",
+            (standards.open.v1.fdx_options).question = "Did the Fund or a service provider of the Fund receive during the year any sanction from a foreign national competent authority regarding wrongdoings at the level of the Fund?"
+        ];
+        // If the answer to received_request_from_foreign_competent_authority_concerning_wrongdoings is YES, explain
+        string received_request_from_foreign_competent_authority_concerning_wrongdoings_explain = 33  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+            (standards.open.v1.fdx_options).number = "10.1",
+            (standards.open.v1.fdx_options).question = "If the answer to Q10 is YES, explain",
+            (standards.open.v1.fdx_options).conditional = "receivedRequestFromForeignCompetentAuthorityConcerningWrongdoings?1:2"
+        ];
+        // Requests regarding issues related to functioning of fund
+        YesNo fund_received_investor_complaint_during_year = 34  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+            (standards.open.v1.fdx_options).number = "11",
+            (standards.open.v1.fdx_options).question = "Did the Fund or a service provider of the Fund receive any investor claim and/or complaint during the year in relation to the functioning of the Fund?"
+        ];
+        // If the answer to fund_received_investor_complaint_during_year is YES, number
+        int64 fund_received_investor_complaint_during_year_number = 35  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+            (standards.open.v1.fdx_options).number = "11.1",
+            (standards.open.v1.fdx_options).question = "If the answer to Q11 is YES, indicate the number",
+            (standards.open.v1.fdx_options).conditional = "fundReceivedInvestorComplaintDuringYear?1:2"
+        ];
+        // If the answer to fund_received_investor_complaint_during_year is YES, material?
+        YesNo fund_received_investor_complaint_during_year_materiality = 36  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+            (standards.open.v1.fdx_options).number = "11.2",
+            (standards.open.v1.fdx_options).question = "If the answer to Q11. is YES, could any claim and/or complaint received from investor(s) during the year have a material impact on the Fund/sub-fund or its investors?",
+            (standards.open.v1.fdx_options).conditional = "fundReceivedInvestorComplaintDuringYear?1:2"
+        ];
+        // If the answer to fund_received_investor_complaint_during_year_materiality is YES, explain
+        string fund_received_investor_complaint_during_year_materiality_explain = 37  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+            (standards.open.v1.fdx_options).number = "11.2.1",
+            (standards.open.v1.fdx_options).question = "If the answer to Q11.2 is YES, indicate the number",
+            (standards.open.v1.fdx_options).conditional = "fundReceivedInvestorComplaintDuringYearMateriality?1:2"
+        ];
+        // Was the Fund involved in a litigation or judicial proceeding during the year?
+        YesNo fund_involved_in_litigation_during_year = 38  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+            (standards.open.v1.fdx_options).number = "12",
+            (standards.open.v1.fdx_options).question = "Was the Fund involved in a litigation or judicial proceeding during the year?"
+        ];
+        // If the answer to fund_involved_in_litigation_during_year is YES, explain
+        string fund_involved_in_litigation_during_year_explain = 39  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+            (standards.open.v1.fdx_options).number = "12.1",
+            (standards.open.v1.fdx_options).question = "If the answer to Q12 is YES, explain",
+            (standards.open.v1.fdx_options).conditional = "fundInvolvedInLitigationDuringYearExplain?1:2"
+        ];
+        // Is the Management of the Fund aware of any case(s) of suspected or actual fraud (at Fund level or investment level) which could have an impact on the Fund/sub-fund or its investors?
+        YesNo any_cases_of_suspected_or_actual_fraud = 40  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+            (standards.open.v1.fdx_options).number = "13",
+            (standards.open.v1.fdx_options).question = "Is the Management of the Fund aware of any case(s) of suspected or actual fraud (at Fund level or investment level) which could have an impact on the Fund/sub-fund or its investors?"
+        ];
+        // If the answer to any_cases_of_suspected_or_actual_fraud is YES, explain
+        string any_cases_of_suspected_or_actual_fraud_explain = 41  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+            (standards.open.v1.fdx_options).number = "13.1",
+            (standards.open.v1.fdx_options).question = "If the answer to Q13. is YES, explain.",
+            (standards.open.v1.fdx_options).conditional = "anyCasesOfDuspectedOrActualFraud?1:2"
+        ];
+        // Notification of suspected money, laundering or terrorist financing
+        YesNo notification_of_suspected_fraud = 42  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+            (standards.open.v1.fdx_options).number = "14",
+            (standards.open.v1.fdx_options).question = "Did the Fund notify (respectively did any service provider notify on behalf of the Fund) a suspected fraud and/or a suspected case of money laundering/terrorist financing to the State Attorney’s Office (“Parquet”) and/or the Financial Intelligence Unit (“Cellule de Renseignement Financier”) during the year?"
+        ];
+        // If the answer to any_cases_of_suspected_or_actual_fraud is YES, explain
+        int32 notification_of_suspected_fraud_number = 43  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+            (standards.open.v1.fdx_options).number = "14.1",
+            (standards.open.v1.fdx_options).question = "If the answer to Q14. is YES, indicate the number.",
+            (standards.open.v1.fdx_options).conditional = "notificationOfSuspectedFraud?1:2"
+        ];
+        // If the answer to any_cases_of_suspected_or_actual_fraud is YES, explain
+        YesNo notification_of_suspected_fraud_notified = 44  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+            (standards.open.v1.fdx_options).number = "14.2",
+            (standards.open.v1.fdx_options).question = "If the answer to Q14. is YES, did the Fund send a copy of all these communication(s) to the CSSF as required by the Circular CSSF 11/528?",
+            (standards.open.v1.fdx_options).conditional = "notificationOfSuspectedFraud?1:2"
+        ];
+        // If the answer to any_cases_of_suspected_or_actual_fraud is YES, explain
+        string notification_of_suspected_fraud_notified_explain = 45  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+            (standards.open.v1.fdx_options).number = "14.2.1",
+            (standards.open.v1.fdx_options).question = "If the answer to Q14.2 is NO, explain",
+            (standards.open.v1.fdx_options).conditional = "notificationOfSuspectedFraudNotified?2:1"
+        ];
+        // Adopted Risk Management System of SIF
+        YesNo adopted_risk_management_system_of_sif = 46  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+            (standards.open.v1.fdx_options).number = "15",
+            (standards.open.v1.fdx_options).question = "Did the Management of the Fund, in accordance with article 4(5) of the CSSF Regulation N° 15-07, formally adopt the risk management system of the SIF and, subsequently, have it reviewed and documented on a regular basis?",
+            (standards.open.v1.fdx_options).description = "The question applies only to SIFs which are not referred to in the specific provisions of Part II of the SIF Law and which, on that basis, have to comply with the provisions of the CSSF Regulation N° 15-07. As a consequence, the question is applicable to SIFs which are managed by a registered AIFM, respectively SIFs which do not qualify as an AIF."
+        ];
+        // NAdopted Risk Management System of SIF - Explain
+        string adopted_risk_management_system_of_sif_explain = 47  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+            (standards.open.v1.fdx_options).number = "15.1",
+            (standards.open.v1.fdx_options).question = "If the response to Q15. is NO, explain",
+            (standards.open.v1.fdx_options).conditional = "adoptedRiskManagementSystemOfSif?2:1"
+        ];
+        // Adopted Risk Management System of SIF - Date of Last Review
+        string adopted_risk_management_system_of_sif_date = 48  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
+            (standards.open.v1.fdx_options).number = "15.2",
+            (standards.open.v1.fdx_options).question = "If the response to Q15. is YES, indicate the date of the last review (YYYY-MM-DD)",
+            (standards.open.v1.fdx_options).conditional = "adoptedRiskManagementSystemOfSif?1:2"
+        ];
+        // Conflicts of interest policy in place
+        YesNo effective_conflicts_of_interest_policy_in_place = 49  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.2.	CONFLICTS OF INTEREST",
+            (standards.open.v1.fdx_options).number = "16",
+            (standards.open.v1.fdx_options).question = "Were an effective conflicts of interest policy and effective procedures in place for the Fund (including at IFM level if applicable) (i) to identify the circumstances which constitute or may give rise to a conflict of interest entailing a material risk of damage to the interests of the Fund and/or its investors and (ii) to manage existing (if any) material conflict(s) of interests?"
+        ];
+        // Conflicts of interest identified
+        YesNo conflicts_of_interest_identified = 50  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.2.	CONFLICTS OF INTEREST",
+            (standards.open.v1.fdx_options).number = "16.1",
+            (standards.open.v1.fdx_options).question = "If the answer to Q16. is YES, did the Management of the Fund (or its IFM if any) identify such material conflict(s) of interests?",
+            (standards.open.v1.fdx_options).conditional = "effectiveConflictsOfInterestPolicyInPlace?1:2"
+        ];
+        // Conflicts of interest identified - explain
+        string conflicts_of_interest_identified_explain = 51  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.2.	CONFLICTS OF INTEREST",
+            (standards.open.v1.fdx_options).number = "16.1.1",
+            (standards.open.v1.fdx_options).question = "If the answer to Q16.1 is YES, explain",
+            (standards.open.v1.fdx_options).conditional = "conflictsOfInterestIdentified?1:2"
+        ];
+        // Conflicts of interest identified - register
+        YesNo conflicts_of_interest_identified_register = 52  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.2.	CONFLICTS OF INTEREST",
+            (standards.open.v1.fdx_options).number = "16.1.2",
+            (standards.open.v1.fdx_options).question = "If the answer to Q16.1. is YES, did the Fund or its IFM (if any) keep an exhaustive and up-to- date register of such conflicts of interests?",
+            (standards.open.v1.fdx_options).conditional = "conflictsOfInterestIdentified?1:2"
+        ];
+        // Conflicts of interest identified - register - count
+        YesNo conflicts_of_interest_identified_register_count = 53  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.2.	CONFLICTS OF INTEREST",
+            (standards.open.v1.fdx_options).number = "16.1.2.1.",
+            (standards.open.v1.fdx_options).question = "If the answer to Q16.1.2. is YES, how many conflict(s) of interests are recorded in the register?",
+            (standards.open.v1.fdx_options).conditional = "conflictsOfInterestIdentifiedRegister?1:2"
+        ];
+        // Conflicts of interest identified - procedures
+        YesNo conflicts_of_interest_identified_procedures = 54  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.2.	CONFLICTS OF INTEREST",
+            (standards.open.v1.fdx_options).number = "16.1.3",
+            (standards.open.v1.fdx_options).question = "If the answer to Q16.1. is YES, were the procedures in place for the Fund sufficient to ensure, with reasonable confidence, that the risks of damage to the interests of the Fund and/or its sub-fund(s) and/or of its investors are prevented?",
+            (standards.open.v1.fdx_options).conditional = "conflictsOfInterestIdentified?1:2"
+        ];
+        // Conflicts of interest identified - procedures - decisions
+        YesNo conflicts_of_interest_identified_procedures_decisions = 55  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.2.	CONFLICTS OF INTEREST",
+            (standards.open.v1.fdx_options).number = "16.1.3.1",
+            (standards.open.v1.fdx_options).question = "If the answer to Q 16.1.3. is NO, did the Management of the Fund or its IFM (if any) take the necessary decisions to act in the best interests of the Fund and/or its investors?",
+            (standards.open.v1.fdx_options).conditional = "conflictsOfInterestIdentifiedProcedures?2:1"
+        ];
+        // Conflicts of interest identified - procedures - decisions - explain
+        string conflicts_of_interest_identified_procedures_decisions_explain = 56  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.2.	CONFLICTS OF INTEREST",
+            (standards.open.v1.fdx_options).number = "16.1.3.1.1.",
+            (standards.open.v1.fdx_options).question = "If the answer to Q16.1.3.1. is NO, explain",
+            (standards.open.v1.fdx_options).conditional = "conflictsOfInterestIdentifiedProceduresDecisions?2:1"
+        ];
+        // Conflicts of interest identified - procedures - reported
+        YesNo conflicts_of_interest_identified_procedures_reported = 57  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.2.	CONFLICTS OF INTEREST",
+            (standards.open.v1.fdx_options).number = "16.1.3.2",
+            (standards.open.v1.fdx_options).question = "If the answer to Q16.1.3. is NO, did the Management of the Fund ensure that such material conflicts of interest situations are reported to investors?",
+            (standards.open.v1.fdx_options).conditional = "conflictsOfInterestIdentifiedProcedures?2:1"
+        ];
+        // Conflicts of interest identified - procedures - reported - explain
+        string conflicts_of_interest_identified_procedures_reported_explain = 58  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.2.	CONFLICTS OF INTEREST",
+            (standards.open.v1.fdx_options).number = "16.1.3.2.1.",
+            (standards.open.v1.fdx_options).question = "If the answer to Q16.1.3.2. is NO, explain",
+            (standards.open.v1.fdx_options).conditional = "conflictsOfInterestIdentifiedProceduresReported?2:1"
+        ];
+        // Conflicts of interest identified - procedures - reported
+        YesNo sold_to_retail_investors = 59  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.3.	INVESTORS IN UCIs, SIFs AND SICARs",
+            (standards.open.v1.fdx_options).h3 = "2.3.1.	RETAIL INVESTORS",
+            (standards.open.v1.fdx_options).number = "17",
+            (standards.open.v1.fdx_options).question = "Was the share/unit class of any (sub-)fund sold to retail investors (on a look-through basis) at year- end?",
+            (standards.open.v1.fdx_options).description = "Look-through refers to identifying any retail investor that invested in a sub-fund through a financial intermediary."
+        ];
+        // Conflicts of interest identified - procedures - reported
+        string sold_to_retail_investors_sub_funds = 60  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.3.	INVESTORS IN UCIs, SIFs AND SICARs",
+            (standards.open.v1.fdx_options).h3 = "2.3.1.	RETAIL INVESTORS",
+            (standards.open.v1.fdx_options).number = "17.1",
+            (standards.open.v1.fdx_options).question = "If the answer to Q17. is YES, mention the number of sub-funds",
+            (standards.open.v1.fdx_options).conditional = "soldToRetailInvestors?1:2"
+        ];
+        // Investor Categories - Institutional
+        YesNo investor_categories_institutional = 61  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.3.	INVESTORS IN UCIs, SIFs AND SICARs",
+            (standards.open.v1.fdx_options).h3 = "2.3.2.	WELL-INFORMED INVESTORS - SIF / SICAR",
+            (standards.open.v1.fdx_options).number = "18.a",
+            (standards.open.v1.fdx_options).question = "Did the investors in the Fund at year-end belong to this category? a.	Institutional investors / professional investors",
+            (standards.open.v1.fdx_options).description = "Several categories for Q18 can be marked YES"
+        ];
+        // Investor Categories - Well Informed
+        YesNo investor_categories_well_informed = 62  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.3.	INVESTORS IN UCIs, SIFs AND SICARs",
+            (standards.open.v1.fdx_options).h3 = "2.3.2.	WELL-INFORMED INVESTORS - SIF / SICAR",
+            (standards.open.v1.fdx_options).number = "18.b",
+            (standards.open.v1.fdx_options).question = "Did the investors in the Fund at year-end belong to this category? b.	Investors confirmed in writing that they adhere to the status of well-informed investor AND invested a minimum of 125,000 Euro",
+            (standards.open.v1.fdx_options).description = "Several categories for Q18 can be marked YES"
+        ];
+        // Investor Categories - Attested Well Informed
+        YesNo investor_categories_attested_well_informed = 63  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.3.	INVESTORS IN UCIs, SIFs AND SICARs",
+            (standards.open.v1.fdx_options).h3 = "2.3.2.	WELL-INFORMED INVESTORS - SIF / SICAR",
+            (standards.open.v1.fdx_options).number = "18.c",
+            (standards.open.v1.fdx_options).question = "Did the investors in the Fund at year-end belong to this category? c.	Investors confirmed in writing that they adhere to the status of well-informed investor and have been the subject of an assessment made by a credit institution within the meaning of Directive 2006/48/EC, by an investment firm within the meaning of Directive 2004/39/EC or by a management company within the meaning of “Directive 2009/65/EC”4 certifying his expertise, his experience and his knowledge in adequately apprising an investment in the specialised investment fund",
+            (standards.open.v1.fdx_options).description = "Several categories for Q18 can be marked YES"
+        ];
+        // Investor Categories - Well Informed
+        YesNo procedures_in_place_to_ensure_investors_well_informed = 64  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.3.	INVESTORS IN UCIs, SIFs AND SICARs",
+            (standards.open.v1.fdx_options).h3 = "2.3.2.	WELL-INFORMED INVESTORS - SIF / SICAR",
+            (standards.open.v1.fdx_options).number = "19",
+            (standards.open.v1.fdx_options).question = "Are procedures in place for the Fund to ensure that all investors are well-informed investors in accordance with article 2 of the SIF Law or with article 2 of the SICAR Law?"
+        ];
+        // Conflicts of interest identified - procedures - reported
+        string procedures_in_place_to_ensure_investors_well_informed_explain = 65  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.3.	INVESTORS IN UCIs, SIFs AND SICARs",
+            (standards.open.v1.fdx_options).h3 = "2.3.2.	WELL-INFORMED INVESTORS - SIF / SICAR",
+            (standards.open.v1.fdx_options).number = "19.1",
+            (standards.open.v1.fdx_options).question = "If the answer to Q19 is NO, explain",
+            (standards.open.v1.fdx_options).conditional = "proceduresInPlaceToEnsureInvestorsWellInformed?2:1"
+        ];
+        // Annual Audit - Regulatory Compliance
+        YesNo annual_audit_regulatory = 66  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.4.	ANNUAL REPORT",
+            (standards.open.v1.fdx_options).number = "20.a",
+            (standards.open.v1.fdx_options).question = "20.	Are procedures in place for the Fund to ensure that: a.	the audited annual report complies with the legal/regulatory provisions?"
+        ];
+        // Annual Audit - Regulatory Compliance - Explain
+        string annual_audit_regulatory_explain = 67  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.4.	ANNUAL REPORT",
+            (standards.open.v1.fdx_options).number = "20.a.explain",
+            (standards.open.v1.fdx_options).question = "If the answer to Q20.a is NO, explain",
+            (standards.open.v1.fdx_options).conditional = "annualAuditRegulatory?2:1"
+        ];
+        // Annual Audit - Constitutive Compliance
+        YesNo annual_audit_constitutive = 68  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.4.	ANNUAL REPORT",
+            (standards.open.v1.fdx_options).number = "20.b",
+            (standards.open.v1.fdx_options).question = "20.	Are procedures in place for the Fund to ensure that: b.	the audited annual report complies with the constitutive documents?"
+        ];
+        // Annual Audit - Constitutive Compliance - Explain
+        string annual_audit_constitutive_explain = 69  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.4.	ANNUAL REPORT",
+            (standards.open.v1.fdx_options).number = "20.b.explain",
+            (standards.open.v1.fdx_options).question = "If the answer to Q20.b is NO, explain",
+            (standards.open.v1.fdx_options).conditional = "annualAuditConstitutive?2:1"
+        ];
+        // Annual Audit - Accounting Standard Compliance
+        YesNo annual_audit_accounting = 70  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.4.	ANNUAL REPORT",
+            (standards.open.v1.fdx_options).number = "20.c",
+            (standards.open.v1.fdx_options).question = "20.	Are procedures in place for the Fund to ensure that: c.	the audited annual report complies with the accounting standard adopted by the Fund?"
+        ];
+        // Annual Audit - Accounting Standard Compliance - Explain
+        string annual_audit_accounting_explain = 71  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.4.	ANNUAL REPORT",
+            (standards.open.v1.fdx_options).number = "20.c.explain",
+            (standards.open.v1.fdx_options).question = "If the answer to Q20.c is NO, explain",
+            (standards.open.v1.fdx_options).conditional = "annualAuditAccounting?2:1"
+        ];
+        // Annual Audit - Report on Activities Compliance
+        YesNo annual_audit_report = 72  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.4.	ANNUAL REPORT",
+            (standards.open.v1.fdx_options).number = "20.d",
+            (standards.open.v1.fdx_options).question = "20.	Are procedures in place for the Fund to ensure that: d.	the 'report on the activities' included in the audited annual report provides a complete, consistent and fair description of the activity of the Fund for the year?"
+        ];
+        // Annual Audit - Accounting Standard Compliance - Explain
+        string annual_audit_report_explain = 73  [
+            (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
+            (standards.open.v1.fdx_options).h2 = "2.4.	ANNUAL REPORT",
+            (standards.open.v1.fdx_options).number = "20.d.explain",
+            (standards.open.v1.fdx_options).question = "If the answer to Q20.d is NO, explain",
+            (standards.open.v1.fdx_options).conditional = "annualAuditReport?2:1"
+        ];
+    }
+    // Responses to questions relating to the organization of the fund
+    Organisation organisation = 4;
+}
+
+// Batch set of RT000D034 responses
+message RT0009DB1_batch {
+    repeated RT0009DB1 response = 1;
+}
