@@ -782,7 +782,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).question = "Did the Fund or a service provider of the Fund receive any investor claim and/or complaint during the year in relation to the functioning of the Fund?"
         ];
         // If the answer to fund_received_investor_complaint_during_year is YES, number
-        int64 fund_received_investor_complaint_during_year_number = 35  [
+        int32 fund_received_investor_complaint_during_year_number = 35  [
             (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
             (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
             (standards.open.v1.fdx_options).number = "11.1",
