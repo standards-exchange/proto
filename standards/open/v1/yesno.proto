@@ -6,12 +6,10 @@ option go_package = "github.com/standards-exchange/protobuf-go/standards/open/v1
 
 // Y / N requiring no further explanation
 enum YesNo {
-  // NOT APPLICABLE
-  NA = 0;
-  // YES
+  // No
+  N = 0;
+  // Yes
   Y = 1;
-  // NO
-  N = 2;
 }
 
 // Response where a NO requires further information
