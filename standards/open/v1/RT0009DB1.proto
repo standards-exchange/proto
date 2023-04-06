@@ -323,7 +323,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h1 = "1.	DESCRIPTIVE INFORMATION",
             (standards.open.v1.fdx_options).number = "3.y.b",
             (standards.open.v1.fdx_options).question = "If the answer to Q3.y. is YES, specify the investment(s) / type(s) considered",
-            (standards.open.v1.fdx_options).conditional = "investedInOtherAssets?2:1"
+            (standards.open.v1.fdx_options).conditional = "investedInOtherAssets?1:0"
         ];
         // Any (sub-)fund invested at year-end at the level of its portfolio in a special purpose vehicle?
         YesNo invested_in_spv = 38 [
@@ -336,7 +336,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h1 = "1.	DESCRIPTIVE INFORMATION",
             (standards.open.v1.fdx_options).number = "4.1",
             (standards.open.v1.fdx_options).question = "If the answer to Q4. is YES, specify the number of sub-funds investing in SPVs or other similar intermediate vehicles/entities for facilitating the investment in the underlying assets?",
-            (standards.open.v1.fdx_options).conditional = "investedInSpv?2:1"
+            (standards.open.v1.fdx_options).conditional = "investedInSpv?1:0"
         ];
     }
     // Descriptive information
@@ -356,7 +356,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
             (standards.open.v1.fdx_options).number = "1.1",
             (standards.open.v1.fdx_options).question = "If the answer to Q1. is YES, explain",
-            (standards.open.v1.fdx_options).conditional = "extraordinaryGeneralMeetings?2:1"
+            (standards.open.v1.fdx_options).conditional = "extraordinaryGeneralMeetings?1:0"
         ];
         // How many formal meetings of the Management of the Fund have taken place during the financial year?
         int32 number_formal_management_meetings = 3 [
@@ -378,7 +378,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
             (standards.open.v1.fdx_options).number = "3.1",
             (standards.open.v1.fdx_options).question = "If the answer to Q3. is YES, explain",
-            (standards.open.v1.fdx_options).conditional = "documentedMinutes?2:1"
+            (standards.open.v1.fdx_options).conditional = "documentedMinutes?1:0"
         ];
         // Has any member of the Management of the Fund resigned during the year?
         YesNo management_resignations = 6 [
@@ -393,7 +393,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
             (standards.open.v1.fdx_options).number = "4",
             (standards.open.v1.fdx_options).question = "4.1.	If the answer to Q4. is YES, how many members of the Management of the Fund have resigned during the year?",
-            (standards.open.v1.fdx_options).conditional = "managementResignations?2:1"
+            (standards.open.v1.fdx_options).conditional = "managementResignations?1:0"
         ];
         // Message defining the description of subjects covered in the meetings held by the Management of the Fund during the financial year
         message ManagementSubjects {
@@ -550,7 +550,7 @@ message RT0009DB1 {
                 (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
                 (standards.open.v1.fdx_options).number = "5.p",
                 (standards.open.v1.fdx_options).question = "If the answer to Q5.p. is YES, specify the subject(s)",
-                (standards.open.v1.fdx_options).conditional = "otherSubjectsOther?2:1"
+                (standards.open.v1.fdx_options).conditional = "otherSubjectsOther?1:0"
             ];
         }
         // Subjects covered in management meetings
@@ -574,7 +574,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
             (standards.open.v1.fdx_options).number = "6.a.explain",
             (standards.open.v1.fdx_options).question = "If the Management of the Fund didn't attend professional trainings during the year - explain",
-            (standards.open.v1.fdx_options).conditional = "managementAttendedTrainingsProfessional?2:1"
+            (standards.open.v1.fdx_options).conditional = "managementAttendedTrainingsProfessional?1:0"
         ];
         // Management training - AML / CFT
         YesNo management_attended_trainings_aml_cft = 24  [
@@ -589,7 +589,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
             (standards.open.v1.fdx_options).number = "6.a.explain",
             (standards.open.v1.fdx_options).question = "If the Management of the Fund didn't attend AML / CFT trainings during the year - explain",
-            (standards.open.v1.fdx_options).conditional = "managementAttendedTrainingsAmlCft?2:1"
+            (standards.open.v1.fdx_options).conditional = "managementAttendedTrainingsAmlCft?1:0"
         ];
         // List of delegates and services providers to test for deficiencies
         message DelegatesAndServiceProviderDeficiencies {
@@ -606,7 +606,7 @@ message RT0009DB1 {
                 (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
                 (standards.open.v1.fdx_options).number = "7.a.explain",
                 (standards.open.v1.fdx_options).question = "If Y to Q7.a, explain",
-                (standards.open.v1.fdx_options).conditional = "materialDeficiencyIfm?2:1"
+                (standards.open.v1.fdx_options).conditional = "materialDeficiencyIfm?1:0"
             ];
             // Any material organizational deficiency regarding legal, regulatory or contractual responsibilities - Central Administration
             YesNo material_deficiency_central_administration = 3 [
@@ -621,7 +621,7 @@ message RT0009DB1 {
                 (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
                 (standards.open.v1.fdx_options).number = "7.b.explain",
                 (standards.open.v1.fdx_options).question = "If Y to Q7.b, explain",
-                (standards.open.v1.fdx_options).conditional = "materialDeficiencyCentralAdministration?2:1"
+                (standards.open.v1.fdx_options).conditional = "materialDeficiencyCentralAdministration?1:0"
             ];
             // Any material organizational deficiency regarding legal, regulatory or contractual responsibilities - Transfer / Registrar Agent
             YesNo material_deficiency_transfer_agent = 5 [
@@ -636,7 +636,7 @@ message RT0009DB1 {
                 (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
                 (standards.open.v1.fdx_options).number = "7.c.explain",
                 (standards.open.v1.fdx_options).question = "If Y to Q7.c, explain",
-                (standards.open.v1.fdx_options).conditional = "materialDeficiencyTransferAgent?2:1"
+                (standards.open.v1.fdx_options).conditional = "materialDeficiencyTransferAgent?1:0"
             ];
             // Any material organizational deficiency regarding legal, regulatory or contractual responsibilities - Distributor(s)
             YesNo material_deficiency_distributor = 7 [
@@ -651,7 +651,7 @@ message RT0009DB1 {
                 (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
                 (standards.open.v1.fdx_options).number = "7.d.explain",
                 (standards.open.v1.fdx_options).question = "If Y to Q7.d, explain",
-                (standards.open.v1.fdx_options).conditional = "materialDeficiencyDistributor?2:1"
+                (standards.open.v1.fdx_options).conditional = "materialDeficiencyDistributor?1:0"
             ];
             // Any material organizational deficiency regarding legal, regulatory or contractual responsibilities - Portfolio Manager(s)
             YesNo material_deficiency_portfolio_manager = 9 [
@@ -666,7 +666,7 @@ message RT0009DB1 {
                 (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
                 (standards.open.v1.fdx_options).number = "7.e.explain",
                 (standards.open.v1.fdx_options).question = "If Y to Q7.e, explain",
-                (standards.open.v1.fdx_options).conditional = "materialDeficiencyPortfolioManager?2:1"
+                (standards.open.v1.fdx_options).conditional = "materialDeficiencyPortfolioManager?1:0"
             ];
             // Any material organizational deficiency regarding legal, regulatory or contractual responsibilities - Investment Adviser(s)
             YesNo material_deficiency_investment_adviser = 11 [
@@ -681,7 +681,7 @@ message RT0009DB1 {
                 (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
                 (standards.open.v1.fdx_options).number = "7.f.explain",
                 (standards.open.v1.fdx_options).question = "If Y to Q7.f, explain",
-                (standards.open.v1.fdx_options).conditional = "materialDeficiencyInvestmentAdviser?2:1"
+                (standards.open.v1.fdx_options).conditional = "materialDeficiencyInvestmentAdviser?1:0"
             ];
             // Any material organizational deficiency regarding legal, regulatory or contractual responsibilities - Other
             YesNo material_deficiency_other = 13 [
@@ -696,7 +696,7 @@ message RT0009DB1 {
                 (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
                 (standards.open.v1.fdx_options).number = "7.g.explain",
                 (standards.open.v1.fdx_options).question = "If Y to Q7.g, specify the delegate(s) / service provider(s)",
-                (standards.open.v1.fdx_options).conditional = "materialDeficiencyOther?2:1"
+                (standards.open.v1.fdx_options).conditional = "materialDeficiencyOther?1:0"
             ];
             // Any material organizational deficiency regarding legal, regulatory or contractual responsibilities - Other
             YesNo material_deficiency_depository = 15 [
@@ -711,7 +711,7 @@ message RT0009DB1 {
                 (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
                 (standards.open.v1.fdx_options).number = "7.h.explain",
                 (standards.open.v1.fdx_options).question = "If Y to Q7.h, explain",
-                (standards.open.v1.fdx_options).conditional = "materialDeficiencyDepository?2:1"
+                (standards.open.v1.fdx_options).conditional = "materialDeficiencyDepository?1:0"
             ];
         }
         // Management training - AML / CFT
@@ -734,7 +734,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
             (standards.open.v1.fdx_options).number = "8.1",
             (standards.open.v1.fdx_options).question = "If the answer to Q8. is NO, did the Fund convene an Extraordinary General Meeting and/or inform the CSSF in accordance with the applicable sectorial laws?",
-            (standards.open.v1.fdx_options).conditional = "metMinimumCapitalRequirements?2:1"
+            (standards.open.v1.fdx_options).conditional = "metMinimumCapitalRequirements?1:0"
         ];
         // If the answer to cap_reqs_extraordinary_general_meeting_and_inform_cssf is NO, explain
         string cap_reqs_extraordinary_general_meeting_and_inform_cssf_explain = 29  [
@@ -742,7 +742,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
             (standards.open.v1.fdx_options).number = "8.1.1",
             (standards.open.v1.fdx_options).question = "If the answer to Q8.1 is NO, explain",
-            (standards.open.v1.fdx_options).conditional = "capReqsExtraordinaryGeneralMeetingAndInformCssf?2:1"
+            (standards.open.v1.fdx_options).conditional = "capReqsExtraordinaryGeneralMeetingAndInformCssf?1:0"
         ];
         // Requests regarding issues related to functioning of fund
         YesNo received_request_from_foreign_competent_authority_concerning_potential_issue = 30  [
@@ -757,7 +757,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
             (standards.open.v1.fdx_options).number = "9.1",
             (standards.open.v1.fdx_options).question = "If the answer to Q9 is YES, explain",
-            (standards.open.v1.fdx_options).conditional = "receivedRequestFromForeignCompetentAuthorityConcerningPotentialIssue?2:1"
+            (standards.open.v1.fdx_options).conditional = "receivedRequestFromForeignCompetentAuthorityConcerningPotentialIssue?1:0"
         ];
         // Requests regarding issues related to functioning of fund
         YesNo received_request_from_foreign_competent_authority_concerning_wrongdoings = 32  [
@@ -772,7 +772,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
             (standards.open.v1.fdx_options).number = "10.1",
             (standards.open.v1.fdx_options).question = "If the answer to Q10 is YES, explain",
-            (standards.open.v1.fdx_options).conditional = "receivedRequestFromForeignCompetentAuthorityConcerningWrongdoings?2:1"
+            (standards.open.v1.fdx_options).conditional = "receivedRequestFromForeignCompetentAuthorityConcerningWrongdoings?1:0"
         ];
         // Requests regarding issues related to functioning of fund
         YesNo fund_received_investor_complaint_during_year = 34  [
@@ -787,7 +787,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
             (standards.open.v1.fdx_options).number = "11.1",
             (standards.open.v1.fdx_options).question = "If the answer to Q11 is YES, indicate the number",
-            (standards.open.v1.fdx_options).conditional = "fundReceivedInvestorComplaintDuringYear?2:1"
+            (standards.open.v1.fdx_options).conditional = "fundReceivedInvestorComplaintDuringYear?1:0"
         ];
         // If the answer to fund_received_investor_complaint_during_year is YES, material?
         YesNo fund_received_investor_complaint_during_year_materiality = 36  [
@@ -795,7 +795,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
             (standards.open.v1.fdx_options).number = "11.2",
             (standards.open.v1.fdx_options).question = "If the answer to Q11. is YES, could any claim and/or complaint received from investor(s) during the year have a material impact on the Fund/sub-fund or its investors?",
-            (standards.open.v1.fdx_options).conditional = "fundReceivedInvestorComplaintDuringYear?2:1"
+            (standards.open.v1.fdx_options).conditional = "fundReceivedInvestorComplaintDuringYear?1:0"
         ];
         // If the answer to fund_received_investor_complaint_during_year_materiality is YES, explain
         string fund_received_investor_complaint_during_year_materiality_explain = 37  [
@@ -803,7 +803,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
             (standards.open.v1.fdx_options).number = "11.2.1",
             (standards.open.v1.fdx_options).question = "If the answer to Q11.2 is YES, indicate the number",
-            (standards.open.v1.fdx_options).conditional = "fundReceivedInvestorComplaintDuringYearMateriality?2:1"
+            (standards.open.v1.fdx_options).conditional = "fundReceivedInvestorComplaintDuringYearMateriality?1:0"
         ];
         // Was the Fund involved in a litigation or judicial proceeding during the year?
         YesNo fund_involved_in_litigation_during_year = 38  [
@@ -818,7 +818,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
             (standards.open.v1.fdx_options).number = "12.1",
             (standards.open.v1.fdx_options).question = "If the answer to Q12 is YES, explain",
-            (standards.open.v1.fdx_options).conditional = "fundInvolvedInLitigationDuringYearExplain?2:1"
+            (standards.open.v1.fdx_options).conditional = "fundInvolvedInLitigationDuringYearExplain?1:0"
         ];
         // Is the Management of the Fund aware of any case(s) of suspected or actual fraud (at Fund level or investment level) which could have an impact on the Fund/sub-fund or its investors?
         YesNo any_cases_of_suspected_or_actual_fraud = 40  [
@@ -833,7 +833,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
             (standards.open.v1.fdx_options).number = "13.1",
             (standards.open.v1.fdx_options).question = "If the answer to Q13. is YES, explain.",
-            (standards.open.v1.fdx_options).conditional = "anyCasesOfDuspectedOrActualFraud?2:1"
+            (standards.open.v1.fdx_options).conditional = "anyCasesOfDuspectedOrActualFraud?1:0"
         ];
         // Notification of suspected money, laundering or terrorist financing
         YesNo notification_of_suspected_fraud = 42  [
@@ -848,7 +848,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
             (standards.open.v1.fdx_options).number = "14.1",
             (standards.open.v1.fdx_options).question = "If the answer to Q14. is YES, indicate the number.",
-            (standards.open.v1.fdx_options).conditional = "notificationOfSuspectedFraud?2:1"
+            (standards.open.v1.fdx_options).conditional = "notificationOfSuspectedFraud?1:0"
         ];
         // If the answer to any_cases_of_suspected_or_actual_fraud is YES, explain
         YesNo notification_of_suspected_fraud_notified = 44  [
@@ -856,7 +856,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
             (standards.open.v1.fdx_options).number = "14.2",
             (standards.open.v1.fdx_options).question = "If the answer to Q14. is YES, did the Fund send a copy of all these communication(s) to the CSSF as required by the Circular CSSF 11/528?",
-            (standards.open.v1.fdx_options).conditional = "notificationOfSuspectedFraud?2:1"
+            (standards.open.v1.fdx_options).conditional = "notificationOfSuspectedFraud?1:0"
         ];
         // If the answer to any_cases_of_suspected_or_actual_fraud is YES, explain
         string notification_of_suspected_fraud_notified_explain = 45  [
@@ -864,7 +864,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
             (standards.open.v1.fdx_options).number = "14.2.1",
             (standards.open.v1.fdx_options).question = "If the answer to Q14.2 is NO, explain",
-            (standards.open.v1.fdx_options).conditional = "notificationOfSuspectedFraudNotified?2:1"
+            (standards.open.v1.fdx_options).conditional = "notificationOfSuspectedFraudNotified?1:0"
         ];
         // Adopted Risk Management System of SIF
         YesNo adopted_risk_management_system_of_sif = 46  [
@@ -880,7 +880,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
             (standards.open.v1.fdx_options).number = "15.1",
             (standards.open.v1.fdx_options).question = "If the response to Q15. is NO, explain",
-            (standards.open.v1.fdx_options).conditional = "adoptedRiskManagementSystemOfSif?2:1"
+            (standards.open.v1.fdx_options).conditional = "adoptedRiskManagementSystemOfSif?1:0"
         ];
         // Adopted Risk Management System of SIF - Date of Last Review
         string adopted_risk_management_system_of_sif_date = 48  [
@@ -888,7 +888,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
             (standards.open.v1.fdx_options).number = "15.2",
             (standards.open.v1.fdx_options).question = "If the response to Q15. is YES, indicate the date of the last review (YYYY-MM-DD)",
-            (standards.open.v1.fdx_options).conditional = "adoptedRiskManagementSystemOfSif?2:1"
+            (standards.open.v1.fdx_options).conditional = "adoptedRiskManagementSystemOfSif?1:0"
         ];
         // Conflicts of interest policy in place
         YesNo effective_conflicts_of_interest_policy_in_place = 49  [
@@ -903,7 +903,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h2 = "2.2.	CONFLICTS OF INTEREST",
             (standards.open.v1.fdx_options).number = "16.1",
             (standards.open.v1.fdx_options).question = "If the answer to Q16. is YES, did the Management of the Fund (or its IFM if any) identify such material conflict(s) of interests?",
-            (standards.open.v1.fdx_options).conditional = "effectiveConflictsOfInterestPolicyInPlace?2:1"
+            (standards.open.v1.fdx_options).conditional = "effectiveConflictsOfInterestPolicyInPlace?1:0"
         ];
         // Conflicts of interest identified - explain
         string conflicts_of_interest_identified_explain = 51  [
@@ -911,7 +911,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h2 = "2.2.	CONFLICTS OF INTEREST",
             (standards.open.v1.fdx_options).number = "16.1.1",
             (standards.open.v1.fdx_options).question = "If the answer to Q16.1 is YES, explain",
-            (standards.open.v1.fdx_options).conditional = "conflictsOfInterestIdentified?2:1"
+            (standards.open.v1.fdx_options).conditional = "conflictsOfInterestIdentified?1:0"
         ];
         // Conflicts of interest identified - register
         YesNo conflicts_of_interest_identified_register = 52  [
@@ -919,7 +919,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h2 = "2.2.	CONFLICTS OF INTEREST",
             (standards.open.v1.fdx_options).number = "16.1.2",
             (standards.open.v1.fdx_options).question = "If the answer to Q16.1. is YES, did the Fund or its IFM (if any) keep an exhaustive and up-to- date register of such conflicts of interests?",
-            (standards.open.v1.fdx_options).conditional = "conflictsOfInterestIdentified?2:1"
+            (standards.open.v1.fdx_options).conditional = "conflictsOfInterestIdentified?1:0"
         ];
         // Conflicts of interest identified - register - count
         YesNo conflicts_of_interest_identified_register_count = 53  [
@@ -927,7 +927,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h2 = "2.2.	CONFLICTS OF INTEREST",
             (standards.open.v1.fdx_options).number = "16.1.2.1.",
             (standards.open.v1.fdx_options).question = "If the answer to Q16.1.2. is YES, how many conflict(s) of interests are recorded in the register?",
-            (standards.open.v1.fdx_options).conditional = "conflictsOfInterestIdentifiedRegister?2:1"
+            (standards.open.v1.fdx_options).conditional = "conflictsOfInterestIdentifiedRegister?1:0"
         ];
         // Conflicts of interest identified - procedures
         YesNo conflicts_of_interest_identified_procedures = 54  [
@@ -935,7 +935,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h2 = "2.2.	CONFLICTS OF INTEREST",
             (standards.open.v1.fdx_options).number = "16.1.3",
             (standards.open.v1.fdx_options).question = "If the answer to Q16.1. is YES, were the procedures in place for the Fund sufficient to ensure, with reasonable confidence, that the risks of damage to the interests of the Fund and/or its sub-fund(s) and/or of its investors are prevented?",
-            (standards.open.v1.fdx_options).conditional = "conflictsOfInterestIdentified?2:1"
+            (standards.open.v1.fdx_options).conditional = "conflictsOfInterestIdentified?1:0"
         ];
         // Conflicts of interest identified - procedures - decisions
         YesNo conflicts_of_interest_identified_procedures_decisions = 55  [
@@ -943,7 +943,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h2 = "2.2.	CONFLICTS OF INTEREST",
             (standards.open.v1.fdx_options).number = "16.1.3.1",
             (standards.open.v1.fdx_options).question = "If the answer to Q 16.1.3. is NO, did the Management of the Fund or its IFM (if any) take the necessary decisions to act in the best interests of the Fund and/or its investors?",
-            (standards.open.v1.fdx_options).conditional = "conflictsOfInterestIdentifiedProcedures?2:1"
+            (standards.open.v1.fdx_options).conditional = "conflictsOfInterestIdentifiedProcedures?1:0"
         ];
         // Conflicts of interest identified - procedures - decisions - explain
         string conflicts_of_interest_identified_procedures_decisions_explain = 56  [
@@ -951,7 +951,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h2 = "2.2.	CONFLICTS OF INTEREST",
             (standards.open.v1.fdx_options).number = "16.1.3.1.1.",
             (standards.open.v1.fdx_options).question = "If the answer to Q16.1.3.1. is NO, explain",
-            (standards.open.v1.fdx_options).conditional = "conflictsOfInterestIdentifiedProceduresDecisions?2:1"
+            (standards.open.v1.fdx_options).conditional = "conflictsOfInterestIdentifiedProceduresDecisions?1:0"
         ];
         // Conflicts of interest identified - procedures - reported
         YesNo conflicts_of_interest_identified_procedures_reported = 57  [
@@ -959,7 +959,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h2 = "2.2.	CONFLICTS OF INTEREST",
             (standards.open.v1.fdx_options).number = "16.1.3.2",
             (standards.open.v1.fdx_options).question = "If the answer to Q16.1.3. is NO, did the Management of the Fund ensure that such material conflicts of interest situations are reported to investors?",
-            (standards.open.v1.fdx_options).conditional = "conflictsOfInterestIdentifiedProcedures?2:1"
+            (standards.open.v1.fdx_options).conditional = "conflictsOfInterestIdentifiedProcedures?1:0"
         ];
         // Conflicts of interest identified - procedures - reported - explain
         string conflicts_of_interest_identified_procedures_reported_explain = 58  [
@@ -967,7 +967,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h2 = "2.2.	CONFLICTS OF INTEREST",
             (standards.open.v1.fdx_options).number = "16.1.3.2.1.",
             (standards.open.v1.fdx_options).question = "If the answer to Q16.1.3.2. is NO, explain",
-            (standards.open.v1.fdx_options).conditional = "conflictsOfInterestIdentifiedProceduresReported?2:1"
+            (standards.open.v1.fdx_options).conditional = "conflictsOfInterestIdentifiedProceduresReported?1:0"
         ];
         // Conflicts of interest identified - procedures - reported
         YesNo sold_to_retail_investors = 59  [
@@ -985,7 +985,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h3 = "2.3.1.	RETAIL INVESTORS",
             (standards.open.v1.fdx_options).number = "17.1",
             (standards.open.v1.fdx_options).question = "If the answer to Q17. is YES, mention the number of sub-funds",
-            (standards.open.v1.fdx_options).conditional = "soldToRetailInvestors?2:1"
+            (standards.open.v1.fdx_options).conditional = "soldToRetailInvestors?1:0"
         ];
         // Investor Categories - Institutional
         YesNo investor_categories_institutional = 61  [
@@ -1029,7 +1029,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h3 = "2.3.2.	WELL-INFORMED INVESTORS - SIF / SICAR",
             (standards.open.v1.fdx_options).number = "19.1",
             (standards.open.v1.fdx_options).question = "If the answer to Q19 is NO, explain",
-            (standards.open.v1.fdx_options).conditional = "proceduresInPlaceToEnsureInvestorsWellInformed?2:1"
+            (standards.open.v1.fdx_options).conditional = "proceduresInPlaceToEnsureInvestorsWellInformed?1:0"
         ];
         // Annual Audit - Regulatory Compliance
         YesNo annual_audit_regulatory = 66  [
@@ -1044,7 +1044,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h2 = "2.4.	ANNUAL REPORT",
             (standards.open.v1.fdx_options).number = "20.a.explain",
             (standards.open.v1.fdx_options).question = "If the answer to Q20.a is NO, explain",
-            (standards.open.v1.fdx_options).conditional = "annualAuditRegulatory?2:1"
+            (standards.open.v1.fdx_options).conditional = "annualAuditRegulatory?1:0"
         ];
         // Annual Audit - Constitutive Compliance
         YesNo annual_audit_constitutive = 68  [
@@ -1059,7 +1059,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h2 = "2.4.	ANNUAL REPORT",
             (standards.open.v1.fdx_options).number = "20.b.explain",
             (standards.open.v1.fdx_options).question = "If the answer to Q20.b is NO, explain",
-            (standards.open.v1.fdx_options).conditional = "annualAuditConstitutive?2:1"
+            (standards.open.v1.fdx_options).conditional = "annualAuditConstitutive?1:0"
         ];
         // Annual Audit - Accounting Standard Compliance
         YesNo annual_audit_accounting = 70  [
@@ -1074,7 +1074,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h2 = "2.4.	ANNUAL REPORT",
             (standards.open.v1.fdx_options).number = "20.c.explain",
             (standards.open.v1.fdx_options).question = "If the answer to Q20.c is NO, explain",
-            (standards.open.v1.fdx_options).conditional = "annualAuditAccounting?2:1"
+            (standards.open.v1.fdx_options).conditional = "annualAuditAccounting?1:0"
         ];
         // Annual Audit - Report on Activities Compliance
         YesNo annual_audit_report = 72  [
@@ -1089,7 +1089,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h2 = "2.4.	ANNUAL REPORT",
             (standards.open.v1.fdx_options).number = "20.d.explain",
             (standards.open.v1.fdx_options).question = "If the answer to Q20.d is NO, explain",
-            (standards.open.v1.fdx_options).conditional = "annualAuditReport?2:1"
+            (standards.open.v1.fdx_options).conditional = "annualAuditReport?1:0"
         ];
     }
     // Responses to questions relating to the organization of the fund
