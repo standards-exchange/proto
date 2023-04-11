@@ -21,16 +21,14 @@ option go_package = "github.com/standards-exchange/protobuf-go/standards/open/v1
 message RT000FTL8 {
     // Definition of an overview message
     message Overview {
-        // The effective date as of which the data is accurate
-        google.type.Date effective_date = 1;
         // The reporting year
         int32 reporting_year = 101;
         // The reporting month
         google.type.Month reporting_month = 102;
-        // The date data was produced
-        google.type.Date production_date = 3;
-        // The date of the latest portfolio valuation
-        google.type.Date valuation_date = 4;
+        // The date data was produced (YYYY-MM-DD)
+        string production_date = 3;
+        // The date of the latest nav valuation (YYYY-MM-DD)
+        string latest_nav_valuation_date = 4;
         // The legal identifier of the umbrella
         // Should conform to: https://openfunds.org/OFST005010 (Umbrella)
         // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
