@@ -14,7 +14,9 @@ message FDXOptions {
   string h1 = 5;
   string h2 = 6;
   string h3 = 7;
+  string h4 = 10;
   string validation = 8;
+  string default = 9;
 }
 
 extend google.protobuf.FieldOptions {
