@@ -75,7 +75,7 @@ message RT000FTL8 {
         //  Number of system issues that occurred during the month.
         repeated MonthlyRAGMetric system_issues = 13;
     }
-    // KPIs & key quantitative metrics for the current and preceding 12 periods
+    // KPIs & other key quantitative metrics for the current and preceding 13 periods
     Metrics metrics = 20;
     // The Assets Under Management Definition
     message AssetsUnderManagement {
@@ -95,7 +95,7 @@ message RT000FTL8 {
         google.type.Money quarterly_change_aum_reporting_currency = 7;
     }
     // Time series of historic month-end AUM data
-    // Convention is to provide 12 months of history
+    // Convention is to provide 13 months of history
     repeated AssetsUnderManagement assets_under_management_monthly = 51;
     // Definition of a NAV calculation error
     message NAVCalculationErrorInformation {
@@ -112,7 +112,7 @@ message RT000FTL8 {
         // Remediation
         string remediation = 7;
         // Other Comments
-        repeated string comments = 8;
+        string comments = 8;
     }
     // Last 13 months of NAV Calculation Errors
     repeated NAVCalculationErrorInformation nav_calculation_errors = 52;
@@ -162,7 +162,7 @@ message RT000FTL8 {
         // Comments
         repeated string comments = 9;
     }
-    // Recent instrument pricing errors. Convention is to provide 12 months of history.
+    // Recent instrument pricing errors. Convention is to provide 13 months of history.
     repeated SecurityPricingError security_pricing_errors = 53;
     // Definition of a stale security
     message StaleSecurity {
@@ -204,7 +204,7 @@ message RT000FTL8 {
         // Additional comments
         repeated string comments = 6;
     }
-    // Stale prices as of effective date
+    // Stale prices as of the end of the reporting month
     repeated StaleSecurity stale_securities = 54;
     // Definition of a break that occurred in agreement on the non-cash holdings of a sub-fund
     message StockBreak {
@@ -252,7 +252,7 @@ message RT000FTL8 {
         // Comments
         repeated string comment = 9;
     }
-    // Recent Stock Breaks greater than 5 days. Convention is to provide 12 months of history.
+    // Recent Stock Breaks greater than 5 days. Convention is to provide 13 months of history.
     repeated StockBreak stock_breaks = 55;
     // Definition of break that has occurred in agreement on the cash holdings of a sub-fund
     message CashBreak {
@@ -271,7 +271,7 @@ message RT000FTL8 {
         // Comments
         repeated string comment = 7;
     }
-    // Recent Cash Breaks greater than 5 days. Convention is to provide 12 months of history.
+    // Recent Cash Breaks greater than 5 days. Convention is to provide 13 months of history.
     repeated CashBreak cash_breaks = 56;
     // Definition of a Total Expense Ratio
     message TotalExpenseRatio {
@@ -320,7 +320,7 @@ message RT000FTL8 {
         // Comments on the expense ratio
         repeated string comments = 10;
     }
-    // The timeseries of TERs per share class. Convention is to provide 12 months of history.
+    // The timeseries of TERs per share class. Convention is to provide 13 months of history.
     repeated TotalExpenseRatio total_expense_ratios = 57;
     // Definition of an invoice
     message Invoice {
