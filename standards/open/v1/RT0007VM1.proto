@@ -983,7 +983,7 @@ message RT0007VM1 {
   // Definition of information to be provided per Other sub fund
   message OtherSubfund {
     // CSSF code of the sub-fund. Number corresponding to the compartment without zero in front of the number. For a stand-alone fund, please enter 0. For a multiple compartment fund, please indicate the corresponding number.
-    uint32 subfund_cssf_code = 1 [
+    int32 subfund_cssf_code = 1 [
       json_name = "subfundCssfCode",
       (standards.open.v1.fdx_options).question = "CSSF code of the sub-fund.",
       (standards.open.v1.fdx_options).description = "Number corresponding to the compartment without zero in front of the number. For a stand-alone fund, please enter 0. For a multiple compartment fund, please indicate the corresponding number."
