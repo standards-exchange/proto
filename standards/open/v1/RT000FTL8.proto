@@ -160,7 +160,7 @@ message RT000FTL8 {
         // Remediation
         string remediation = 8;
         // Comments
-        repeated string comments = 9;
+        string comments = 9;
     }
     // Recent instrument pricing errors. Convention is to provide 13 months of history.
     repeated SecurityPricingError security_pricing_errors = 53;
@@ -202,7 +202,7 @@ message RT000FTL8 {
         // Magnitude of the error in decimal (position / nav -1)
         double materiality = 5;
         // Additional comments
-        repeated string comments = 6;
+        string comments = 6;
     }
     // Stale prices as of the end of the reporting month
     repeated StaleSecurity stale_securities = 54;
@@ -250,7 +250,7 @@ message RT000FTL8 {
         // Remediation
         string remediation = 8;
         // Comments
-        repeated string comment = 9;
+        string comment = 9;
     }
     // Recent Stock Breaks greater than 5 days. Convention is to provide 13 months of history.
     repeated StockBreak stock_breaks = 55;
@@ -269,7 +269,7 @@ message RT000FTL8 {
         // Remediation
         string remediation = 6;
         // Comments
-        repeated string comment = 7;
+        string comment = 7;
     }
     // Recent Cash Breaks greater than 5 days. Convention is to provide 13 months of history.
     repeated CashBreak cash_breaks = 56;
@@ -318,7 +318,7 @@ message RT000FTL8 {
         // The YTD expense ratio annualized
         double ter_ytd_annualized = 9;
         // Comments on the expense ratio
-        repeated string comments = 10;
+        string comments = 10;
     }
     // The timeseries of TERs per share class. Convention is to provide 13 months of history.
     repeated TotalExpenseRatio total_expense_ratios = 57;
