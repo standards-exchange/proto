@@ -597,7 +597,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
             (standards.open.v1.fdx_options).number = "7.a.explain",
             (standards.open.v1.fdx_options).question = "If Y to Q7.a, explain",
-            (standards.open.v1.fdx_options).conditional = "Organisation.DelegatesAndServiceProviderDeficiencies.MaterialDeficiencyIfm?1:0"
+            (standards.open.v1.fdx_options).conditional = "Organisation.MaterialDeficiencyIfm?1:0"
         ];
         // Any material organizational deficiency regarding legal, regulatory or contractual responsibilities - Central Administration
         YesNo material_deficiency_central_administration = 28 [
@@ -612,7 +612,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
             (standards.open.v1.fdx_options).number = "7.b.explain",
             (standards.open.v1.fdx_options).question = "If Y to Q7.b, explain",
-            (standards.open.v1.fdx_options).conditional = "Organisation.DelegatesAndServiceProviderDeficiencies.MaterialDeficiencyCentralAdministration?1:0"
+            (standards.open.v1.fdx_options).conditional = "Organisation.MaterialDeficiencyCentralAdministration?1:0"
         ];
         // Any material organizational deficiency regarding legal, regulatory or contractual responsibilities - Transfer / Registrar Agent
         YesNo material_deficiency_transfer_agent = 30 [
@@ -627,7 +627,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
             (standards.open.v1.fdx_options).number = "7.c.explain",
             (standards.open.v1.fdx_options).question = "If Y to Q7.c, explain",
-            (standards.open.v1.fdx_options).conditional = "Organisation.DelegatesAndServiceProviderDeficiencies.MaterialDeficiencyTransferAgent?1:0"
+            (standards.open.v1.fdx_options).conditional = "Organisation.MaterialDeficiencyTransferAgent?1:0"
         ];
         // Any material organizational deficiency regarding legal, regulatory or contractual responsibilities - Distributor(s)
         YesNo material_deficiency_distributor = 32 [
@@ -642,7 +642,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
             (standards.open.v1.fdx_options).number = "7.d.explain",
             (standards.open.v1.fdx_options).question = "If Y to Q7.d, explain",
-            (standards.open.v1.fdx_options).conditional = "Organisation.DelegatesAndServiceProviderDeficiencies.MaterialDeficiencyDistributor?1:0"
+            (standards.open.v1.fdx_options).conditional = "Organisation.MaterialDeficiencyDistributor?1:0"
         ];
         // Any material organizational deficiency regarding legal, regulatory or contractual responsibilities - Portfolio Manager(s)
         YesNo material_deficiency_portfolio_manager = 34 [
@@ -657,7 +657,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
             (standards.open.v1.fdx_options).number = "7.e.explain",
             (standards.open.v1.fdx_options).question = "If Y to Q7.e, explain",
-            (standards.open.v1.fdx_options).conditional = "Organisation.DelegatesAndServiceProviderDeficiencies.MaterialDeficiencyPortfolioManager?1:0"
+            (standards.open.v1.fdx_options).conditional = "Organisation.MaterialDeficiencyPortfolioManager?1:0"
         ];
         // Any material organizational deficiency regarding legal, regulatory or contractual responsibilities - Investment Adviser(s)
         YesNo material_deficiency_investment_adviser = 36 [
@@ -672,7 +672,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
             (standards.open.v1.fdx_options).number = "7.f.explain",
             (standards.open.v1.fdx_options).question = "If Y to Q7.f, explain",
-            (standards.open.v1.fdx_options).conditional = "Organisation.DelegatesAndServiceProviderDeficiencies.MaterialDeficiencyInvestmentAdviser?1:0"
+            (standards.open.v1.fdx_options).conditional = "Organisation.MaterialDeficiencyInvestmentAdviser?1:0"
         ];
         // Any material organizational deficiency regarding legal, regulatory or contractual responsibilities - Other
         YesNo material_deficiency_other = 38 [
@@ -687,14 +687,14 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
             (standards.open.v1.fdx_options).number = "7.g.explain",
             (standards.open.v1.fdx_options).question = "If Y to Q7.g, specify the delegate(s) / service provider(s)",
-            (standards.open.v1.fdx_options).conditional = "Organisation.DelegatesAndServiceProviderDeficiencies.MaterialDeficiencyOther?1:0"
+            (standards.open.v1.fdx_options).conditional = "Organisation.MaterialDeficiencyOther?1:0"
         ];
         // Any material organizational deficiency regarding legal, regulatory or contractual responsibilities - Other
         YesNo material_deficiency_depository = 40 [
             (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
             (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
             (standards.open.v1.fdx_options).number = "7.h",
-            (standards.open.v1.fdx_options).question = "Did the fund identify any material deficiency which had or could have had an impact on the fund and its investors (Other)?"
+            (standards.open.v1.fdx_options).question = "Did the fund identify any material deficiency which had or could have had an impact on the fund and its investors (depositary)?"
         ];
         // Any material organizational deficiency regarding legal, regulatory or contractual responsibilities - Depository - Explain
         string material_deficiency_depository_explain = 41 [
@@ -702,7 +702,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
             (standards.open.v1.fdx_options).number = "7.h.explain",
             (standards.open.v1.fdx_options).question = "If Y to Q7.h, explain",
-            (standards.open.v1.fdx_options).conditional = "Organisation.DelegatesAndServiceProviderDeficiencies.MaterialDeficiencyDepository?1:0"
+            (standards.open.v1.fdx_options).conditional = "Organisation.MaterialDeficiencyDepository?1:0"
         ];
         // Minimum Capital Requirements
         YesNo met_minimum_capital_requirements = 42  [
@@ -803,7 +803,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
             (standards.open.v1.fdx_options).number = "12.1",
             (standards.open.v1.fdx_options).question = "If the answer to Q12 is YES, explain",
-            (standards.open.v1.fdx_options).conditional = "Organisation.FundInvolvedInLitigationDuringYearExplain?1:0"
+            (standards.open.v1.fdx_options).conditional = "Organisation.FundInvolvedInLitigationDuringYear?1:0"
         ];
         // Is the Management of the Fund aware of any case(s) of suspected or actual fraud (at Fund level or investment level) which could have an impact on the Fund/sub-fund or its investors?
         YesNo any_cases_of_suspected_or_actual_fraud = 55  [
@@ -818,7 +818,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
             (standards.open.v1.fdx_options).number = "13.1",
             (standards.open.v1.fdx_options).question = "If the answer to Q13. is YES, explain.",
-            (standards.open.v1.fdx_options).conditional = "Organisation.AnyCasesOfDuspectedOrActualFraud?1:0"
+            (standards.open.v1.fdx_options).conditional = "Organisation.AnyCasesOfSuspectedOrActualFraud?1:0"
         ];
         // Notification of suspected money, laundering or terrorist financing
         YesNo notification_of_suspected_fraud = 57  [
@@ -1317,7 +1317,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).conditional = "InvestmentCompliance.MoneyMarketSecuritiesNoActiveBreaches?0:1"
         ];
         // 9.	Did the shares/units of undertakings for collective investment (UCITS and other UCIs) held by the (sub-)fund(s) during the year comply on an ongoing basis with the provisions of article 41(1)(e) of the UCI Law, the EAD GDR 2008 and the CESR/07-044b in the sense that there was NO active breach?
-        YesNo shares_or_uints_of_undertakings_no_active_breaches = 26 [
+        YesNo shares_or_units_of_undertakings_no_active_breaches = 26 [
             (standards.open.v1.fdx_options).h1 = "3.	INVESTMENT COMPLIANCE",
             (standards.open.v1.fdx_options).h2 = "3.2.	LEGAL/REGULATORY INVESTMENT RESTRICTIONS",
             (standards.open.v1.fdx_options).h3 = "3.2.1.	UCITS",
@@ -1327,14 +1327,14 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).default  = "1"
         ];
         // 9.1.	If the answer to Q9. is NO - not reported in a 02/77 report, explain
-        string shares_or_uints_of_undertakings_no_active_breaches_explain = 27 [
+        string shares_or_units_of_undertakings_no_active_breaches_explain = 27 [
             (standards.open.v1.fdx_options).h1 = "3.	INVESTMENT COMPLIANCE",
             (standards.open.v1.fdx_options).h2 = "3.2.	LEGAL/REGULATORY INVESTMENT RESTRICTIONS",
             (standards.open.v1.fdx_options).h3 = "3.2.1.	UCITS",
             (standards.open.v1.fdx_options).h4 = "3.2.1.1.	Eligibility requirements for investments by UCITS",
             (standards.open.v1.fdx_options).number = "9.1",
             (standards.open.v1.fdx_options).question = "If the answer to Q9. is NO - not reported in a 02/77 report, explain",
-            (standards.open.v1.fdx_options).conditional = "InvestmentCompliance.SharesOrUintsOfUndertakingsNoActiveBreaches?0:1"
+            (standards.open.v1.fdx_options).conditional = "InvestmentCompliance.SharesOrUnitsOfUndertakingsNoActiveBreaches?0:1"
         ];
         // 10.	Did the deposits held by the (sub-)fund(s) during the year comply on an ongoing basis with the provisions of article 41(1)(f) of the UCI Law, the EAD GDR 2008 and the CESR/07-044b in the sense that there was NO active breach?
         YesNo deposits_no_active_breaches = 28 [
