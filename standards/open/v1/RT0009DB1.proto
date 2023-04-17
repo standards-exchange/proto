@@ -1171,7 +1171,7 @@ message RT0009DB1 {
                 (standards.open.v1.fdx_options).question = "Name of the (sub-)fund"
             ];
             // Is the fund in liquidation (false if in liquidation)
-            YesNo active = 2 [
+            ActiveOrLiquidation active = 2 [
                 (standards.open.v1.fdx_options).question = "Is the sub-fund active at year-end (vs. in liquidation)?",
                 (standards.open.v1.fdx_options).default = "1"
             ];
@@ -1240,7 +1240,7 @@ message RT0009DB1 {
         YesNo ex_post_investment_compliance_covers_all_legal_and_regulatory_investment_restrictions_at_nav_calc = 17 [
             (standards.open.v1.fdx_options).h1 = "3.	INVESTMENT COMPLIANCE",
             (standards.open.v1.fdx_options).h2 = "3.1.	INVESTMENT COMPLIANCE CONTROL FRAMEWORK",
-            (standards.open.v1.fdx_options).number = "5.1",
+            (standards.open.v1.fdx_options).number = "6",
             (standards.open.v1.fdx_options).question = "Does the ex post investment compliance control framework in place for the Fund ensure, for each sub-fund, that all legal, regulatory and contractual investment restrictions are complied with at each NAV calculation?",
             (standards.open.v1.fdx_options).default = "1"
         ];
@@ -1354,7 +1354,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h4 = "3.2.1.1.	Eligibility requirements for investments by UCITS",
             (standards.open.v1.fdx_options).number = "10.1",
             (standards.open.v1.fdx_options).question = "If the answer to Q10. is NO - not reported in a 02/77 report, explain",
-            (standards.open.v1.fdx_options).conditional = "InvestmentCompliance.SharesOrUintsOfUndertakingsNoActiveBreaches?0:1"
+            (standards.open.v1.fdx_options).conditional = "InvestmentCompliance.DepositsNoActiveBreaches?0:1"
         ];
         // 11.	Did the FDIs held by the (sub-)fund(s) during the year comply on an ongoing basis with the provisions of article 41(1)(g) of the UCI Law, the EAD GDR 2008, the CESR/07-044b and the Circular CSSF 14/592 in the sense that there was NO active breach?
         YesNo financial_derivative_investments_no_active_breaches = 30 [
@@ -1387,7 +1387,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).default  = "1"
         ];
         // 	11.2.1.	If the answer to Q11.2. is NO - not reported in a 02/77 report, explain
-        YesNo financial_derivative_investments_compliant_underlying_index_explain = 33 [
+        string financial_derivative_investments_compliant_underlying_index_explain = 33 [
             (standards.open.v1.fdx_options).h1 = "3.	INVESTMENT COMPLIANCE",
             (standards.open.v1.fdx_options).h2 = "3.2.	LEGAL/REGULATORY INVESTMENT RESTRICTIONS",
             (standards.open.v1.fdx_options).h3 = "3.2.1.	UCITS",
@@ -1462,7 +1462,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h2 = "3.2.	LEGAL/REGULATORY INVESTMENT RESTRICTIONS",
             (standards.open.v1.fdx_options).h3 = "3.2.1.	UCITS",
             (standards.open.v1.fdx_options).h4 = "3.2.1.1.	Eligibility requirements for investments by UCITS",
-            (standards.open.v1.fdx_options).number = "13",
+            (standards.open.v1.fdx_options).number = "15",
             (standards.open.v1.fdx_options).question = "Did the trash ratio in accordance with article 41(2)(a) of the UCI Law in respect to any (sub-)fund of the Fund represent more than 5% of the TNA as at year-end?",
             (standards.open.v1.fdx_options).default  = "0"
         ];
@@ -1739,7 +1739,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h3 = "3.2.1.	UCITS",
             (standards.open.v1.fdx_options).h4 = "3.2.1.2.	Legal Investment Restrictions applicable to UCITS",
             (standards.open.v1.fdx_options).number = "18.k",
-            (standards.open.v1.fdx_options).question = "18.	Did the (sub-)fund(s) comply on an ongoing basis during the year with all legal investment restrictions of articles 42 to 52 of the UCI Law, including notably the following (non-exhaustive list): k.	the restriction to carry out uncovered sales of article 52",
+            (standards.open.v1.fdx_options).question = "18.	Did the (sub-)fund(s) comply on an ongoing basis during the year with all legal investment restrictions of articles 42 to 52 of the UCI Law, including notably the following (non-exhaustive list): k.	the 10% trash ratio limit of article 41(2) (a)",
             (standards.open.v1.fdx_options).default  = "1"
         ];
         // 18.k.explain
@@ -2169,7 +2169,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h1 = "3.	INVESTMENT COMPLIANCE",
             (standards.open.v1.fdx_options).h2 = "3.4.	CIRCULAR CSSF 02/77",
             (standards.open.v1.fdx_options).number = "29",
-            (standards.open.v1.fdx_options).question = "How many passive investment breaches of legal / regulatory restrictions AND contractual investment restrictions did occur at the level of the (sub-)fund(s) during the year?",
+            (standards.open.v1.fdx_options).question = "How many active investment breaches of legal / regulatory restrictions AND contractual investment restrictions did occur at the level of the (sub-)fund(s) during the year and were reported to the CSSF in accordance with Circular 02/77?",
             (standards.open.v1.fdx_options).description = "Scope of application Circular CSSF 02/77: UCITS, UCI and SIF. The breaches include all breaches referred in the answer to questions in sections 3.2. and 3.3."
         ];
         // 30.	Did the Fund notify to the CSSF, prior to the issuance of the present SAQ, all detected active breaches of legal / regulatory restrictions AND contractual investment restrictions?
@@ -5797,6 +5797,11 @@ message RT0009DB1 {
 //        }
 //        // Self assessment responses related to depositary relationships for 7.2. REGULATED AIFs REGISTERED AIFM/REGULATED NON-AIFs
 //        DepositaryRelationshipRegulatedAIFsRegisteredAIFMAndRegulatedNonAIFs registered_aifm_and_regulated_aifs = 2;
+    }
+    // Enumberation of "Active or in Liquidation"
+    enum ActiveOrLiquidation {
+        ACTIVE = 0;
+        IN_LIQUIDATION = 1;
     }
 }
 
