@@ -66,15 +66,15 @@ message RT0007VM1 {
   ];
   // The payload of the report (required)
   message Payload {
-    SFDRPreContractualReport sfdr_pre_contractual_report = 1 [
-      json_name="sfdrPreContractualReport",
+    SFDRPrecontractualReport sfdr_precontractual_report = 1 [
+      json_name="sfdrPrecontractualReport",
       (standards.open.v1.fdx_options).question = "The questions to be answered for the entity and subfunds"
     ];
   }
   // The payload of the report
   Payload payload = 2 [(standards.open.v1.fdx_options).question = "Data to be submitted to the CSSF"];
   // The SFDR PreContractual Report
-  message SFDRPreContractualReport {
+  message SFDRPrecontractualReport {
     // CSSF code of the entity
     string entity_cssf_code = 1 [
       json_name="entityCssfCode",
