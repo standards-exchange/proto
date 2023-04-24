@@ -190,7 +190,7 @@ message RT0007VM1 {
     // What are the objectives of the sustainable investments that the sub-fund partially intends to make?
     // The field is required if the value of the field sustainableInvestmentsIndicator is Y
     repeated SustainableInvestmentObjective sustainable_investments_objectives = 10 [
-      json_name="sustainableInvestmentsIndicator",
+      json_name="sustainableInvestmentsObjectives",
       (standards.open.v1.fdx_options).question = "What are the objectives of the sustainable investments that the sub-fund partially intends to make?",
       (standards.open.v1.fdx_options).description = "The field is required if the value of the field sustainableInvestmentsIndicator is Y",
       (standards.open.v1.fdx_options).conditional = "Article8Subfund.sustainableInvestmentsIndicator?1:0"
