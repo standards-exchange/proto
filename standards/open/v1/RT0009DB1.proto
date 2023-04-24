@@ -2849,7 +2849,7 @@ message RT0009DB1 {
         YesNo invested_material_portion_valued_by_non_independent_source = 59 [
             (standards.open.v1.fdx_options).h1 = "4.	VALUATION",
             (standards.open.v1.fdx_options).h2 = "4.3.	SPECIFIC QUESTIONS - VALUATION ASPECTS",
-            (standards.open.v1.fdx_options).number = "22",
+            (standards.open.v1.fdx_options).number = "23",
             (standards.open.v1.fdx_options).question = "Did any (sub-)fund(s) invest at year-end a material portion of the NAV in investments (each type of investments : e.g. structured products, OTC FDIs, loans, bonds, unlisted securities, private equity companies) which are valued with prices / valuations coming from a source which is not independent as at year-end (e.g. from the portfolio manager/adviser or from the issuer of the investment)?",
             (standards.open.v1.fdx_options).description = "45	For the purpose of the question all investments held by the (sub-)fund(s) should be considered with regard to the criterion of independent source for the valuation. The materiality threshold refers to the threshold applicable for NAV errors in accordance with Circular CSSF 02/77 (e.g. 1% for equity funds) for UCITS and UCIs, respectively the threshold decided by the Management of the Fund for SIFs and SICARs on the basis of specific internal rules. The materiality threshold applicable for each sub-fund has to be provided under question 31 of the section 1’General information’. For investments in securities, the market value is to be considered and, for the investments in FDIs, the notional/commitment is to be considered",
             (standards.open.v1.fdx_options).default = "0"
