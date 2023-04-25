@@ -114,7 +114,7 @@ message RT0007VM1 {
       json_name = "sustainableInvestmentsMinimumProportion1",
       (standards.open.v1.fdx_options).question = "Minimum proportion of sustainable investments.",
       (standards.open.v1.fdx_options).description = "The field is required if the value of the field Sustainable Investments Indicator is Y",
-      (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article8Subfund.0.sustainableInvestmentsIndicator?1:0"
+      (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article8Subfund.0.SustainableInvestmentsIndicator?1:0"
     ];
     // With an environmental objective in economic activities that qualify as environmentally sustainable under the EU Taxonomy.
     // The field is required if the value of the field sustainableInvestmentsIndicator is Y
