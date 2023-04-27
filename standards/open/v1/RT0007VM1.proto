@@ -552,7 +552,7 @@ message RT0007VM1 {
       (standards.open.v1.fdx_options).description = "Required if AIF, forbidden if UCITS or Pension fund"
     ];
     // Date of the latest issued pre-contractual template (version)
-    YesNo template_latest_issued_date = 70 [
+    string template_latest_issued_date = 70 [
       json_name = "templateLatestIssuedDate",
       (standards.open.v1.fdx_options).question = "Date of the latest issued pre-contractual template (version)"
     ];
