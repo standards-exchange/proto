@@ -2984,7 +2984,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h2 = "4.3.	SPECIFIC QUESTIONS - VALUATION ASPECTS",
             (standards.open.v1.fdx_options).number = "26.1.1",
             (standards.open.v1.fdx_options).question = "If the answer to Q26.1. is NO, explain",
-            (standards.open.v1.fdx_options).conditional = "Valuation.TargetInvestmentFundsSubjectToDocumentedValuationControls?1:0"
+            (standards.open.v1.fdx_options).conditional = "Valuation.TargetInvestmentFundsSubjectToDocumentedValuationControls?0:1"
         ];
         // 27.	Did any (sub-)fund invest at year end a material portion of the NAV in unquoted investments (assets and/or FDIs) which expose the (sub-)fund to a company for which the financial statements are audited?
         YesNo any_fund_invested_material_portion_in_unquoted_investments_in_audited_company = 70 [
@@ -3010,7 +3010,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h2 = "4.3.	SPECIFIC QUESTIONS - VALUATION ASPECTS",
             (standards.open.v1.fdx_options).number = "27.1.1",
             (standards.open.v1.fdx_options).question = "If the answer to Q27.1. is NO, explain",
-            (standards.open.v1.fdx_options).conditional = "Valuation.ReliedOnAuditedStatementsForMaterialUnquotedInvestmentsInAuditedCompany?1:0"
+            (standards.open.v1.fdx_options).conditional = "Valuation.ReliedOnAuditedStatementsForMaterialUnquotedInvestmentsInAuditedCompany?0:1"
         ];
         // 28.	Did any (sub-)fund sell an investment (asset or FDI) with a material discount compared to its last valuation?
         YesNo any_fund_sold_investment_at_material_discount = 73 [
