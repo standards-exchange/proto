@@ -215,7 +215,7 @@ message RT0007VM1 {
       O = 6; // Other
     }
     // What investment strategy does the sub-fund follow?
-    repeated InvestmentStrategy investment_strategies = 12 [
+    repeated InvestmentStrategy investments_strategies = 12 [
       json_name="investmentsStrategies",
       (standards.open.v1.fdx_options).question = "What investment strategy does the sub-fund follow?"
     ];
@@ -703,7 +703,7 @@ message RT0007VM1 {
     ];
     // Minimum proportion of sustainable environmental investments - #1 Sustainable - Environmental (in %)
     // The field is required if the value of the field sustainableInvestmentsIndicator is Y.
-    double sustainable_investments_wenvironmental_minimum_proportion2 = 15 [
+    double sustainable_investments_environmental_minimum_proportion2 = 15 [
       json_name="sustainableInvestmentsEnvironmentalMinimumProportion2",
       (standards.open.v1.fdx_options).question = "Minimum proportion of sustainable environmental investments - #1 Sustainable - Environmental (in %)",
       (standards.open.v1.fdx_options).description = "The field is required if the value of the field sustainableInvestmentsIndicator is Y.",
