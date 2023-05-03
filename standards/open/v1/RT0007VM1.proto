@@ -32,7 +32,7 @@ message RT0007VM1 {
     }
     // Required
     // UUID format Unique identifier following the rfc 4122 norm (see https://www.rfc-editor.org/rfc/rfc4122)
-    string report_uuid = 1 [
+    string report_uid = 1 [
       json_name="reportUid",
       (standards.open.v1.fdx_options).question = "UUID format Unique identifier following the rfc 4122 norm (see https://www.rfc-editor.org/rfc/rfc4122)"
     ];
