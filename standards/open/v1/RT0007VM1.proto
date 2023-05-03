@@ -201,7 +201,7 @@ message RT0007VM1 {
     ];
     // Does the sub-fund consider principle adverse impacts on sustainability factors?
     YesNo  principal_adverse_impact_consideration_indicator = 11 [
-      json_name="principalAdversImpactConsiderationIndicator",
+      json_name="principalAdverseImpactConsiderationIndicator",
       (standards.open.v1.fdx_options).question = "Does the sub-fund consider principle adverse impacts on sustainability factors?",
       (standards.open.v1.fdx_options).default = "2"
     ];
@@ -241,7 +241,7 @@ message RT0007VM1 {
       (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article8Subfunds.0.GoodGovernancePolicyIndicator?2:1"
     ];
     // Minimum proportion of investments aligned with environmental or social characteristics - #1 Aligned with E/S characteristics (in %)
-    double aligned_es_characteristics_investments_minimum_proportion = 16 [
+    double aligned_e_s_characteristics_investments_minimum_proportion = 16 [
       json_name="alignedESCharacteristicsInvestmentsMinimumProportion",
       (standards.open.v1.fdx_options).question = "Minimum proportion of investments aligned with environmental or social characteristics - #1 Aligned with E/S characteristics (in %)"
     ];
@@ -254,7 +254,7 @@ message RT0007VM1 {
       (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article8Subfunds.0.SustainableInvestmentsIndicator?1:2"
     ];
     // Minimum proportion of environmental or social characteristics investments that do not qualify as sustainable investments - #1B Other E/S characteristics (in %)
-    double other_es_characteristics_investments_minimum_proportion = 18 [
+    double other_e_s_characteristics_investments_minimum_proportion = 18 [
       json_name="otherESCharacteristicsInvestmentsMinimumProportion",
       (standards.open.v1.fdx_options).question = "Minimum proportion of environmental or social characteristics investments that do not qualify as sustainable investments - #1B Other E/S characteristics (in %)"
     ];
@@ -335,7 +335,7 @@ message RT0007VM1 {
     // Minimum percentage of investments in nuclear energy related activities aligned with EU taxonomy including sovereign bonds
     // The field is required if the value of the field nuclearEnergyInvestmentsIndicator is Y.
     double nuclear_energy_investments_incl_sovereign_bonds_minimum_proportion = 28 [
-      json_name="nuclearEnregyInvestmentsInclSovereignBondsMinimumProportion",
+      json_name="nuclearEnergyInvestmentsInclSovereignBondsMinimumProportion",
       (standards.open.v1.fdx_options).question = "Minimum percentage of investments in nuclear energy related activities aligned with EU taxonomy including sovereign bonds",
       (standards.open.v1.fdx_options).description = "The field is required if the value of the field nuclearEnergyInvestmentsIndicator is Y.",
       (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article8Subfunds.0.NuclearEnergyInvestmentsIndicator?1:2"
@@ -343,7 +343,7 @@ message RT0007VM1 {
     // Minimum percentage of investments (excluding fossil gas and nuclear energy related activities) aligned with EU taxonomy including sovereign bonds.
     // The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y
     double remaining_investments_incl_sovereign_bonds_minimum_proportion = 29 [
-      json_name="remainingInvestmentsInclSovereignBondsMinimuProportion",
+      json_name="remainingInvestmentsInclSovereignBondsMinimumProportion",
       (standards.open.v1.fdx_options).question = "Minimum percentage of investments (excluding fossil gas and nuclear energy related activities) aligned with EU taxonomy including sovereign bonds.",
       (standards.open.v1.fdx_options).description = " The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y",
       (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article8Subfunds.0.EnvironmentalObjectiveTaxonomyIndicator?1:2"
@@ -359,7 +359,7 @@ message RT0007VM1 {
     // Minimum percentage of investments in nuclear energy related activities aligned with EU taxonomy excluding sovereign bonds
     // The field is required if the value of the field nuclearEnergyInvestmentsIndicator is Y
     double nuclear_energy_investments_excl_sovereign_bonds_minimum_proportion = 31 [
-      json_name="nuclearEnregyInvestmentsExclSovereignBondsMinimumProportion",
+      json_name="nuclearEnergyInvestmentsExclSovereignBondsMinimumProportion",
       (standards.open.v1.fdx_options).question = "Minimum percentage of investments in nuclear energy related activities aligned with EU taxonomy excluding sovereign bonds",
       (standards.open.v1.fdx_options).description = " The field is required if the value of the field nuclearEnergyInvestmentsIndicator is Y",
       (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article8Subfunds.0.NuclearEnergyInvestmentsIndicator?1:2"
@@ -367,7 +367,7 @@ message RT0007VM1 {
     // Minimum percentage of investments (excluding fossil gas and nuclear energy related activities) aligned with EU taxonomy excluding sovereign bonds.
     // The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y
     double remaining_investments_excl_sovereign_bonds_minimum_proportion = 32 [
-      json_name="remainingInvestmentsExclSovereignBondsMinimuProportion",
+      json_name="remainingInvestmentsExclSovereignBondsMinimumProportion",
       (standards.open.v1.fdx_options).question = "Minimum percentage of investments (excluding fossil gas and nuclear energy related activities) aligned with EU taxonomy excluding sovereign bonds.",
       (standards.open.v1.fdx_options).description = "The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y",
       (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article8Subfunds.0.EnvironmentalObjectiveTaxonomyIndicator?1:2"
@@ -497,7 +497,7 @@ message RT0007VM1 {
     // For AIFs not integrating the pre-contractual template in the prospectus, ESG specific investment policy
     // Required if AIF and if the value of the field templateProvidedToCssfIndicator is N.
     // Forbidden if UCITS or Pension fund
-    string specific_esg_investment_policy = 59 [
+    string specific_e_s_g_investment_policy = 59 [
       json_name="specificESGInvestmentPolicy",
       (standards.open.v1.fdx_options).question = "For AIFs not integrating the pre-contractual template in the prospectus, ESG specific investment policy",
       (standards.open.v1.fdx_options).description = "Required if AIF and if the value of the field templateProvidedToCssfIndicator is N. Forbidden if UCITS or Pension fund",
@@ -511,7 +511,7 @@ message RT0007VM1 {
     ];
     // They comply with the requirements set out in the CDR; especially the general principles foreseen in article 2 of the CDR;
     // Required if AIF, forbidden if UCITS or Pension fund
-    YesNo  requirements_cdr_compliance_indicator = 61 [
+    YesNo  requirements_c_d_r_compliance_indicator = 61 [
       json_name="requirementsCDRComplianceIndicator",
       (standards.open.v1.fdx_options).question = "They comply with the requirements set out in the CDR; especially the general principles foreseen in article 2 of the CDR;",
       (standards.open.v1.fdx_options).default = "2",
@@ -555,7 +555,7 @@ message RT0007VM1 {
     ];
     // Confirm that the template(s) used for the pre-contractual disclosures of (sub-)funds qualifying as article 8 Product (“Product 8”) or article 9 Product (“Product 9”) under SFDR is a 1-to-1 copy of the template foreseen in annex II or III respectively of the CDR and has not been altered except eventually as regards the size and front type of characters or the color used as permitted by article 2 CDR;
     // Required if AIF, forbidden if UCITS or Pension fund
-    YesNo  template_cdr_copy_indicator = 67 [
+    YesNo  template_c_d_r_copy_indicator = 67 [
       json_name = "templateCDRCopyIndicator",
       (standards.open.v1.fdx_options).question = "Confirm that the template(s) used for the pre-contractual disclosures of (sub-)funds qualifying as article 8 Product (“Product 8”) or article 9 Product (“Product 9”) under SFDR is a 1-to-1 copy of the template foreseen in annex II or III respectively of the CDR and has not been altered except eventually as regards the size and front type of characters or the color used as permitted by article 2 CDR;",
       (standards.open.v1.fdx_options).description = "Required if AIF, forbidden if UCITS or Pension fund",
@@ -654,7 +654,7 @@ message RT0007VM1 {
     ];
     // Does the sub-fund consider principal adverse impacts on sustainability factors?
     YesNo  principal_adverse_impact_consideration_indicator = 9 [
-      json_name="principalAdversImpactConsiderationIndicator",
+      json_name="principalAdverseImpactConsiderationIndicator",
       (standards.open.v1.fdx_options).question = "Does the sub-fund consider principal adverse impacts on sustainability factors?",
       (standards.open.v1.fdx_options).default = "2"
     ];
@@ -795,7 +795,7 @@ message RT0007VM1 {
     // Minimum percentage of investments (excluding fossil gas and nuclear energy related activities) aligned with EU taxonomy including sovereign bonds
     // The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y
     double remaining_investments_incl_sovereign_bonds_minimum_proportion = 26 [
-      json_name = "remainingInvestmentsInclSovereignBondsMinimuProportion",
+      json_name = "remainingInvestmentsInclSovereignBondsMinimumProportion",
       (standards.open.v1.fdx_options).question = "Minimum percentage of investments (excluding fossil gas and nuclear energy related activities) aligned with EU taxonomy including sovereign bonds",
       (standards.open.v1.fdx_options).description = "The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y",
       (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article9Subfunds.0.EnvironmentalObjectiveTaxonomyIndicator?1:2"
@@ -819,7 +819,7 @@ message RT0007VM1 {
     // Minimum percentage of investments (excluding fossil gas and nuclear energy related activities) aligned with EU taxonomy excluding sovereign bonds
     // The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y
     double remaining_investments_excl_sovereign_bonds_minimum_proportion = 29 [
-      json_name = "remainingInvestmentsExclSovereignBondsMinimuProportion",
+      json_name = "remainingInvestmentsExclSovereignBondsMinimumProportion",
       (standards.open.v1.fdx_options).question = "Minimum percentage of investments (excluding fossil gas and nuclear energy related activities) aligned with EU taxonomy excluding sovereign bonds",
       (standards.open.v1.fdx_options).description = "The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y",
       (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article9Subfunds.0.EnvironmentalObjectiveTaxonomyIndicator?1:2"
@@ -946,7 +946,7 @@ message RT0007VM1 {
     ];
     // For AIFs not integrating the pre-contractual template in the prospectus, ESG specific investment policy
     // Required if AIF and if the value of the field templateProvidedToCssfIndicator is N. Forbidden if UCITS or Pension fund
-    string specific_esg_investment_policy = 46 [
+    string specific_e_s_g_investment_policy = 46 [
       json_name = "specificESGInvestmentPolicy",
       (standards.open.v1.fdx_options).question = "For AIFs not integrating the pre-contractual template in the prospectus, ESG specific investment policy",
       (standards.open.v1.fdx_options).description = "Required if AIF and if the value of the field templateProvidedToCssfIndicator is N. Forbidden if UCITS or Pension fund",
@@ -959,7 +959,7 @@ message RT0007VM1 {
     ];
     // They comply with the requirements set out in the CDR; especially the general principles foreseen in article 2 of the CDR;
     // Required if AIF, forbidden if UCITS or Pension fund
-    YesNo  requirements_cdr_compliance_indicator = 48 [
+    YesNo  requirements_c_d_r_compliance_indicator = 48 [
       json_name = "requirementsCDRComplianceIndicator",
       (standards.open.v1.fdx_options).question = "They comply with the requirements set out in the CDR; especially the general principles foreseen in article 2 of the CDR;",
       (standards.open.v1.fdx_options).default = "2",
@@ -1003,7 +1003,7 @@ message RT0007VM1 {
     ];
     // Confirm that the template(s) used for the pre-contractual disclosures of (sub-)funds qualifying as article 8 Product (“Product 8”) or article 9 Product (“Product 9”) under SFDR is a 1-to-1 copy of the template foreseen in annex II or III respectively of the CDR and has not been altered except eventually as regards the size and front type of characters or the color used as permitted by article 2 CDR;
     // Required if AIF, forbidden if UCITS or Pension fund
-    YesNo  template_cdr_copy_indicator = 54 [
+    YesNo  template_c_d_r_copy_indicator = 54 [
       json_name = "templateCDRCopyIndicator",
       (standards.open.v1.fdx_options).question = "Confirm that the template(s) used for the pre-contractual disclosures of (sub-)funds qualifying as article 8 Product (“Product 8”) or article 9 Product (“Product 9”) under SFDR is a 1-to-1 copy of the template foreseen in annex II or III respectively of the CDR and has not been altered except eventually as regards the size and front type of characters or the color used as permitted by article 2 CDR;",
       (standards.open.v1.fdx_options).default = "2",
