@@ -5799,7 +5799,9 @@ message RT0009DB1 {
 //        DepositaryRelationshipRegulatedAIFsRegisteredAIFMAndRegulatedNonAIFs registered_aifm_and_regulated_aifs = 2;
     }
     // 7.	RELATIONSHIP WITH DEPOSITARY
-    DepositaryRelationship depository_relationship = 9;
+    DepositaryRelationship depository_relationship = 9 [
+        (standards.open.v1.fdx_options).question = "7.	RELATIONSHIP WITH DEPOSITARY"
+    ];
     // Enumberation of "Active or in Liquidation"
     enum ActiveOrLiquidation {
         ACTIVE = 0;
