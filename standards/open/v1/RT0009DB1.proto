@@ -3689,7 +3689,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h1 = "5. NAV DETERMINATION",
             (standards.open.v1.fdx_options).h2 = "5.3.	LIQUIDITY MANAGEMENT TOOLS (LMT)",
             (standards.open.v1.fdx_options).h3 = "5.3.2.	SWING PRICING (SWPR)",
-            (standards.open.v1.fdx_options).number = "10.3.2.1.	",
+            (standards.open.v1.fdx_options).number = "10.3.2.1.1.",
             (standards.open.v1.fdx_options).question = "If the answer to Q10.3.2. is YES, was an appropriate communication made to investors regarding the change to the maximum SWPR?",
             (standards.open.v1.fdx_options).conditional = "NavDetermination.MaximumSwprIncreaseAppropriatelyCommunicated?1:0"
         ];
@@ -3795,7 +3795,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h1 = "5. NAV DETERMINATION",
             (standards.open.v1.fdx_options).h2 = "5.3.	LIQUIDITY MANAGEMENT TOOLS (LMT)",
             (standards.open.v1.fdx_options).h3 = "5.3.4.	REDEMPTION GATING",
-            (standards.open.v1.fdx_options).number = "12.2.1",
+            (standards.open.v1.fdx_options).number = "12.2.1.",
             (standards.open.v1.fdx_options).question = "If the answer to Q12.2. is YES, what is the redemption threshold (as % of NAV per share/unit) laid down in the prospectus that may trigger redemption gating?",
             (standards.open.v1.fdx_options).conditional = "NavDetermination.ProspectusDisclosesRedemptionThresholdForGating?1:0"
         ];
@@ -3804,7 +3804,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).h1 = "5. NAV DETERMINATION",
             (standards.open.v1.fdx_options).h2 = "5.3.	LIQUIDITY MANAGEMENT TOOLS (LMT)",
             (standards.open.v1.fdx_options).h3 = "5.3.4.	REDEMPTION GATING",
-            (standards.open.v1.fdx_options).number = "12.2.1",
+            (standards.open.v1.fdx_options).number = "12.2.2.",
             (standards.open.v1.fdx_options).question = "If the answer to Q12.2. is YES, does the prospectus provide for the possibility for the Management of the Fund to decrease this redemption treshold in exceptional circumstances for any (sub-)fund?",
             (standards.open.v1.fdx_options).conditional = "NavDetermination.ProspectusDisclosesRedemptionThresholdForGating?1:0",
             (standards.open.v1.fdx_options).default = "0"
