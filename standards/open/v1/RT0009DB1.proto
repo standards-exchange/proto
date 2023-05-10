@@ -517,7 +517,7 @@ message RT0009DB1 {
                 (standards.open.v1.fdx_options).question = "Was the following subject covered in meetings held my the Management of the Fund during the financial year: Other Subjects - Marketing"
             ];
             // Other Subjects - Relationship with Depositary
-            YesNo other_subjects_relationship_with_depository = 19  [
+            YesNo other_subjects_relationship_with_depositary = 19  [
                 (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
                 (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
                 (standards.open.v1.fdx_options).number = "5.n",
@@ -690,19 +690,19 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).conditional = "Organisation.MaterialDeficiencyOther?1:0"
         ];
         // Any material organizational deficiency regarding legal, regulatory or contractual responsibilities - Other
-        YesNo material_deficiency_depository = 40 [
+        YesNo material_deficiency_depositary = 40 [
             (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
             (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
             (standards.open.v1.fdx_options).number = "7.h",
             (standards.open.v1.fdx_options).question = "Did the fund identify any material deficiency which had or could have had an impact on the fund and its investors (depositary)?"
         ];
-        // Any material organizational deficiency regarding legal, regulatory or contractual responsibilities - Depository - Explain
-        string material_deficiency_depository_explain = 41 [
+        // Any material organizational deficiency regarding legal, regulatory or contractual responsibilities - DepositAry - Explain
+        string material_deficiency_depositary_explain = 41 [
             (standards.open.v1.fdx_options).h1 = "2.	ORGANISATION OF THE FUND",
             (standards.open.v1.fdx_options).h2 = "2.1.	OVERSIGHT",
             (standards.open.v1.fdx_options).number = "7.h.explain",
             (standards.open.v1.fdx_options).question = "If Y to Q7.h, explain",
-            (standards.open.v1.fdx_options).conditional = "Organisation.MaterialDeficiencyDepository?1:0"
+            (standards.open.v1.fdx_options).conditional = "Organisation.MaterialDeficiencyDepositary?1:0"
         ];
         // Minimum Capital Requirements
         YesNo met_minimum_capital_requirements = 42  [
@@ -5703,103 +5703,9 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).question = "If YES, to 5.3.1.a specify",
             (standards.open.v1.fdx_options).conditional = "DepositaryRelationship.EscalationOnOversightOfSubscriptionsAndRedemptionsUnprocessedTrades?1:0"
         ];
-//            // 5.3. If the answer to Q5. is YES, has the escalation concerned the oversight on investment restriction monitoring?
-//            bool management_notified_of_any_escalation_from_depositary_to_ifm_related_to_investment_restriction_monitoring = 40;
-//            // 5.3.1. If the answer to Q5.3. is YES, was the escalation on the oversight on investment restriction monitoring due to following elements (if YES, explain): a. active breaches of legal and prospectus rules identified that were not subject to the CSSF 02/77 notification and remediation process
-//            YesNoExplain escalation_on_oversight_of_investment_restrictions_breaches_of_legal_and_prospectus_rules = 41;
-//            // 5.3.1. If the answer to Q5.3. is YES, was the escalation on the oversight on investment restriction monitoring due to following elements (if YES, explain): b. Any other reason
-//            YesNoExplain escalation_on_oversight_of_investment_restrictions_other = 42;
-//            // 5.4. If the answer to Q5. is YES, has the escalation concerned the oversight on income calculation and distribution?
-//            bool management_notified_of_any_escalation_from_depositary_to_ifm_related_to_income_calculation_and_distribution = 43;
-//            // 5.4.1. If the answer to Q5.4. is YES, was the escalation on the oversight of the income calculation and distribution due to following elements (if YES, explain): a. income calculation for distribution purposes was not processed in accordance with Fund’s prospectus (including eligibility of the income category for distribution)
-//            YesNoExplain escalation_on_oversight_of_income_calculation_and_distribution_not_processed_according_to_prospectus = 44;
-//            // 5.4.1. If the answer to Q5.4. is YES, was the escalation on the oversight of the income calculation and distribution due to following elements (if YES, explain): b. income distribution processed pertaining to a period for which the opinion on the financial statements provided by the auditor was qualified
-//            YesNoExplain escalation_on_oversight_of_income_calculation_and_distribution_qualified_audit_opinion = 45;
-//            // 5.4.1. If the answer to Q5.4. is YES, was the escalation on the oversight of the income calculation and distribution due to following elements (if YES, explain): c. any other reason
-//            YesNoExplain escalation_on_oversight_of_income_calculation_and_distribution_other = 46;
-//            // 5.5. If the answer to Q5. is YES, has the escalation concerned any other irregularities? If Yes, explain.
-//            YesNoExplain management_notified_of_any_escalation_from_depositary_to_ifm_any_other_irregularities = 47;
-//            // 6. Has a reconciliation process against the depositary's records been in place for the Fund /(sub-)fund(s) during the year concerning the assets safekept at depositary? If NO, explain.
-//        }
-//        // Self assessment responses related to depositary relationships for 7.1. UCITS /REGULATED AIFs WITH AUTHORISED AIFM
-//        DepositaryRelationshipUCITSandRegulatedAIFsWithAIFM ucits_and_regulated_aifs_with_authorised_aifm = 1;
-//        // Questions relevant for 7.2. REGULATED AIFs REGISTERED AIFM/REGULATED NON-AIFs
-//        message DepositaryRelationshipRegulatedAIFsRegisteredAIFMAndRegulatedNonAIFs {
-//            // 6. Has a reconciliation process against the depositary's records been in place for the Fund /(sub-)fund(s) during the year concerning the assets safekept at depositary? If NO, explain.
-//            YesNoExplain reconciliation_process_against_depositary_records_in_place = 1;
-//            // 6.2. If the answer to Q6. is YES, what has been the frequency of these reconciliations?
-//            Frequency frequency_of_reconciliations = 2;
-//            // 6.3. If the answer to Q6. is YES, is the frequency of these reconciliations consistent with the frequency of the NAV calculation for all sub-funds of the Fund? If NO, explain.
-//            YesNoExplain frequency_of_reconciliations_consistent_with_nav_frequency = 3;
-//            // 6.4. If the answer to Q6. is YES, have these reconciliations for the assets safekept at depositary been performed on an ongoing basis during the year at the frequency mentioned above? If NO, explain.
-//            YesNoExplain reconciliations_performed_on_ongoing_basis_consistent_with_nav_frequency = 4;
-//            // 6.5. If the answer to Q6. is YES, could all identified differences by these reconciliation during the year be explained, documented and resolved in a reasonable delay? If NO, explain
-//            YesNoExplain all_reconciliation_differences_resolved = 5;
-//            // 7. Did the depositary confirm all the assets safekept at depositary as at year-end?
-//            bool depositary_confirmed_all_assets_of_fund_that_can_be_held_in_custody = 6;
-//            // 7.1. If the answer to Q7. is NO, mention the type of assets and explain (including impact on sub-funds)
-//            FundSpecificExplanation assets_no_held_in_custody = 7;
-//            // 8. Has a reconciliation process against the depositary's records been in place for the Fund /(sub-)fund(s) during the year concerning the assets that are held at a third party custodian on behalf of funds? If NO, explain.
-//            YesNoExplain reconciliation_process_against_depositary_records_in_place_for_assets_held_with_third_party_custodian = 8;
-//            // 8.2. If the answer to Q8. is YES, what has been the frequency of these reconciliations?
-//            Frequency frequency_of_third_party_custodian_reconciliations = 9;
-//            // 8.3. If the answer to Q8. is YES, is the frequency of these reconciliations consistent with the frequency of the NAV calculation for all sub-funds of the Fund ? If NO, explain.
-//            YesNoExplain frequency_of_third_party_custodian_reconciliations_consistent_with_nav_frequency = 10;
-//            // 8.4. If the answer to Q8. is YES, have these reconciliations for the assets that are held at a third party custodian on behalf of the Fund been performed on an ongoing basis during the year at the frequency mentioned above? If NO, explain.
-//            YesNoExplain third_party_custodian_reconciliations_performed_on_ongoing_basis_consistent_with_nav_frequency = 11;
-//            // 8.5. If the answer to Q8. is YES, could all identified differences by these reconciliations during the year be explained, documented and resolved in a reasonable delay? If NO, explain.
-//            YesNoExplain all_identified_differences_in_third_party_custodian_reconciliations_resolved = 12;
-//            // 9. Did the depositary confirm all assets that are held at a third party custodian on behalf of the Fund as at year-end?
-//            bool depositary_confirmed_all_assets_held_at_third_party_custodian = 13;
-//            // Details of assets not held with third party custodian
-//            message AssetTypeAndDetails {
-//                string type_of_asset = 1;
-//                string explanation = 2;
-//            }
-//            // 9.1. If the answer to Q9. is NO, mention the type of assets and explain (including impact on sub-funds)
-//            repeated AssetTypeAndDetails asset_types_not_held_with_third_party_custodian = 14;
-//            // 10. Did the Fund invest in assets qualifying as "other assets registered in the AIFM name on behalf of the Fund or in the Fund name" ("other assets") during the year?
-//            bool fund_invested_in_assets_qualifying_as_other_assets = 15;
-//            // 10.1. If the answer to Q10. is YES, have the 3 following asset registration processes been in place for the Fund concerning the other assets. "a) an asset ownership registration process at each transaction for the assets acquired by the Fund, based on information or documents maintained by the IFM and, where available, on external evidence;
-//            // b) a process ensuring that the depositary or the third party is informed of any transaction on registered assets in a timely fashion;
-//            //c) a process ensuring that all instructions and other relevant information related to the Fund's assets, including from relevant third parties (certificates or other documentary evidence), are provided to the depositary in order for the depositary to perform its own verification or reconciliation procedure :
-//            // -every time there is a sale or acquisition of assets or a corporate action;
-//            // -on a periodical basis and at least once a year. If NO, explain.
-//            YesNoExplain appropriate_other_asset_registration_process_in_place = 16;
-//            // 10.1.2. If the answer to Q10.1. is YES, have periodical ownership verifications or reconciliations, based on reliable and independent sources, been performed for the other assets in the Fund / (sub-)fund records qualifying as “financial assets”? If NO, explain.
-//            YesNoExplain periodical_ownership_verification_based_on_reliable_independent_sources_has_been_performed_for_other_assets = 17;
-//            // 10.1.2.2. If the answer to Q10.1.2. is YES, what has been the frequency of these periodical ownership verifications or reconciliations?
-//            Frequency frequency_of_periodical_ownership_verifications = 18;
-//            // 10.1.2.3. If the answer to Q10.1.2. is YES, is the frequency of these periodical ownership verifications or reconciliations consistent with the frequency of the NAV calculation for all sub-funds of the Fund ?  If NO, explain.
-//            YesNoExplain frequency_of_periodical_ownership_verifications_consistent_with_nav_frequency = 19;
-//            // 10.1.3. If the answer to Q10.1. is YES, have periodical ownership verifications or reconciliations, based on reliable and independent sources, been performed for the other assets in the Fund / (sub-)fund records qualifying as “non-financial assets”?
-//            YesNoExplain periodical_ownership_verification_based_on_reliable_independent_sources_has_been_performed_for_non_financial_other_assets = 20;
-//            // 10.1.3.2. If the answer to Q10.1.3. is YES, what has been the frequency of these periodical ownership verifications or reconciliations?
-//            Frequency frequency_of_periodical_ownership_verifications_for_non_financial_other_assets = 21;
-//            // 10.1.3.3. If the answer to Q10.1.3. is YES, is the frequency of these periodical ownership verifications or reconciliations consistent with the frequency of the NAV calculation for all sub-funds of the Fund? If NO, explain
-//            YesNoExplain frequency_of_periodical_ownership_verifications_for_non_financial_other_assets_consistent_with_nav_frequency = 22;
-//            // 10.1.4. If the answer to Q10.1. is YES, could all differences identified by these periodical ownership verifications or reconciliations during the year be explained, documented and resolved in a reasonable delay considering the NAV calculation frequency?
-//            YesNoExplain all_differences_identified_by_periodical_ownership_verifications_explained = 23;
-//            // 10.2. If the answer to Q10. is YES, is a process in place for the Fund in order to ensure the consistency of the Fund / (sub-)funds records with the depositary records for the other assets held by the Fund? If NO, explain
-//            YesNoExplain process_in_place_to_ensure_consistency_of_fund_and_depository_records = 24;
-//            // 10.2.2. If the answer to Q10.2. is YES, what has been the frequency of the consistency controls of the Fund records with the depositary records for the other assets qualified as financial assets?
-//            Frequency frequency_of_consistency_controls_for_other_financial_assets = 25;
-//            // 10.2.3. If the answer to Q10.2. is YES, is the frequency of these consistency controls for the other assets qualified as financial assets consistent with the frequency of the NAV calculation for all sub-funds of the Fund ? If NO, explain
-//            YesNoExplain frequency_of_consistency_controls_consistent_with_nav_frequency = 26;
-//            // 10.2.4. If the answer to Q10.2. is YES, what has been the frequency of the consistency controls of the Fund records with the depositary records for the other assets qualified as non-financial assets?
-//            Frequency frequency_of_consistency_controls_for_other_non_financial_assets = 27;
-//            // 10.2.6. If the answer to Q10.2. is YES, could all differences identified during the year through these consistency controls between the Fund records and the depositary records be explained, documented and resolved in a reasonable delay ? If NO, explain
-//            YesNoExplain all_differences_identified_consistency_controls_explained = 28;
-//            // 10.3. If the answer to Q10. is YES, did the depositary confirm all other assets as at year-end?
-//            YesNoExplain depository_confirmed_all_other_assets = 29;
-//            // 10.4. If the answer to Q10. is YES, has the Management of the Fund been notified during the year about any escalation from the depositary to the IFM/Fund of a situation of discrepancy detected in the context of the execution of its safekeeping duties for other assets (missing ownership verification documentation to be provided by the fund, discrepancies identified, etc.)? If YES, explain.
-//            YesNoExplain management_notified_about_any_escalation_from_depository_to_ifm_or_fund = 30;
-//        }
-//        // Self assessment responses related to depositary relationships for 7.2. REGULATED AIFs REGISTERED AIFM/REGULATED NON-AIFs
-//        DepositaryRelationshipRegulatedAIFsRegisteredAIFMAndRegulatedNonAIFs registered_aifm_and_regulated_aifs = 2;
     }
     // 7.	RELATIONSHIP WITH DEPOSITARY
-    DepositaryRelationship depository_relationship = 9 [
+    DepositaryRelationship depositary_relationship = 9 [
         (standards.open.v1.fdx_options).question = "7.	RELATIONSHIP WITH DEPOSITARY"
     ];
     // Enumberation of "Active or in Liquidation"
