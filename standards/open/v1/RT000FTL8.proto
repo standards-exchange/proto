@@ -32,12 +32,12 @@ message RT000FTL8 {
         // Should conform to: https://openfunds.org/OFST005010 (Umbrella)
         // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
         string umbrella_fund = 5;
-        // Name of the relevant sub-fund
+        // Names of the relevant sub-funds
         // Should conform to: https://openfunds.org/OFST010110 (Legal Fund Name Only)
         // Refers to the Sub-Fund in the case of an umbrella structure
         // or Fund in the case of a standalone structure
         // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
-        string fund = 6;
+        repeated string funds = 6;
         // Aggregation entity
         // The name of the entity at which metrics should be aggregated for downstream reporting purposes
         string aggregation_entity = 7;
