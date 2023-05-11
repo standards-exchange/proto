@@ -5,7 +5,6 @@ package standards.open.v1;
 import "google/api/annotations.proto";
 import "google/api/client.proto";
 import "google/api/resource.proto";
-import "google/type/money.proto";
 import "google/protobuf/empty.proto";
 import "google/protobuf/field_mask.proto";
 import "google/protobuf/timestamp.proto";
@@ -45,58 +44,115 @@ message RT000FTL8 {
     }
     // Overview of the Fund Accounting Monthly KPI & MI Report
     Overview overview = 2;
-    // Definition of metrics
-    message Metrics {
-        // Number of NAVs calculated during the month
-        repeated MonthlyRAGMetric navs_calculated = 1;
-        //  Percentage of total NAVs delivered within the agreed timescale during the reporting month.
-        repeated MonthlyRAGMetric percent_nav_timeliness = 2;
-        //  Percentage of total NAVs delivered within the agreed timescale during the reporting month, excluding non-provider
-        //  caused delays.
-        repeated MonthlyRAGMetric percent_nav_timeliness_excluding_non_provider_delays = 3;
-        //  Total Number of Fund Accounting Delegate Delayed NAVs
-        repeated MonthlyRAGMetric total_fund_accounting_delayed_navs = 4;
-        //  Total Number of Non-Fund Accounting Delayed NAVs
-        repeated MonthlyRAGMetric non_fund_accounting_delayed_navs = 5;
-        //  Percentage of valuations produced during the reporting month where no error(s) has been identified. This percentage is not impacted by errors where the root cause was identified as not the Fund Accounting delegate.
-        repeated MonthlyRAGMetric nav_calculation_accuracy = 6;
-        //  Total number of valuations which were priced incorrectly over the entire error period.
-        repeated MonthlyRAGMetric non_material_nav_errors = 7;
-        //  Total number of material valuations errors over the entire error period (where materiality is defined by the board).
-        repeated MonthlyRAGMetric material_nav_errors = 8;
-        //  Number of cash reconciliations reported between 31 to 60 days
-        repeated MonthlyRAGMetric cash_reconciliations_31_to_60_days = 9;
-        //  Number of cash reconciliations reported greater than or equal to 61 days
-        repeated MonthlyRAGMetric cash_reconciliations_more_than_60_days = 10;
-        //  Number of stock reconciliations reported between 31 to 60 days
-        repeated MonthlyRAGMetric stock_reconciliations_31_to_60_days = 11;
-        //  Number of stock reconciliations reported greater than or equal to 61 days
-        repeated MonthlyRAGMetric stock_reconciliations_more_than_60_days = 12;
-        //  Number of system issues that occurred during the month.
-        repeated MonthlyRAGMetric system_issues = 13;
+    // Definition of a monthly metric
+    message MonthlyRAGMetric {
+        // The year of the metric
+        int32 year = 1;
+        // The month of the metric
+        google.type.Month month = 2;
+        // The common identifier of the subject.
+        // In most instances the subject (i.e the entity being measured by the metric) should be the umbrella for which the report is provided.
+        // Metrics related to specific sub-funds, however, can be reported alongside the aggregated values
+        // so long as the this is consistently applied
+        string subject_id = 3;
+        // The human readable name of the subject of the metric
+        string subject_name = 4;
+        // Enumeration of metricIDs
+        enum MetricID {
+            // The enumeration of the metrics measured
+            METRIC_ID_UNSPECIFIED = 0;
+            // Number of NAVs calculated during the month
+            NAVS_CALCULATED = 1;
+            //  Count of the number of delays in the period caused by the provider
+            NAVS_PROVIDER_DELAYED = 2;
+            //  Count of the number of delays in the period not caused by the provider
+            NAVS_NON_PROVIDER_DELAYED = 3;
+            //  Percentage of total NAVs delivered within the agreed timescale during the reporting month.
+            //  NAV_TIMELINESS should equal  1- (NAVS_PROVIDER_DELAYED + NAVS_NON_PROVIDER_DELAYED) / NAVS_CALCULATED
+            //  in a period
+            NAV_TIMELINESS = 4;
+            //  Percentage of total NAVs delivered within the agreed timescale during the reporting month,
+            //  excluding non-provider caused delays.
+            //  NAVS_TIMELINESS_PROVIDER should equal 1 - (NAVS_PROVIDER_DELAYED / NAVS_CALCULATED)
+            NAVS_TIMELINESS_PROVIDER = 5;
+            // Percentage of valuations produced during the reporting month where no error(s) has been identified.
+            NAV_ACCURACY = 6;
+            // Percentage of valuations produced during the reporting month where no error(s) has been identified.
+            // This percentage is not impacted by errors where the root cause was identified as not the delegate.
+            NAV_ACCURACY_PROVIDER = 7;
+            // The count of material nav errors where the delegate was responsible
+            NAV_ERRORS_MATERIAL_PROVIDER = 8;
+            // The count of material nav errors where the delegate was not responsible
+            NAV_ERRORS_MATERIAL_NON_PROVIDER = 9;
+            // The count of material nav errors where the delegate was responsible
+            NAV_ERRORS_NON_MATERIAL_PROVIDER = 10;
+            // The count of material nav errors where the delegate was not responsible
+            NAV_ERRORS_NON_MATERIAL_NON_PROVIDER = 11;
+            // The count of Stale Securities as of the end of the period
+            STALE_SECURITIES = 12;
+            //  Number of cash reconciliations reported between 31 to 60 days
+            CASH_RECONCILIATIONS_31_TO_60_DAYS = 13;
+            //  Number of cash reconciliations reported greater than or equal to 61 days
+            CASH_RECONCILIATIONS_GREATER_THAN_60_DAYS = 14;
+            //  Number of stock reconciliations reported between 31 to 60 days
+            STOCK_RECONCILIATIONS_31_TO_60_DAYS = 15;
+            //  Number of stock reconciliations reported greater than or equal to 61 days
+            STOCK_RECONCILIATIONS_GREATER_THAN_60_DAYS = 16;
+            //  The count of system issues that occurred during the period
+            COUNT_SYSTEM_ISSUES = 17;
+        }
+        // The identifier of what the metric measures
+        MetricID metric_id = 5;
+        // The type of the metric
+        enum MetricType {
+            METRIC_TYPE_UNSPECIFIED = 0;
+            COUNT = 1;
+            PERCENTAGE = 2;
+            MONEY = 3;
+        }
+        // Enumeration for how to interpret the metric value
+        MetricType metric_type = 6;
+        // If the metric type is "MONEY" then a 3-letter currency code defined in ISO 4217 must be provided.
+        string currency_code = 7;
+        // The value of the metric
+        double metric = 8;
+        // The "RED/AMBER/GREEN" designation if applicable
+        RedAmberGreen rag = 9;
+        // The amber cutoff (i.e. the value above which the metric is no longer classified as "RED") if applicable
+        double amber_cutoff = 10;
+        // The green cutoff (i.e. the value above which the metric is no longer classified as "AMBER")  if applicable
+        double green_cutoff = 11;
+        // Optional. The metric ID used by the provider
+        string provider_metric_id = 12;
+        // Optional. The KPI name used by the provider
+        string provider_metric_name = 13;
+        // Optional. Any comments attached to the metric
+        string comments = 99;
     }
     // KPIs & other key quantitative metrics for the current and preceding 13 periods
-    Metrics metrics = 20;
+    repeated MonthlyRAGMetric metrics = 20;
     // The Assets Under Management Definition
-    message AssetsUnderManagement {
-        // The effective date
+    message NetAssetValueSnapshot {
+        // The date for which the nav snapshot is provided
         google.type.Date effective_date = 1;
+        // The common identifier of the subject.
+        // In most instances the subject (i.e the entity being measured by the snapshot) should be the umbrella for which the report is provided.
+        // Metrics related to specific sub-funds, however, can be reported alongside the aggregated values
+        // so long as the this is consistently applied
+        string subject_id = 2;
+        // The human readable name of the subject of the snapshot
+        string subject_name = 3;
+        // The 3-letter currency code (defined in ISO 4217) of the base currency
+        string base_currency = 11;
         // The assets under management as of the effective date in the base currency of the fund
-        google.type.Money aum_base_currency = 2;
+        double aum_base_currency = 12;
+        // The 3-letter currency code (defined in ISO 4217) of the reporting currency
+        string reporting_currency = 13;
         // The assets under management as of the effective date in the reporting currency
-        google.type.Money aum_reporting_currency = 3;
-        // The change in AUM from the previous month in assets under management as of the effective date in the base currency of the fund
-        google.type.Money monthly_change_aum_base_currency = 4;
-        // The change in AUM from the previous month in assets under management as of the effective date in the reporting currency
-        google.type.Money monthly_change_aum_reporting_currency = 5;
-        // The change in AUM from the previous quarter in assets under management as of the effective date in the base currency of the fund
-        google.type.Money quarterly_change_aum_base_currency = 6;
-        // The change in AUM from the previous quarter in assets under management as of the effective date in the reporting currency
-        google.type.Money quarterly_change_aum_reporting_currency = 7;
+        double aum_reporting_currency = 14;
     }
-    // Time series of historic month-end AUM data
-    // Convention is to provide 13 months of history
-    repeated AssetsUnderManagement assets_under_management_monthly = 51;
+    // Time series of historic net asset value data
+    repeated NetAssetValueSnapshot net_asset_values = 51;
     // Definition of a NAV calculation error
     message NAVCalculationErrorInformation {
         // The date of the error
@@ -195,14 +251,16 @@ message RT000FTL8 {
         FinancialInstrumentIdentifier financial_identifier = 1;
         // Identifier of the affected instrument
         string instrument = 2;
-        // The staled date (i.e. the last priced date)
-        google.type.Money price_latest = 3;
+        // The pricing currency (3-letter currency code (defined in ISO 4217))
+        string pricing_currency = 3;
+        // The staled price (i.e. the last price)
+        double price_latest = 4;
         // The date the security was last priced
-        google.type.Date price_latest_date = 4;
+        google.type.Date price_latest_date = 5;
         // Magnitude of the error in decimal (position / nav -1)
-        double materiality = 5;
+        double materiality = 6;
         // Additional comments
-        string comments = 6;
+        string comments = 7;
     }
     // Stale prices as of the end of the reporting month
     repeated StaleSecurity stale_securities = 54;
@@ -337,9 +395,9 @@ message RT000FTL8 {
         // The type of fee
         string fee_type = 6;
         // The invoiced amount
-        google.type.Money invoiced_amount = 7;
+        double invoiced_amount = 7;
         // The invoiced amount specific to the fund in question
-        google.type.Money fund_specific_amount = 8;
+        double fund_specific_amount = 8;
     }
     // Recent invoices paid. Convention is to provide 6 months of history.
     repeated Invoice recent_invoices = 58;
@@ -348,13 +406,13 @@ message RT000FTL8 {
         // The effective date on which swing pricing was applied
         google.type.Date effective_date = 1;
         // The threshold that was used to evaluate whether swing pricing should be applied
-        google.type.Money swing_threshold = 2;
+        double swing_threshold = 2;
         // The adjustment factor applied to the nav to account for the anticipated effective of subscriptions or redemptions
         double swing_factor = 3;
         // The NAV before the swing factor had been applied
-        google.type.Money nav_without_swing_factor = 4;
+        double nav_without_swing_factor = 4;
         // The NAV after the swing factor had been applied
-        google.type.Money nav_with_swing_factor = 5;
+        double nav_with_swing_factor = 5;
     }
     // The list of Swing Pricing events within the fund. Convention is to provide 12 months history. Swing pricing is a method used by collective investment schemes to adjust the net asset value (NAV) of the fund in order to protect existing shareholders from the negative impact of large purchases or redemptions by new or existing shareholders. This is done by adjusting the NAV of the fund to reflect the anticipated costs associated with buying or selling the underlying assets of the fund. The adjustment is typically made by charging or crediting a "swing factor" to the NAV of the fund, which is based on the size of the purchase or redemption relative to the fund's assets under management (AUM). The goal of swing pricing is to ensure that the costs of buying and selling assets are borne by those who cause the costs, rather than by all shareholders of the fund.
     repeated SwingPricingEvent swing_pricing_events = 59;
@@ -381,13 +439,13 @@ message RT000FTL8 {
         // The number of issued units of the share class
         double units = 5;
         // The nav per unit in the base currency at at the effective_date
-        google.type.Money nav_per_unit_base_currency = 6;
+        double nav_per_unit_base_currency = 6;
         // The current total nav of the share class in the base currency
-        google.type.Money total_nav_base_currency = 7;
+        double total_nav_base_currency = 7;
         // The nav per unit in the reporting currency at at the effective_date
-        google.type.Money nav_per_unit_reporting_currency = 8;
+        double nav_per_unit_reporting_currency = 8;
         // The current total nav of the share class in the reporting currency
-        google.type.Money total_nav_reporting_currency = 9;
+        double total_nav_reporting_currency = 9;
     }
     // The time series of share class specific nav information
     // Convention is to provide 12 months of monthly data.
