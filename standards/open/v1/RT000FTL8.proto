@@ -74,7 +74,7 @@ message RT000FTL8 {
             //  Percentage of total NAVs delivered within the agreed timescale during the reporting month,
             //  excluding non-provider caused delays.
             //  NAVS_TIMELINESS_PROVIDER should equal 1 - (NAVS_PROVIDER_DELAYED / NAVS_CALCULATED)
-            NAVS_TIMELINESS_PROVIDER = 5;
+            NAV_TIMELINESS_PROVIDER = 5;
             // Percentage of valuations produced during the reporting month where no error(s) has been identified.
             NAV_ACCURACY = 6;
             // Percentage of valuations produced during the reporting month where no error(s) has been identified.
