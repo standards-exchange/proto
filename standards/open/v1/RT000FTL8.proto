@@ -122,10 +122,12 @@ message RT000FTL8 {
         double amber_cutoff = 10;
         // The green cutoff (i.e. the value above which the metric is no longer classified as "AMBER")  if applicable
         double green_cutoff = 11;
+        // Optional. The name of the provider
+        string provider = 12;
         // Optional. The metric ID used by the provider
-        string provider_metric_id = 12;
+        string provider_metric_id = 13;
         // Optional. The KPI name used by the provider
-        string provider_metric_name = 13;
+        string provider_metric_name = 14;
         // Optional. Any comments attached to the metric
         string comments = 99;
     }
