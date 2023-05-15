@@ -5052,7 +5052,7 @@ message RT0009DB1 {
             (standards.open.v1.fdx_options).conditional = "DepositaryRelationship.ReconciliationProcessAgainstDepositaryRecordsInPlace?0:1"
         ];
         // 1.2.	If the answer to Q1. is YES, what has been the frequency of these reconciliations ?
-        YesNo reconciliation_process_against_depositary_records_in_place_frequency = 3 [
+        string reconciliation_process_against_depositary_records_in_place_frequency = 3 [
             (standards.open.v1.fdx_options).h1 = "7.	RELATIONSHIP WITH DEPOSITARY",
             (standards.open.v1.fdx_options).h2 = "7.1.1.	RECONCILIATION AND SAFEKEEPTING OF ASSETS",
             (standards.open.v1.fdx_options).h3 = "7.1.1.1.	ASSETS THAT CAN BE HELD IN CUSTODY",
