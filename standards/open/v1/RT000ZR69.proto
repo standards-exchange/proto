@@ -21,77 +21,134 @@ option go_package = "github.com/standards-exchange/protobuf-go/standards/open/v1
 message RT000ZR69 {
     // Definition of an overview message
     message Overview {
-        // The reporting year
-        int32 reporting_year = 2;
-        // The reporting month
-        google.type.Month reporting_month = 3;
-        // The date data was produced (YYYY-MM-DD)
-        string production_date = 4;
+    }
+    // Overview of the Transfer Monthly KPI & MI Report
+    Overview overview = 1;
+    // Definition of a monthly metric
+    message MonthlyRAGMetric {
+        // The year of the metric
+        int32 year = 1;
+        // The month of the metric
+        google.type.Month month = 2;
+        // The date metric was produced (YYYY-MM-DD)
+        string production_date = 3;
         // The legal identifier of the umbrella
         // Should conform to: https://openfunds.org/OFST005010 (Umbrella)
         // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
-        string umbrella_fund = 5;
-        // Name of the relevant sub-fund
+        string umbrella_fund = 4;
+        // Names of the relevant sub-fund (if applicable)
         // Should conform to: https://openfunds.org/OFST010110 (Legal Fund Name Only)
         // Refers to the Sub-Fund in the case of an umbrella structure
         // or Fund in the case of a standalone structure
         // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
-        string fund = 6;
-        // Aggregation entity
-        // The name of the entity at which metrics should be aggregated for downstream reporting purposes
-        string aggregation_entity = 8;
+        string fund = 5;
+        // The common identifier of the subject.
+        // In most instances the subject (i.e the entity being measured by the metric) should be the umbrella for which the report is provided.
+        // Metrics related to specific sub-funds, however, can be reported alongside the aggregated values
+        // so long as the this is consistently applied
+        string subject_id = 6;
+        // The human readable name of the subject of the metric
+        string subject_name = 7;
+        // Enumeration of metricIDs
+        enum MetricID {
+            // The enumeration of the metrics measured
+            METRIC_ID_UNSPECIFIED = 0;
+            // Total number of transactions settled during the month (core + corporate action + other)
+            TRANSACTIONS_PROCESSED = 1;
+            // The number of financial transactions processed (e.g. subscriptions, redemptions, switches in/out, dividend- and trailer fees reinvestments)
+            CORE_TRANSACTIONS_PROCESSED = 2;
+            // The number of corporate action transactions processed (e.g. cash dividends)
+            CORPORATE_ACTION_FINANCIAL_TRANSACTIONS_PROCESSED = 3;
+            // Other transactions (e.g stock transfers)
+            OTHER_TRANSACTIONS_PROCESSED = 4;
+            // The aggregate STP rate across all transactions
+            AGGREGATE_TRANSACTIONS_STP_RATE = 5;
+            // The number of STP transactions processed (transactions that came across via an automated method versus manual
+            // for example fax/post..etc)
+            CORE_TRANSACTIONS_STP_RATE = 6;
+            // The STP transaction rate (stp_transactions_processed / transactions_processed)
+            CORPORATE_ACTION_TRANSACTIONS_STP_RATE = 7;
+            // The total value of net in/outflows in the currency units of the metric subject
+            NET_FLOWS = 8;
+            // Number of transactions processed correctly as a percentage of total number of TA transactions settled during the reporting month.
+            TRANSACTION_PROCESSING_ACCURACY = 9;
+            // The total number of transactional errors
+            TRANSACTIONAL_ERRORS = 10;
+            // The total number of operational errors
+            OPERATIONAL_ERRORS = 11;
+            // Value of errors in USD
+            VALUE_OF_ERRORS_USD = 12;
+            // Value of errors in EUR
+            VALUE_OF_ERRORS_EUR = 13;
+            // The number of complaints in the reporting period
+            NUMBER_OF_COMPLAINTS = 14;
+            // The number of complaints upheld
+            NUMBER_OF_UPHELD_COMPLAINTS = 15;
+            // The number of accounts in good order at the end of the reporting period
+            ACCOUNTS_IN_GOOD_ORDER = 16;
+            // The number of accounts not in good order at the end of the reporting period
+            ACCOUNTS_NOT_IN_GOOD_ORDER = 17;
+            // The number of estimate reports provided in the reporting period
+            ESTIMATE_REPORTS = 18;
+            // The percentage of estimate reports delivered without error
+            ESTIMATE_REPORTS_ACCURACY = 19;
+            // The percentage of estimate reports within the agreed timeframe
+            ESTIMATE_REPORTS_TIMELINESS = 20;
+            // The number of confirmed reports provided in the reporting period
+            CONFIRMED_REPORTS = 21;
+            // The percentage of confirmed reports delivered without error
+            CONFIRMED_REPORTS_ACCURACY = 22;
+            // The percentage of confirmed reports within the agreed timeframe
+            CONFIRMED_REPORTS_TIMELINESS = 23;
+            // The average amount of time (seconds) taken to respond to an email query
+            AVERAGE_EMAIL_QUERY_TIME = 24;
+            // The average amount of time (seconds) taken to respond to an phone query
+            AVERAGE_PHONE_QUERY_TIME = 25;
+            // The rate at which email response timeliness met agreed service level thresholds
+            EMAIL_QUERY_TIMELINESS_RATE = 26;
+            // The rate at which email response timeliness met agreed service level thresholds
+            PHONE_QUERY_TIMELINESS_RATE = 27;
+            // Number of system issues that occurred during the month.
+            SYSTEM_ISSUES = 28;
+            // The self-assessment rating of the provider (typically on a scale of 1 - below expectations to 5 - well
+            // above expectations)
+            PROVIDER_SELF_ASSESSMENT = 29;
+            // The service assessment rating of the customer (typically on a scale of 1 - below expectations to 5 - well
+            // above expectations)
+            CUSTOMER_SERVICE_ASSESSMENT = 30;
+        }
+        // The identifier of what the metric measures
+        MetricID metric_id = 8;
+        // The type of the metric
+        enum MetricType {
+            METRIC_TYPE_UNSPECIFIED = 0;
+            COUNT = 1;
+            PERCENTAGE = 2;
+            MONEY = 3;
+        }
+        // Enumeration for how to interpret the metric value
+        MetricType metric_type = 9;
+        // If the metric type is "MONEY" then a 3-letter currency code defined in ISO 4217 must be provided.
+        string currency_code = 10;
+        // The value of the metric
+        double metric = 11;
+        // The "RED/AMBER/GREEN" designation if applicable
+        RedAmberGreen rag = 12;
+        // The amber cutoff (i.e. the value above which the metric is no longer classified as "RED") if applicable
+        double amber_cutoff = 13;
+        // The green cutoff (i.e. the value above which the metric is no longer classified as "AMBER")  if applicable
+        double green_cutoff = 14;
+        // Optional. The name of the provider
+        string provider = 15;
+        // Optional. The metric ID used by the provider
+        string provider_metric_id = 16;
+        // Optional. The KPI name used by the provider
+        string provider_metric_name = 17;
+        // Optional. Any comments attached to the metric
+        string comments = 99;
     }
-    // Overview of the Transfer Monthly KPI & MI Report
-    Overview overview = 1;
-    // Definition of metrics
-    message Metrics {
-        // Total number of transactions settled during the month, excluding cash dividends
-        // i.e. subscriptions, redemptions, switches in/out, dividend and trailer fee reinvestments.
-        repeated MonthlyRAGMetric transactions_processed = 1;
-        // The number of STP transactions processed (transactions that came across via an automated method versus manual
-        // for example fax/post..etc)
-        repeated MonthlyRAGMetric stp_transactions_processed = 2;
-        // The STP transaction rate (stp_transactions_processed / transactions_processed)
-        repeated MonthlyRAGMetric stp_transaction_rate = 3;
-        //  Number of TA transactions processed correctly as a percentage of total number of TA transactions settled during the reporting month.
-        repeated MonthlyRAGMetric transaction_process_accuracy = 4;
-        //  Number of TA transactional errors identified during the reporting month.
-        repeated MonthlyRAGMetric number_of_ta_transactional_errors_identified = 5;
-        //  Number of TA operational errors identified during the reporting month.
-        repeated MonthlyRAGMetric number_of_ta_operational_errors_identified = 6;
-        // Value in the fund reporting currency of errors identified during the reporting month
-        repeated MonthlyRAGMetric value_of_identified_errors = 7;
-        // The number of complaints in the last month
-        repeated MonthlyRAGMetric complaints_in_last_month = 8;
-        // The number of upheld complaints in the last month
-        repeated MonthlyRAGMetric complaints_upheld_in_last_month = 9;
-        // The number of complaints not upheld in the last month
-        repeated MonthlyRAGMetric complaints_not_upheld_in_last_month = 10;
-        //  Number of accounts which had "In Good Order" AML/KYC status at month end.
-        repeated MonthlyRAGMetric accounts_in_good_order = 11;
-        //  Number of accounts which had "Not In Good Order" AML/KYC status at month end.
-        repeated MonthlyRAGMetric accounts_not_in_good_order = 12;
-        //  Number of same-day estimate reports sent
-        repeated MonthlyRAGMetric estimate_reports = 13;
-        //  Percentage of same-day estimate reports delayed by >15min
-        repeated MonthlyRAGMetric estimate_reports_delayed = 14;
-        //  Percentage of same-day estimate reports with an error
-        repeated MonthlyRAGMetric estimate_reports_error = 15;
-        //  Number of next-day confirmed reports sent
-        repeated MonthlyRAGMetric confirmed_reports = 16;
-        //  Percentage of next-day confirmed reports delayed by >15min
-        repeated MonthlyRAGMetric confirmed_reports_delayed = 17;
-        //  Percentage of next-day confirmed reports with an error
-        repeated MonthlyRAGMetric confirmed_reports_error = 18;
-        // The average amount of time (seconds) taken to respond to an email query
-        repeated MonthlyRAGMetric average_email_query_time = 19;
-        // The average amount of time (seconds) taken to respond to an phone query
-        repeated MonthlyRAGMetric average_phone_query_time = 20;
-        //  Number of system issues that occurred during the month.
-        repeated MonthlyRAGMetric system_issues = 21;
-    }
-    // The transfer agency metrics (KPIs) over the reporting period
-    Metrics metrics = 20;
+    // KPIs & other key quantitative metrics for the current and preceding 13 periods
+    repeated MonthlyRAGMetric metrics = 20;
     // Transfer agency breaches in the last thirteen months
     repeated TransferAgencyBreach transfer_agency_breaches = 51;
     // Recent late trade events. Convention is to report last twelve months.
