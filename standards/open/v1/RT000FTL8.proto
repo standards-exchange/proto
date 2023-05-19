@@ -102,18 +102,20 @@ message RT000FTL8 {
             NAV_ERRORS_NON_MATERIAL_NON_PROVIDER = 11;
             // The count of Stale Securities as of the end of the period
             STALE_SECURITIES = 12;
-            //  Number of cash reconciliations reported between 31 to 60 days
+            // Number of cash reconciliations reported between 31 to 60 days
             CASH_RECONCILIATIONS_31_TO_60_DAYS = 13;
-            //  Number of cash reconciliations reported greater than or equal to 61 days
+            // Number of cash reconciliations reported greater than or equal to 61 days
             CASH_RECONCILIATIONS_GREATER_THAN_60_DAYS = 14;
-            //  Number of stock reconciliations reported between 31 to 60 days
+            // Number of stock reconciliations reported between 31 to 60 days
             STOCK_RECONCILIATIONS_31_TO_60_DAYS = 15;
-            //  Number of stock reconciliations reported greater than or equal to 61 days
+            // Number of stock reconciliations reported greater than or equal to 61 days
             STOCK_RECONCILIATIONS_GREATER_THAN_60_DAYS = 16;
-            //  The count of system issues that occurred during the period
+            // The count of system issues that occurred during the period
             COUNT_SYSTEM_ISSUES = 17;
-            //  The number of late financial reports
+            // The number of late financial reports
             NUMBER_LATE_FINANCIAL_REPORTS = 18;
+            // The net asset value at the end of the period
+            NET_ASSET_VALUE = 19;
         }
         // The identifier of what the metric measures
         MetricID metric_id = 8;
