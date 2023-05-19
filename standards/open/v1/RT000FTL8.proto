@@ -18,32 +18,32 @@ option go_package = "github.com/standards-exchange/protobuf-go/standards/open/v1
 
 // Fund Accounting Monthly KPI & MI Report for governance oversight and reporting for UCITS funds
 message RT000FTL8 {
-    // Definition of an overview message
-    message Overview {
-        // The reporting year
-        int32 reporting_year = 101;
-        // The reporting month
-        google.type.Month reporting_month = 102;
-        // The date data was produced (YYYY-MM-DD)
-        string production_date = 3;
-        // The date of the latest nav valuation (YYYY-MM-DD)
-        string latest_nav_valuation_date = 4;
-        // The legal identifier of the umbrella
-        // Should conform to: https://openfunds.org/OFST005010 (Umbrella)
-        // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
-        string umbrella_fund = 5;
-        // Names of the relevant sub-funds
-        // Should conform to: https://openfunds.org/OFST010110 (Legal Fund Name Only)
-        // Refers to the Sub-Fund in the case of an umbrella structure
-        // or Fund in the case of a standalone structure
-        // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
-        repeated string funds = 6;
-        // Aggregation entity
-        // The name of the entity at which metrics should be aggregated for downstream reporting purposes
-        string aggregation_entity = 7;
-    }
-    // Overview of the Fund Accounting Monthly KPI & MI Report
-    Overview overview = 2;
+//    // Definition of an overview message
+//    message Overview {
+//        // The reporting year
+//        int32 reporting_year = 101;
+//        // The reporting month
+//        google.type.Month reporting_month = 102;
+//        // The date data was produced (YYYY-MM-DD)
+//        string production_date = 3;
+//        // The date of the latest nav valuation (YYYY-MM-DD)
+//        string latest_nav_valuation_date = 4;
+//        // The legal identifier of the umbrella
+//        // Should conform to: https://openfunds.org/OFST005010 (Umbrella)
+//        // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
+//        string umbrella_fund = 5;
+//        // Names of the relevant sub-funds
+//        // Should conform to: https://openfunds.org/OFST010110 (Legal Fund Name Only)
+//        // Refers to the Sub-Fund in the case of an umbrella structure
+//        // or Fund in the case of a standalone structure
+//        // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
+//        repeated string funds = 6;
+//        // Aggregation entity
+//        // The name of the entity at which metrics should be aggregated for downstream reporting purposes
+//        string aggregation_entity = 7;
+//    }
+//    // Overview of the Fund Accounting Monthly KPI & MI Report
+//    Overview overview = 2;
     // Definition of a monthly metric
     message MonthlyRAGMetric {
         // The year of the metric
@@ -112,6 +112,8 @@ message RT000FTL8 {
             STOCK_RECONCILIATIONS_GREATER_THAN_60_DAYS = 16;
             //  The count of system issues that occurred during the period
             COUNT_SYSTEM_ISSUES = 17;
+            //  The number of late financial reports
+            NUMBER_LATE_FINANCIAL_REPORTS = 18;
         }
         // The identifier of what the metric measures
         MetricID metric_id = 8;
@@ -143,7 +145,7 @@ message RT000FTL8 {
         // Optional. Any comments attached to the metric
         string comments = 99;
     }
-    // KPIs & other key quantitative metrics for the current and preceding 13 periods
+    // KPIs & other key quantitative metrics
     repeated MonthlyRAGMetric metrics = 20;
     // The Assets Under Management Definition
     message NetAssetValueSnapshot {
@@ -237,7 +239,7 @@ message RT000FTL8 {
     // Definition of a stale security
     message StaleSecurity {
         // The date of the stale security report
-        google.type.Date report_date = 1;
+        google.type.Date reporting_date = 1;
         // The internal identifier of the umbrella
         string umbrella_fund_identifier = 2;
         // The name of the umbrella
@@ -309,8 +311,10 @@ message RT000FTL8 {
         }
         // The asset class of the security
         AssetClass asset_class = 7;
+        // The date the stale price was raised
+        google.type.Date raised_date = 21;
         // The date the security was last priced
-        google.type.Date price_latest_date = 8;
+        google.type.Date price_latest_date = 22;
         // The number of days staled
         int32 days_staled = 9;
         // The pricing currency (3-letter currency code (defined in ISO 4217))
