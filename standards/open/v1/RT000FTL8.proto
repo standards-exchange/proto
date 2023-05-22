@@ -49,7 +49,7 @@ message RT000FTL8 {
         // The year of the metric
         int32 year = 1;
         // The month of the metric
-        google.type.Month month = 2;
+        int32 month = 2;
         // The date metric was produced (YYYY-MM-DD)
         string production_date = 3;
         // The legal identifier of the umbrella
@@ -100,8 +100,9 @@ message RT000FTL8 {
             NAV_ERRORS_NON_MATERIAL_PROVIDER = 10;
             // The count of material nav errors where the delegate was not responsible
             NAV_ERRORS_NON_MATERIAL_NON_PROVIDER = 11;
-            // The count of Stale Securities as of the end of the period
+            // The number of securities for which there has not been a price movement for an agreed number of consecutive business days.
             STALE_SECURITIES = 12;
+            // Total number of
             // Number of cash reconciliations reported between 31 to 60 days
             CASH_RECONCILIATIONS_31_TO_60_DAYS = 13;
             // Number of cash reconciliations reported greater than or equal to 61 days
@@ -114,8 +115,24 @@ message RT000FTL8 {
             COUNT_SYSTEM_ISSUES = 17;
             // The number of late financial reports
             NUMBER_LATE_FINANCIAL_REPORTS = 18;
-            // The net asset value at the end of the period
-            NET_ASSET_VALUE = 19;
+            // The net asset value at the end of the period in reporting currency
+            NET_ASSET_VALUE_REPORTING_CURRENCY = 19;
+            // The net asset value at the end of the period in subject currency
+            NET_ASSET_VALUE_SUBJECT_CURRENCY = 20;
+            // A security is considered difficult to price when (a) the security is fair-valued, (b) there is a single broker price, (d) stale or unchanged price, (d) it is suspended or delisted, (e) distressed fixed income, (f) defaulted fixed income as of the reporting date
+            DIFFICULT_TO_PRICE_SECURITIES = 21;
+            // Number of securities where trading has been stopped as of the reporting date
+            SUSPENDED_OR_DELISTED_SECURITIES = 22;
+            // Number of fixed income securities where the company or government entity is experiencing financial or operational distress, but has not defaulted as of the reporting date
+            DISTRESSED_FIXED_INCOME_SECURITIES = 23;
+            // Number of fixed income securities where the company or government entity has defaulted as of the reporting date
+            DEFAULTED_FIXED_INCOME_SECURITIES = 24;
+            // The number of securities held across portfolios
+            SECURITIES_HELD = 25;
+            // The annualized TER for the reporting period
+            ANNUALIZED_TER = 26;
+            // The annualized TER, year-to-date, as of the end of the reporting period
+            ANNUALIZED_YTD_TER = 27;
         }
         // The identifier of what the metric measures
         MetricID metric_id = 8;
