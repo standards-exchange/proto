@@ -8,7 +8,6 @@ import "google/api/resource.proto";
 import "google/protobuf/empty.proto";
 import "google/protobuf/field_mask.proto";
 import "google/protobuf/timestamp.proto";
-import "google/type/date.proto";
 import "google/type/month.proto";
 import "standards/open/v1/metric.proto";
 import "standards/open/v1/rag.proto";
@@ -169,7 +168,12 @@ message RT000FTL8 {
     // The Assets Under Management Definition
     message NetAssetValueSnapshot {
         // The date for which the nav snapshot is provided
-        google.type.Date effective_date = 1;
+        // The field represents a date in ISO 8601 format "YYYY-MM-DD".
+        // "YYYY" represents a four-digit year, "MM" a two-digit month (01 through 12),
+        // and "DD" a two-digit day (01 through 31).
+        // For example, "2023-05-24" is a valid value.
+        // All values should strictly adhere to this pattern.
+        string effective_date = 1;
         // The common identifier of the subject.
         // In most instances the subject (i.e the entity being measured by the snapshot) should be the umbrella for which the report is provided.
         // Metrics related to specific sub-funds, however, can be reported alongside the aggregated values
@@ -191,11 +195,26 @@ message RT000FTL8 {
     // Definition of a NAV calculation error
     message NAVCalculationErrorInformation {
         // The date of the error
-        google.type.Date effective_date = 1;
+        // The field represents a date in ISO 8601 format "YYYY-MM-DD".
+        // "YYYY" represents a four-digit year, "MM" a two-digit month (01 through 12),
+        // and "DD" a two-digit day (01 through 31).
+        // For example, "2023-05-24" is a valid value.
+        // All values should strictly adhere to this pattern.
+        string effective_date = 1;
         // The date the error was identified
-        google.type.Date identification_date = 2;
+        // The field represents a date in ISO 8601 format "YYYY-MM-DD".
+        // "YYYY" represents a four-digit year, "MM" a two-digit month (01 through 12),
+        // and "DD" a two-digit day (01 through 31).
+        // For example, "2023-05-24" is a valid value.
+        // All values should strictly adhere to this pattern.
+        string identification_date = 2;
         // The date the error was resolved
-        google.type.Date resolution_date = 3;
+        // The field represents a date in ISO 8601 format "YYYY-MM-DD".
+        // "YYYY" represents a four-digit year, "MM" a two-digit month (01 through 12),
+        // and "DD" a two-digit day (01 through 31).
+        // For example, "2023-05-24" is a valid value.
+        // All values should strictly adhere to this pattern.
+        string resolution_date = 3;
         // Magnitude of the error in decimal (IncorrectNav / CorrectNav -1)
         double magnitude = 4;
         // Cause of the error
@@ -210,11 +229,26 @@ message RT000FTL8 {
     // Definition of a pricing error occurred in the pricing of a share class
     message SecurityPricingError {
         // The date of the error
-        google.type.Date effective_date = 1;
+        // The field represents a date in ISO 8601 format "YYYY-MM-DD".
+        // "YYYY" represents a four-digit year, "MM" a two-digit month (01 through 12),
+        // and "DD" a two-digit day (01 through 31).
+        // For example, "2023-05-24" is a valid value.
+        // All values should strictly adhere to this pattern.
+        string effective_date = 1;
         // The date the error was identified
-        google.type.Date identification_date = 2;
+        // The field represents a date in ISO 8601 format "YYYY-MM-DD".
+        // "YYYY" represents a four-digit year, "MM" a two-digit month (01 through 12),
+        // and "DD" a two-digit day (01 through 31).
+        // For example, "2023-05-24" is a valid value.
+        // All values should strictly adhere to this pattern.
+        string identification_date = 2;
         // The date the error was resolved
-        google.type.Date resolution_date = 3;
+        // The field represents a date in ISO 8601 format "YYYY-MM-DD".
+        // "YYYY" represents a four-digit year, "MM" a two-digit month (01 through 12),
+        // and "DD" a two-digit day (01 through 31).
+        // For example, "2023-05-24" is a valid value.
+        // All values should strictly adhere to this pattern.
+        string resolution_date = 3;
         // Enumerations of financial identifiers
         enum FinancialInstrumentIdentifier {
             // Source not specified by the user.
@@ -258,7 +292,12 @@ message RT000FTL8 {
     // Definition of a stale security
     message StaleSecurity {
         // The date of the stale security report
-        google.type.Date reporting_date = 1;
+        // The field represents a date in ISO 8601 format "YYYY-MM-DD".
+        // "YYYY" represents a four-digit year, "MM" a two-digit month (01 through 12),
+        // and "DD" a two-digit day (01 through 31).
+        // For example, "2023-05-24" is a valid value.
+        // All values should strictly adhere to this pattern.
+        string reporting_date = 1;
         // The internal identifier of the umbrella
         string umbrella_fund_identifier = 2;
         // The name of the umbrella
@@ -363,9 +402,19 @@ message RT000FTL8 {
         // The asset class of the security
         AssetClass asset_class = 7;
         // The date the stale price was raised
-        google.type.Date raised_date = 21;
+        // The field represents a date in ISO 8601 format "YYYY-MM-DD".
+        // "YYYY" represents a four-digit year, "MM" a two-digit month (01 through 12),
+        // and "DD" a two-digit day (01 through 31).
+        // For example, "2023-05-24" is a valid value.
+        // All values should strictly adhere to this pattern.
+        string raised_date = 21;
         // The date the security was last priced
-        google.type.Date price_latest_date = 22;
+        // The field represents a date in ISO 8601 format "YYYY-MM-DD".
+        // "YYYY" represents a four-digit year, "MM" a two-digit month (01 through 12),
+        // and "DD" a two-digit day (01 through 31).
+        // For example, "2023-05-24" is a valid value.
+        // All values should strictly adhere to this pattern.
+        string price_latest_date = 22;
         // The number of days staled
         int32 days_staled = 9;
         // The pricing currency (3-letter currency code (defined in ISO 4217))
@@ -398,11 +447,26 @@ message RT000FTL8 {
     // Definition of a break that occurred in agreement on the non-cash holdings of a sub-fund
     message StockBreak {
         // The date of the stale security report
-        google.type.Date report_date = 1;
+        // The field represents a date in ISO 8601 format "YYYY-MM-DD".
+        // "YYYY" represents a four-digit year, "MM" a two-digit month (01 through 12),
+        // and "DD" a two-digit day (01 through 31).
+        // For example, "2023-05-24" is a valid value.
+        // All values should strictly adhere to this pattern.
+        string report_date = 1;
         // The date the stock break was identified
-        google.type.Date identification_date = 2;
+        // The field represents a date in ISO 8601 format "YYYY-MM-DD".
+        // "YYYY" represents a four-digit year, "MM" a two-digit month (01 through 12),
+        // and "DD" a two-digit day (01 through 31).
+        // For example, "2023-05-24" is a valid value.
+        // All values should strictly adhere to this pattern.
+        string identification_date = 2;
         // The date the stock break was resolved
-        google.type.Date resolution_date = 3;
+        // The field represents a date in ISO 8601 format "YYYY-MM-DD".
+        // "YYYY" represents a four-digit year, "MM" a two-digit month (01 through 12),
+        // and "DD" a two-digit day (01 through 31).
+        // For example, "2023-05-24" is a valid value.
+        // All values should strictly adhere to this pattern.
+        string resolution_date = 3;
         // The internal identifier of the umbrella
         string umbrella_fund_identifier = 4;
         // The name of the umbrella
@@ -475,7 +539,12 @@ message RT000FTL8 {
         // The asset class of the security
         AssetClass asset_class = 9;
         // The date of the stock break
-        google.type.Date effective_date = 10;
+        // The field represents a date in ISO 8601 format "YYYY-MM-DD".
+        // "YYYY" represents a four-digit year, "MM" a two-digit month (01 through 12),
+        // and "DD" a two-digit day (01 through 31).
+        // For example, "2023-05-24" is a valid value.
+        // All values should strictly adhere to this pattern.
+        string effective_date = 10;
         // Magnitude of the error in decimal (position / nav -1)
         double materiality = 11;
         // Cause of the break
@@ -490,11 +559,26 @@ message RT000FTL8 {
     // Definition of break that has occurred in agreement on the cash holdings of a sub-fund
     message CashBreak {
         // The date of the stock break
-        google.type.Date effective_date = 1;
+        // The field represents a date in ISO 8601 format "YYYY-MM-DD".
+        // "YYYY" represents a four-digit year, "MM" a two-digit month (01 through 12),
+        // and "DD" a two-digit day (01 through 31).
+        // For example, "2023-05-24" is a valid value.
+        // All values should strictly adhere to this pattern.
+        string effective_date = 1;
         // The date the stock break was identified
-        google.type.Date identification_date = 2;
+        // The field represents a date in ISO 8601 format "YYYY-MM-DD".
+        // "YYYY" represents a four-digit year, "MM" a two-digit month (01 through 12),
+        // and "DD" a two-digit day (01 through 31).
+        // For example, "2023-05-24" is a valid value.
+        // All values should strictly adhere to this pattern.
+        string identification_date = 2;
         // The date the stock break was resolved
-        google.type.Date resolution_date = 3;
+        // The field represents a date in ISO 8601 format "YYYY-MM-DD".
+        // "YYYY" represents a four-digit year, "MM" a two-digit month (01 through 12),
+        // and "DD" a two-digit day (01 through 31).
+        // For example, "2023-05-24" is a valid value.
+        // All values should strictly adhere to this pattern.
+        string resolution_date = 3;
         // Magnitude of the error in decimal (position / nav -1)
         double materiality = 4;
         // Cause of the break
@@ -509,7 +593,12 @@ message RT000FTL8 {
     // Definition of a Total Expense Ratio
     message TotalExpenseRatio {
         // The date of the TER (should be the last day of the relevant month)
-        google.type.Date effective_date = 1;
+        // The field represents a date in ISO 8601 format "YYYY-MM-DD".
+        // "YYYY" represents a four-digit year, "MM" a two-digit month (01 through 12),
+        // and "DD" a two-digit day (01 through 31).
+        // For example, "2023-05-24" is a valid value.
+        // All values should strictly adhere to this pattern.
+        string effective_date = 1;
         // The global identifier of the share class
         string share_class_id = 3;
         // Enumerations of financial identifiers
@@ -558,11 +647,26 @@ message RT000FTL8 {
     // Definition of an invoice
     message Invoice {
         // The invoice date
-        google.type.Date invoice_date = 1;
+        // The field represents a date in ISO 8601 format "YYYY-MM-DD".
+        // "YYYY" represents a four-digit year, "MM" a two-digit month (01 through 12),
+        // and "DD" a two-digit day (01 through 31).
+        // For example, "2023-05-24" is a valid value.
+        // All values should strictly adhere to this pattern.
+        string invoice_date = 1;
         // The date of authorisation
-        google.type.Date authorisation_date = 2;
+        // The field represents a date in ISO 8601 format "YYYY-MM-DD".
+        // "YYYY" represents a four-digit year, "MM" a two-digit month (01 through 12),
+        // and "DD" a two-digit day (01 through 31).
+        // For example, "2023-05-24" is a valid value.
+        // All values should strictly adhere to this pattern.
+        string authorisation_date = 2;
         // The date of payment
-        google.type.Date payment_date = 3;
+        // The field represents a date in ISO 8601 format "YYYY-MM-DD".
+        // "YYYY" represents a four-digit year, "MM" a two-digit month (01 through 12),
+        // and "DD" a two-digit day (01 through 31).
+        // For example, "2023-05-24" is a valid value.
+        // All values should strictly adhere to this pattern.
+        string payment_date = 3;
         // The invoice number or identifier
         string invoice_identifier = 4;
         // The Recipient of the invoice
@@ -579,7 +683,12 @@ message RT000FTL8 {
     // Definition of a Swing Pricing Events.
     message SwingPricingEvent {
         // The effective date on which swing pricing was applied
-        google.type.Date effective_date = 1;
+        // The field represents a date in ISO 8601 format "YYYY-MM-DD".
+        // "YYYY" represents a four-digit year, "MM" a two-digit month (01 through 12),
+        // and "DD" a two-digit day (01 through 31).
+        // For example, "2023-05-24" is a valid value.
+        // All values should strictly adhere to this pattern.
+        string effective_date = 1;
         // The threshold that was used to evaluate whether swing pricing should be applied
         double swing_threshold = 2;
         // The adjustment factor applied to the nav to account for the anticipated effective of subscriptions or redemptions
@@ -594,7 +703,12 @@ message RT000FTL8 {
     // Definition of NAV information shared per share class at a point in time.
     message PerShareClassNAV {
         // The effective date
-        google.type.Date effective_date = 1;
+        // The field represents a date in ISO 8601 format "YYYY-MM-DD".
+        // "YYYY" represents a four-digit year, "MM" a two-digit month (01 through 12),
+        // and "DD" a two-digit day (01 through 31).
+        // For example, "2023-05-24" is a valid value.
+        // All values should strictly adhere to this pattern.
+        string effective_date = 1;
         // Enumerations of financial identifiers
         enum FinancialInstrumentIdentifier {
             // Source not specified by the user.
