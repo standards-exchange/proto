@@ -265,13 +265,13 @@ message RT000FTL8 {
         // Should conform to: https://openfunds.org/OFST005010 (Umbrella)
         // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
         string umbrella_fund = 3;
-        // The identifier used to ID the sub-fun applicable)
+        // The identifier of the fund (typically the sub-fund fund or standalone fund) that holds the security
         // Should conform to: https://openfunds.org/OFST010110 (Legal Fund Name Only)
         // Refers to the Sub-Fund in the case of an umbrella structure
         // or Fund in the case of a standalone structure
         // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
         string fund_identifier = 4;
-        // Names of the relevant sub-fund (if applicable)
+        // The name of the fund (typically the sub-fund fund or standalone fund) that holds the security
         // Should conform to: https://openfunds.org/OFST010110 (Legal Fund Name Only)
         // Refers to the Sub-Fund in the case of an umbrella structure
         // or Fund in the case of a standalone structure
@@ -301,8 +301,40 @@ message RT000FTL8 {
         string lei = 60;
         // The identifier used by the producer internally
         string producer_identifier = 61;
-        // If 'producer_identifier', describe the identifier provided
-        string producer_identifier_description = 62;
+        // The primary identifier relied on to identify the stale security
+        // The producer should populate this field with the highest utility security identifier available
+        // Tier 1: FIGI or PermID
+        // Tier 2: BBG Ticker, RIC
+        // Tier 3: WKN, ISIN, CUSIP, SEDOL
+        // Tier 4: LEI
+        string primary_identifier = 71;
+        // Enumerations of financial identifiers
+        enum FinancialInstrumentIdentifier {
+            // Source not specified by the user.
+            IDENTIFIER_UNSPECIFIED = 0;
+            // ISO 6166 code of ISIN when available
+            ISIN = 1;
+            // CUSIP (The Committee on Uniform Securities Identification Procedures number assigned by the CUSIP Service Bureau for U.S. and Canadian companies)
+            CUSIP = 2;
+            // SEDOL (Stock Exchange Daily Official List for the London Stock Exchange)
+            SEDOL = 3;
+            // WKN (Wertpapier Kenn-Nummer, the alphanumeric German identification number)
+            WKN = 4;
+            // Bloomberg Ticker (Bloomberg letters code that identify a company's securities)
+            BBG_TICKER = 5;
+            // BBGID (The Bloomberg Global ID)
+            BBGID = 6;
+            // Reuters RIC (Reuters instrument code)
+            RIC = 7;
+            // FIGI (Financial_Instrument Global Identifier)
+            FIGI = 8;
+            // LEI 0 Legal Entity Identifier
+            LEI = 9;
+            // PermID - Refinitiv Permanent Identifiers
+            PERM_ID = 10;
+        }
+        // The type of identifier used as the primary identifier
+        FinancialInstrumentIdentifier primary_identifier_type = 72;
         // Enumeration of asset class
         enum AssetClass {
             // Asset class not specified
