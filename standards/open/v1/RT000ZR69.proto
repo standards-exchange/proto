@@ -5,11 +5,9 @@ package standards.open.v1;
 import "google/api/annotations.proto";
 import "google/api/client.proto";
 import "google/api/resource.proto";
-import "google/type/money.proto";
 import "google/protobuf/empty.proto";
 import "google/protobuf/field_mask.proto";
 import "google/protobuf/timestamp.proto";
-import "google/type/date.proto";
 import "google/type/month.proto";
 import "standards/open/v1/metric.proto";
 import "standards/open/v1/rag.proto";
@@ -19,11 +17,6 @@ option go_package = "github.com/standards-exchange/protobuf-go/standards/open/v1
 
 // Transfer Agency Monthly KPI & MI Report for governance oversight and reporting for UCITS funds
 message RT000ZR69 {
-    // Definition of an overview message
-    message Overview {
-    }
-    // Overview of the Transfer Monthly KPI & MI Report
-    Overview overview = 1;
     // Definition of a monthly metric
     message MonthlyRAGMetric {
         // The year of the metric
@@ -281,6 +274,31 @@ message RT000ZR69 {
 
     // The definition of an account resource
     message Account {
+        // The date as of which the information is being reported
+        // The field represents a date in ISO 8601 format "YYYY-MM-DD".
+        // "YYYY" represents a four-digit year, "MM" a two-digit month (01 through 12),
+        // and "DD" a two-digit day (01 through 31).
+        // For example, "2023-05-24" is a valid value.
+        // All values should strictly adhere to this pattern.
+        string reporting_date = 101;
+        // The internal identifier of the umbrella
+        string umbrella_fund_identifier = 102;
+        // The name of the umbrella
+        // Should conform to: https://openfunds.org/OFST005010 (Umbrella)
+        // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
+        string umbrella_fund = 103;
+        // The identifier of the fund (typically the sub-fund fund or standalone fund) that holds the security
+        // Should conform to: https://openfunds.org/OFST010110 (Legal Fund Name Only)
+        // Refers to the Sub-Fund in the case of an umbrella structure
+        // or Fund in the case of a standalone structure
+        // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
+        string fund_identifier = 104;
+        // The name of the fund (typically the sub-fund fund or standalone fund) that holds the security
+        // Should conform to: https://openfunds.org/OFST010110 (Legal Fund Name Only)
+        // Refers to the Sub-Fund in the case of an umbrella structure
+        // or Fund in the case of a standalone structure
+        // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
+        string fund = 105;
         // The resource name of the client
         string display_name = 1;
         // Types of account holders
@@ -341,7 +359,12 @@ message RT000ZR69 {
         // Whether there is a stop on the account for AML reasons
         bool stop_aml = 15;
         // If there is a stop, what is the stop date
-        google.type.Date stop_date = 16;
+        // The field represents a date in ISO 8601 format "YYYY-MM-DD".
+        // "YYYY" represents a four-digit year, "MM" a two-digit month (01 through 12),
+        // and "DD" a two-digit day (01 through 31).
+        // For example, "2023-05-24" is a valid value.
+        // All values should strictly adhere to this pattern.
+        string stop_date = 16;
         // The subscriptions (i.e. the share class holdings) of the client
         repeated Subscription subscriptions = 17;
         // Definition of a client subscription
@@ -383,27 +406,67 @@ message RT000ZR69 {
             // The number of unsettled units
             double unsettled_units = 5;
             // The nav of the subscription per unit
-            google.type.Money nav_per_unit = 6;
+            double nav_per_unit = 6;
             // The current total value of the subscription
-            google.type.Money total_value = 7;
+            double total_value = 7;
         }
         // The share of total shares - unsettled
         double percent_total_shares = 18;
         // The total value of the account
-        google.type.Money account_value = 19;
+        double account_value = 19;
         // The share of total aum - unsettled
         double percent_total_aum = 20;
         // The list of transactions made by the account
         repeated Transaction transactions = 21;
         // The date the account was created
-        google.type.Date account_creation_date = 22;
+        // The field represents a date in ISO 8601 format "YYYY-MM-DD".
+        // "YYYY" represents a four-digit year, "MM" a two-digit month (01 through 12),
+        // and "DD" a two-digit day (01 through 31).
+        // For example, "2023-05-24" is a valid value.
+        // All values should strictly adhere to this pattern.
+        string account_creation_date = 22;
         // The date the account was active and onboarded
-        google.type.Date account_active_date = 23;
+        // The field represents a date in ISO 8601 format "YYYY-MM-DD".
+        // "YYYY" represents a four-digit year, "MM" a two-digit month (01 through 12),
+        // and "DD" a two-digit day (01 through 31).
+        // For example, "2023-05-24" is a valid value.
+        // All values should strictly adhere to this pattern.
+        string account_active_date = 23;
         // The date of the last AML refresh
-        google.type.Date last_aml_refresh_date = 24;
+        // The field represents a date in ISO 8601 format "YYYY-MM-DD".
+        // "YYYY" represents a four-digit year, "MM" a two-digit month (01 through 12),
+        // and "DD" a two-digit day (01 through 31).
+        // For example, "2023-05-24" is a valid value.
+        // All values should strictly adhere to this pattern.
+        string last_aml_refresh_date = 24;
     }
     // Definition of a transaction
     message Transaction {
+        // The date as of which the information is being reported
+        // The field represents a date in ISO 8601 format "YYYY-MM-DD".
+        // "YYYY" represents a four-digit year, "MM" a two-digit month (01 through 12),
+        // and "DD" a two-digit day (01 through 31).
+        // For example, "2023-05-24" is a valid value.
+        // All values should strictly adhere to this pattern.
+        string reporting_date = 101;
+        // The internal identifier of the umbrella
+        string umbrella_fund_identifier = 102;
+        // The name of the umbrella
+        // Should conform to: https://openfunds.org/OFST005010 (Umbrella)
+        // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
+        string umbrella_fund = 103;
+        // The identifier of the fund (typically the sub-fund fund or standalone fund) that holds the security
+        // Should conform to: https://openfunds.org/OFST010110 (Legal Fund Name Only)
+        // Refers to the Sub-Fund in the case of an umbrella structure
+        // or Fund in the case of a standalone structure
+        // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
+        string fund_identifier = 104;
+        // The name of the fund (typically the sub-fund fund or standalone fund) that holds the security
+        // Should conform to: https://openfunds.org/OFST010110 (Legal Fund Name Only)
+        // Refers to the Sub-Fund in the case of an umbrella structure
+        // or Fund in the case of a standalone structure
+        // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
+        string fund = 105;
         // The resource name of the client
         string account_name = 1;
         // Types of account holders
@@ -454,9 +517,9 @@ message RT000ZR69 {
         // The number of settled units subscribed to or redeeemed
         double units = 7;
         // The nav of the subscription per unit at which the transaction was priced
-        google.type.Money nav_per_unit = 9;
+        double nav_per_unit = 9;
         // The current total value of the transaction
-        google.type.Money total_value = 10;
+        double total_value = 10;
         // Enumerations of transaction types
         enum TransactionType {
             // The transaction type is unspecified
@@ -473,9 +536,19 @@ message RT000ZR69 {
         // The type of transaction
         TransactionType transaction_type = 11;
         // The trade date of the transaction
-        google.type.Date trade_date = 12;
+        // The field represents a date in ISO 8601 format "YYYY-MM-DD".
+        // "YYYY" represents a four-digit year, "MM" a two-digit month (01 through 12),
+        // and "DD" a two-digit day (01 through 31).
+        // For example, "2023-05-24" is a valid value.
+        // All values should strictly adhere to this pattern.
+        string trade_date = 12;
         // The settlement date of the transaction
-        google.type.Date settlement_date = 13;
+        // The field represents a date in ISO 8601 format "YYYY-MM-DD".
+        // "YYYY" represents a four-digit year, "MM" a two-digit month (01 through 12),
+        // and "DD" a two-digit day (01 through 31).
+        // For example, "2023-05-24" is a valid value.
+        // All values should strictly adhere to this pattern.
+        string settlement_date = 13;
         // Enumerations of transaction source types
         enum SourceType {
             // Source type unspecified
@@ -500,21 +573,81 @@ message RT000ZR69 {
     }
     // Definition of a Complaint
     message Complaint {
+        // The date as of which the information is being reported
+        // The field represents a date in ISO 8601 format "YYYY-MM-DD".
+        // "YYYY" represents a four-digit year, "MM" a two-digit month (01 through 12),
+        // and "DD" a two-digit day (01 through 31).
+        // For example, "2023-05-24" is a valid value.
+        // All values should strictly adhere to this pattern.
+        string reporting_date = 101;
+        // The internal identifier of the umbrella
+        string umbrella_fund_identifier = 102;
+        // The name of the umbrella
+        // Should conform to: https://openfunds.org/OFST005010 (Umbrella)
+        // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
+        string umbrella_fund = 103;
+        // The identifier of the fund (typically the sub-fund fund or standalone fund) that holds the security
+        // Should conform to: https://openfunds.org/OFST010110 (Legal Fund Name Only)
+        // Refers to the Sub-Fund in the case of an umbrella structure
+        // or Fund in the case of a standalone structure
+        // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
+        string fund_identifier = 104;
+        // The name of the fund (typically the sub-fund fund or standalone fund) that holds the security
+        // Should conform to: https://openfunds.org/OFST010110 (Legal Fund Name Only)
+        // Refers to the Sub-Fund in the case of an umbrella structure
+        // or Fund in the case of a standalone structure
+        // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
+        string fund = 105;
         // The date of the complaint
-        google.type.Date effective_date = 1;
+        // The field represents a date in ISO 8601 format "YYYY-MM-DD".
+        // "YYYY" represents a four-digit year, "MM" a two-digit month (01 through 12),
+        // and "DD" a two-digit day (01 through 31).
+        // For example, "2023-05-24" is a valid value.
+        // All values should strictly adhere to this pattern.
+        string complaint_date = 2;
         // Description of the complaint
-        string description = 2;
+        string description = 3;
         // The account information related to the complainant (if applicable)
-        Account complainant_account = 3;
+        Account complainant_account = 4;
         // Resolution of the complaint
-        string resolution = 4;
+        string resolution = 5;
         // Whether the complaint was upheld
-        bool complaint_upheld = 5;
+        bool complaint_upheld = 6;
     }
     // Definition of a late trade events
     message LateTradeEvent {
-        // The date of the event
-        google.type.Date effective_date = 1;
+        // The date as of which the information is being reported
+        // The field represents a date in ISO 8601 format "YYYY-MM-DD".
+        // "YYYY" represents a four-digit year, "MM" a two-digit month (01 through 12),
+        // and "DD" a two-digit day (01 through 31).
+        // For example, "2023-05-24" is a valid value.
+        // All values should strictly adhere to this pattern.
+        string reporting_date = 101;
+        // The internal identifier of the umbrella
+        string umbrella_fund_identifier = 102;
+        // The name of the umbrella
+        // Should conform to: https://openfunds.org/OFST005010 (Umbrella)
+        // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
+        string umbrella_fund = 103;
+        // The identifier of the fund (typically the sub-fund fund or standalone fund) that holds the security
+        // Should conform to: https://openfunds.org/OFST010110 (Legal Fund Name Only)
+        // Refers to the Sub-Fund in the case of an umbrella structure
+        // or Fund in the case of a standalone structure
+        // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
+        string fund_identifier = 104;
+        // The name of the fund (typically the sub-fund fund or standalone fund) that holds the security
+        // Should conform to: https://openfunds.org/OFST010110 (Legal Fund Name Only)
+        // Refers to the Sub-Fund in the case of an umbrella structure
+        // or Fund in the case of a standalone structure
+        // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
+        string fund = 105;
+        // The date of the late trade
+        // The field represents a date in ISO 8601 format "YYYY-MM-DD".
+        // "YYYY" represents a four-digit year, "MM" a two-digit month (01 through 12),
+        // and "DD" a two-digit day (01 through 31).
+        // For example, "2023-05-24" is a valid value.
+        // All values should strictly adhere to this pattern.
+        string effective_date = 1;
         // Cause of the late trade
         string cause = 2;
         // Resolution of the breach and underlying source of issue
@@ -522,12 +655,52 @@ message RT000ZR69 {
     }
     // Definition of a Transfer Agency Breach or Error
     message TransferAgencyBreach {
+        // The date as of which the information is being reported
+        // The field represents a date in ISO 8601 format "YYYY-MM-DD".
+        // "YYYY" represents a four-digit year, "MM" a two-digit month (01 through 12),
+        // and "DD" a two-digit day (01 through 31).
+        // For example, "2023-05-24" is a valid value.
+        // All values should strictly adhere to this pattern.
+        string reporting_date = 101;
+        // The internal identifier of the umbrella
+        string umbrella_fund_identifier = 102;
+        // The name of the umbrella
+        // Should conform to: https://openfunds.org/OFST005010 (Umbrella)
+        // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
+        string umbrella_fund = 103;
+        // The identifier of the fund (typically the sub-fund fund or standalone fund) that holds the security
+        // Should conform to: https://openfunds.org/OFST010110 (Legal Fund Name Only)
+        // Refers to the Sub-Fund in the case of an umbrella structure
+        // or Fund in the case of a standalone structure
+        // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
+        string fund_identifier = 104;
+        // The name of the fund (typically the sub-fund fund or standalone fund) that holds the security
+        // Should conform to: https://openfunds.org/OFST010110 (Legal Fund Name Only)
+        // Refers to the Sub-Fund in the case of an umbrella structure
+        // or Fund in the case of a standalone structure
+        // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
+        string fund = 105;
         // The date of the breach
-        google.type.Date effective_date = 1;
+        // The field represents a date in ISO 8601 format "YYYY-MM-DD".
+        // "YYYY" represents a four-digit year, "MM" a two-digit month (01 through 12),
+        // and "DD" a two-digit day (01 through 31).
+        // For example, "2023-05-24" is a valid value.
+        // All values should strictly adhere to this pattern.
+        string effective_date = 1;
         // The date the breach was identified
-        google.type.Date identification_date = 2;
+        // The field represents a date in ISO 8601 format "YYYY-MM-DD".
+        // "YYYY" represents a four-digit year, "MM" a two-digit month (01 through 12),
+        // and "DD" a two-digit day (01 through 31).
+        // For example, "2023-05-24" is a valid value.
+        // All values should strictly adhere to this pattern.
+        string identification_date = 2;
         // The date the breach was resolved
-        google.type.Date resolution_date = 3;
+        // The field represents a date in ISO 8601 format "YYYY-MM-DD".
+        // "YYYY" represents a four-digit year, "MM" a two-digit month (01 through 12),
+        // and "DD" a two-digit day (01 through 31).
+        // For example, "2023-05-24" is a valid value.
+        // All values should strictly adhere to this pattern.
+        string resolution_date = 3;
         // Enumerations of the types of the breach or error.
         enum Type {
             SEVERITY_UNSPECIFIED = 0;
