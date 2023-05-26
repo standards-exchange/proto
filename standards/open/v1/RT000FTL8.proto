@@ -9,6 +9,7 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/field_mask.proto";
 import "google/protobuf/timestamp.proto";
 import "google/type/month.proto";
+import "google/type/date.proto";
 import "standards/open/v1/metric.proto";
 import "standards/open/v1/rag.proto";
 
@@ -24,7 +25,7 @@ message RT000FTL8 {
         // The month of the metric
         int32 month = 2;
         // The date metric was produced (YYYY-MM-DD)
-        string production_date = 3;
+        google.type.Date production_date = 3;
         // The legal identifier of the umbrella
         // Should conform to: https://openfunds.org/OFST005010 (Umbrella)
         // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
@@ -119,6 +120,10 @@ message RT000FTL8 {
         // Enumeration for how to interpret the metric value
         MetricType metric_type = 9;
         // If the metric type is "MONEY" then a 3-letter currency code defined in ISO 4217 must be provided.
+        // The country code is required to comply with the 3-letter ISO 3166-1 alpha-3 standard.
+        // The ISO 3166-1 alpha-3 is a set of 3-letter country codes to represent countries and dependent areas.
+        // Make sure the provided country code is in uppercase.
+        // Example: 'USA' for the United States, 'GBR' for Great Britain, 'DEU' for Germany, etc.
         string currency_code = 10;
         // The value of the metric
         double metric = 11;
@@ -155,11 +160,17 @@ message RT000FTL8 {
         string subject_id = 2;
         // The human readable name of the subject of the snapshot
         string subject_name = 3;
-        // The 3-letter currency code (defined in ISO 4217) of the base currency
+        // The country code is required to comply with the 3-letter ISO 3166-1 alpha-3 standard.
+        // The ISO 3166-1 alpha-3 is a set of 3-letter country codes to represent countries and dependent areas.
+        // Make sure the provided country code is in uppercase.
+        // Example: 'USA' for the United States, 'GBR' for Great Britain, 'DEU' for Germany, etc.
         string base_currency = 11;
         // The assets under management as of the effective date in the base currency of the fund
         double aum_base_currency = 12;
-        // The 3-letter currency code (defined in ISO 4217) of the reporting currency
+        // The country code is required to comply with the 3-letter ISO 3166-1 alpha-3 standard.
+        // The ISO 3166-1 alpha-3 is a set of 3-letter country codes to represent countries and dependent areas.
+        // Make sure the provided country code is in uppercase.
+        // Example: 'USA' for the United States, 'GBR' for Great Britain, 'DEU' for Germany, etc.
         string reporting_currency = 13;
         // The assets under management as of the effective date in the reporting currency
         double aum_reporting_currency = 14;
@@ -915,12 +926,28 @@ message RT000FTL8 {
         // The number of issued units of the share class
         double units = 6;
         // The nav per unit in the base currency at at the effective_date
+        // The country code is required to comply with the 3-letter ISO 3166-1 alpha-3 standard.
+        // The ISO 3166-1 alpha-3 is a set of 3-letter country codes to represent countries and dependent areas.
+        // Make sure the provided country code is in uppercase.
+        // Example: 'USA' for the United States, 'GBR' for Great Britain, 'DEU' for Germany, etc.
         double nav_per_unit_base_currency = 7;
         // The current total nav of the share class in the base currency
+        // The country code is required to comply with the 3-letter ISO 3166-1 alpha-3 standard.
+        // The ISO 3166-1 alpha-3 is a set of 3-letter country codes to represent countries and dependent areas.
+        // Make sure the provided country code is in uppercase.
+        // Example: 'USA' for the United States, 'GBR' for Great Britain, 'DEU' for Germany, etc.
         double total_nav_base_currency = 8;
         // The nav per unit in the reporting currency at at the effective_date
+        // The country code is required to comply with the 3-letter ISO 3166-1 alpha-3 standard.
+        // The ISO 3166-1 alpha-3 is a set of 3-letter country codes to represent countries and dependent areas.
+        // Make sure the provided country code is in uppercase.
+        // Example: 'USA' for the United States, 'GBR' for Great Britain, 'DEU' for Germany, etc.
         double nav_per_unit_reporting_currency = 9;
         // The current total nav of the share class in the reporting currency
+        // The country code is required to comply with the 3-letter ISO 3166-1 alpha-3 standard.
+        // The ISO 3166-1 alpha-3 is a set of 3-letter country codes to represent countries and dependent areas.
+        // Make sure the provided country code is in uppercase.
+        // Example: 'USA' for the United States, 'GBR' for Great Britain, 'DEU' for Germany, etc.
         double total_nav_reporting_currency = 10;
     }
     // The time series of share class specific nav information
