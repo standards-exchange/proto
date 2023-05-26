@@ -758,7 +758,7 @@ message RT000FTL8 {
         // The date of the report
         google.type.Date reporting_date = 1;
         // The date of the TER (should be the last day of the relevant month)
-        string nav_date = 2;
+        google.type.Date nav_date = 2;
         // The global identifier of the share class
         string share_class_id = 3;
         // Enumerations of financial identifiers
