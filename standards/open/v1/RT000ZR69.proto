@@ -220,7 +220,10 @@ message RT000ZR69 {
         }
         // Enumeration for how to interpret the metric value
         MetricType metric_type = 9;
-        // If the metric type is "MONEY" then a 3-letter currency code defined in ISO 4217 must be provided.
+        // The country code is required to comply with the 3-letter ISO 3166-1 alpha-3 standard.
+        // The ISO 3166-1 alpha-3 is a set of 3-letter country codes to represent countries and dependent areas.
+        // Make sure the provided country code is in uppercase.
+        // Example: 'USA' for the United States, 'GBR' for Great Britain, 'DEU' for Germany, etc.
         string currency_code = 10;
         // The value of the metric
         double metric = 11;
