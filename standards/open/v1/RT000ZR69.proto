@@ -8,6 +8,7 @@ import "google/api/resource.proto";
 import "google/protobuf/empty.proto";
 import "google/protobuf/field_mask.proto";
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
 import "google/type/date.proto";
 import "google/type/month.proto";
 import "standards/open/v1/metric.proto";
@@ -354,19 +355,19 @@ message RT000ZR69 {
             HIGH = 3;
         }
         // Whether the client has a purchase stop
-        bool purchase_stop = 9;
+        google.protobuf.BoolValue purchase_stop = 9;
         // Whether the client has a redemption stop
-        bool redemption_stop = 10;
+        google.protobuf.BoolValue redemption_stop = 10;
         // Whether the client has a stop on redemptions settling
-        bool stop_red_settle = 11;
+        google.protobuf.BoolValue stop_red_settle = 11;
         // Whether the client has a stop on transfers in
-        bool transfer_inward_stop = 12;
+        google.protobuf.BoolValue transfer_inward_stop = 12;
         // Whether the client has a stop on transfers out
-        bool transfer_out_stop = 13;
+        google.protobuf.BoolValue transfer_out_stop = 13;
         // Whether there is a stop on the account for PEP reasons
-        bool stop_pep = 14;
+        google.protobuf.BoolValue stop_pep = 14;
         // Whether there is a stop on the account for AML reasons
-        bool stop_aml = 15;
+        google.protobuf.BoolValue stop_aml = 15;
         // If there is a stop, what is the stop date
         google.type.Date stop_date = 16;
         // The share of total shares - unsettled
@@ -529,7 +530,7 @@ message RT000ZR69 {
         // Resolution of the complaint
         string resolution = 5;
         // Whether the complaint was upheld
-        bool complaint_upheld = 6;
+        google.protobuf.BoolValue complaint_upheld = 6;
     }
     // Definition of a late trade events
     message LateTradeEvent {
