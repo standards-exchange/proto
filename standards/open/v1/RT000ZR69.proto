@@ -475,7 +475,7 @@ message RT000ZR69 {
         // The trade date of the transaction
         google.type.Date trade_date = 12;
         // The settlement date of the transaction
-        string settlement_date = 13;
+        google.type.Date settlement_date = 13;
         // Enumerations of transaction source types
         enum SourceType {
             // Source type unspecified
