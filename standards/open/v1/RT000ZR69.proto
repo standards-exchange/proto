@@ -255,8 +255,6 @@ message RT000ZR69 {
     }
     // KPIs & other key quantitative metrics for the current and preceding 13 periods
     repeated MonthlyRAGMetric metrics = 20;
-    // Transfer agency breaches in the last thirteen months
-    repeated TransferAgencyBreach transfer_agency_breaches = 51;
     // Recent late trade events. Convention is to report last twelve months.
     repeated LateTradeEvent late_trade_events = 53;
     // Recent complains. Convention is to report last thirteen months
@@ -285,6 +283,8 @@ message RT000ZR69 {
     repeated Account accounts_blocked_for_aml_reasons = 78;
     // Accounts created in the last thirteen months from high risk countries
     repeated Account new_accounts_from_high_risk_countries = 79;
+    // Information on transfer agency errors
+    repeated Error errors = 80;
 
     // The definition of an account resource
     message Account {
@@ -561,6 +561,64 @@ message RT000ZR69 {
         string cause = 3;
         // Resolution of the breach and underlying source of issue
         string resolution = 4;
+    }
+    // Definition of an error
+    message Error {
+        // The reporting date for the error
+        google.type.Date reporting_date = 1;
+        // The internal referenceID used to track the breach
+        string reference_id = 2;
+        // The identifier of the umbrella
+        string umbrella_fund_identifier = 3;
+        // The name of the umbrella
+        // Should conform to: https://openfunds.org/OFST005010 (Umbrella)
+        // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
+        string umbrella_fund = 4;
+        // The identifier of the fund (typically the sub-fund fund or standalone fund) that holds the security
+        // Should conform to: https://openfunds.org/OFST010110 (Legal Fund Name Only)
+        // Refers to the Sub-Fund in the case of an umbrella structure
+        // or Fund in the case of a standalone structure
+        // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
+        string fund_identifier = 5;
+        // The name of the fund (typically the sub-fund fund or standalone fund) that holds the security
+        // Should conform to: https://openfunds.org/OFST010110 (Legal Fund Name Only)
+        // Refers to the Sub-Fund in the case of an umbrella structure
+        // or Fund in the case of a standalone structure
+        // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
+        string fund = 6;
+        // The date the error was detected
+        google.type.Date detection_date = 7;
+        // Period of the error - Start Date
+        google.type.Date error_period_start_date = 8;
+        // Period of the breach - End Date
+        google.type.Date error_period_end_date = 9;
+        // The identifier of the impacted account
+        string account_id = 10;
+        // Description and cause of the error
+        string cause = 15;
+        // Corrective measures taken to fix the error
+        string corrective_measures = 16;
+        // Measures taken to avoid recurrence
+        string remediation = 17;
+        // Enumerations of impact of the error
+        enum Impact {
+            IMPACT_UNSPECIFIED = 0;
+            WITHOUT_IMPACT = 1;
+            IMMATERIAL = 2;
+            MATERIAL = 3;
+        }
+        // The impact of the error
+        Impact impact = 18;
+        // The amount of impact (in currency terms)
+        double impact_amount = 19;
+        // The currency code of the impact amount
+        // The country code is required to comply with the 3-letter ISO 3166-1 alpha-3 standard.
+        // The ISO 3166-1 alpha-3 is a set of 3-letter country codes to represent countries and dependent areas.
+        // Make sure the provided country code is in uppercase.
+        // Example: 'USA' for the United States, 'GBR' for Great Britain, 'DEU' for Germany, etc.
+        string impact_amount_currency = 20;
+        // Other Comments
+        string comments = 51;
     }
 }
 
