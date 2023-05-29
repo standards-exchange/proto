@@ -203,7 +203,7 @@ message RT000ZR69 {
             MONTHLY_STATEMENTS_TIMELINESS = 120;
             // The number of estimate cash reports provided in the reporting period
             ESTIMATE_CASH_REPORTS = 121;
-            // The percentage of of estimate cash reports provided in the reporting period without error
+            // The percentage of estimate cash reports provided in the reporting period without error
             ESTIMATE_CASH_REPORTS_ACCURACY = 122;
             // The percentage of timeliness of estimate cash reports provided in the reporting period
             ESTIMATE_CASH_REPORTS_TIMELINESS = 123;
@@ -369,59 +369,12 @@ message RT000ZR69 {
         bool stop_aml = 15;
         // If there is a stop, what is the stop date
         google.type.Date stop_date = 16;
-        // The subscriptions (i.e. the share class holdings) of the client
-        repeated Subscription subscriptions = 17;
-        // Definition of a client subscription
-        message Subscription {
-            // The global identifier of the share class
-            string share_class_id = 1;
-            // Enumerations of financial identifiers
-            enum ShareClassIdentifierTypes {
-                // Source not specified by the user.
-                IDENTIFIER_UNSPECIFIED = 0;
-                // ISO 6166 code of ISIN when available
-                ISIN = 1;
-                // CUSIP - The Committee on Uniform Securities Identification Procedures number assigned by the CUSIP Service Bureau for U.S. and Canadian companies
-                CUSIP = 2;
-                // SEDOL - Stock Exchange Daily Official List for the London Stock Exchange
-                SEDOL = 3;
-                // WKN - Wertpapier Kenn-Nummer, the alphanumeric German identification number
-                WKN = 4;
-                // Bloomberg Ticker - Bloomberg letters code that identify a company's securities
-                BBG_TICKER = 5;
-                // BBGID - The Bloomberg Global ID
-                BBGID = 6;
-                // Reuters RIC - Reuters instrument code
-                RIC = 7;
-                // FIGI - Financial_Instrument Global Identifier
-                FIGI = 8;
-                // LEI - Legal Entity Identifier
-                LEI = 9;
-                // PermID - Refinitiv Permanent Identifiers
-                PERM_ID = 10;
-            }
-            // Codification chosen to identify the share class
-            ShareClassIdentifierTypes share_class_id_type = 2;
-            // Extension that identifies the share class.
-            // Should conform to: https://openfunds.org/OFST020050 (Share Class Extension)
-            string share_class_extension = 3;
-            // The number of settled units
-            double settled_units = 4;
-            // The number of unsettled units
-            double unsettled_units = 5;
-            // The nav of the subscription per unit
-            double nav_per_unit = 6;
-            // The current total value of the subscription
-            double total_value = 7;
-        }
         // The share of total shares - unsettled
         double percent_total_shares = 18;
         // The total value of the account
         double account_value = 19;
         // The share of total aum - unsettled
         double percent_total_aum = 20;
-        // The list of transactions made by the account
-        repeated Transaction transactions = 21;
         // The date the account was created
         google.type.Date account_creation_date = 22;
         // The date the account was active and onboarded
@@ -555,13 +508,13 @@ message RT000ZR69 {
         // Should conform to: https://openfunds.org/OFST005010 (Umbrella)
         // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
         string umbrella_fund = 103;
-        // The identifier of the fund (typically the sub-fund fund or standalone fund) that holds the security
+        // The identifier of the fund (typically the sub-fund fund or standalone fund)
         // Should conform to: https://openfunds.org/OFST010110 (Legal Fund Name Only)
         // Refers to the Sub-Fund in the case of an umbrella structure
         // or Fund in the case of a standalone structure
         // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
         string fund_identifier = 104;
-        // The name of the fund (typically the sub-fund fund or standalone fund) that holds the security
+        // The name of the fund (typically the sub-fund fund or standalone fund)
         // Should conform to: https://openfunds.org/OFST010110 (Legal Fund Name Only)
         // Refers to the Sub-Fund in the case of an umbrella structure
         // or Fund in the case of a standalone structure
@@ -588,24 +541,26 @@ message RT000ZR69 {
         // Should conform to: https://openfunds.org/OFST005010 (Umbrella)
         // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
         string umbrella_fund = 103;
-        // The identifier of the fund (typically the sub-fund fund or standalone fund) that holds the security
+        // The identifier of the fund (typically the sub-fund fund or standalone fund)
         // Should conform to: https://openfunds.org/OFST010110 (Legal Fund Name Only)
         // Refers to the Sub-Fund in the case of an umbrella structure
         // or Fund in the case of a standalone structure
         // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
         string fund_identifier = 104;
-        // The name of the fund (typically the sub-fund fund or standalone fund) that holds the security
+        // The name of the fund (typically the sub-fund fund or standalone fund)
         // Should conform to: https://openfunds.org/OFST010110 (Legal Fund Name Only)
         // Refers to the Sub-Fund in the case of an umbrella structure
         // or Fund in the case of a standalone structure
         // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
         string fund = 105;
         // The date of the late trade
-        google.type.Date effective_date = 1;
+        google.type.Date late_trade_date = 1;
+        // The date the late trade was identified
+        google.type.Date identification_date = 2;
         // Cause of the late trade
-        string cause = 2;
+        string cause = 3;
         // Resolution of the breach and underlying source of issue
-        string resolution = 3;
+        string resolution = 4;
     }
     // Definition of a Transfer Agency Breach or Error
     message TransferAgencyBreach {
