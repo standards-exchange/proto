@@ -8,6 +8,7 @@ import "google/api/resource.proto";
 import "google/protobuf/empty.proto";
 import "google/protobuf/field_mask.proto";
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
 import "google/type/month.proto";
 import "google/type/date.proto";
 import "standards/open/v1/metric.proto";
@@ -865,7 +866,7 @@ message RT000FTL8 {
         // Maximum impact as a % of NAV
         double maximum_impact = 18;
         // Whether "De Minimis" amount is applied
-        bool de_minimis_applied = 19;
+        google.protobuf.BoolValue de_minimis_applied = 19;
         // Level of de miniis
         double level_of_de_minimis = 20;
         // Currency of de minimis
