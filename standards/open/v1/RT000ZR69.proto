@@ -76,13 +76,13 @@ message RT000ZR69 {
             NUMBER_OF_COMPLAINTS = 13;
             // The number of complaints upheld
             NUMBER_OF_UPHELD_COMPLAINTS = 14;
+            // The total number of accounts
+            NUMBER_OF_ACCOUNTS = 15;
             // Total number of accounts with balances
-            ACCOUNTS_WITH_BALANCES = 15;
+            PERCENTAGE_ACCOUNTS_WITH_BALANCES = 16;
             // The number of accounts in good order at the end of the reporting period
-            ACCOUNTS_IN_GOOD_ORDER = 16;
-            // The number of accounts not in good order at the end of the reporting period
-            ACCOUNTS_NOT_IN_GOOD_ORDER = 17;
-            // The number of large trade reports sent within the agreed timeframe
+            PERCENTAGE_ACCOUNTS_IN_GOOD_ORDER = 17;
+            // The percentage of large trade reports sent within the agreed timeframe
             INVESTOR_REPORTS_TIMELINESS = 18;
             // Number of phone calls processed
             NUMBER_OF_PHONE_CALLS_PROCESSED = 19;
