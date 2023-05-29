@@ -34,14 +34,33 @@ message DataFile {
   map<string, FileAttachment>  file_attachments = 8;
   // File Attachment message definition
   message FileAttachment {
-    // The name of the file attachment
-    string display_name = 1;
-    // The type of the file attachment. Supported extensions include .pdf, .xlsx, .xls
-    string mime_type = 2;
-    // File extension
-    string file_extension = 3;
-    // The bytes containing the file attachment.
-    bytes file_bytes = 4;
+    // Previously deleted fields
+    reserved 1, 2, 3, 4;
+
+    // Name of the supporting file
+    // Format: fileAttachments/{fileAttachment}
+    //
+    // The supportingFile identifier has a one-to-one
+    // mapping to a file in GCS. On creation, a check
+    // is done to see whether the file exists and
+    // a FAILED_PRECONDITION error is returned in the
+    // case that it does not exist.
+    string name = 5;
+    // The name of the file
+    string filename = 6;
+    // Download URI for the file.
+    //
+    // The URI is a [self-signed URI](https://cloud.google.com/storage/docs/access-control/signed-urls)
+    // which expires after creation.
+    //
+    // Suggested usage is to immediately access the file on receiving the link,
+    // as the link will not remain valid after the expiry time.
+    string download_uri = 7;
+    // The email address of the entity that uploaded the file.
+    string uploader = 8;
+    // The time the file was uploaded.
+    google.protobuf.Timestamp upload_time = 9;
+    // Can extend with metadata such as upload_time, uploaded_by, etc..
   }
   // Field Annotation message definition
   message FieldAnnotation {
@@ -83,3 +102,5 @@ message DataFile {
   // The reference to the user who is owner of the dataRoomFile.
   string owner = 10;
 }
+
+
