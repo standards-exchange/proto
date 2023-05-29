@@ -524,8 +524,8 @@ message RT000ZR69 {
         google.type.Date complaint_date = 2;
         // Description of the complaint
         string description = 3;
-        // The account information related to the complainant (if applicable)
-        Account complainant_account = 4;
+        // The account identifier related to the complainant (if applicable)
+        string account_id = 4;
         // Resolution of the complaint
         string resolution = 5;
         // Whether the complaint was upheld
@@ -561,53 +561,6 @@ message RT000ZR69 {
         string cause = 3;
         // Resolution of the breach and underlying source of issue
         string resolution = 4;
-    }
-    // Definition of a Transfer Agency Breach or Error
-    message TransferAgencyBreach {
-        // The date as of which the information is being reported
-        google.type.Date reporting_date = 101;
-        // The internal identifier of the umbrella
-        string umbrella_fund_identifier = 102;
-        // The name of the umbrella
-        // Should conform to: https://openfunds.org/OFST005010 (Umbrella)
-        // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
-        string umbrella_fund = 103;
-        // The identifier of the fund (typically the sub-fund fund or standalone fund) that holds the security
-        // Should conform to: https://openfunds.org/OFST010110 (Legal Fund Name Only)
-        // Refers to the Sub-Fund in the case of an umbrella structure
-        // or Fund in the case of a standalone structure
-        // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
-        string fund_identifier = 104;
-        // The name of the fund (typically the sub-fund fund or standalone fund) that holds the security
-        // Should conform to: https://openfunds.org/OFST010110 (Legal Fund Name Only)
-        // Refers to the Sub-Fund in the case of an umbrella structure
-        // or Fund in the case of a standalone structure
-        // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
-        string fund = 105;
-        // The date of the breach
-        google.type.Date effective_date = 1;
-        // The date the breach was identified
-        google.type.Date identification_date = 2;
-        // The date the breach was resolved
-        google.type.Date resolution_date = 3;
-        // Enumerations of the types of the breach or error.
-        enum Type {
-            SEVERITY_UNSPECIFIED = 0;
-            // A breach or error the nature of which requires reporting to the regulator
-            REGULATORY_BREACH = 1;
-            // An breach or error that should be logged and reported internally
-            INTERNAL_BREACH = 2;
-            // An error that should be noted, but does not need to be reported
-            ERROR = 3;
-        }
-        // The type of severity of the breach or error.
-        Type type = 4;
-        // Description of the breach
-        string description = 5;
-        // Whether the breach is active or not
-        bool active = 6;
-        // Resolution of the breach and underlying source of issue
-        string resolution_commentary = 7;
     }
 }
 
