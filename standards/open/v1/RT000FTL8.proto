@@ -186,25 +186,6 @@ message RT000FTL8 {
     }
     // Time series of historic net asset value data
     repeated NetAssetValueSnapshot net_asset_values = 51;
-    // Definition of a NAV calculation error
-    message NAVCalculationErrorInformation {
-        // The date of the error
-        google.type.Date effective_date = 1;
-        // The date the error was identified
-        google.type.Date identification_date = 2;
-        // The date the error was resolved
-        google.type.Date resolution_date = 3;
-        // Magnitude of the error in decimal (IncorrectNav / CorrectNav -1)
-        double magnitude = 4;
-        // Cause of the error
-        string cause = 6;
-        // Remediation
-        string remediation = 7;
-        // Other Comments
-        string comments = 8;
-    }
-    // Last 13 months of NAV Calculation Errors
-    repeated NAVCalculationErrorInformation nav_calculation_errors = 52;
     // Definition of a pricing error occurred in the pricing of a share class
     message SecurityPricingError {
         // The date the information is being reported
@@ -599,7 +580,7 @@ message RT000FTL8 {
         // Comments
         string comment = 14;
     }
-    // Recent Stock Breaks greater than 5 days. Convention is to provide 13 months of history.
+    // Recent Stock Breaks greater than 5 days.
     repeated StockBreak stock_breaks = 55;
     // Definition of break that has occurred in agreement on the cash holdings of a sub-fund
     message CashBreak {
@@ -638,7 +619,7 @@ message RT000FTL8 {
         // Comments
         string comment = 12;
     }
-    // Recent Cash Breaks greater than 5 days. Convention is to provide 13 months of history.
+    // Recent Cash Breaks greater than 5 days.
     repeated CashBreak cash_breaks = 56;
     // Definition of a Total Expense Ratio
     message TotalExpenseRatio {
@@ -689,7 +670,7 @@ message RT000FTL8 {
         // Comments on the expense ratio
         string comments = 10;
     }
-    // The timeseries of TERs per share class. Convention is to provide 13 months of history.
+    // The timeseries of TERs per share class.
     repeated TotalExpenseRatio total_expense_ratios = 57;
     // Definition of an invoice
     message Invoice {
@@ -765,7 +746,7 @@ message RT000FTL8 {
         // The NAV after the swing factor had been applied
         double nav_with_swing_factor = 10;
     }
-    // The list of Swing Pricing events within the fund. Convention is to provide 12 months history. Swing pricing is a method used by collective investment schemes to adjust the net asset value (NAV) of the fund in order to protect existing shareholders from the negative impact of large purchases or redemptions by new or existing shareholders. This is done by adjusting the NAV of the fund to reflect the anticipated costs associated with buying or selling the underlying assets of the fund. The adjustment is typically made by charging or crediting a "swing factor" to the NAV of the fund, which is based on the size of the purchase or redemption relative to the fund's assets under management (AUM). The goal of swing pricing is to ensure that the costs of buying and selling assets are borne by those who cause the costs, rather than by all shareholders of the fund.
+    // The list of Swing Pricing events within the fund. Swing pricing is a method used by collective investment schemes to adjust the net asset value (NAV) of the fund in order to protect existing shareholders from the negative impact of large purchases or redemptions by new or existing shareholders. This is done by adjusting the NAV of the fund to reflect the anticipated costs associated with buying or selling the underlying assets of the fund. The adjustment is typically made by charging or crediting a "swing factor" to the NAV of the fund, which is based on the size of the purchase or redemption relative to the fund's assets under management (AUM). The goal of swing pricing is to ensure that the costs of buying and selling assets are borne by those who cause the costs, rather than by all shareholders of the fund.
     repeated SwingPricingEvent swing_pricing_events = 59;
     // Definition of NAV information shared per share class at a point in time.
     message PerShareClassNAV {
@@ -816,9 +797,204 @@ message RT000FTL8 {
         // The current total nav of the share class in the reporting currency
         double total_nav_reporting_currency = 10;
     }
-    // The time series of share class specific nav information
-    // Convention is to provide 12 months of monthly data.
+    // Share class specific nav information
     repeated PerShareClassNAV per_share_class_nav_historical = 60;
+    // Definition of a NAV calculation error
+    message NAVCalculationErrorInformation {
+        // The reporting date for the information
+        google.type.Date reporting_date = 1;
+        // The internal referenceID used to track the error
+        string reference_id = 2;
+        // The  identifier of the umbrella
+        string umbrella_fund_identifier = 3;
+        // The name of the umbrella
+        // Should conform to: https://openfunds.org/OFST005010 (Umbrella)
+        // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
+        string umbrella_fund = 4;
+        // The identifier of the fund (typically the sub-fund fund or standalone fund) that holds the security
+        // Should conform to: https://openfunds.org/OFST010110 (Legal Fund Name Only)
+        // Refers to the Sub-Fund in the case of an umbrella structure
+        // or Fund in the case of a standalone structure
+        // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
+        string fund_identifier = 5;
+        // The name of the fund (typically the sub-fund fund or standalone fund) that holds the security
+        // Should conform to: https://openfunds.org/OFST010110 (Legal Fund Name Only)
+        // Refers to the Sub-Fund in the case of an umbrella structure
+        // or Fund in the case of a standalone structure
+        // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
+        string fund = 6;
+        // The date the error was detected
+        google.type.Date detection_date = 7;
+        // Period of the impact - Start Date
+        google.type.Date error_period_start_date = 8;
+        // Period of the impact - End Date
+        google.type.Date error_period_end_date = 9;
+        // The date the error was resolved
+        google.type.Date resolution_date = 10;
+        // Enumerations of types of errors
+        enum ErrorType {
+            ERROR_TYPE_UNSPECIFIED = 0;
+            SECURITIES_EXCEPT_DERIVATIVES_VALUATION_ERROR = 1;
+            ACCOUNTING_ERROR = 2;
+            FEES_AND_ACCRUALS_ERROR = 3;
+            CORPORATE_ACTION_ERROR = 4;
+            DERIVATIVES_VALUATION_ERROR = 5;
+            OTHER_ERROR = 6;
+        }
+        // The nature of the error
+        ErrorType error_type = 11;
+        // Description and cause of the error
+        string cause = 12;
+        // Remediation
+        string remediation = 13;
+        // Enumerations of impact of the error
+        enum Impact {
+            IMPACT_UNSPECIFIED = 0;
+            WITHOUT_IMPACT = 1;
+            IMMATERIAL_IMPACT = 2;
+            MATERIAL_IMPACT = 3;
+        }
+        // The impact of the error
+        Impact impact = 14;
+        // The indemnification amount (in the fund currency)
+        double total_indemnification_amount = 15;
+        // The indemnification amount for the sub-fund
+        double fund_indemnification_amount = 16;
+        // The indemnification amount for investors
+        double investors_indemnification_amount = 17;
+        // Maximum impact as a % of NAV
+        double maximum_impact = 18;
+        // Whether "De Minimis" amount is applied
+        bool de_minimis_applied = 19;
+        // Level of de miniis
+        double level_of_de_minimis = 20;
+        // Currency of de minimis
+        string currency_of_de_minimis = 21;
+        // Other information regarding nav impact
+        string other_information_regarding_nav_impact = 22;
+        // Date of booking / recording of the indemnification provision (in the accounting)
+        google.type.Date indemnification_booking_date = 23;
+        // Date of payment of the indemnification
+        google.type.Date indemnification_payment_date = 24;
+        // Entity responsible for payment of the indemnification amount
+        string entity_responsible_for_payment = 25;
+        // Other Comments
+        string comments = 51;
+    }
+    // NAV Calculation Errors
+    repeated NAVCalculationErrorInformation nav_calculation_errors = 61;
+    // Definition of an investment breach
+    message InvestmentBreach {
+        // The reporting date for the information
+        google.type.Date reporting_date = 1;
+        // The internal referenceID used to track the breach
+        string reference_id = 2;
+        // The identifier of the umbrella
+        string umbrella_fund_identifier = 3;
+        // The name of the umbrella
+        // Should conform to: https://openfunds.org/OFST005010 (Umbrella)
+        // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
+        string umbrella_fund = 4;
+        // The identifier of the fund (typically the sub-fund fund or standalone fund) that holds the security
+        // Should conform to: https://openfunds.org/OFST010110 (Legal Fund Name Only)
+        // Refers to the Sub-Fund in the case of an umbrella structure
+        // or Fund in the case of a standalone structure
+        // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
+        string fund_identifier = 5;
+        // The name of the fund (typically the sub-fund fund or standalone fund) that holds the security
+        // Should conform to: https://openfunds.org/OFST010110 (Legal Fund Name Only)
+        // Refers to the Sub-Fund in the case of an umbrella structure
+        // or Fund in the case of a standalone structure
+        // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
+        string fund = 6;
+        // The date the breach was detected
+        google.type.Date detection_date = 7;
+        // Period of the breach - Start Date
+        google.type.Date breach_period_start_date = 8;
+        // Period of the breach - End Date
+        google.type.Date breach_period_end_date = 9;
+        // Enumerations of types of breaches
+        enum BreachType {
+            BREACH_TYPE_UNSPECIFIED = 0;
+            // Luxembourg UCI Art. 41 (1) L2010 - Eligibility requirements
+            LUX_ART_41_ELIGIBILITY_REQUIREMENTS = 1;
+            // Luxembourg UCI Art. 41 (2) L2010 - 10% TS/MMI (Trash Ratio)
+            LUX_ART_41_10_PERCENT_TS_MMI_TRASH_RATIO = 2;
+            // Luxembourg UCI Art. 43 (1) L2010 - 10% issuer TS/MMI
+            LUX_ART_43_10_PERCENT_ISSUER = 3;
+            // Luxembourg UCI Art. 43 (1) L2010 - 20% deposits
+            LUX_ART_43_20_PERCENT_DEPOSITS = 4;
+            // Luxembourg UCI Art. 43 (1) L2010 - 5%/10% FDI counterparty risk
+            LUX_ART_43_FDI_COUNTERPARTY_RISK = 5;
+            // Luxembourg UCI Art. 43 (2) L2010 - 5%/10%/40% - issuer TS/MMI
+            LUX_ART_43_ISSUER_TS_MMI = 6;
+            // Luxembourg UCI Art. 43 (2) L2010 - 20% combined limit TS/MMI/deposits/FDI
+            LUX_ART_43_20_PERCENT_COMBINED_LIMIT = 7;
+            // Luxembourg UCI Art. 43 (3) L2010 - 35% TS/MMI
+            LUX_ART_43_35_PERCENT_TS_MMI = 8;
+            // Luxembourg UCI Art. 45 (1) L2010 - 100%/6 issues/30% TS/MMI (above 35%)
+            LUX_ART_45_100_PERCENT_6_ISSUES = 9;
+            // Luxembourg UCI Art. 46 (1) L2010 - 20% UCITS/UCI
+            LUX_ART_46_20_PERCENT_UCITS_UCI = 10;
+            // Luxembourg UCI Art. 48 (2) L2010 - significant influence
+            LUX_ART_48_SIGNIFICANT_INFLUENCE = 11;
+            // Luxembourg UCI Art. 50 (2) L2010 - 10% borrowings on a temporary basis
+            LUX_ART_50_10_PERCENT_BORROWINGS_TEMP_BASIS = 12;
+            // Luxembourg UCI Art. 52 L2010 - No uncovered sales
+            LUX_ART_52_NO_UNCOVERED_SALES = 13;
+            // ESMA guidelines (Eligibility/Diversification of collateral)
+            ESMA_GUIDELINES_COLLATERAL = 14;
+            // LUX SIF - 30% issuer
+            LUX_SIF_30_PERCENT_ISSUER = 15;
+            // Breach of specific prospectus rules
+            BREACH_OF_PROSPECTUS_RULES = 16;
+            // Breach of other investment restriction rule
+            BREACH_OF_OTHER_RULE = 17;
+
+
+        }
+        // The nature of the error
+        BreachType breach_type = 10;
+        // Description and cause of the error
+        string cause = 11;
+        // Corrective measures taken to close the investment breach
+        string corrective_measures = 12;
+        // Measures taken to avoid recurrence
+        string remediation = 13;
+        // Enumerations of impact of the error
+        enum Impact {
+            IMPACT_UNSPECIFIED = 0;
+            WITHOUT_IMPACT = 1;
+            IMMATERIAL_LOSS = 2;
+            IMMATERIAL_GAIN = 3;
+            MATERIAL_LOSS = 4;
+            MATERIAL_GAIN = 5;
+        }
+        // The impact of the error
+        Impact impact = 14;
+        // The amount of impact (in currency terms)
+        double impact_amount = 15;
+        // The currency code of the impact amount
+        // The country code is required to comply with the 3-letter ISO 3166-1 alpha-3 standard.
+        // The ISO 3166-1 alpha-3 is a set of 3-letter country codes to represent countries and dependent areas.
+        // Make sure the provided country code is in uppercase.
+        // Example: 'USA' for the United States, 'GBR' for Great Britain, 'DEU' for Germany, etc.
+        string impact_amount_currency = 16;
+        // Description of the impact calculation method
+        string calculation_method = 17;
+
+
+        // Date of booking / recording of the indemnification provision (in the accounting)
+        google.type.Date indemnification_booking_date = 23;
+        // Date of payment of the indemnification
+        google.type.Date indemnification_payment_date = 24;
+        // Entity responsible for payment of the indemnification amount
+        string entity_responsible_for_payment = 25;
+        // Other Comments
+        string comments = 51;
+    }
+    // Investment breaches
+    repeated InvestmentBreach investment_breaches = 62;
 }
 
 // Batch set of RT000FTL8 responses
