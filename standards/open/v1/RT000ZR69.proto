@@ -212,15 +212,15 @@ message RT000ZR69 {
         }
         // The identifier of what the metric measures
         MetricID metric_id = 8;
-        // The type of the metric
-        enum MetricType {
+        // The type of value used to measure the metric
+        enum ValueType {
             METRIC_TYPE_UNSPECIFIED = 0;
-            COUNT = 1;
+            NUMBER = 1;
             PERCENTAGE = 2;
-            MONEY = 3;
+            CURRENCY = 3;
         }
         // Enumeration for how to interpret the metric value
-        MetricType metric_type = 9;
+        ValueType value_type = 9;
         // The currency code is required to comply with the 3-letter ISO 4217 standard.
         // The ISO 4217 is a set of 3-letter currency codes to represent countries' currencies.
         // Make sure the provided currency code is in uppercase.
@@ -228,18 +228,28 @@ message RT000ZR69 {
         string currency_code = 10;
         // The value of the metric
         double metric = 11;
+        // Options for how to evaluate the metric
+        enum EvaluationType {
+            EVALUATION_TYPE_UNSPECIFIED = 0;
+            // A higher result is more favorable
+            MAXIMISE = 1;
+            // A lower result is more favorable
+            MINIMISE = 2;
+        }
+        // How to evaluate the metric (i.e. is a higher or lower value more favorable)
+        EvaluationType evaluation_type = 12;
         // The "RED/AMBER/GREEN" designation if applicable
-        RedAmberGreen rag = 12;
+        RedAmberGreen rag = 13;
         // The amber cutoff (i.e. the value above which the metric is no longer classified as "RED") if applicable
-        double amber_cutoff = 13;
+        double amber_cutoff = 14;
         // The green cutoff (i.e. the value above which the metric is no longer classified as "AMBER")  if applicable
-        double green_cutoff = 14;
+        double green_cutoff = 15;
         // Optional. The name of the provider
-        string provider = 15;
+        string provider = 20;
         // Optional. The metric ID used by the provider
-        string provider_metric_id = 16;
+        string provider_metric_id = 21;
         // Optional. The KPI name used by the provider
-        string provider_metric_name = 17;
+        string provider_metric_name = 22;
         // Optional. Any comments attached to the metric
         string comments = 99;
     }
