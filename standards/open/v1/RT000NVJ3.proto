@@ -55,66 +55,116 @@ message RT000NVJ3 {
     // Message defining the return by category.
     // All returns should be populated in percentage terms e.g. 1% and not 0.01
     message Returns {
+      // Domestic equities
       double domestic_equities = 1;
+      // Domestic debt instruments
       double domestic_debt_instruments = 2;
+      // Domestic cash and money market
       double domestic_cash_and_money_market = 3;
+      // Domestic immovable property
       double domestic_immovable_property = 4;
+      // Domestic commodities
       double domestic_commodities = 5;
+      // Domestic hedge funds
       double domestic_hedge_funds = 6;
+      // Domestic private equity funds
       double domestic_private_equity_funds = 7;
+      // Domestic other
       double domestic_other = 8;
+      // Total domestic return
       double total_domestic = 9;
+      // International equities
       double international_equities = 10;
+      // International debt instruments
       double international_debt_instruments = 11;
+      // International cash and money market
       double international_cash_and_money_market = 12;
+      // International immovable property
       double international_immovable_property = 13;
+      // International commodities
       double international_commodities = 14;
+      // International hedge funds
       double international_hedge_funds = 15;
+      // International private equity funds
       double international_private_equity_funds = 16;
+      // International other
       double international_other = 17;
+      // Total international return
       double total_international = 18;
+      // Total portfolio return
       double total_portfolio = 19;
+      // Gross unit price/index value
       double gross_unit_price_or_index_value = 20;
     }
     // Investment returns for the Portfolio
     Returns portfolio_returns = 8;
     // Investment returns for the Benchmark
     Returns benchmark_returns = 9;
+    // (-- api-linter: core::0140::prepositions=disabled
+    //     aip.dev/not-precedent: We need to do this because it just makes sense to describe time periods
+    //     by using the word to e.g. 3 to 7 years etc.. --)
     // Message defining the return by category.
     // All exposures should be populated in decimal form e.g. 1% as 0.01
     message Exposure {
-      // Sum of all domestic_equities_* should equal the value in domestic_equities
+      // Sum of all domestic_equities_* should equal the value in total_domestic_equities
       double total_domestic_equities = 1;
+      // Domestic equities that are in the resources sector
       double domestic_equities_resources = 2;
+      // Domestic equities that are in the financials sector
       double domestic_equities_financials = 3;
+      // Domestic equities that are in the industrials sector
       double domestic_equities_industrials = 4;
+      // Other domestic equities (fall in none of the above sectors)
       double domestic_equities_other_equity = 5;
-      // Sum of all domestic_debt_instruments_* should equal the value in domestic_debt_instruments
+      // Sum of all domestic_debt_instruments_* should equal the value in total_domestic_debt_instruments
       double total_domestic_debt_instruments = 6;
-      double domestic_debt_instruments_0_to_3_years = 7;
-      double domestic_debt_instruments_3_to_7_years = 8;
-      double domestic_debt_instruments_7_to_12_years = 9;
-      double domestic_debt_instruments_12_plus_years = 10;
+      // Domestic debt instruments 0-3 years
+      double domestic_debt_instruments_zero_to_three_years = 7;
+      // Domestic debt instruments 3-7 years
+      double domestic_debt_instruments_three_to_seven_years = 8;
+      // Domestic debt instruments 7-12 years
+      double domestic_debt_instruments_seven_to_twelve_years = 9;
+      // Domestic debt instruments 12+ years
+      double domestic_debt_instruments_twelve_plus_years = 10;
+      // Other domestic debt instruments
       double domestic_debt_instruments_other = 11;
+      // Total domestic cash and money market
       double total_domestic_cash_and_money_market = 12;
+      // Sum of all domestic_immovable_property_* should equal the value in total_domestic_immovable_property
       double total_domestic_immovable_property = 13;
+      // Domestic immovable direct property
       double domestic_immovable_property_direct = 14;
+      // Domestic immovable listed property
       double domestic_immovable_property_listed = 15;
+      // Domestic immovable unlisted property
       double domestic_immovable_property_unlisted = 16;
+      // Total domestic commodities
       double total_domestic_commodities = 17;
+      // Total domestic hedge funds
       double total_domestic_hedge_funds = 18;
+      // Total domestic private equity funds
       double total_domestic_private_equity_funds = 19;
+      // Total domestic other
       double total_domestic_other = 20;
-      // Sum of all international_* should equal the value in international_total
+      // Sum of all international_* should equal the value in total_international
       double total_international = 21;
+      // International equities
       double international_equities = 22;
+      // International debt instruments
       double international_debt_instruments = 23;
+      // International cash and money and market
       double international_cash_and_money_market = 24;
+      // International immovable property
       double international_immovable_property = 25;
+      // International commodities
       double international_commodities = 26;
+      // International hedge funds
       double international_hedge_funds = 27;
+      // International private equity funds
       double international_private_equity_funds = 28;
+      // International other
       double international_other = 29;
+      // Total portfolio exposure. Sum of all total_domestic_* and total_international should equal thr value in total_portfolio
       double total_portfolio = 30;
     }
     // the physical exposure by category and subcategory
@@ -171,7 +221,7 @@ message RT000NVJ3 {
     // Definition of a holding reported
     message Holding {
       // Display name of holding
-      string name = 1;
+      string display_name = 1;
       // JSE code of the holding, for example: DSY
       string code = 2;
       // Percentage allocation of total equities
