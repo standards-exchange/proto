@@ -273,17 +273,17 @@ message RT000ZR69 {
     // List of PEP accounts
     repeated Account pep_accounts = 73;
     // List of new accounts last 3 months
-    repeated Account new_accounts_last_three_months = 74;
+    repeated Account new_accs_last_three_months = 74;
     // List of high risk accounts
     repeated Account high_risk_accounts = 75;
     // Largest N accounts by transaction volume
-    repeated Account largest_accounts_by_transaction_volume = 76;
+    repeated Account largest_accs_transaction_vol = 76;
     // Accounts that have holdings and have dealt within the last thirteen months
     repeated Account active_accounts = 77;
     // Accounts blocked for AML reasons
-    repeated Account accounts_blocked_for_aml_reasons = 78;
+    repeated Account accs_blocked_for_aml_reasons = 78;
     // Accounts created in the last thirteen months from high risk countries
-    repeated Account new_accounts_from_high_risk_countries = 79;
+    repeated Account new_accs_high_risk_countries = 79;
     // Information on transfer agency errors
     repeated Error errors = 80;
 
