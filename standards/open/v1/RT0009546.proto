@@ -52,7 +52,7 @@ message RT0009546 {
     // Coupon or interest accrued but not paid to bondholders (Column R)
     double accrued_interest = 18;
     // Financial classification for each security according to the their attributes (Column S)
-    string security_types = 19;
+    string security_type = 19;
     // Local asset type code for South Africa (Column T)
     string local_asset_type = 20;
     // Credit quality (India) (Column U)
