@@ -211,7 +211,8 @@ message RT000ZR69 {
             ESTIMATE_CASH_REPORTS_ACCURACY = 122;
             // The percentage of timeliness of estimate cash reports provided in the reporting period
             ESTIMATE_CASH_REPORTS_TIMELINESS = 123;
-
+            // The number of accounts with balances
+            NUMBER_OF_ACCOUNTS_WITH_BALANCES = 124;
 
         }
         // The identifier of what the metric measures
