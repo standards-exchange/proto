@@ -59,6 +59,5 @@ message RT000Z9D4 {
     string credit_quality = 21;
     // Market Identifier Code (MIC): exchange code of which exchange the holdings traded. (ISO 10383) (Column V)
     string market_id_code = 22;
-
   }
 }
