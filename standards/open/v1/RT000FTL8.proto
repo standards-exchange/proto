@@ -868,7 +868,7 @@ message RT000FTL8 {
         // Maximum impact as a % of NAV
         double maximum_impact = 18;
         // Whether "De Minimis" amount is applied
-        google.protobuf.BoolValue de_minimis_applied = 19;
+        bool de_minimis_applied = 19;
         // Level of de miniis
         double level_of_de_minimis = 20;
         // Currency of de minimis
