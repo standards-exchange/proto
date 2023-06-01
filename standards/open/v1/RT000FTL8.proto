@@ -21,29 +21,32 @@ option go_package = "github.com/standards-exchange/protobuf-go/standards/open/v1
 message RT000FTL8 {
     // Definition of a monthly metric
     message MonthlyRAGMetric {
-        // The year of the metric
-        int32 year = 1;
-        // The month of the metric
-        int32 month = 2;
-        // The date metric was produced
-        google.type.Date production_date = 3;
-        // The legal identifier of the umbrella
+        // The date the data was produced
+        google.type.Date production_date = 1;
+        // The end date of the reporting period of the metric (inclusive)
+        // For example, if the metric measures data for the month of December 2022, 2022-12-31
+        google.type.Date reporting_period_end = 2;
+        // The start date of the reporting period of the metric (inclusive)
+        // For example, if the metric measures data for the month of December 2022, 2022-12-01
+        google.type.Date reporting_period_start = 3;
+        // The internal identifier of the umbrella
+        string umbrella_fund_identifier = 4;
+        // The name of the umbrella
         // Should conform to: https://openfunds.org/OFST005010 (Umbrella)
         // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
-        string umbrella_fund = 4;
-        // Names of the relevant sub-fund (if applicable)
+        string umbrella_fund = 5;
+        // The identifier of the fund (typically the sub-fund fund or standalone fund) that holds the security
         // Should conform to: https://openfunds.org/OFST010110 (Legal Fund Name Only)
         // Refers to the Sub-Fund in the case of an umbrella structure
         // or Fund in the case of a standalone structure
         // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
-        string fund = 5;
-        // The common identifier of the subject.
-        // In most instances the subject (i.e the entity being measured by the metric) should be the umbrella for which the report is provided.
-        // Metrics related to specific sub-funds, however, can be reported alongside the aggregated values
-        // so long as the this is consistently applied
-        string subject_id = 6;
-        // The human readable name of the subject of the metric
-        string subject_name = 7;
+        string fund_identifier = 6;
+        // The name of the fund (typically the sub-fund fund or standalone fund) that holds the security
+        // Should conform to: https://openfunds.org/OFST010110 (Legal Fund Name Only)
+        // Refers to the Sub-Fund in the case of an umbrella structure
+        // or Fund in the case of a standalone structure
+        // See: https://openfunds.org/knowledge/whitepapers/fundnames/ for more information
+        string fund = 7;
         // Enumeration of metricIDs
         enum MetricID {
             // The enumeration of the metrics measured
