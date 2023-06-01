@@ -11,7 +11,6 @@ import "google/protobuf/timestamp.proto";
 import "google/protobuf/wrappers.proto";
 import "google/type/month.proto";
 import "google/type/date.proto";
-import "standards/open/v1/metric.proto";
 import "standards/open/v1/rag.proto";
 
 option go_package = "github.com/standards-exchange/protobuf-go/standards/open/v1";
@@ -19,8 +18,8 @@ option go_package = "github.com/standards-exchange/protobuf-go/standards/open/v1
 
 // Fund Accounting Monthly KPI & MI Report for governance oversight and reporting for UCITS funds
 message RT000FTL8 {
-    // Definition of a monthly metric
-    message MonthlyRAGMetric {
+    // Definition of a metric
+    message Metric {
         // The date the data was produced
         google.type.Date production_date = 1;
         // The end date of the reporting period of the metric (inclusive)
@@ -161,7 +160,7 @@ message RT000FTL8 {
         string comments = 99;
     }
     // KPIs & other key quantitative metrics
-    repeated MonthlyRAGMetric metrics = 20;
+    repeated Metric metrics = 20;
     // The Assets Under Management Definition
     message NetAssetValueSnapshot {
         // The date for which the nav snapshot is provided
