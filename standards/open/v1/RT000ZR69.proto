@@ -11,7 +11,6 @@ import "google/protobuf/timestamp.proto";
 import "google/protobuf/wrappers.proto";
 import "google/type/date.proto";
 import "google/type/month.proto";
-import "standards/open/v1/metric.proto";
 import "standards/open/v1/rag.proto";
 
 option go_package = "github.com/standards-exchange/protobuf-go/standards/open/v1";
@@ -19,8 +18,8 @@ option go_package = "github.com/standards-exchange/protobuf-go/standards/open/v1
 
 // Transfer Agency Monthly KPI & MI Report for governance oversight and reporting for UCITS funds
 message RT000ZR69 {
-    // Definition of a monthly metric
-    message MonthlyRAGMetric {
+    // Definition of a metric
+    message Metric {
         // The date the data was produced
         google.type.Date production_date = 1;
         // The end date of the reporting period of the metric (inclusive)
@@ -259,7 +258,7 @@ message RT000ZR69 {
         string comments = 99;
     }
     // KPIs & other key quantitative metrics for the current and preceding 13 periods
-    repeated MonthlyRAGMetric metrics = 20;
+    repeated Metric metrics = 20;
     // Recent late trade events. Convention is to report last twelve months.
     repeated LateTradeEvent late_trade_events = 53;
     // Recent complains. Convention is to report last thirteen months
