@@ -31,14 +31,14 @@ message DataFile {
   // Field Annotations
   map<string, FieldAnnotation> field_annotations = 7;
   // Attachments
-  map<string, FileAttachment>  file_attachments = 8;
+  repeated FileAttachment  file_attachments = 8;
   // File Attachment message definition
   message FileAttachment {
     // Previously deleted fields
     reserved 1, 2, 3, 4;
 
     // Name of the supporting file
-    // Format: fileAttachments/{fileAttachment}
+    // Format: dataFiles/{dataFile}fileAttachments/{fileAttachment}
     //
     // The supportingFile identifier has a one-to-one
     // mapping to a file in GCS. On creation, a check
@@ -93,7 +93,17 @@ message DataFile {
     // Field Tags
     repeated string tags = 7;
     // File Attachment Reference
-    repeated string file_attachments = 8;
+    repeated FileAttachmentReference file_attachments = 8;
+    // Definition of a file attachment reference
+    message FileAttachmentReference {
+      // Comment on file attachment reference
+      string comment = 1;
+      // Page number reference by field annotation
+      int32 page_number = 2;
+      // File attachment name
+      // Format: FDX/dataFiles/{dataFile}/fileAttachments/{fileAttachment}
+      string file_attachment_ref = 3;
+    }
   }
 
 
@@ -104,3 +114,4 @@ message DataFile {
 }
 
 
+// only support excel & pdf type
