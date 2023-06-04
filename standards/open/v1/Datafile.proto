@@ -103,6 +103,8 @@ message DataFile {
       // File attachment name
       // Format: FDX/dataFiles/{dataFile}/fileAttachments/{fileAttachment}
       string file_attachment_ref = 3;
+      // File name
+      string file_name = 4;
     }
   }
 
