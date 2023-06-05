@@ -99,7 +99,7 @@ message DataFile {
       // Comment on file attachment reference
       string comment = 1;
       // Page number reference by field annotation
-      int32 page_number = 2;
+      string page_number = 2;
       // File attachment name
       // Format: FDX/dataFiles/{dataFile}/fileAttachments/{fileAttachment}
       string file_attachment_ref = 3;
