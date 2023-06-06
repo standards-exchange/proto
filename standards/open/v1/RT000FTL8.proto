@@ -114,6 +114,28 @@ message RT000FTL8 {
             PROVIDER_SELF_ASSESSMENT = 28;
             // The service assessment rating (typically on a scale of 1 - below expectations to 5 - well above expectations)
             CUSTOMER_SERVICE_ASSESSMENT = 29;
+            // The number of nav delays caused by pricing
+            NAV_DELAYS_PRICING = 30;
+            // The total number of nav delays
+            NAV_DELAYS_TOTAL = 31;
+            // The total number of nav delays caused by trade inputs
+            NAV_DELAYS_TRADE_INPUT = 32;
+            // The total number of nav delays caused by FX
+            NAV_DELAYS_FX = 33;
+            // The total number of nav delays caused by cash income
+            NAV_DELAYS_CASH_INCOME = 34;
+            // The total number of nav delays caused by corporate actions
+            NAV_DELAYS_CORPORATE_ACTIONS = 35;
+            // The total number of nav delays caused by valuation validation
+            NAV_DELAYS_VALUATION_VALIDATION = 36;
+            // The total number of nav delays caused by quality control
+            NAV_DELAYS_QUALITY_CONTROL = 37;
+            // The total number of nav delays caused by system issues
+            NAV_DELAYS_SYSTEM = 38;
+            // The total number of nav delays caused by client or third party
+            NAV_DELAYS_CLIENT_OR_THIRD_PARTY = 39;
+            // The total number of nav delays caused by other causes
+            NAV_DELAYS_OTHER = 40;
         }
         // The identifier of what the metric measures
         MetricID metric_id = 8;
