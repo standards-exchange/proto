@@ -136,6 +136,20 @@ message RT000FTL8 {
             NAV_DELAYS_CLIENT_OR_THIRD_PARTY = 39;
             // The total number of nav delays caused by other causes
             NAV_DELAYS_OTHER = 40;
+            // The number of funds impacted by provider errors errors
+            FUNDS_IMPACTED_BY_PROVIDER_ERRORS = 41;
+            // The number of funds impacted by provider errors errors
+            FUNDS_IMPACTED_BY_PROVIDER_NON_PROVIDER_ERRORS = 42;
+            // The number of valuations impacted by provider errors
+            VALUATIONS_IMPACTED_PROVIDER_ERRORS = 43;
+            // The number of valuations impacted by non-provider errors
+            VALUATIONS_IMPACTED_NON_PROVIDER_ERRORS = 44;
+            // The number of valuations impacted in the current reporting period by provider errors
+            VALUATIONS_IMPACTED_CURRENT_REPORTING_PERIOD_PROVIDER_ERRORS = 45;
+            // The number of valuations impacted in the current reporting period by non-provider errors
+            VALUATIONS_IMPACTED_CURRENT_REPORTING_PERIOD_NON_PROVIDER_ERRORS = 46;
+            // The number of materially impacted valuations
+            MATERIALLY_IMPACTED_VALUATIONS_PROVIDER_ERROR = 47;
         }
         // The identifier of what the metric measures
         MetricID metric_id = 8;
