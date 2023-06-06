@@ -103,9 +103,9 @@ message RT000ZR69 {
             PHONE_QUERY_TIMELINESS_RATE = 25;
             // Number of system issues that occurred during the month.
             SYSTEM_ISSUES = 26;
-            // The self-assessment rating of the provider (typically on a scale of 1 - below expectations to 5 - well above expectations)
+            // The self-assessment rating of the provider (typically on a scale of 1 - below expectations to 9 - well above expectations)
             PROVIDER_SELF_ASSESSMENT = 27;
-            // The service assessment rating of the customer (typically on a scale of 1 - below expectations to 5 - well above expectations)
+            // The service assessment rating of the customer (typically on a scale of 1 - below expectations to 9 - well above expectations)
             CUSTOMER_SERVICE_ASSESSMENT = 28;
             // The net asset value at the end of the period in reporting currency
             NET_ASSET_VALUE_REPORTING_CURRENCY = 29;
