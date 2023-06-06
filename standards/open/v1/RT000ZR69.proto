@@ -163,12 +163,10 @@ message RT000ZR69 {
             NEW_AGENTS_OR_DISTRIBUTOR_ACCURACY = 55;
             // The percentage of new agent / distributor onboardings that occurred within the SLA
             NEW_AGENTS_OR_DISTRIBUTOR_TIMELINESS = 56;
-            // The number of core transactions handled processed in an automated fashion
-            CORE_TRANSACTIONS_STP = 57;
             // The total number of reportable data breaches that occurred
-            REPORTABLE_DATA_BREACHES = 58;
+            REPORTABLE_DATA_BREACHES = 57;
             // The total number of non-reportable data breaches
-            NON_REPORTABLE_DATA_BREACHES = 59;
+            NON_REPORTABLE_DATA_BREACHES = 58;
 
             // The total number of reports provided in the reporting period
             REPORTS_SENT = 101;
