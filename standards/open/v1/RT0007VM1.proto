@@ -1067,7 +1067,7 @@ message RT0007VM1 {
   }
   // Y / N requiring no further explanation
   enum YesNo {
-    // No
+    // Not Applicable
     YES_NO_NA_UNSPECIFIED = 0;
     // Yes
     Y = 1;
