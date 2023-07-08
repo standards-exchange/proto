@@ -145,7 +145,7 @@ message RT0007VM1 {
       (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article8Subfunds.0.SustainableInvestmentsIndicator?1:2"
     ];
     enum EAndSCharacteristic {
-      E_AND_S_CHARACTERISTICS_UNSPECIFIED = 0; // Unspecified
+      E_AND_S_CHARACTERISTICS_UNSPECIFIED = 0; // Not Applicable
       EREN = 1; // Environmental - renewable energy
       ERMA = 2; // Environmental - raw materials
       EWL = 3; // Environmental - water and land
@@ -183,7 +183,7 @@ message RT0007VM1 {
       (standards.open.v1.fdx_options).description = "The field is required if SOTH is defined in the list of values for the field eAndSCharacteristics"
     ];
     enum SustainableInvestmentObjective {
-      SUSTAINABLE_INVESTMENT_OBJECTIVES_UNSPECIFIED = 0; // Unspecified
+      SUSTAINABLE_INVESTMENT_OBJECTIVES_UNSPECIFIED = 0; // Not Applicable
       CCA = 1; // Climate change adaptation
       UPWM = 2; // The sustainable use and protection of water and marine resources
       TCE = 3; // The transition to a circular economy
@@ -207,7 +207,7 @@ message RT0007VM1 {
       (standards.open.v1.fdx_options).default = "2"
     ];
     enum InvestmentStrategy {
-      INVESTMENT_STRATEGY_UNSPECIFIED = 0; // UNSPECIFIED
+      INVESTMENT_STRATEGY_UNSPECIFIED = 0; // Not Applicable
       THE = 1; // Thematic
       ESGI = 2; // ESG integration
       ESGE = 3; // ESG engagement
@@ -296,7 +296,7 @@ message RT0007VM1 {
       (standards.open.v1.fdx_options).question = "Does the sub-fund use derivatives as defined in Article 2(1), point (29), of Regulation (EU) No 600/2014 to attain the environmental or social characteristics they promote?"
     ];
     enum TACalculationMethod {
-      TA_CALCULATION_METHOD_UNSPECIFIED = 0; // UNSPECIFIED
+      TA_CALCULATION_METHOD_UNSPECIFIED = 0; // Not Applicable
       CAPEX = 1; // Capital expenditure
       OPEX = 2; // Operational expenditure
       T = 3; // TURNOVER
@@ -642,7 +642,7 @@ message RT0007VM1 {
     ];
     // What is the sustainable investment objective of the sub-fund?
     enum EnvironmentalAndSocialObjectives {
-      ENVIRONMENTAL_AND_SOCIAL_OBJECTIVES_UNSPECIFIED = 0; // UNSPECIFIED
+      ENVIRONMENTAL_AND_SOCIAL_OBJECTIVES_UNSPECIFIED = 0; // Not Applicable
       CCA = 1; // Climate change adaptation
       UPWM = 2; // The sustainable use and protection of water and marine resources
       TCE = 3; // Transition to a circular economy
@@ -663,7 +663,7 @@ message RT0007VM1 {
       (standards.open.v1.fdx_options).default = "2"
     ];
     enum InvestmentStrategy {
-      INVESTMENT_STRATEGY_UNSPECIFIED = 0; // UNSPECIFIED
+      INVESTMENT_STRATEGY_UNSPECIFIED = 0; // Not Applicable
       THE = 1; // Thematic
       ESGI = 2; // ESG integration
       ESGE = 3; // ESG engagement
@@ -750,7 +750,7 @@ message RT0007VM1 {
       (standards.open.v1.fdx_options).default = "2"
     ];
     enum TACalculationMethod {
-      TA_CALCULATION_METHOD_UNSPECIFIED = 0; // UNSPECIFIED
+      TA_CALCULATION_METHOD_UNSPECIFIED = 0; // Not Applicable
       CAPEX = 1; // Capital expenditure
       OPEX = 2; // Operational expenditure
       T = 3; // TURNOVER
