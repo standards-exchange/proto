@@ -25,9 +25,11 @@ option go_package = "github.com/standards-exchange/protobuf-go/standards/open/v1
 message RT0007VM1 {
   message Header {
     enum ReportType {
+      // SFDR_PRECONTRACTUAL
       SFDR_PRECONTRACTUAL = 0;
     }
     enum Version {
+      // v1.0.0
       V1_0_0 = 0;
     }
     // Required
