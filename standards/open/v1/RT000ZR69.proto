@@ -81,9 +81,9 @@ message RT000ZR69 {
             NUMBER_OF_UPHELD_COMPLAINTS = 14;
             // The total number of accounts
             NUMBER_OF_ACCOUNTS = 15;
-            // Total number of accounts with balances
+            // Total percentage of accounts with balances
             PERCENTAGE_ACCOUNTS_WITH_BALANCES = 16;
-            // The number of accounts in good order at the end of the reporting period
+            // The percentage of accounts in good order at the end of the reporting period
             PERCENTAGE_ACCOUNTS_IN_GOOD_ORDER = 17;
             // The percentage of large trade reports sent within the agreed timeframe
             INVESTOR_REPORTS_TIMELINESS = 18;
