@@ -196,11 +196,11 @@ message RT0007VM1 {
       PPC = 4; // Pollution prevention and control
       PRBE = 5; // The protection and restoration of biodiversity and ecosystems
       SO = 6; // Social objective
-      CMM = 7; // Climate change mitigation
+      CCM = 7; // Climate change mitigation
     }
     // What are the objectives of the sustainable investments that the sub-fund partially intends to make?
     // The field is required if the value of the field sustainableInvestmentsIndicator is Y
-    repeated SustainableInvestmentObjective sustainable_investments_objectives = 10 [
+    SustainableInvestmentObjective sustainable_investments_objectives = 10 [
       json_name="sustainableInvestmentsObjectives",
       (standards.open.v1.fdx_options).question = "What are the objectives of the sustainable investments that the sub-fund partially intends to make?",
       (standards.open.v1.fdx_options).description = "The field is required if the value of the field sustainableInvestmentsIndicator is Y",
@@ -208,7 +208,7 @@ message RT0007VM1 {
     ];
     // Does the sub-fund consider principle adverse impacts on sustainability factors?
     YesNo  principal_adverse_impact_consideration_indicator = 11 [
-      json_name="principalAdverseImpactConsiderationIndicator",
+      json_name="principalAdversImpactConsiderationIndicator",
       (standards.open.v1.fdx_options).question = "Does the sub-fund consider principle adverse impacts on sustainability factors?",
       (standards.open.v1.fdx_options).default = "2"
     ];
@@ -658,13 +658,13 @@ message RT0007VM1 {
       SO = 7; // Social objective
       CCM = 8; // Climate change mitigation
     }
-    repeated EnvironmentalAndSocialObjectives environmental_and_social_objectives = 8 [
+    EnvironmentalAndSocialObjectives environmental_and_social_objectives = 8 [
       json_name = "environmentalAndSocialObjectives",
       (standards.open.v1.fdx_options).question = "What is the sustainable investment objective of the sub-fund?"
     ];
     // Does the sub-fund consider principal adverse impacts on sustainability factors?
     YesNo  principal_adverse_impact_consideration_indicator = 9 [
-      json_name="principalAdverseImpactConsiderationIndicator",
+      json_name="principalAdversImpactConsiderationIndicator",
       (standards.open.v1.fdx_options).question = "Does the sub-fund consider principal adverse impacts on sustainability factors?",
       (standards.open.v1.fdx_options).default = "2"
     ];
