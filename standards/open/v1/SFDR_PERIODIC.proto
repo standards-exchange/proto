@@ -41,16 +41,19 @@ message SFDR_PERIODIC {
     // UUID format Unique identifier following the rfc 4122 norm (see https://www.rfc-editor.org/rfc/rfc4122)
     string report_uid = 1 [
       json_name="reportUid",
+      (standards.open.v1.fdx_options).required = true,
       (standards.open.v1.fdx_options).question = "UUID format Unique identifier following the rfc 4122 norm (see https://www.rfc-editor.org/rfc/rfc4122)"
     ];
     // Required
     ReportType report_type = 2 [
       json_name="reportType",
+      (standards.open.v1.fdx_options).required = true,
       (standards.open.v1.fdx_options).question = "The Report Type (i.e. SFDR_PRECONTRACTUAL)"
     ];
     // Required
     Version version = 3 [
       json_name="version",
+      (standards.open.v1.fdx_options).required = true,
       (standards.open.v1.fdx_options).question = "Version (i.e. V1.0.0)"
     ];
     string created_by = 4 [
@@ -69,43 +72,53 @@ message SFDR_PERIODIC {
   }
   // The header of the report (required)
   Header header = 1 [
-    (standards.open.v1.fdx_options).question = "Metadata about the report"
+    (standards.open.v1.fdx_options).question = "Metadata about the report",
+    (standards.open.v1.fdx_options).required = true
   ];
   // The payload of the report (required)
   message Payload {
     SFDRPeriodicReport sfdr_periodic_report = 1 [
       json_name="sfdrPeriodicReport",
+      (standards.open.v1.fdx_options).required = true,
       (standards.open.v1.fdx_options).question = "The questions to be answered for the entity and subfunds"
     ];
   }
   // The payload of the report
-  Payload payload = 2 [(standards.open.v1.fdx_options).question = "Data to be submitted to the CSSF"];
+  Payload payload = 2 [
+    (standards.open.v1.fdx_options).question = "Data to be submitted to the CSSF",
+    (standards.open.v1.fdx_options).required = true
+  ];
   // The SFDR Periodic Report
   message SFDRPeriodicReport {
     // CSSF code of the entity
     string entity_cssf_code = 1 [
       json_name="entityCssfCode",
+      (standards.open.v1.fdx_options).required = true,
       (standards.open.v1.fdx_options).question = "CSSF code of the entity"
     ];
     // The Exercise End Date
     // The ISO 8601 formatted date (e.g. 2018-11-13)
     string exercise_end_date = 2 [
       json_name="exerciseEndDate",
+      (standards.open.v1.fdx_options).required = true,
       (standards.open.v1.fdx_options).question = "CSSF code of the entity"
     ];
     // List of Article 8 subfunds
     repeated Article8Subfund article8_subfunds = 3 [
       json_name="article8Subfunds",
+      (standards.open.v1.fdx_options).required = true,
       (standards.open.v1.fdx_options).question = "Complete the following questions for all Article 8 subfunds"
     ];
     // List of Article 9 subfunds
     repeated Article9Subfund article9_subfunds = 4 [
       json_name="article9Subfunds",
+      (standards.open.v1.fdx_options).required = true,
       (standards.open.v1.fdx_options).question = "Complete the following questions for all Article  subfunds"
     ];
     // List of Article 9 subfunds
     repeated TopInvestmentsSubfunds top_investments_subfunds = 5 [
       json_name="topInvestmentsSubfunds",
+      (standards.open.v1.fdx_options).required = true,
       (standards.open.v1.fdx_options).question = "Largest investments of the article 8 and article 9 subfunds array"
     ];
   }
@@ -114,12 +127,14 @@ message SFDR_PERIODIC {
     // CSSF code of the sub-fund. Number corresponding to the compartment without zero in front of the number. For a stand-alone fund, please enter 0. For a multiple compartment fund, please indicate the corresponding number.
     string subfund_cssf_code = 1 [
       json_name="subfundCssfCode",
+      (standards.open.v1.fdx_options).required = true,
       (standards.open.v1.fdx_options).question = "CSSF code of the sub-fund.",
       (standards.open.v1.fdx_options).description = "Number corresponding to the compartment without zero in front of the number. For a stand-alone fund, please enter 0. For a multiple compartment fund, please indicate the corresponding number."
     ];
     // Has the subfund been liquidated during the year?
     YesNo  subfund_liquidated_indicator = 2 [
       json_name="subfundLiquidatedIndicator",
+      (standards.open.v1.fdx_options).required = true,
       (standards.open.v1.fdx_options).question = "Has the subfund been liquidated during the year?",
       (standards.open.v1.fdx_options).default = "2"
     ];
@@ -134,6 +149,7 @@ message SFDR_PERIODIC {
     // The subfund promoted Environmental/Social characterisitics and while it did not have as its objective a sustainable investment, it made sustainable investments
     YesNo  sustainable_investments_indicator = 4 [
       json_name="sustainableInvestmentsIndicator",
+      (standards.open.v1.fdx_options).required = true,
       (standards.open.v1.fdx_options).question = "The subfund promoted Environmental/Social characterisitics and while it did not have as its objective a sustainable investment, it made sustainable investments",
       (standards.open.v1.fdx_options).default = "1"
     ];
@@ -178,6 +194,7 @@ message SFDR_PERIODIC {
     }
     repeated EAndSCharacteristic e_and_s_characteristics = 9 [
       json_name="eAndSCharacteristics",
+      (standards.open.v1.fdx_options).required = true,
       (standards.open.v1.fdx_options).question = "What environmental and/or social characteristics are promoted by the sub-fund?",
       (standards.open.v1.fdx_options).description = "The field is required if the value of the field Sustainable Investments Indicator is Y"
     ];
@@ -198,6 +215,7 @@ message SFDR_PERIODIC {
     // Were good governance practices of the investee companies considered for investments aligned to environmental and/or social characteristics respectively investments with a sustainable objectives?
     YesNo  good_governance_practices_indicator = 12 [
       json_name="goodGovernancePracticesIndicator",
+      (standards.open.v1.fdx_options).required = true,
       (standards.open.v1.fdx_options).question = "Were good governance practices of the investee companies considered for investments aligned to environmental and/or social characteristics respectively investments with a sustainable objectives?",
       (standards.open.v1.fdx_options).default = "2"
     ];
@@ -227,12 +245,14 @@ message SFDR_PERIODIC {
     // Does the sub-fund consider principle adverse impacts on sustainability factors?
     YesNo  principal_adverse_impact_consideration_indicator = 16 [
       json_name="principalAdverseImpactConsiderationIndicator",
+      (standards.open.v1.fdx_options).required = true,
       (standards.open.v1.fdx_options).question = "Does the sub-fund consider principle adverse impacts on sustainability factors?",
       (standards.open.v1.fdx_options).default = "2"
     ];
     // Proportion of investments aligned with environmental or social characteristics (in %)
     double aligned_e_s_characteristics_investments_proportion = 17 [
       json_name="alignedESCharacteristicsInvestmentsProportion",
+      (standards.open.v1.fdx_options).required = true,
       (standards.open.v1.fdx_options).question = "Proportion of investments aligned with environmental or social characteristics (in %)"
     ];
     // Proportion of sustainable investments (in %)
@@ -258,11 +278,13 @@ message SFDR_PERIODIC {
     // Proportion of investments aligned with environmental or social characteristics that do not qualify as sustainable investments (in %)
     double other_e_s_characteristics_investments_proportion = 23 [
       json_name="otherESCharacteristicsInvestmentsProportion",
+      (standards.open.v1.fdx_options).required = true,
       (standards.open.v1.fdx_options).question = "Proportion of investments aligned with environmental or social characteristics that do not qualify as sustainable investments (in %)"
     ];
     // Proportion of remaining investments which are neither aligned with the environmental or social characteristics, nor are qualified as sustainable investments (in %)
     double remaining_investments_proportion = 24 [
       json_name="remainingInvestmentsProportion",
+      (standards.open.v1.fdx_options).required = true,
       (standards.open.v1.fdx_options).question = "Proportion of remaining investments which are neither aligned with the environmental or social characteristics, nor are qualified as sustainable investments (in %)"
     ];
     // Did the subfund invest in fossil gas related activities complying with the EU Taxonomy ?
@@ -381,6 +403,7 @@ message SFDR_PERIODIC {
     // Has a specific index been designated as a reference benchmark for the purpose of attaining the environmental and/or social characteristics promoted by the subfund?
     YesNo  reference_benchmark_designated_indicator = 47 [
       json_name="referenceBenchmarkDesignatedIndicator",
+      (standards.open.v1.fdx_options).required = true,
       (standards.open.v1.fdx_options).question = "Has a specific index been designated as a reference benchmark for the purpose of attaining the environmental and/or social characteristics promoted by the subfund?",
       (standards.open.v1.fdx_options).default = "1"
     ];
@@ -414,12 +437,14 @@ message SFDR_PERIODIC {
     // CSSF code of the sub-fund. Number corresponding to the compartment without zero in front of the number. For a stand-alone fund, please enter 0. For a multiple compartment fund, please indicate the corresponding number.
     string subfund_cssf_code = 1 [
       json_name = "subfundCssfCode",
+      (standards.open.v1.fdx_options).required = true,
       (standards.open.v1.fdx_options).question = "CSSF code of the sub-fund.",
       (standards.open.v1.fdx_options).description = "Number corresponding to the compartment without zero in front of the number. For a stand-alone fund, please enter 0. For a multiple compartment fund, please indicate the corresponding number."
     ];
     // Has the subfund been liquidated during the year?
     YesNo  subfund_liquidated_indicator = 2 [
       json_name = "subfundLiquidatedIndicator",
+      (standards.open.v1.fdx_options).required = true,
       (standards.open.v1.fdx_options).question = "Has the subfund been liquidated during the year?",
       (standards.open.v1.fdx_options).default = "2"
     ];
@@ -458,6 +483,7 @@ message SFDR_PERIODIC {
     // The subfund made sustainable investments with a social objective
     YesNo  social_objective_indicator = 8 [
       json_name = "socialObjectiveIndicator",
+      (standards.open.v1.fdx_options).required = true,
       (standards.open.v1.fdx_options).question = "The subfund made sustainable investments with a social objective",
       (standards.open.v1.fdx_options).default = "2"
     ];
@@ -469,6 +495,7 @@ message SFDR_PERIODIC {
     // Were good governance practices of the investee companies considered for investments with sustainable objectives?
     YesNo  good_governance_practices_indicator = 10 [
       json_name = "goodGovernancePracticesIndicator",
+      (standards.open.v1.fdx_options).required = true,
       (standards.open.v1.fdx_options).question = "Were good governance practices of the investee companies considered for investments with sustainable objectives?",
       (standards.open.v1.fdx_options).default = "2"
     ];
@@ -480,26 +507,26 @@ message SFDR_PERIODIC {
       (standards.open.v1.fdx_options).description = "The field is required if the value of the field goodGovernancePolicyIndicator is N",
       (standards.open.v1.fdx_options).conditional = "Payload.SfdrPeriodicReport.Article9Subfunds.0.GoodGovernancePolicyIndicator?2:1"
     ];
-    // What were the objectives of the sustainable investments that the subfund made?
-    enum EnvironmentalAndSocialObjectives {
-      ENVIRONMENTAL_AND_SOCIAL_OBJECTIVES_UNSPECIFIED = 0; // Not Applicable
+    enum SustainableInvestmentObjective {
+      SUSTAINABLE_INVESTMENT_OBJECTIVES_UNSPECIFIED = 0; // Not Applicable
       CCM = 1; // Climate change mitigation
       CCA = 2; // Climate change adaptation
       UPWM = 3; // The sustainable use and protection of water and marine resources
-      TCE = 4; // Transition to a circular economy
+      TCE = 4; // The transition to a circular economy
       PPC = 5; // Pollution prevention and control
       PRBE = 6; // The protection and restoration of biodiversity and ecosystems
-      RCE = 7; // Reduction in carbon emissions
-      SO = 8; // Social objective
+      SO = 7; // Social objective
     }
     // What were the objectives of the sustainable investments that the subfund made?
-    repeated EnvironmentalAndSocialObjectives environmental_and_social_objectives = 12 [
-      json_name = "environmentalAndSocialObjectives",
+    repeated SustainableInvestmentObjective sustainable_investments_objectives = 12 [
+      json_name="sustainableInvestmentsObjectives",
+      (standards.open.v1.fdx_options).required = true,
       (standards.open.v1.fdx_options).question = "What were the objectives of the sustainable investments that the subfund made?"
     ];
     // Did the subfund consider principle adverse impacts on sustainability factors?
     YesNo  principal_adverse_impact_consideration_indicator = 16 [
       json_name = "principalAdverseImpactConsiderationIndicator",
+      (standards.open.v1.fdx_options).required = true,
       (standards.open.v1.fdx_options).question = "Did the subfund consider principle adverse impacts on sustainability factors?",
       (standards.open.v1.fdx_options).default = "2"
     ];
@@ -521,6 +548,7 @@ message SFDR_PERIODIC {
     // Proportion of not sustainable investments (in%)
     double not_sustainable_investments_proportion = 20 [
       json_name = "notSustainableInvestmentsProportion",
+      (standards.open.v1.fdx_options).required = true,
       (standards.open.v1.fdx_options).question = "Proportion of not sustainable investments (in%)"
     ];
     // Did the subfund invest in fossil gas related activities complying with the EU Taxonomy ?
@@ -637,6 +665,7 @@ message SFDR_PERIODIC {
     // Has a specific index been designated as a reference benchmark for the purpose of attaining the environmental and/or social characteristics promoted by the subfund?
     YesNo  reference_benchmark_designated_indicator = 47 [
       json_name = "referenceBenchmarkDesignatedIndicator",
+      (standards.open.v1.fdx_options).required = true,
       (standards.open.v1.fdx_options).question = "Has a specific index been designated as a reference benchmark for the purpose of attaining the environmental and/or social characteristics promoted by the subfund?",
       (standards.open.v1.fdx_options).default = "1"
     ];
@@ -670,12 +699,14 @@ message SFDR_PERIODIC {
     // CSSF code of the sub-fund. Number corresponding to the compartment without zero in front of the number. For a stand-alone fund, please enter 0. For a multiple compartment fund, please indicate the corresponding number.
     string subfund_cssf_code = 1 [
       json_name="subfundCssfCode",
+      (standards.open.v1.fdx_options).required = true,
       (standards.open.v1.fdx_options).question = "CSSF code of the sub-fund.",
       (standards.open.v1.fdx_options).description = "Number corresponding to the compartment without zero in front of the number. For a stand-alone fund, please enter 0. For a multiple compartment fund, please indicate the corresponding number."
     ];
     // ISIN code available?
     YesNo  subfund_liquidated_indicator = 2 [
       json_name = "largestInvestmentISINCodeIndicator",
+      (standards.open.v1.fdx_options).required = true,
       (standards.open.v1.fdx_options).question = "ISIN code available?",
       (standards.open.v1.fdx_options).default = "2"
     ];
@@ -693,6 +724,7 @@ message SFDR_PERIODIC {
     // Percentage of assets
     double largest_investment_assets_percentage = 5 [
       json_name = "largestInvestmentAssetsPercentage",
+      (standards.open.v1.fdx_options).required = true,
       (standards.open.v1.fdx_options).question = "Percentage of assets"
     ];
   }
