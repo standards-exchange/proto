@@ -200,7 +200,7 @@ message RT0007VM1 {
     }
     // What are the objectives of the sustainable investments that the sub-fund partially intends to make?
     // The field is required if the value of the field sustainableInvestmentsIndicator is Y
-    SustainableInvestmentObjective sustainable_investments_objectives = 10 [
+    repeated SustainableInvestmentObjective sustainable_investments_objectives = 10 [
       json_name="sustainableInvestmentsObjectives",
       (standards.open.v1.fdx_options).question = "What are the objectives of the sustainable investments that the sub-fund partially intends to make?",
       (standards.open.v1.fdx_options).description = "The field is required if the value of the field sustainableInvestmentsIndicator is Y",
@@ -658,7 +658,7 @@ message RT0007VM1 {
       SO = 7; // Social objective
       CCM = 8; // Climate change mitigation
     }
-    EnvironmentalAndSocialObjectives environmental_and_social_objectives = 8 [
+    repeated EnvironmentalAndSocialObjectives environmental_and_social_objectives = 8 [
       json_name = "environmentalAndSocialObjectives",
       (standards.open.v1.fdx_options).question = "What is the sustainable investment objective of the sub-fund?"
     ];
