@@ -182,8 +182,7 @@ message RT0007VM1 {
     repeated EAndSCharacteristic e_and_s_characteristics = 7 [
       json_name="eAndSCharacteristics",
       (standards.open.v1.fdx_options).required = true,
-      (standards.open.v1.fdx_options).question = "What environmental and/or social characteristics are promoted by the sub-fund?",
-      (standards.open.v1.fdx_options).description = "The field is required if the value of the field Sustainable Investments Indicator is Y"
+      (standards.open.v1.fdx_options).question = "What environmental and/or social characteristics are promoted by the sub-fund?"
     ];
     // Please specify other environmental characteristics.
     // The field is required if EOTH is defined in the list of values for the field eAndSCharacteristics
