@@ -22,18 +22,18 @@ option go_package = "github.com/standards-exchange/protobuf-go/standards/open/v1
 // The CSSF SFDR PreContractual Data Collection Template is a data standard template designed to facilitate
 // data collection in a manner that can be seamlessly used to populate the CSSF format
 message RT0008FD7 {
+  // The umbrella name
+  string umbrella_name = 91;
+  // The umbrella internal identifier
+  string umbrella_internal_identifier = 92;
+  // CSSF code of the umbrellas
+  string umbrella_cssf_code = 93 [
+    json_name="entityCssfCode",
+    (standards.open.v1.fdx_options).question = "CSSF code of the entity"
+  ];
   // Data for a particular sub-fund
   repeated SubFundData sub_fund_data = 1;
   message SubFundData {
-    // The umbrella name
-    string umbrella_name = 91;
-    // The umbrella internal identifier
-    string umbrella_internal_identifier = 92;
-    // CSSF code of the umbrellas
-    string umbrella_cssf_code = 93 [
-      json_name="entityCssfCode",
-      (standards.open.v1.fdx_options).question = "CSSF code of the entity"
-    ];
     // The reporting name of the fund
     string fund_name = 94;
     // The internal identifier of the sub-fund
@@ -1028,17 +1028,17 @@ message RT0008FD7 {
     ];
     // Definition of information to be provided per Other sub fund
     message OtherSubfundResponses {
-//      // The reporting name of the fund
-//      string fund_name = 91;
-//      // The internal identifier of the sub-fund
-//      string fund_internal_identifier = 92;
-//      // CSSF code of the sub-fund. Number corresponding to the compartment without zero in front of the number. For a stand-alone fund, please enter 0. For a multiple compartment fund, please indicate the corresponding number.
-//      int32 subfund_cssf_code = 1 [
-//        json_name = "subfundCssfCode",
-//        (standards.open.v1.fdx_options).required = true,
-//        (standards.open.v1.fdx_options).question = "CSSF code of the sub-fund.",
-//        (standards.open.v1.fdx_options).description = "Number corresponding to the compartment without zero in front of the number. For a stand-alone fund, please enter 0. For a multiple compartment fund, please indicate the corresponding number."
-//      ];
+      //      // The reporting name of the fund
+      //      string fund_name = 91;
+      //      // The internal identifier of the sub-fund
+      //      string fund_internal_identifier = 92;
+      //      // CSSF code of the sub-fund. Number corresponding to the compartment without zero in front of the number. For a stand-alone fund, please enter 0. For a multiple compartment fund, please indicate the corresponding number.
+      //      int32 subfund_cssf_code = 1 [
+      //        json_name = "subfundCssfCode",
+      //        (standards.open.v1.fdx_options).required = true,
+      //        (standards.open.v1.fdx_options).question = "CSSF code of the sub-fund.",
+      //        (standards.open.v1.fdx_options).description = "Number corresponding to the compartment without zero in front of the number. For a stand-alone fund, please enter 0. For a multiple compartment fund, please indicate the corresponding number."
+      //      ];
       // Are sustainability risks integrated into the investment decisions for this financial product (Art.6 SFDR)?
       YesNo  article6_indicator = 2 [
         json_name = "article6Indicator",
@@ -1084,4 +1084,8 @@ message RT0008FD7 {
       N = 2;
     }
   }
+}
+
+message RT0008FD7_batch {
+  repeated RT0008FD7 response = 1;
 }
