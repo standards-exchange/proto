@@ -118,8 +118,7 @@ message RT0008FD7 {
       repeated EAndSCharacteristic e_and_s_characteristics = 7 [
         json_name="eAndSCharacteristics",
         (standards.open.v1.fdx_options).required = true,
-        (standards.open.v1.fdx_options).question = "What environmental and/or social characteristics are promoted by the sub-fund?",
-        (standards.open.v1.fdx_options).description = "The field is required if the value of the field Sustainable Investments Indicator is Y"
+        (standards.open.v1.fdx_options).question = "What environmental and/or social characteristics are promoted by the sub-fund?"
       ];
       // Please specify other environmental characteristics.
       // The field is required if EOTH is defined in the list of values for the field eAndSCharacteristics
@@ -154,7 +153,7 @@ message RT0008FD7 {
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article8Subfunds.0.SustainableInvestmentsIndicator?1:2"
       ];
       // Does the sub-fund consider principle adverse impacts on sustainability factors?
-      YesNo  principal_adverse_impact_consideration_indicator = 11 [
+      YesNo  principal_advers_impact_consideration_indicator = 11 [
         json_name="principalAdversImpactConsiderationIndicator",
         (standards.open.v1.fdx_options).required = true,
         (standards.open.v1.fdx_options).question = "Does the sub-fund consider principle adverse impacts on sustainability factors?",
@@ -629,7 +628,7 @@ message RT0008FD7 {
         (standards.open.v1.fdx_options).question = "What is the sustainable investment objective of the sub-fund?"
       ];
       // Does the sub-fund consider principal adverse impacts on sustainability factors?
-      YesNo  principal_adverse_impact_consideration_indicator = 9 [
+      YesNo  principal_advers_impact_consideration_indicator = 9 [
         json_name="principalAdversImpactConsiderationIndicator",
         (standards.open.v1.fdx_options).required = true,
         (standards.open.v1.fdx_options).question = "Does the sub-fund consider principal adverse impacts on sustainability factors?",
@@ -882,7 +881,7 @@ message RT0008FD7 {
         (standards.open.v1.fdx_options).default = "2"
       ];
       // Does the product related website disclosures available through the above-mentioned hyperlink, provide all information set out in Article 10(1) SFDR and Articles 38 to 49 SFDR RTS, through the sections and order as specified in Article 37 SFDR RTS?
-      YesNo  compliance_art_37_indicator = 40 [
+      YesNo  compliance_art37_indicator = 40 [
         json_name = "complianceArt37Indicator",
         (standards.open.v1.fdx_options).required = true,
         (standards.open.v1.fdx_options).question = "Does the product related website disclosures available through the above-mentioned hyperlink, provide all information set out in Article 10(1) SFDR and Articles 38 to 49 SFDR RTS, through the sections and order as specified in Article 37 SFDR RTS?",
@@ -1028,17 +1027,6 @@ message RT0008FD7 {
     ];
     // Definition of information to be provided per Other sub fund
     message OtherSubfundResponses {
-      //      // The reporting name of the fund
-      //      string fund_name = 91;
-      //      // The internal identifier of the sub-fund
-      //      string fund_internal_identifier = 92;
-      //      // CSSF code of the sub-fund. Number corresponding to the compartment without zero in front of the number. For a stand-alone fund, please enter 0. For a multiple compartment fund, please indicate the corresponding number.
-      //      int32 subfund_cssf_code = 1 [
-      //        json_name = "subfundCssfCode",
-      //        (standards.open.v1.fdx_options).required = true,
-      //        (standards.open.v1.fdx_options).question = "CSSF code of the sub-fund.",
-      //        (standards.open.v1.fdx_options).description = "Number corresponding to the compartment without zero in front of the number. For a stand-alone fund, please enter 0. For a multiple compartment fund, please indicate the corresponding number."
-      //      ];
       // Are sustainability risks integrated into the investment decisions for this financial product (Art.6 SFDR)?
       YesNo  article6_indicator = 2 [
         json_name = "article6Indicator",
