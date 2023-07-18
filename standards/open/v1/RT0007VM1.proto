@@ -127,7 +127,7 @@ message RT0007VM1 {
       (standards.open.v1.fdx_options).default = "1"
     ];
     // Minimum proportion of sustainable investments.
-    double sustainableInvestmentsMinimumProportion1 = 3 [
+    double sustainable_investments_minimum_proportion1 = 3 [
       json_name = "sustainableInvestmentsMinimumProportion1",
       (standards.open.v1.fdx_options).question = "Minimum proportion of sustainable investments.",
       (standards.open.v1.fdx_options).description = "The field is required if the value of the field Sustainable Investments Indicator is Y",
