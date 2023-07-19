@@ -45,9 +45,13 @@ message RT0009DB1 {
         ];
         // Enumeration of license types
         enum License {
+            // License Unspecified
             LICENSE_UNSPECIFIED = 0;
+            // UCITS
             UCITS = 1;
+            // AIF
             AIF = 2;
+            // Money Market
             MONEY_MARKET = 3;
         }
         // What licenses does the entity have
@@ -3136,9 +3140,13 @@ message RT0009DB1 {
     // Definition of questions relating to 5. NAV DETERMINATION
     message NavDetermination {
         enum AccountingStandard {
+            // Other
             OTHER = 0;
+            // IFRS
             IFRS = 1;
+            // US GAAP
             US_GAAP = 2;
+            // Luxembourg GAAP
             LUXEMBOURG_GAAP = 3;
         }
         // 1.	Which accounting standards were adopted by the Fund for the preparation of the annual report?
@@ -5713,7 +5721,9 @@ message RT0009DB1 {
     ];
     // Enumberation of "Active or in Liquidation"
     enum ActiveOrLiquidation {
+        // Active
         ACTIVE = 0;
+        // In Liquidation
         IN_LIQUIDATION = 1;
     }
 }
