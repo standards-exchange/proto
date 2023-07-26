@@ -85,7 +85,7 @@ message DataFile {
       APPROVED = 4;
     }
     // Comments on field
-    repeated FieldAnnotationComment comments = 4;
+    repeated string comments = 4 [deprecated = true];
     // Field description
     string field_description = 5;
     // Update time of field
@@ -106,6 +106,8 @@ message DataFile {
       // File name
       string file_name = 4;
     }
+    // List of field annotation comments
+    repeated FieldAnnotationComment field_annotation_comments = 9;
     // Definition of a field annotation comment
     message FieldAnnotationComment {
       // Sender Email
