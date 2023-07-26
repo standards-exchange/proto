@@ -85,7 +85,7 @@ message DataFile {
       APPROVED = 4;
     }
     // Comments on field
-    repeated string comments = 4;
+    repeated FieldAnnotationComment comments = 4;
     // Field description
     string field_description = 5;
     // Update time of field
@@ -105,6 +105,19 @@ message DataFile {
       string file_attachment_ref = 3;
       // File name
       string file_name = 4;
+    }
+    // Definition of a field annotation comment
+    message FieldAnnotationComment {
+      // Sender Email
+      string sender_email = 1;
+      // Sent time
+      google.protobuf.Timestamp sent_time = 2;
+      // Update time
+      google.protobuf.Timestamp update_time = 3;
+      // Content is the message to display
+      string content = 4;
+      // Mentioned user's resource names
+      repeated string mentioned_users = 5;
     }
   }
 
