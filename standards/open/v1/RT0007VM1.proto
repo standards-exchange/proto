@@ -503,7 +503,7 @@ message RT0007VM1 {
     // Forbidden if UCITS or Pension fund. Format YYYY-MM-DD.
     string ramp_up_period_end_date = 56 [
       json_name="rampUpPeriodEndDate",
-      (standards.open.v1.fdx_options).question = "Ramp-up period end date (YYYY-MM-DD)",
+      (standards.open.v1.fdx_options).question = "Ramp-up period end date. Format: YYYY-MM-DD",
       (standards.open.v1.fdx_options).description = "Required if AIF and if the value of the field rampUpPeriodIndicator is Y. Forbidden if UCITS or Pension fund. Format YYYY-MM-DD.",
       (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article8Subfunds.0.RampUpPeriodIndicator?1:2",
       (standards.open.v1.fdx_options).validation = "^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$"
@@ -615,7 +615,7 @@ message RT0007VM1 {
     string template_latest_issued_date = 70 [
       json_name = "templateLatestIssuedDate",
       (standards.open.v1.fdx_options).required = true,
-      (standards.open.v1.fdx_options).question = "Date of the latest issued pre-contractual template (version)"
+      (standards.open.v1.fdx_options).question = "Date of the latest issued pre-contractual template (version). Format: YYYY-MM-DD"
     ];
   }
   // Definition of information to be provided per Article 9 sub fund
@@ -972,7 +972,7 @@ message RT0007VM1 {
     // Required if AIF and if the value of the field rampUpPeriodIndicator is Y. Forbidden if UCITS or Pension fund
     string ramp_up_period_end_date = 43 [
       json_name = "rampUpPeriodEndDate",
-      (standards.open.v1.fdx_options).question = "Ramp-up period end date",
+      (standards.open.v1.fdx_options).question = "Ramp-up period end date. Format: YYYY-MM-DD",
       (standards.open.v1.fdx_options).description = "Required if AIF and if the value of the field rampUpPeriodIndicator is Y. Forbidden if UCITS or Pension fund",
       (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article9Subfunds.0.RampUpPeriodIndicator?1:2"
     ];
@@ -1080,7 +1080,7 @@ message RT0007VM1 {
     string template_latest_issued_date = 57 [
       json_name = "templateLatestIssuedDate",
       (standards.open.v1.fdx_options).required = true,
-      (standards.open.v1.fdx_options).question = "Date of the latest issued pre-contractual template (version) (YYYY-MM-DD)",
+      (standards.open.v1.fdx_options).question = "Date of the latest issued pre-contractual template (version). Format: YYYY-MM-DD",
       (standards.open.v1.fdx_options).validation = "^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$"
     ];
     }
