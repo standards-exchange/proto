@@ -326,7 +326,7 @@ message RT0007VM1 {
     }
     // Taxonomy-aligned activities are expressed as a share of.
     // The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y
-    repeated TACalculationMethod taCalculationMethod = 24 [
+    repeated TACalculationMethod ta_calculation_method = 24 [
       json_name="taCalculationMethod",
       (standards.open.v1.fdx_options).question = "Taxonomy-aligned activities are expressed as a share of.",
       (standards.open.v1.fdx_options).description = "The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y",
