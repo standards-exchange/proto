@@ -140,8 +140,8 @@ message SFDR_PERIODIC {
     ];
     // If yes, indicate the date of the start of the liquidation period
     // The ISO 8601 formatted date (e.g. 2018-11-13)
-    string  subfundStartDateLiquidationPeriod = 3 [
-      json_name="subfundLiquidatedIndicator",
+    string  subfund_start_date_liquidation_period = 3 [
+      json_name="subfundStartDateLiquidationPeriod",
       (standards.open.v1.fdx_options).question = "If yes, indicate the date of the start of the liquidation period",
       (standards.open.v1.fdx_options).default = "2",
       (standards.open.v1.fdx_options).conditional = "Payload.SfdrPeriodicReport.Article8Subfunds.0.SubfundLiquidatedIndicator?1:2"
@@ -450,8 +450,8 @@ message SFDR_PERIODIC {
     ];
     // If yes, indicate the date of the start of the liquidation period
     // The ISO 8601 formatted date (e.g. 2018-11-13)
-    string  subfundStartDateLiquidationPeriod = 3 [
-      json_name = "subfundLiquidatedIndicator",
+    string  subfund_start_date_liquidation_period = 3 [
+      json_name = "subfundStartDateLiquidationPeriod",
       (standards.open.v1.fdx_options).question = "If yes, indicate the date of the start of the liquidation period",
       (standards.open.v1.fdx_options).default = "2",
       (standards.open.v1.fdx_options).conditional = "Payload.SfdrPeriodicReport.Article9Subfunds.0.SubfundLiquidatedIndicator?1:2"
