@@ -6,6 +6,7 @@ import "google/api/annotations.proto";
 import "google/api/client.proto";
 import "google/api/resource.proto";
 import "google/type/money.proto";
+import "google/protobuf/wrappers.proto";
 import "google/protobuf/empty.proto";
 import "google/protobuf/field_mask.proto";
 import "google/protobuf/timestamp.proto";
@@ -39,7 +40,7 @@ message RT0008FD7 {
     // The internal identifier of the sub-fund
     string fund_internal_identifier = 95;
     // CSSF code of the sub-fund. Number corresponding to the compartment without zero in front of the number. For a stand-alone fund, please enter 0. For a multiple compartment fund, please indicate the corresponding number.
-    int32 subfund_cssf_code = 96 [
+    google.protobuf.Int32Value subfund_cssf_code = 96 [
       json_name="subfundCssfCode",
       (standards.open.v1.fdx_options).question = "CSSF code of the sub-fund.",
       (standards.open.v1.fdx_options).description = "Number corresponding to the compartment without zero in front of the number. For a stand-alone fund, please enter 0. For a multiple compartment fund, please indicate the corresponding number."
@@ -63,7 +64,7 @@ message RT0008FD7 {
         (standards.open.v1.fdx_options).default = "1"
       ];
       // Minimum proportion of sustainable investments.
-      double sustainable_investments_minimum_proportion1 = 3 [
+      google.protobuf.DoubleValue sustainable_investments_minimum_proportion1 = 3 [
         json_name = "sustainableInvestmentsMinimumProportion1",
         (standards.open.v1.fdx_options).question = "Minimum proportion of sustainable investments.",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field Sustainable Investments Indicator is Y",
@@ -198,34 +199,34 @@ message RT0008FD7 {
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article8Subfunds.0.GoodGovernancePolicyIndicator?2:1"
       ];
       // Minimum proportion of investments aligned with environmental or social characteristics - #1 Aligned with E/S characteristics (in %)
-      double aligned_e_s_characteristics_investments_minimum_proportion = 16 [
+      google.protobuf.DoubleValue aligned_e_s_characteristics_investments_minimum_proportion = 16 [
         json_name="alignedESCharacteristicsInvestmentsMinimumProportion",
         (standards.open.v1.fdx_options).required = true,
         (standards.open.v1.fdx_options).question = "Minimum proportion of investments aligned with environmental or social characteristics - #1 Aligned with E/S characteristics (in %)"
       ];
       // Minimum proportion of sustainable investments - 1#A Sustainable (in %)
       // The field is required if the value of the field sustainableInvestmentsIndicator is Y
-      double sustainable_investments_minimum_proportion2 = 17[
+      google.protobuf.DoubleValue sustainable_investments_minimum_proportion2 = 17[
         json_name="sustainableInvestmentsMinimumProportion2",
         (standards.open.v1.fdx_options).question = "Minimum proportion of sustainable investments - 1#A Sustainable (in %)",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field sustainableInvestmentsIndicator is Y",
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article8Subfunds.0.SustainableInvestmentsIndicator?1:2"
       ];
       // Minimum proportion of environmental or social characteristics investments that do not qualify as sustainable investments - #1B Other E/S characteristics (in %)
-      double other_e_s_characteristics_investments_minimum_proportion = 18 [
+      google.protobuf.DoubleValue other_e_s_characteristics_investments_minimum_proportion = 18 [
         json_name="otherESCharacteristicsInvestmentsMinimumProportion",
         (standards.open.v1.fdx_options).required = true,
         (standards.open.v1.fdx_options).question = "Minimum proportion of environmental or social characteristics investments that do not qualify as sustainable investments - #1B Other E/S characteristics (in %)"
       ];
       // Minimum proportion of remaining investments which are neither aligned with the environmental or social characteristics, nor are qualified as sustainable investments - #2 Other (in %)
-      double remaining_investments_minimum_proportion = 19 [
+      google.protobuf.DoubleValue remaining_investments_minimum_proportion = 19 [
         json_name="remainingInvestmentsMinimumProportion",
         (standards.open.v1.fdx_options).required = true,
         (standards.open.v1.fdx_options).question = "Minimum proportion of remaining investments which are neither aligned with the environmental or social characteristics, nor are qualified as sustainable investments - #2 Other (in %)"
       ];
       // Minimum proportion of Taxonomy-aligned (in %)
       // The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y
-      double ta_investments_minimum_proportion = 20 [
+      google.protobuf.DoubleValue ta_investments_minimum_proportion = 20 [
         json_name="taInvestmentsMinimumProportion",
         (standards.open.v1.fdx_options).question = "Minimum proportion of Taxonomy-aligned (in %)",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y",
@@ -234,7 +235,7 @@ message RT0008FD7 {
       ];
       // Minimum proportion of Other environmental (in %)
       // The field is required if the value of the field environmentalObjectiveNoTaxonomyIndicator is Y
-      double other_environmental_minimum_proportion = 21 [
+      google.protobuf.DoubleValue other_environmental_minimum_proportion = 21 [
         json_name="otherEnvironmentalMinimumProportion",
         (standards.open.v1.fdx_options).question = "Minimum proportion of Other environmental (in %)",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field environmentalObjectiveNoTaxonomyIndicator is Y",
@@ -242,7 +243,7 @@ message RT0008FD7 {
       ];
       // Minimum proportion of Social (in %)
       // The field is required if the value of the field socialObjectiveIndicator is Y
-      double social_minimum_proportion = 22 [
+      google.protobuf.DoubleValue social_minimum_proportion = 22 [
         json_name="socialMinimumProportion",
         (standards.open.v1.fdx_options).question = "Minimum proportion of Social (in %)",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field socialObjectiveIndicator is Y",
@@ -288,7 +289,7 @@ message RT0008FD7 {
       ];
       // Minimum percentage of investments in fossil gas related activities aligned with EU taxonomy including sovereign bonds
       // The field is required if the value of the field fossilGasInvestmentsIndicator is Y
-      double fossil_gas_investments_incl_sovereign_bonds_minimum_proportion = 27 [
+      google.protobuf.DoubleValue fossil_gas_investments_incl_sovereign_bonds_minimum_proportion = 27 [
         json_name="fossilGasInvestmentsInclSovereignBondsMinimumProportion",
         (standards.open.v1.fdx_options).question = "Minimum percentage of investments in fossil gas related activities aligned with EU taxonomy including sovereign bonds",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field fossilGasInvestmentsIndicator is Y",
@@ -296,7 +297,7 @@ message RT0008FD7 {
       ];
       // Minimum percentage of investments in nuclear energy related activities aligned with EU taxonomy including sovereign bonds
       // The field is required if the value of the field nuclearEnergyInvestmentsIndicator is Y.
-      double nuclear_energy_investments_incl_sovereign_bonds_minimum_proportion = 28 [
+      google.protobuf.DoubleValue nuclear_energy_investments_incl_sovereign_bonds_minimum_proportion = 28 [
         json_name="nuclearEnergyInvestmentsInclSovereignBondsMinimumProportion",
         (standards.open.v1.fdx_options).question = "Minimum percentage of investments in nuclear energy related activities aligned with EU taxonomy including sovereign bonds",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field nuclearEnergyInvestmentsIndicator is Y.",
@@ -304,7 +305,7 @@ message RT0008FD7 {
       ];
       // Minimum percentage of investments (excluding fossil gas and nuclear energy related activities) aligned with EU taxonomy including sovereign bonds.
       // The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y
-      double remaining_investments_incl_sovereign_bonds_minimum_proportion = 29 [
+      google.protobuf.DoubleValue remaining_investments_incl_sovereign_bonds_minimum_proportion = 29 [
         json_name="remainingInvestmentsInclSovereignBondsMinimumProportion",
         (standards.open.v1.fdx_options).question = "Minimum percentage of investments (excluding fossil gas and nuclear energy related activities) aligned with EU taxonomy including sovereign bonds.",
         (standards.open.v1.fdx_options).description = " The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y",
@@ -312,7 +313,7 @@ message RT0008FD7 {
       ];
       // Minimum percentage of investments in fossil gas related activities aligned with EU taxonomy excluding sovereign bonds
       // The field is required if the value of the field fossilGasInvestmentsIndicator is Y
-      double fossil_gas_investments_excl_sovereign_bonds_minimum_proportion = 30 [
+      google.protobuf.DoubleValue fossil_gas_investments_excl_sovereign_bonds_minimum_proportion = 30 [
         json_name="fossilGasInvestmentsExclSovereignBondsMinimumProportion",
         (standards.open.v1.fdx_options).question = "Minimum percentage of investments in fossil gas related activities aligned with EU taxonomy excluding sovereign bonds",
         (standards.open.v1.fdx_options).description = " The field is required if the value of the field fossilGasInvestmentsIndicator is Y",
@@ -320,7 +321,7 @@ message RT0008FD7 {
       ];
       // Minimum percentage of investments in nuclear energy related activities aligned with EU taxonomy excluding sovereign bonds
       // The field is required if the value of the field nuclearEnergyInvestmentsIndicator is Y
-      double nuclear_energy_investments_excl_sovereign_bonds_minimum_proportion = 31 [
+      google.protobuf.DoubleValue nuclear_energy_investments_excl_sovereign_bonds_minimum_proportion = 31 [
         json_name="nuclearEnergyInvestmentsExclSovereignBondsMinimumProportion",
         (standards.open.v1.fdx_options).question = "Minimum percentage of investments in nuclear energy related activities aligned with EU taxonomy excluding sovereign bonds",
         (standards.open.v1.fdx_options).description = " The field is required if the value of the field nuclearEnergyInvestmentsIndicator is Y",
@@ -328,7 +329,7 @@ message RT0008FD7 {
       ];
       // Minimum percentage of investments (excluding fossil gas and nuclear energy related activities) aligned with EU taxonomy excluding sovereign bonds.
       // The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y
-      double remaining_investments_excl_sovereign_bonds_minimum_proportion = 32 [
+      google.protobuf.DoubleValue remaining_investments_excl_sovereign_bonds_minimum_proportion = 32 [
         json_name="remainingInvestmentsExclSovereignBondsMinimumProportion",
         (standards.open.v1.fdx_options).question = "Minimum percentage of investments (excluding fossil gas and nuclear energy related activities) aligned with EU taxonomy excluding sovereign bonds.",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y",
@@ -336,7 +337,7 @@ message RT0008FD7 {
       ];
       // What is the minimum share of investments in transitional activities?
       // The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y
-      double transitional_activities_investments_minimum_share = 33 [
+      google.protobuf.DoubleValue transitional_activities_investments_minimum_share = 33 [
         json_name="transitionalActivitiesInvestmentsMinimumShare",
         (standards.open.v1.fdx_options).question = "What is the minimum share of investments in transitional activities?",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y",
@@ -344,7 +345,7 @@ message RT0008FD7 {
       ];
       // What is the minimum share of investments in enabling activities?
       // The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y
-      double enabling_activities_investments_minimum_share = 34 [
+      google.protobuf.DoubleValue enabling_activities_investments_minimum_share = 34 [
         json_name="enablingActivitiesInvestmentsMinimumShare",
         (standards.open.v1.fdx_options).question = "What is the minimum share of investments in enabling activities?",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y",
@@ -571,7 +572,7 @@ message RT0008FD7 {
       ];
       // Minimum proportion of sustainable investments with an environmental objective
       // The field is required if the value of the field sustainableInvestmentsIndicator is Y
-      double sustainable_investments_environmental_minimum_proportion1 = 3 [
+      google.protobuf.DoubleValue sustainable_investments_environmental_minimum_proportion1 = 3 [
         json_name = "sustainableInvestmentsEnvironmentalMinimumProportion1",
         (standards.open.v1.fdx_options).question = "Minimum proportion of sustainable investments.",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field sustainableInvestmentsIndicator is Y",
@@ -604,7 +605,7 @@ message RT0008FD7 {
       ];
       // Minimum percentage of sustainable investments with a social objective
       // The field is required if the value of the field socialObjectiveIndicator is Y
-      double sustainable_investments_social_minimal_proportion1 = 7 [
+      google.protobuf.DoubleValue sustainable_investments_social_minimal_proportion1 = 7 [
         json_name = "sustainableInvestmentsSocialMinimalProportion1",
         (standards.open.v1.fdx_options).question = "Minimum percentage of sustainable investments with a social objective",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field socialObjectiveIndicator is Y",
@@ -672,7 +673,7 @@ message RT0008FD7 {
       ];
       // Minimum proportion of sustainable investments - #1 Sustainable (in %).
       // The field is required if the value of the field sustainableInvestmentsIndicator is Y or if the value of the field socialObjectiveIndicator is Y
-      double sustainable_investments_minimal_proportion = 14 [
+      google.protobuf.DoubleValue sustainable_investments_minimal_proportion = 14 [
         json_name="sustainableInvestmentsMinimalProportion",
         (standards.open.v1.fdx_options).question = "Minimum proportion of sustainable investments - #1 Sustainable (in %).",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field sustainableInvestmentsIndicator is Y or if the value of the field socialObjectiveIndicator is Y",
@@ -680,7 +681,7 @@ message RT0008FD7 {
       ];
       // Minimum proportion of sustainable environmental investments - #1 Sustainable - Environmental (in %)
       // The field is required if the value of the field sustainableInvestmentsIndicator is Y.
-      double sustainable_investments_environmental_minimum_proportion2 = 15 [
+      google.protobuf.DoubleValue sustainable_investments_environmental_minimum_proportion2 = 15 [
         json_name="sustainableInvestmentsEnvironmentalMinimumProportion2",
         (standards.open.v1.fdx_options).question = "Minimum proportion of sustainable environmental investments - #1 Sustainable - Environmental (in %)",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field sustainableInvestmentsIndicator is Y.",
@@ -688,7 +689,7 @@ message RT0008FD7 {
       ];
       // Minimum proportion of Taxonomy-aligned - #1 Sustainable - Environmental - Taxonomy-aligned (in %)
       // The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y
-      double sustainable_investments_environmental_ta_minimum_proportion = 16 [
+      google.protobuf.DoubleValue sustainable_investments_environmental_ta_minimum_proportion = 16 [
         json_name="sustainableInvestmentsEnvironmentalTaMinimumProportion",
         (standards.open.v1.fdx_options).question = "Minimum proportion of Taxonomy-aligned - #1 Sustainable - Environmental - Taxonomy-aligned (in %)",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y",
@@ -696,7 +697,7 @@ message RT0008FD7 {
       ];
       // Minimum proportion of Other - #1 Sustainable - Environmental - Other (in %).
       // The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y.
-      double sustainable_investments_environmental_other_minimum_proportion = 17 [
+      google.protobuf.DoubleValue sustainable_investments_environmental_other_minimum_proportion = 17 [
         json_name="sustainableInvestmentsEnvironmentalOtherMinimumProportion",
         (standards.open.v1.fdx_options).question = "Minimum proportion of Other - #1 Sustainable - Environmental - Other (in %).",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y.",
@@ -704,14 +705,14 @@ message RT0008FD7 {
       ];
       // Minimum proportion of sustainable social investments #1 Sustainable - Social (in %)
       // The field is required if the value of the field socialObjectiveIndicator is Y
-      double sustainable_investments_social_minimum_proportion2 = 18 [
+      google.protobuf.DoubleValue sustainable_investments_social_minimum_proportion2 = 18 [
         json_name="sustainableInvestmentsSocialMinimumProportion2",
         (standards.open.v1.fdx_options).question = "Minimum proportion of sustainable social investments #1 Sustainable - Social (in %)",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field socialObjectiveIndicator is Y",
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article9Subfunds.0.SocialObjectiveIndicator?1:2"
       ];
       // Minimum proportion of not sustainable investments - #2 Not sustainable (in %)
-      double not_sustainable_investments_minimum_proportion = 19 [
+      google.protobuf.DoubleValue not_sustainable_investments_minimum_proportion = 19 [
         json_name="notSustainableInvestmentsMinimumProportion",
         (standards.open.v1.fdx_options).question = "Minimum proportion of not sustainable investments - #2 Not sustainable (in %)"
       ];
@@ -756,7 +757,7 @@ message RT0008FD7 {
       ];
       // Minimum percentage of investments in fossil gas related activities aligned with EU taxonomy including sovereign bonds
       // The field is required if the value of the field fossilGasInvestmentsIndicator is Y
-      double fossil_gas_investments_incl_sovereign_bonds_minimum_proportion = 24 [
+      google.protobuf.DoubleValue fossil_gas_investments_incl_sovereign_bonds_minimum_proportion = 24 [
         json_name = "fossilGasInvestmentsInclSovereignBondsMinimumProportion",
         (standards.open.v1.fdx_options).question = "Minimum percentage of investments in fossil gas related activities aligned with EU taxonomy including sovereign bonds",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field fossilGasInvestmentsIndicator is Y",
@@ -764,7 +765,7 @@ message RT0008FD7 {
       ];
       // Minimum percentage of investments in nuclear energy related activities aligned with EU taxonomy including sovereign bonds
       // The field is required if the value of the field nuclearEnergyInvestmentsIndicator is Y
-      double nuclear_energy_investments_incl_sovereign_bonds_minimum_proportion = 25 [
+      google.protobuf.DoubleValue nuclear_energy_investments_incl_sovereign_bonds_minimum_proportion = 25 [
         json_name = "nuclearEnergyInvestmentsInclSovereignBondsMinimumProportion",
         (standards.open.v1.fdx_options).question = "Minimum percentage of investments in nuclear energy related activities aligned with EU taxonomy including sovereign bonds",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field nuclearEnergyInvestmentsIndicator is Y",
@@ -772,7 +773,7 @@ message RT0008FD7 {
       ];
       // Minimum percentage of investments (excluding fossil gas and nuclear energy related activities) aligned with EU taxonomy including sovereign bonds
       // The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y
-      double remaining_investments_incl_sovereign_bonds_minimum_proportion = 26 [
+      google.protobuf.DoubleValue remaining_investments_incl_sovereign_bonds_minimum_proportion = 26 [
         json_name = "remainingInvestmentsInclSovereignBondsMinimumProportion",
         (standards.open.v1.fdx_options).question = "Minimum percentage of investments (excluding fossil gas and nuclear energy related activities) aligned with EU taxonomy including sovereign bonds",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y",
@@ -780,7 +781,7 @@ message RT0008FD7 {
       ];
       // Minimum percentage of investments in fossil gas related activities aligned with EU taxonomy excluding sovereign bonds
       // The field is required if the value of the field fossilGasInvestmentsIndicator is Y
-      double fossil_gas_investments_excl_sovereign_bonds_minimum_proportion = 27 [
+      google.protobuf.DoubleValue fossil_gas_investments_excl_sovereign_bonds_minimum_proportion = 27 [
         json_name = "fossilGasInvestmentsExclSovereignBondsMinimumProportion",
         (standards.open.v1.fdx_options).question = "Minimum percentage of investments in fossil gas related activities aligned with EU taxonomy excluding sovereign bonds",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field fossilGasInvestmentsIndicator is Y",
@@ -788,7 +789,7 @@ message RT0008FD7 {
       ];
       // Minimum percentage of investments in nuclear energy related activities aligned with EU taxonomy excluding sovereign bonds
       // The field is required if the value of the field nuclearEnergyInvestmentsIndicator is Y
-      double nuclear_energy_investments_excl_sovereign_bonds_minimum_proportion = 28 [
+      google.protobuf.DoubleValue nuclear_energy_investments_excl_sovereign_bonds_minimum_proportion = 28 [
         json_name = "nuclearEnergyInvestmentsExclSovereignBondsMinimumProportion",
         (standards.open.v1.fdx_options).question = "Minimum percentage of investments in nuclear energy related activities aligned with EU taxonomy excluding sovereign bonds",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field nuclearEnergyInvestmentsIndicator is Y",
@@ -796,7 +797,7 @@ message RT0008FD7 {
       ];
       // Minimum percentage of investments (excluding fossil gas and nuclear energy related activities) aligned with EU taxonomy excluding sovereign bonds
       // The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y
-      double remaining_investments_excl_sovereign_bonds_minimum_proportion = 29 [
+      google.protobuf.DoubleValue remaining_investments_excl_sovereign_bonds_minimum_proportion = 29 [
         json_name = "remainingInvestmentsExclSovereignBondsMinimumProportion",
         (standards.open.v1.fdx_options).question = "Minimum percentage of investments (excluding fossil gas and nuclear energy related activities) aligned with EU taxonomy excluding sovereign bonds",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y",
@@ -804,7 +805,7 @@ message RT0008FD7 {
       ];
       // What is the minimum share of investments in transitional activities?
       // The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y
-      double transitional_activities_investments_minimum_share = 30 [
+      google.protobuf.DoubleValue transitional_activities_investments_minimum_share = 30 [
         json_name = "transitionalActivitiesInvestmentsMinimumShare",
         (standards.open.v1.fdx_options).question = "What is the minimum share of investments in transitional activities?",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y",
@@ -812,7 +813,7 @@ message RT0008FD7 {
       ];
       // What is the minimum share of investments in enabling activities?
       // The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y
-      double enabling_activities_investments_minimum_share = 31 [
+      google.protobuf.DoubleValue enabling_activities_investments_minimum_share = 31 [
         json_name = "enablingActivitiesInvestmentsMinimumShare",
         (standards.open.v1.fdx_options).question = "What is the minimum share of investments in enabling activities?",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y",
