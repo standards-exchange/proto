@@ -18,7 +18,7 @@ message FDXOptions {
   string validation = 8;
   string default = 9;
   bool required = 11;
-  string jsonName = 12;
+  string fdx_json_name = 12;
 }
 
 extend google.protobuf.FieldOptions {
