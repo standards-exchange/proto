@@ -1126,7 +1126,7 @@ message RT0008FD7 {
     // Should only be completed for Article 9 subfunds
     Article9SubfundResponses article9_responses = 3 [
       json_name="article9Subfunds",
-      (standards.open.v1.fdx_options).fdx_json_name="article8Subfunds",
+      (standards.open.v1.fdx_options).fdx_json_name="article9Subfunds",
       (standards.open.v1.fdx_options).question = "Complete the following questions for all Article  subfunds"
     ];
     // Definition of information to be provided per Other sub fund
@@ -1168,7 +1168,7 @@ message RT0008FD7 {
     // Should only be completed for non Article 8 or 9 subfunds
     OtherSubfundResponses other_responses = 4 [
       json_name="otherSubfunds",
-      (standards.open.v1.fdx_options).fdx_json_name="article9Subfunds",
+      (standards.open.v1.fdx_options).fdx_json_name="otherSubfunds",
       (standards.open.v1.fdx_options).question = "Complete the following questions for all Subfunds subject to the SFDR disclosure obligation without being an art 8 or art 9 product array"
     ];
     // Y / N requiring no further explanation
