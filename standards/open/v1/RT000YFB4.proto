@@ -18,12 +18,12 @@ message RT000YFB4 {
     string nnnnnnnn = 2;
     // The CSSF's idenfifier for the umbrella
     // NOMOPC
-    string umbrella_nane = 3;
+    string nomopc = 3;
     // The CSSF's identifier for the fund
     string cccccccc = 4;
     // The name of the sub-fund / compartment
     // NOMCOMPARTIMENT
-    string compartiment = 5;
+    string nomcompartiment = 5;
     // AGREEMENTCOMP
     google.type.Date agreement_comp = 6;
     // DEVISECOMP
@@ -31,6 +31,6 @@ message RT000YFB4 {
     // PPPP
     string pppp = 8;
     // NOMTYPEPART
-    string nom_type_part = 9;
+    string nomtypepart = 9;
   }
 }
