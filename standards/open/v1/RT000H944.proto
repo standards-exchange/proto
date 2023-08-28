@@ -23,7 +23,7 @@ message RT000H944 {
     string cccccccc = 4;
     // The name of the sub-fund / compartment
     // NOMCOMPARTIMENT
-    string nomcompaortiment = 5;
+    string nomcompartiment = 5;
     // AGREEMENTCOMP
     google.type.Date agreementcomp = 6;
     // DEVISECOMP
