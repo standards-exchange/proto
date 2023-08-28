@@ -225,6 +225,7 @@ message RT0008FD7 {
       // The field is required if the value of the field sustainableInvestmentsIndicator is Y
       google.protobuf.DoubleValue sustainable_investments_minimum_proportion2 = 17[
         json_name="sustainableInvestmentsMinimumProportion2",
+        (standards.open.v1.fdx_options).fdx_json_name="sustainableInvestmentsMinimumProportion2",
         (standards.open.v1.fdx_options).question = "Minimum proportion of sustainable investments - 1#A Sustainable (in %)",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field sustainableInvestmentsIndicator is Y",
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article8Subfunds.0.SustainableInvestmentsIndicator?1:2"
@@ -232,12 +233,14 @@ message RT0008FD7 {
       // Minimum proportion of environmental or social characteristics investments that do not qualify as sustainable investments - #1B Other E/S characteristics (in %)
       google.protobuf.DoubleValue other_e_s_characteristics_investments_minimum_proportion = 18 [
         json_name="otherESCharacteristicsInvestmentsMinimumProportion",
+        (standards.open.v1.fdx_options).fdx_json_name="otherESCharacteristicsInvestmentsMinimumProportion",
         (standards.open.v1.fdx_options).required = true,
         (standards.open.v1.fdx_options).question = "Minimum proportion of environmental or social characteristics investments that do not qualify as sustainable investments - #1B Other E/S characteristics (in %)"
       ];
       // Minimum proportion of remaining investments which are neither aligned with the environmental or social characteristics, nor are qualified as sustainable investments - #2 Other (in %)
       google.protobuf.DoubleValue remaining_investments_minimum_proportion = 19 [
         json_name="remainingInvestmentsMinimumProportion",
+        (standards.open.v1.fdx_options).fdx_json_name="remainingInvestmentsMinimumProportion",
         (standards.open.v1.fdx_options).required = true,
         (standards.open.v1.fdx_options).question = "Minimum proportion of remaining investments which are neither aligned with the environmental or social characteristics, nor are qualified as sustainable investments - #2 Other (in %)"
       ];
@@ -245,6 +248,7 @@ message RT0008FD7 {
       // The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y
       google.protobuf.DoubleValue ta_investments_minimum_proportion = 20 [
         json_name="taInvestmentsMinimumProportion",
+        (standards.open.v1.fdx_options).fdx_json_name="taInvestmentsMinimumProportion",
         (standards.open.v1.fdx_options).question = "Minimum proportion of Taxonomy-aligned (in %)",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y",
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article8Subfunds.0.EnvironmentalObjectiveTaxonomyIndicator?1:2"
@@ -254,6 +258,7 @@ message RT0008FD7 {
       // The field is required if the value of the field environmentalObjectiveNoTaxonomyIndicator is Y
       google.protobuf.DoubleValue other_environmental_minimum_proportion = 21 [
         json_name="otherEnvironmentalMinimumProportion",
+        (standards.open.v1.fdx_options).fdx_json_name="otherEnvironmentalMinimumProportion",
         (standards.open.v1.fdx_options).question = "Minimum proportion of Other environmental (in %)",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field environmentalObjectiveNoTaxonomyIndicator is Y",
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article8Subfunds.0.EnvironmentalObjectiveNoTaxonomyIndicator?1:2"
@@ -262,6 +267,7 @@ message RT0008FD7 {
       // The field is required if the value of the field socialObjectiveIndicator is Y
       google.protobuf.DoubleValue social_minimum_proportion = 22 [
         json_name="socialMinimumProportion",
+        (standards.open.v1.fdx_options).fdx_json_name="socialMinimumProportion",
         (standards.open.v1.fdx_options).question = "Minimum proportion of Social (in %)",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field socialObjectiveIndicator is Y",
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article8Subfunds.0.SocialObjectiveIndicator?1:2"
@@ -269,6 +275,7 @@ message RT0008FD7 {
       // Does the sub-fund use derivatives as defined in Article 2(1), point (29), of Regulation (EU) No 600/2014 to attain the environmental or social characteristics they promote?
       YesNo  derivatives_use_indicator = 23 [
         json_name="derivativesUseIndicator",
+        (standards.open.v1.fdx_options).fdx_json_name="derivativesUseIndicator",
         (standards.open.v1.fdx_options).required = true,
         (standards.open.v1.fdx_options).question = "Does the sub-fund use derivatives as defined in Article 2(1), point (29), of Regulation (EU) No 600/2014 to attain the environmental or social characteristics they promote?"
       ];
@@ -282,6 +289,7 @@ message RT0008FD7 {
       // The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y
       repeated TACalculationMethod taCalculationMethod = 24 [
         json_name="taCalculationMethod",
+        (standards.open.v1.fdx_options).fdx_json_name="taCalculationMethod",
         (standards.open.v1.fdx_options).question = "Taxonomy-aligned activities are expressed as a share of.",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y",
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article8Subfunds.0.EnvironmentalObjectiveTaxonomyIndicator?1:2"
@@ -290,6 +298,7 @@ message RT0008FD7 {
       // The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y
       YesNo  fossil_gas_investments_indicator = 25 [
         json_name="fossilGasInvestmentsIndicator",
+        (standards.open.v1.fdx_options).fdx_json_name="fossilGasInvestmentsIndicator",
         (standards.open.v1.fdx_options).question = "Does the sub-fund invest in fossil gas related activities complying with the EU Taxonomy?",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y",
         (standards.open.v1.fdx_options).default = "2",
@@ -299,6 +308,7 @@ message RT0008FD7 {
       // The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y
       YesNo  nuclear_energy_investments_indicator = 26 [
         json_name="nuclearEnergyInvestmentsIndicator",
+        (standards.open.v1.fdx_options).fdx_json_name="nuclearEnergyInvestmentsIndicator",
         (standards.open.v1.fdx_options).question = "Does the sub-fund invest in nuclear energy related activities complying with the EU Taxonomy?",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y",
         (standards.open.v1.fdx_options).default = "2",
@@ -308,6 +318,7 @@ message RT0008FD7 {
       // The field is required if the value of the field fossilGasInvestmentsIndicator is Y
       google.protobuf.DoubleValue fossil_gas_investments_incl_sovereign_bonds_minimum_proportion = 27 [
         json_name="fossilGasInvestmentsInclSovereignBondsMinimumProportion",
+        (standards.open.v1.fdx_options).fdx_json_name="fossilGasInvestmentsInclSovereignBondsMinimumProportion",
         (standards.open.v1.fdx_options).question = "Minimum percentage of investments in fossil gas related activities aligned with EU taxonomy including sovereign bonds",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field fossilGasInvestmentsIndicator is Y",
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article8Subfunds.0.FossilGasInvestmentsIndicator?1:2"
@@ -316,6 +327,7 @@ message RT0008FD7 {
       // The field is required if the value of the field nuclearEnergyInvestmentsIndicator is Y.
       google.protobuf.DoubleValue nuclear_energy_investments_incl_sovereign_bonds_minimum_proportion = 28 [
         json_name="nuclearEnergyInvestmentsInclSovereignBondsMinimumProportion",
+        (standards.open.v1.fdx_options).fdx_json_name="nuclearEnergyInvestmentsInclSovereignBondsMinimumProportion",
         (standards.open.v1.fdx_options).question = "Minimum percentage of investments in nuclear energy related activities aligned with EU taxonomy including sovereign bonds",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field nuclearEnergyInvestmentsIndicator is Y.",
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article8Subfunds.0.NuclearEnergyInvestmentsIndicator?1:2"
@@ -324,6 +336,7 @@ message RT0008FD7 {
       // The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y
       google.protobuf.DoubleValue remaining_investments_incl_sovereign_bonds_minimum_proportion = 29 [
         json_name="remainingInvestmentsInclSovereignBondsMinimumProportion",
+        (standards.open.v1.fdx_options).fdx_json_name="remainingInvestmentsInclSovereignBondsMinimumProportion",
         (standards.open.v1.fdx_options).question = "Minimum percentage of investments (excluding fossil gas and nuclear energy related activities) aligned with EU taxonomy including sovereign bonds.",
         (standards.open.v1.fdx_options).description = " The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y",
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article8Subfunds.0.EnvironmentalObjectiveTaxonomyIndicator?1:2"
@@ -332,6 +345,7 @@ message RT0008FD7 {
       // The field is required if the value of the field fossilGasInvestmentsIndicator is Y
       google.protobuf.DoubleValue fossil_gas_investments_excl_sovereign_bonds_minimum_proportion = 30 [
         json_name="fossilGasInvestmentsExclSovereignBondsMinimumProportion",
+        (standards.open.v1.fdx_options).fdx_json_name="fossilGasInvestmentsExclSovereignBondsMinimumProportion",
         (standards.open.v1.fdx_options).question = "Minimum percentage of investments in fossil gas related activities aligned with EU taxonomy excluding sovereign bonds",
         (standards.open.v1.fdx_options).description = " The field is required if the value of the field fossilGasInvestmentsIndicator is Y",
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article8Subfunds.0.FossilGasInvestmentsIndicator?1:2"
@@ -340,6 +354,7 @@ message RT0008FD7 {
       // The field is required if the value of the field nuclearEnergyInvestmentsIndicator is Y
       google.protobuf.DoubleValue nuclear_energy_investments_excl_sovereign_bonds_minimum_proportion = 31 [
         json_name="nuclearEnergyInvestmentsExclSovereignBondsMinimumProportion",
+        (standards.open.v1.fdx_options).fdx_json_name="nuclearEnergyInvestmentsExclSovereignBondsMinimumProportion",
         (standards.open.v1.fdx_options).question = "Minimum percentage of investments in nuclear energy related activities aligned with EU taxonomy excluding sovereign bonds",
         (standards.open.v1.fdx_options).description = " The field is required if the value of the field nuclearEnergyInvestmentsIndicator is Y",
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article8Subfunds.0.NuclearEnergyInvestmentsIndicator?1:2"
@@ -348,6 +363,7 @@ message RT0008FD7 {
       // The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y
       google.protobuf.DoubleValue remaining_investments_excl_sovereign_bonds_minimum_proportion = 32 [
         json_name="remainingInvestmentsExclSovereignBondsMinimumProportion",
+        (standards.open.v1.fdx_options).fdx_json_name="remainingInvestmentsExclSovereignBondsMinimumProportion",
         (standards.open.v1.fdx_options).question = "Minimum percentage of investments (excluding fossil gas and nuclear energy related activities) aligned with EU taxonomy excluding sovereign bonds.",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y",
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article8Subfunds.0.EnvironmentalObjectiveTaxonomyIndicator?1:2"
@@ -356,6 +372,7 @@ message RT0008FD7 {
       // The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y
       google.protobuf.DoubleValue transitional_activities_investments_minimum_share = 33 [
         json_name="transitionalActivitiesInvestmentsMinimumShare",
+        (standards.open.v1.fdx_options).fdx_json_name="transitionalActivitiesInvestmentsMinimumShare",
         (standards.open.v1.fdx_options).question = "What is the minimum share of investments in transitional activities?",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y",
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article8Subfunds.0.EnvironmentalObjectiveTaxonomyIndicator?1:2"
@@ -364,6 +381,7 @@ message RT0008FD7 {
       // The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y
       google.protobuf.DoubleValue enabling_activities_investments_minimum_share = 34 [
         json_name="enablingActivitiesInvestmentsMinimumShare",
+        (standards.open.v1.fdx_options).fdx_json_name="enablingActivitiesInvestmentsMinimumShare",
         (standards.open.v1.fdx_options).question = "What is the minimum share of investments in enabling activities?",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y",
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article8Subfunds.0.EnvironmentalObjectiveTaxonomyIndicator?1:2"
@@ -371,6 +389,7 @@ message RT0008FD7 {
       // Are there any minimum environmental or social safeguards for investments included under “#2 Other”?
       YesNo  environmental_or_social_safeguards_minimum_indicator = 35 [
         json_name="environmentalOrSocialSafeguardsMinimumIndicator",
+        (standards.open.v1.fdx_options).fdx_json_name="environmentalOrSocialSafeguardsMinimumIndicator",
         (standards.open.v1.fdx_options).required = true,
         (standards.open.v1.fdx_options).question = "Are there any minimum environmental or social safeguards for investments included under “#2 Other”?",
         (standards.open.v1.fdx_options).default = "2"
@@ -378,6 +397,7 @@ message RT0008FD7 {
       // Is a specific index designated as a reference benchmark to determine whether the sub-fund is aligned with the environmental and/or social characteristics that it promotes?
       YesNo  reference_benchmark_designated_indicator = 36 [
         json_name="referenceBenchmarkDesignatedIndicator",
+        (standards.open.v1.fdx_options).fdx_json_name="referenceBenchmarkDesignatedIndicator",
         (standards.open.v1.fdx_options).required = true,
         (standards.open.v1.fdx_options).question = "Is a specific index designated as a reference benchmark to determine whether the sub-fund is aligned with the environmental and/or social characteristics that it promotes?",
         (standards.open.v1.fdx_options).default = "2"
@@ -386,6 +406,7 @@ message RT0008FD7 {
       // The field is required if the value of the field referenceBenchmarkDesignatedIndicator is Y
       YesNo  reference_benchmark_isin_code_indicator = 37 [
         json_name="referenceBenchmarkIsinCodeIndicator",
+        (standards.open.v1.fdx_options).fdx_json_name="referenceBenchmarkIsinCodeIndicator",
         (standards.open.v1.fdx_options).question = "Is an ISIN code available for the reference benchmark?",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field referenceBenchmarkDesignatedIndicator is Y",
         (standards.open.v1.fdx_options).default = "2",
@@ -395,6 +416,7 @@ message RT0008FD7 {
       // The field is required if the value of the field referenceBenchmarkIsinCodeIndicator is Y.\nThe value of the field must respect the ISIN code naming convention.
       string reference_benchmark_isin_code = 38 [
         json_name="referenceBenchmarkIsinCode",
+        (standards.open.v1.fdx_options).fdx_json_name="referenceBenchmarkIsinCode",
         (standards.open.v1.fdx_options).question = "Specify the ISIN code of the reference benchmark",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field referenceBenchmarkIsinCodeIndicator is Y.\nThe value of the field must respect the ISIN code naming convention.",
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article8Subfunds.0.ReferenceBenchmarkIsinCodeIndicator?1:2"
@@ -403,6 +425,7 @@ message RT0008FD7 {
       // The field is required if the value of the field referenceBenchmarkIsinCodeIndicator is N
       string reference_benchmark_name = 39 [
         json_name="referenceBenchmarkName",
+        (standards.open.v1.fdx_options).fdx_json_name="referenceBenchmarkName",
         (standards.open.v1.fdx_options).question = "Specify the name of the reference benchmark",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field referenceBenchmarkIsinCodeIndicator is N",
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article8Subfunds.0.ReferenceBenchmarkIsinCodeIndicator?1:2"
@@ -411,6 +434,7 @@ message RT0008FD7 {
       // The field is required if the value of the field referenceBenchmarkDesignatedIndicator is Y
       string reference_benchmark_calculation_method_website_link = 40 [
         json_name="referenceBenchmarkCalculationMethodWebsiteLink",
+        (standards.open.v1.fdx_options).fdx_json_name="referenceBenchmarkCalculationMethodWebsiteLink",
         (standards.open.v1.fdx_options).question = "Indicate website link of the methodology used for the calculation of the designated index can be found",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field referenceBenchmarkDesignatedIndicator is Y",
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article8Subfunds.0.ReferenceBenchmarkDesignatedIndicator?1:2"
@@ -419,12 +443,14 @@ message RT0008FD7 {
       // Include a hyperlink to the website referred to in Article 23 of this Regulation
       string subfund_specific_information_website_link = 41 [
         json_name="subfundSpecificInformationWebsiteLink",
+        (standards.open.v1.fdx_options).fdx_json_name="subfundSpecificInformationWebsiteLink",
         (standards.open.v1.fdx_options).required = true,
         (standards.open.v1.fdx_options).question = "Include a hyperlink to the website referred to in Article 23 of this Regulation"
       ];
       // Does the above mentioned hyperlink direct investors to a separate section titled “Sustainability-related disclosures”, in the same part of the website (as specified in Q3 of the CSSF SFDR FAQ) as the other information relating to the financial product, including marketing communications, in line with and as further detailed in Article 23 of the SFDR RTS?
       YesNo  compliance_art23_indicator = 42 [
         json_name="complianceArt23Indicator",
+        (standards.open.v1.fdx_options).fdx_json_name="complianceArt23Indicator",
         (standards.open.v1.fdx_options).required = true,
         (standards.open.v1.fdx_options).default = "2",
         (standards.open.v1.fdx_options).question = "Does the above mentioned hyperlink direct investors to a separate section titled “Sustainability-related disclosures”, in the same part of the website (as specified in Q3 of the CSSF SFDR FAQ) as the other information relating to the financial product, including marketing communications, in line with and as further detailed in Article 23 of the SFDR RTS?"
@@ -432,6 +458,7 @@ message RT0008FD7 {
       // Does the product related website disclosures, available through the above-mentioned hyperlink, provide all information set out in Article 10(1) SFDR and Articles 25 to 36 SFDR RTS, through the sections and order as specified in Article 24 SFDR RTS?
       YesNo  compliance_art24_indicator = 43 [
         json_name="complianceArt24Indicator",
+        (standards.open.v1.fdx_options).fdx_json_name="complianceArt24Indicator",
         (standards.open.v1.fdx_options).required = true,
         (standards.open.v1.fdx_options).default = "2",
         (standards.open.v1.fdx_options).question = "Does the product related website disclosures, available through the above-mentioned hyperlink, provide all information set out in Article 10(1) SFDR and Articles 25 to 36 SFDR RTS, through the sections and order as specified in Article 24 SFDR RTS?"
@@ -440,6 +467,7 @@ message RT0008FD7 {
       // Required if AIF, forbidden if UCITS or Pension fund
       YesNo  template_provided_to_cssf_indicator = 44 [
         json_name="templateProvidedToCssfIndicator",
+        (standards.open.v1.fdx_options).fdx_json_name="templateProvidedToCssfIndicator",
         (standards.open.v1.fdx_options).question = "Did you already provide the pre-contractual template to the CSSF for the sub-fund?",
         (standards.open.v1.fdx_options).default = "2",
         (standards.open.v1.fdx_options).description = "Required if AIF, forbidden if UCITS or Pension fund"
@@ -448,6 +476,7 @@ message RT0008FD7 {
       // Required if AIF, forbidden if UCITS or Pension fund
       YesNo  ramp_up_period_indicator = 55 [
         json_name="rampUpPeriodIndicator",
+        (standards.open.v1.fdx_options).fdx_json_name="rampUpPeriodIndicator",
         (standards.open.v1.fdx_options).question = "Subfund still in a ramp-up period",
         (standards.open.v1.fdx_options).default = "2",
         (standards.open.v1.fdx_options).description = "Required if AIF, forbidden if UCITS or Pension fund"
@@ -457,6 +486,7 @@ message RT0008FD7 {
       // Forbidden if UCITS or Pension fund. Format YYYY-MM-DD.
       string ramp_up_period_end_date = 56 [
         json_name="rampUpPeriodEndDate",
+        (standards.open.v1.fdx_options).fdx_json_name="rampUpPeriodEndDate",
         (standards.open.v1.fdx_options).question = "Ramp-up period end date (YYYY-MM-DD)",
         (standards.open.v1.fdx_options).description = "Required if AIF and if the value of the field rampUpPeriodIndicator is Y. Forbidden if UCITS or Pension fund. Format YYYY-MM-DD.",
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article8Subfunds.0.RampUpPeriodIndicator?1:2",
@@ -466,6 +496,7 @@ message RT0008FD7 {
       // Required if AIF, forbidden if UCITS or Pension fund
       YesNo  template_available_to_investors_indicator = 57 [
         json_name="templateAvailableToInvestorsIndicator",
+        (standards.open.v1.fdx_options).fdx_json_name="templateAvailableToInvestorsIndicator",
         (standards.open.v1.fdx_options).question = "Please confirm that the pre-contractual template is available to investors",
         (standards.open.v1.fdx_options).default = "2",
         (standards.open.v1.fdx_options).description = "Required if AIF, forbidden if UCITS or Pension fund"
@@ -475,6 +506,7 @@ message RT0008FD7 {
       // Forbidden if UCITS or Pension fund
       string template_not_in_prospectus_where_and_how_available_to_investors = 58 [
         json_name="templateNotInProspectusWhereAndHowAvailableToInvestors",
+        (standards.open.v1.fdx_options).fdx_json_name="templateNotInProspectusWhereAndHowAvailableToInvestors",
         (standards.open.v1.fdx_options).question = "For AIFs not integrating the pre-contractual template in the prospectus, please advise where and how it is available to investors",
         (standards.open.v1.fdx_options).description = "Required if AIF and if the value of the field templateProvidedToCssfIndicator is N. Forbidden if UCITS or Pension fund",
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article8Subfunds.0.TemplateProvidedToCssfIndicator?2:1"
@@ -484,6 +516,7 @@ message RT0008FD7 {
       // Forbidden if UCITS or Pension fund
       string specific_e_s_g_investment_policy = 59 [
         json_name="specificESGInvestmentPolicy",
+        (standards.open.v1.fdx_options).fdx_json_name="specificESGInvestmentPolicy",
         (standards.open.v1.fdx_options).question = "For AIFs not integrating the pre-contractual template in the prospectus, ESG specific investment policy",
         (standards.open.v1.fdx_options).description = "Required if AIF and if the value of the field templateProvidedToCssfIndicator is N. Forbidden if UCITS or Pension fund",
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article8Subfunds.0.TemplateProvidedToCssfIndicator?2:1"
@@ -491,6 +524,7 @@ message RT0008FD7 {
       // Prominent statement in the main body of the prospectus/issuing document
       YesNo  prominent_statement_main_body_prospectus_indicator = 60 [
         json_name="prominentStatementMainBodyProspectusIndicator",
+        (standards.open.v1.fdx_options).fdx_json_name="prominentStatementMainBodyProspectusIndicator",
         (standards.open.v1.fdx_options).required = true,
         (standards.open.v1.fdx_options).default = "2",
         (standards.open.v1.fdx_options).question = "Prominent statement in the main body of the prospectus/issuing document"
@@ -499,6 +533,7 @@ message RT0008FD7 {
       // Required if AIF, forbidden if UCITS or Pension fund
       YesNo  requirements_c_d_r_compliance_indicator = 61 [
         json_name="requirementsCDRComplianceIndicator",
+        (standards.open.v1.fdx_options).fdx_json_name="requirementsCDRComplianceIndicator",
         (standards.open.v1.fdx_options).question = "They comply with the requirements set out in the CDR; especially the general principles foreseen in article 2 of the CDR;",
         (standards.open.v1.fdx_options).default = "2",
         (standards.open.v1.fdx_options).description = "Required if AIF, forbidden if UCITS or Pension fund"
@@ -649,6 +684,7 @@ message RT0008FD7 {
       // Does the sub-fund consider principal adverse impacts on sustainability factors?
       YesNo  principal_advers_impact_consideration_indicator = 9 [
         json_name="principalAdversImpactConsiderationIndicator",
+        (standards.open.v1.fdx_options).fdx_json_name="principalAdversImpactConsiderationIndicator",
         (standards.open.v1.fdx_options).required = true,
         (standards.open.v1.fdx_options).question = "Does the sub-fund consider principal adverse impacts on sustainability factors?",
         (standards.open.v1.fdx_options).default = "2"
@@ -666,18 +702,21 @@ message RT0008FD7 {
       // What investment strategy does the sub-fund follow?
       repeated InvestmentStrategy investments_strategies = 10 [
         json_name="investmentsStrategies",
+        (standards.open.v1.fdx_options).fdx_json_name="investmentsStrategies",
         (standards.open.v1.fdx_options).question = "What investment strategy does the sub-fund follow?"
       ];
       // Please specify other investment strategies
       // The field is required if O is defined in the list of values for the field investmentsStrategies
       string other_investments_strategies_description = 11 [
         json_name="otherInvestmentsStrategiesDescription",
+        (standards.open.v1.fdx_options).fdx_json_name="otherInvestmentsStrategiesDescription",
         (standards.open.v1.fdx_options).question = "Please specify other investment strategies",
         (standards.open.v1.fdx_options).description = "The field is required if O (Other) is defined in the list of values for the field investmentsStrategies"
       ];
       // Is a policy applied to assess good governance practices of the investee companies?
       YesNo  good_governance_policy_indicator = 12 [
         json_name="goodGovernancePolicyIndicator",
+        (standards.open.v1.fdx_options).fdx_json_name="goodGovernancePolicyIndicator",
         (standards.open.v1.fdx_options).question = "Is a policy applied to assess good governance practices of the investee companies?",
         (standards.open.v1.fdx_options).default = "2"
       ];
@@ -685,6 +724,7 @@ message RT0008FD7 {
       // The field is required if the value of the field goodGovernancePolicyIndicator is N"
       string no_good_governance_policy_description = 13 [
         json_name="noGoodGovernancePolicyDescription",
+        (standards.open.v1.fdx_options).fdx_json_name="noGoodGovernancePolicyDescription",
         (standards.open.v1.fdx_options).question = "If 'NO' to goodGovernancePolicyIndicator, please explain",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field goodGovernancePolicyIndicator is N",
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article9Subfunds.0.GoodGovernancePolicyIndicator?2:1"
@@ -693,6 +733,7 @@ message RT0008FD7 {
       // The field is required if the value of the field sustainableInvestmentsIndicator is Y or if the value of the field socialObjectiveIndicator is Y
       google.protobuf.DoubleValue sustainable_investments_minimal_proportion = 14 [
         json_name="sustainableInvestmentsMinimalProportion",
+        (standards.open.v1.fdx_options).fdx_json_name="sustainableInvestmentsMinimalProportion",
         (standards.open.v1.fdx_options).question = "Minimum proportion of sustainable investments - #1 Sustainable (in %).",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field sustainableInvestmentsIndicator is Y or if the value of the field socialObjectiveIndicator is Y",
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article9Subfunds.0.SustainableInvestmentsIndicator?1:2"
@@ -701,6 +742,7 @@ message RT0008FD7 {
       // The field is required if the value of the field sustainableInvestmentsIndicator is Y.
       google.protobuf.DoubleValue sustainable_investments_environmental_minimum_proportion2 = 15 [
         json_name="sustainableInvestmentsEnvironmentalMinimumProportion2",
+        (standards.open.v1.fdx_options).fdx_json_name="sustainableInvestmentsEnvironmentalMinimumProportion2",
         (standards.open.v1.fdx_options).question = "Minimum proportion of sustainable environmental investments - #1 Sustainable - Environmental (in %)",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field sustainableInvestmentsIndicator is Y.",
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article9Subfunds.0.SustainableInvestmentsIndicator?1:2"
@@ -709,6 +751,7 @@ message RT0008FD7 {
       // The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y
       google.protobuf.DoubleValue sustainable_investments_environmental_ta_minimum_proportion = 16 [
         json_name="sustainableInvestmentsEnvironmentalTaMinimumProportion",
+        (standards.open.v1.fdx_options).fdx_json_name="sustainableInvestmentsEnvironmentalTaMinimumProportion",
         (standards.open.v1.fdx_options).question = "Minimum proportion of Taxonomy-aligned - #1 Sustainable - Environmental - Taxonomy-aligned (in %)",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y",
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article9Subfunds.0.EnvironmentalObjectiveTaxonomyIndicator?1:2"
@@ -717,6 +760,7 @@ message RT0008FD7 {
       // The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y.
       google.protobuf.DoubleValue sustainable_investments_environmental_other_minimum_proportion = 17 [
         json_name="sustainableInvestmentsEnvironmentalOtherMinimumProportion",
+        (standards.open.v1.fdx_options).fdx_json_name="sustainableInvestmentsEnvironmentalOtherMinimumProportion",
         (standards.open.v1.fdx_options).question = "Minimum proportion of Other - #1 Sustainable - Environmental - Other (in %).",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y.",
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article9Subfunds.0.EnvironmentalObjectiveTaxonomyIndicator?1:2"
@@ -725,6 +769,7 @@ message RT0008FD7 {
       // The field is required if the value of the field socialObjectiveIndicator is Y
       google.protobuf.DoubleValue sustainable_investments_social_minimum_proportion2 = 18 [
         json_name="sustainableInvestmentsSocialMinimumProportion2",
+        (standards.open.v1.fdx_options).fdx_json_name="sustainableInvestmentsSocialMinimumProportion2",
         (standards.open.v1.fdx_options).question = "Minimum proportion of sustainable social investments #1 Sustainable - Social (in %)",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field socialObjectiveIndicator is Y",
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article9Subfunds.0.SocialObjectiveIndicator?1:2"
@@ -732,11 +777,13 @@ message RT0008FD7 {
       // Minimum proportion of not sustainable investments - #2 Not sustainable (in %)
       google.protobuf.DoubleValue not_sustainable_investments_minimum_proportion = 19 [
         json_name="notSustainableInvestmentsMinimumProportion",
+        (standards.open.v1.fdx_options).fdx_json_name="notSustainableInvestmentsMinimumProportion",
         (standards.open.v1.fdx_options).question = "Minimum proportion of not sustainable investments - #2 Not sustainable (in %)"
       ];
       // Does the sub-fund use derivative instruments as defined in Article2(1), point 29, of Regulation (EU) No 600/2014 to attain the sustainable investment objective?
       YesNo  derivatives_use_indicator = 20 [
         json_name="derivativesUseIndicator",
+        (standards.open.v1.fdx_options).fdx_json_name="derivativesUseIndicator",
         (standards.open.v1.fdx_options).question = "Does the sub-fund use derivative instruments as defined in Article2(1), point 29, of Regulation (EU) No 600/2014 to attain the sustainable investment objective?",
         (standards.open.v1.fdx_options).default = "2"
       ];
@@ -750,6 +797,7 @@ message RT0008FD7 {
       // The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y
       repeated TACalculationMethod ta_calculation_method = 21 [
         json_name = "taCalculationMethod",
+        (standards.open.v1.fdx_options).fdx_json_name = "taCalculationMethod",
         (standards.open.v1.fdx_options).question = "Taxonomy-aligned activities are expressed as a share of",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y",
         (standards.open.v1.fdx_options).default = "2",
@@ -759,6 +807,7 @@ message RT0008FD7 {
       // The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y
       YesNo  fossil_gas_investments_indicator = 22 [
         json_name = "fossilGasInvestmentsIndicator",
+        (standards.open.v1.fdx_options).fdx_json_name = "fossilGasInvestmentsIndicator",
         (standards.open.v1.fdx_options).question = "Does the sub-fund invest in fossil gas related activities complying with the EU Taxonomy?",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y",
         (standards.open.v1.fdx_options).default = "2",
@@ -768,6 +817,7 @@ message RT0008FD7 {
       // The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y
       YesNo  nuclear_energy_investments_indicator = 23 [
         json_name = "nuclearEnergyInvestmentsIndicator",
+        (standards.open.v1.fdx_options).fdx_json_name = "nuclearEnergyInvestmentsIndicator",
         (standards.open.v1.fdx_options).question = "Does the sub-fund invest in nuclear energy related activities complying with the EU Taxonomy?",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y",
         (standards.open.v1.fdx_options).default = "2",
@@ -777,6 +827,7 @@ message RT0008FD7 {
       // The field is required if the value of the field fossilGasInvestmentsIndicator is Y
       google.protobuf.DoubleValue fossil_gas_investments_incl_sovereign_bonds_minimum_proportion = 24 [
         json_name = "fossilGasInvestmentsInclSovereignBondsMinimumProportion",
+        (standards.open.v1.fdx_options).fdx_json_name = "fossilGasInvestmentsInclSovereignBondsMinimumProportion",
         (standards.open.v1.fdx_options).question = "Minimum percentage of investments in fossil gas related activities aligned with EU taxonomy including sovereign bonds",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field fossilGasInvestmentsIndicator is Y",
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article9Subfunds.0.FossilGasInvestmentsIndicator?1:2"
@@ -785,6 +836,7 @@ message RT0008FD7 {
       // The field is required if the value of the field nuclearEnergyInvestmentsIndicator is Y
       google.protobuf.DoubleValue nuclear_energy_investments_incl_sovereign_bonds_minimum_proportion = 25 [
         json_name = "nuclearEnergyInvestmentsInclSovereignBondsMinimumProportion",
+        (standards.open.v1.fdx_options).fdx_json_name = "nuclearEnergyInvestmentsInclSovereignBondsMinimumProportion",
         (standards.open.v1.fdx_options).question = "Minimum percentage of investments in nuclear energy related activities aligned with EU taxonomy including sovereign bonds",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field nuclearEnergyInvestmentsIndicator is Y",
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article9Subfunds.0.NuclearEnergyInvestmentsIndicator?1:2"
@@ -793,6 +845,7 @@ message RT0008FD7 {
       // The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y
       google.protobuf.DoubleValue remaining_investments_incl_sovereign_bonds_minimum_proportion = 26 [
         json_name = "remainingInvestmentsInclSovereignBondsMinimumProportion",
+        (standards.open.v1.fdx_options).fdx_json_name = "remainingInvestmentsInclSovereignBondsMinimumProportion",
         (standards.open.v1.fdx_options).question = "Minimum percentage of investments (excluding fossil gas and nuclear energy related activities) aligned with EU taxonomy including sovereign bonds",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y",
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article9Subfunds.0.EnvironmentalObjectiveTaxonomyIndicator?1:2"
@@ -801,6 +854,7 @@ message RT0008FD7 {
       // The field is required if the value of the field fossilGasInvestmentsIndicator is Y
       google.protobuf.DoubleValue fossil_gas_investments_excl_sovereign_bonds_minimum_proportion = 27 [
         json_name = "fossilGasInvestmentsExclSovereignBondsMinimumProportion",
+        (standards.open.v1.fdx_options).fdx_json_name = "fossilGasInvestmentsExclSovereignBondsMinimumProportion",
         (standards.open.v1.fdx_options).question = "Minimum percentage of investments in fossil gas related activities aligned with EU taxonomy excluding sovereign bonds",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field fossilGasInvestmentsIndicator is Y",
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article9Subfunds.0.FossilGasInvestmentsIndicator?1:2"
@@ -809,6 +863,7 @@ message RT0008FD7 {
       // The field is required if the value of the field nuclearEnergyInvestmentsIndicator is Y
       google.protobuf.DoubleValue nuclear_energy_investments_excl_sovereign_bonds_minimum_proportion = 28 [
         json_name = "nuclearEnergyInvestmentsExclSovereignBondsMinimumProportion",
+        (standards.open.v1.fdx_options).fdx_json_name = "nuclearEnergyInvestmentsExclSovereignBondsMinimumProportion",
         (standards.open.v1.fdx_options).question = "Minimum percentage of investments in nuclear energy related activities aligned with EU taxonomy excluding sovereign bonds",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field nuclearEnergyInvestmentsIndicator is Y",
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article9Subfunds.0.FossilGasInvestmentsIndicator?1:2"
@@ -817,6 +872,7 @@ message RT0008FD7 {
       // The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y
       google.protobuf.DoubleValue remaining_investments_excl_sovereign_bonds_minimum_proportion = 29 [
         json_name = "remainingInvestmentsExclSovereignBondsMinimumProportion",
+        (standards.open.v1.fdx_options).fdx_json_name = "remainingInvestmentsExclSovereignBondsMinimumProportion",
         (standards.open.v1.fdx_options).question = "Minimum percentage of investments (excluding fossil gas and nuclear energy related activities) aligned with EU taxonomy excluding sovereign bonds",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y",
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article9Subfunds.0.EnvironmentalObjectiveTaxonomyIndicator?1:2"
@@ -825,6 +881,7 @@ message RT0008FD7 {
       // The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y
       google.protobuf.DoubleValue transitional_activities_investments_minimum_share = 30 [
         json_name = "transitionalActivitiesInvestmentsMinimumShare",
+        (standards.open.v1.fdx_options).fdx_json_name = "transitionalActivitiesInvestmentsMinimumShare",
         (standards.open.v1.fdx_options).question = "What is the minimum share of investments in transitional activities?",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y",
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article9Subfunds.0.EnvironmentalObjectiveTaxonomyIndicator?1:2"
@@ -833,6 +890,7 @@ message RT0008FD7 {
       // The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y
       google.protobuf.DoubleValue enabling_activities_investments_minimum_share = 31 [
         json_name = "enablingActivitiesInvestmentsMinimumShare",
+        (standards.open.v1.fdx_options).fdx_json_name = "enablingActivitiesInvestmentsMinimumShare",
         (standards.open.v1.fdx_options).question = "What is the minimum share of investments in enabling activities?",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y",
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article9Subfunds.0.EnvironmentalObjectiveTaxonomyIndicator?1:2"
@@ -840,6 +898,7 @@ message RT0008FD7 {
       // Are there any minimum environmental or social safeguards for investments included under “#2 Not sustainable”?
       YesNo  environmental_or_social_safeguards_minimum_indicator = 32 [
         json_name = "environmentalOrSocialSafeguardsMinimumIndicator",
+        (standards.open.v1.fdx_options).fdx_json_name = "environmentalOrSocialSafeguardsMinimumIndicator",
         (standards.open.v1.fdx_options).required = true,
         (standards.open.v1.fdx_options).question = "Are there any minimum environmental or social safeguards for investments included under “#2 Not sustainable”?",
         (standards.open.v1.fdx_options).default = "2"
@@ -847,6 +906,7 @@ message RT0008FD7 {
       // Is a specific index designated as a reference benchmark to meet the sustainable investment objective?
       YesNo  reference_benchmark_designated_indicator = 33 [
         json_name = "referenceBenchmarkDesignatedIndicator",
+        (standards.open.v1.fdx_options).fdx_json_name = "referenceBenchmarkDesignatedIndicator",
         (standards.open.v1.fdx_options).required = true,
         (standards.open.v1.fdx_options).question = "Is a specific index designated as a reference benchmark to meet the sustainable investment objective?",
         (standards.open.v1.fdx_options).default = "2"
@@ -855,6 +915,7 @@ message RT0008FD7 {
       // The field is required if the value of the field referenceBenchmarkDesignatedIndicator is Y
       YesNo  reference_benchmark_isin_code_indicator = 34 [
         json_name = "referenceBenchmarkIsinCodeIndicator",
+        (standards.open.v1.fdx_options).fdx_json_name = "referenceBenchmarkIsinCodeIndicator",
         (standards.open.v1.fdx_options).question = "Is an ISIN code available for the reference benchmark?",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field referenceBenchmarkDesignatedIndicator is Y",
         (standards.open.v1.fdx_options).default = "2",
@@ -865,6 +926,7 @@ message RT0008FD7 {
       // The value of the field must respect the ISIN code naming convention.
       string reference_benchmark_isin_code = 35 [
         json_name = "referenceBenchmarkIsinCode",
+        (standards.open.v1.fdx_options).fdx_json_name = "referenceBenchmarkIsinCode",
         (standards.open.v1.fdx_options).question = "Specify the ISIN code of the reference benchmark",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field referenceBenchmarkIsinCodeIndicator is Y. The value of the field must respect the ISIN code naming convention.",
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article9Subfunds.0.ReferenceBenchmarkIsinCodeIndicator?1:2"
@@ -873,6 +935,7 @@ message RT0008FD7 {
       // The field is required if the value of the field referenceBenchmarkIsinCodeIndicator is N
       string reference_benchmark_name = 36 [
         json_name = "referenceBenchmarkName",
+        (standards.open.v1.fdx_options).fdx_json_name = "referenceBenchmarkName",
         (standards.open.v1.fdx_options).question = "Specify the name of the reference benchmark",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field referenceBenchmarkIsinCodeIndicator is N",
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article9Subfunds.0.ReferenceBenchmarkIsinCodeIndicator?1:2"
@@ -881,6 +944,7 @@ message RT0008FD7 {
       // The field is required if the value of the field referenceBenchmarkDesignatedIndicator is Y
       string reference_benchmark_calculation_method_website_link = 37 [
         json_name = "referenceBenchmarkCalculationMethodWebsiteLink",
+        (standards.open.v1.fdx_options).fdx_json_name = "referenceBenchmarkCalculationMethodWebsiteLink",
         (standards.open.v1.fdx_options).question = "Indicate website link of the methodology used for the calculation of the designated index can be found",
         (standards.open.v1.fdx_options).description = "The field is required if the value of the field referenceBenchmarkDesignatedIndicator is Y",
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article9Subfunds.0.ReferenceBenchmarkDesignatedIndicator?1:2"
@@ -889,12 +953,14 @@ message RT0008FD7 {
       // Include a hyperlink to the website referred to in Article 23 of this Regulation.
       string subfund_specific_information_website_link = 38 [
         json_name = "subfundSpecificInformationWebsiteLink",
+        (standards.open.v1.fdx_options).fdx_json_name = "subfundSpecificInformationWebsiteLink",
         (standards.open.v1.fdx_options).required = true,
         (standards.open.v1.fdx_options).question = "More product-specific information can be found on the website. Include a hyperlink to the website referred to in Article 23 of this Regulation."
       ];
       // Does the above mentioned hyperlink direct investors to a separate section titled “Sustainability-related disclosures”, in the same part of the website (as specified in Q3 of the CSSF SFDR FAQ) as the other information relating to the financial product, including marketing communications, in line with and as further detailed in Article 23 of the SFDR RTS?
       YesNo  compliance_art23_indicator = 39 [
         json_name = "complianceArt23Indicator",
+        (standards.open.v1.fdx_options).fdx_json_name = "complianceArt23Indicator",
         (standards.open.v1.fdx_options).required = true,
         (standards.open.v1.fdx_options).question = "Does the above mentioned hyperlink direct investors to a separate section titled “Sustainability-related disclosures”, in the same part of the website (as specified in Q3 of the CSSF SFDR FAQ) as the other information relating to the financial product, including marketing communications, in line with and as further detailed in Article 23 of the SFDR RTS?",
         (standards.open.v1.fdx_options).default = "2"
@@ -902,6 +968,7 @@ message RT0008FD7 {
       // Does the product related website disclosures available through the above-mentioned hyperlink, provide all information set out in Article 10(1) SFDR and Articles 38 to 49 SFDR RTS, through the sections and order as specified in Article 37 SFDR RTS?
       YesNo  compliance_art37_indicator = 40 [
         json_name = "complianceArt37Indicator",
+        (standards.open.v1.fdx_options).fdx_json_name = "complianceArt37Indicator",
         (standards.open.v1.fdx_options).required = true,
         (standards.open.v1.fdx_options).question = "Does the product related website disclosures available through the above-mentioned hyperlink, provide all information set out in Article 10(1) SFDR and Articles 38 to 49 SFDR RTS, through the sections and order as specified in Article 37 SFDR RTS?",
         (standards.open.v1.fdx_options).default = "2"
@@ -910,6 +977,7 @@ message RT0008FD7 {
       // Required if AIF, forbidden if UCITS or Pension fund
       YesNo  template_provided_to_cssf_indicator = 41 [
         json_name = "templateProvidedToCssfIndicator",
+        (standards.open.v1.fdx_options).fdx_json_name = "templateProvidedToCssfIndicator",
         (standards.open.v1.fdx_options).question = "Did you already provide the pre-contractual template to the CSSF for the sub-fund?",
         (standards.open.v1.fdx_options).default = "2",
         (standards.open.v1.fdx_options).description = "Required if AIF, forbidden if UCITS or Pension fund"
@@ -918,6 +986,7 @@ message RT0008FD7 {
       // Required if AIF, forbidden if UCITS or Pension fund
       YesNo  ramp_up_period_indicator = 42 [
         json_name = "rampUpPeriodIndicator",
+        (standards.open.v1.fdx_options).fdx_json_name = "rampUpPeriodIndicator",
         (standards.open.v1.fdx_options).question = "Subfund still in a ramp-up period",
         (standards.open.v1.fdx_options).default = "2",
         (standards.open.v1.fdx_options).description = "Required if AIF, forbidden if UCITS or Pension fund"
@@ -926,6 +995,7 @@ message RT0008FD7 {
       // Required if AIF and if the value of the field rampUpPeriodIndicator is Y. Forbidden if UCITS or Pension fund
       string ramp_up_period_end_date = 43 [
         json_name = "rampUpPeriodEndDate",
+        (standards.open.v1.fdx_options).fdx_json_name = "rampUpPeriodEndDate",
         (standards.open.v1.fdx_options).question = "Ramp-up period end date",
         (standards.open.v1.fdx_options).description = "Required if AIF and if the value of the field rampUpPeriodIndicator is Y. Forbidden if UCITS or Pension fund",
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article9Subfunds.0.RampUpPeriodIndicator?1:2"
@@ -934,6 +1004,7 @@ message RT0008FD7 {
       // Required if AIF, forbidden if UCITS or Pension fund
       YesNo  template_available_to_investors_indicator = 44 [
         json_name = "templateAvailableToInvestorsIndicator",
+        (standards.open.v1.fdx_options).fdx_json_name = "templateAvailableToInvestorsIndicator",
         (standards.open.v1.fdx_options).question = "Please confirm that the pre-contractual template is available to investors",
         (standards.open.v1.fdx_options).default = "2",
         (standards.open.v1.fdx_options).description = "Required if AIF, forbidden if UCITS or Pension fund"
@@ -942,6 +1013,7 @@ message RT0008FD7 {
       // Required if AIF and if the value of the field templateProvidedToCssfIndicator is N. Forbidden if UCITS or Pension fund
       string template_not_in_prospectus_where_and_how_available_to_investors = 45 [
         json_name = "templateNotInProspectusWhereAndHowAvailableToInvestors",
+        (standards.open.v1.fdx_options).fdx_json_name = "templateNotInProspectusWhereAndHowAvailableToInvestors",
         (standards.open.v1.fdx_options).question = "For AIFs not integrating the pre-contractual template in the prospectus, please advise where and how it is available to investors",
         (standards.open.v1.fdx_options).description = "Required if AIF and if the value of the field templateProvidedToCssfIndicator is N. Forbidden if UCITS or Pension fund",
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article9Subfunds.0.TemplateProvidedToCssfIndicator?2:1"
@@ -950,6 +1022,7 @@ message RT0008FD7 {
       // Required if AIF and if the value of the field templateProvidedToCssfIndicator is N. Forbidden if UCITS or Pension fund
       string specific_e_s_g_investment_policy = 46 [
         json_name = "specificESGInvestmentPolicy",
+        (standards.open.v1.fdx_options).fdx_json_name = "specificESGInvestmentPolicy",
         (standards.open.v1.fdx_options).question = "For AIFs not integrating the pre-contractual template in the prospectus, ESG specific investment policy",
         (standards.open.v1.fdx_options).description = "Required if AIF and if the value of the field templateProvidedToCssfIndicator is N. Forbidden if UCITS or Pension fund",
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article9Subfunds.0.TemplateProvidedToCssfIndicator?2:1"
@@ -957,6 +1030,7 @@ message RT0008FD7 {
       // Prominent statement in the main body of the prospectus/issuing document
       YesNo  prominent_statement_main_body_prospectus_indicator = 47 [
         json_name = "prominentStatementMainBodyProspectusIndicator",
+        (standards.open.v1.fdx_options).fdx_json_name = "prominentStatementMainBodyProspectusIndicator",
         (standards.open.v1.fdx_options).required = true,
         (standards.open.v1.fdx_options).question = "Prominent statement in the main body of the prospectus/issuing document"
       ];
@@ -964,6 +1038,7 @@ message RT0008FD7 {
       // Required if AIF, forbidden if UCITS or Pension fund
       YesNo  requirements_c_d_r_compliance_indicator = 48 [
         json_name = "requirementsCDRComplianceIndicator",
+        (standards.open.v1.fdx_options).fdx_json_name = "requirementsCDRComplianceIndicator",
         (standards.open.v1.fdx_options).question = "They comply with the requirements set out in the CDR; especially the general principles foreseen in article 2 of the CDR;",
         (standards.open.v1.fdx_options).default = "2",
         (standards.open.v1.fdx_options).description = "Required if AIF, forbidden if UCITS or Pension fund"
@@ -972,6 +1047,7 @@ message RT0008FD7 {
       // Required if AIF, forbidden if UCITS or Pension fund
       YesNo  no_contradiction_with_website_link_indicator = 49 [
         json_name = "noContradictionWithWebsiteLinkIndicator",
+        (standards.open.v1.fdx_options).fdx_json_name = "noContradictionWithWebsiteLinkIndicator",
         (standards.open.v1.fdx_options).question = "They do not contradict with the information currently published for the respective (sub-)fund on the website (link) in accordance with article 10 of the Regulation (EU) 2019/2088 on sustainability‐related disclosures in the financial services sector (SFDR);",
         (standards.open.v1.fdx_options).default = "2",
         (standards.open.v1.fdx_options).description = "Required if AIF, forbidden if UCITS or Pension fund"
@@ -980,6 +1056,7 @@ message RT0008FD7 {
       // Required if AIF, forbidden if UCITS or Pension fund
       YesNo  no_contradiction_with_disclosed_information_indicator = 50 [
         json_name = "noContradictionWithDisclosedInformationIndicator",
+        (standards.open.v1.fdx_options).fdx_json_name = "noContradictionWithDisclosedInformationIndicator",
         (standards.open.v1.fdx_options).question = "They do not contradict with information disclosed under article 22 and 23 of the AIFMD; information disclosed in the PRIIPs KID (if applicable) or information contained in any marketing communication according to article 13 SFDR;",
         (standards.open.v1.fdx_options).default = "2",
         (standards.open.v1.fdx_options).description = "Required if AIF, forbidden if UCITS or Pension fund"
@@ -988,6 +1065,7 @@ message RT0008FD7 {
       // Required if AIF, forbidden if UCITS or Pension fund
       YesNo  reflect_implementation_indicator = 51 [
         json_name = "reflectImplementationIndicator",
+        (standards.open.v1.fdx_options).fdx_json_name = "reflectImplementationIndicator",
         (standards.open.v1.fdx_options).question = "They are accurate and reflect what has been actually implemented.",
         (standards.open.v1.fdx_options).default = "2",
         (standards.open.v1.fdx_options).description = "Required if AIF, forbidden if UCITS or Pension fund"
@@ -995,6 +1073,7 @@ message RT0008FD7 {
       // Are sustainability risks integrated into the investment decisions for this financial product (Art.6 SFDR)?
       YesNo  sustainability_risks_considered_indicator = 52 [
         json_name = "sustainabilityRisksConsideredIndicator",
+        (standards.open.v1.fdx_options).fdx_json_name = "sustainabilityRisksConsideredIndicator",
         (standards.open.v1.fdx_options).required = true,
         (standards.open.v1.fdx_options).question = "Are sustainability risks integrated into the investment decisions for this financial product (Art.6 SFDR)?",
         (standards.open.v1.fdx_options).default = "2"
@@ -1002,6 +1081,7 @@ message RT0008FD7 {
       // Is the information in accordance with article 6 SFDR disclosed?
       YesNo  art6_information_disclosed_indicator = 53 [
         json_name = "art6InformationDisclosedIndicator",
+        (standards.open.v1.fdx_options).fdx_json_name = "art6InformationDisclosedIndicator",
         (standards.open.v1.fdx_options).required = true,
         (standards.open.v1.fdx_options).question = "Is the information in accordance with article 6 SFDR disclosed?",
         (standards.open.v1.fdx_options).default = "2"
@@ -1010,6 +1090,7 @@ message RT0008FD7 {
       // Required if AIF, forbidden if UCITS or Pension fund
       YesNo  template_c_d_r_copy_indicator = 54 [
         json_name = "templateCDRCopyIndicator",
+        (standards.open.v1.fdx_options).fdx_json_name = "templateCDRCopyIndicator",
         (standards.open.v1.fdx_options).question = "Confirm that the template(s) used for the pre-contractual disclosures of (sub-)funds qualifying as article 8 Product (“Product 8”) or article 9 Product (“Product 9”) under SFDR is a 1-to-1 copy of the template foreseen in annex II or III respectively of the CDR and has not been altered except eventually as regards the size and front type of characters or the color used as permitted by article 2 CDR;",
         (standards.open.v1.fdx_options).default = "2",
         (standards.open.v1.fdx_options).description = "Required if AIF, forbidden if UCITS or Pension fund"
@@ -1018,6 +1099,7 @@ message RT0008FD7 {
       // Required if AIF, forbidden if UCITS or Pension fund
       YesNo  template_all_sections_completed_indicator = 55 [
         json_name = "templateAllSectionsCompletedIndicator",
+        (standards.open.v1.fdx_options).fdx_json_name = "templateAllSectionsCompletedIndicator",
         (standards.open.v1.fdx_options).question = "All sections of the template have been properly completed and those which are not applicable have been disclosed as such;",
         (standards.open.v1.fdx_options).default = "2",
         (standards.open.v1.fdx_options).description = "Required if AIF, forbidden if UCITS or Pension fund"
@@ -1026,6 +1108,7 @@ message RT0008FD7 {
       // Required if AIF, forbidden if UCITS or Pension fund
       YesNo  latest_published_information_correspondence_indicator = 56 [
         json_name = "latestPublishedInformationCorrespondenceIndicator",
+        (standards.open.v1.fdx_options).fdx_json_name = "latestPublishedInformationCorrespondenceIndicator",
         (standards.open.v1.fdx_options).question = "Does the information provided here correspond to the latest published information",
         (standards.open.v1.fdx_options).default = "2",
         (standards.open.v1.fdx_options).description = "Required if AIF, forbidden if UCITS or Pension fund"
@@ -1033,6 +1116,7 @@ message RT0008FD7 {
       // Date of the latest issued pre-contractual template (version) (YYYY-MM-DD)
       string template_latest_issued_date = 57 [
         json_name = "templateLatestIssuedDate",
+        (standards.open.v1.fdx_options).fdx_json_name = "templateLatestIssuedDate",
         (standards.open.v1.fdx_options).required = true,
         (standards.open.v1.fdx_options).question = "Date of the latest issued pre-contractual template (version) (YYYY-MM-DD)",
         (standards.open.v1.fdx_options).validation = "^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$"
@@ -1050,6 +1134,7 @@ message RT0008FD7 {
       // Are sustainability risks integrated into the investment decisions for this financial product (Art.6 SFDR)?
       YesNo  article6_indicator = 2 [
         json_name = "article6Indicator",
+        (standards.open.v1.fdx_options).fdx_json_name = "article6Indicator",
         (standards.open.v1.fdx_options).required = true,
         (standards.open.v1.fdx_options).question = "Are sustainability risks integrated into the investment decisions for this financial product (Art.6 SFDR)?",
         (standards.open.v1.fdx_options).default = "1"
@@ -1057,6 +1142,7 @@ message RT0008FD7 {
       // Is the information in accordance with article 6 SFDR disclosed?
       YesNo  information_article6_disclosed_indicator = 3 [
         json_name = "informationArticle6DisclosedIndicator",
+        (standards.open.v1.fdx_options).fdx_json_name = "informationArticle6DisclosedIndicator",
         (standards.open.v1.fdx_options).required = true,
         (standards.open.v1.fdx_options).question = "Is the information in accordance with article 6 SFDR disclosed?",
         (standards.open.v1.fdx_options).default = "1"
@@ -1064,6 +1150,7 @@ message RT0008FD7 {
       // Are principal adverse impacts on sustainability factors considered for this financial product (Art.7 SFDR)?
       YesNo  article7_indicator = 4 [
         json_name = "article7Indicator",
+        (standards.open.v1.fdx_options).fdx_json_name = "article7Indicator",
         (standards.open.v1.fdx_options).required = true,
         (standards.open.v1.fdx_options).question = "Are principal adverse impacts on sustainability factors considered for this financial product (Art.7 SFDR)?",
         (standards.open.v1.fdx_options).default = "1"
@@ -1071,6 +1158,7 @@ message RT0008FD7 {
       // Is the information in accordance with article 7 SFDR disclosed?
       YesNo  information_article7_disclosed_indicator = 5 [
         json_name = "informationArticle7DisclosedIndicator",
+        (standards.open.v1.fdx_options).fdx_json_name = "informationArticle7DisclosedIndicator",
         (standards.open.v1.fdx_options).required = true,
         (standards.open.v1.fdx_options).question = "Is the information in accordance with article 7 SFDR disclosed?",
         (standards.open.v1.fdx_options).default = "1"
