@@ -612,7 +612,8 @@ message RT0008FD7 {
     Article8SubfundResponses article8_responses = 2 [
       json_name="article8Subfunds",
       (standards.open.v1.fdx_options).fdx_json_name="article8Subfunds",
-      (standards.open.v1.fdx_options).question = "Complete the following questions for all Article 8 subfunds"
+      (standards.open.v1.fdx_options).question = "Complete the following questions for all Article 8 subfunds",
+      (standards.open.v1.fdx_options).conditional = "sfdrArticleClassification?2:0"
     ];
     // Definition of information to be provided per Article 9 sub fund
     message Article9SubfundResponses {
@@ -1127,7 +1128,8 @@ message RT0008FD7 {
     Article9SubfundResponses article9_responses = 3 [
       json_name="article9Subfunds",
       (standards.open.v1.fdx_options).fdx_json_name="article9Subfunds",
-      (standards.open.v1.fdx_options).question = "Complete the following questions for all Article  subfunds"
+      (standards.open.v1.fdx_options).question = "Complete the following questions for all Article  subfunds",
+      (standards.open.v1.fdx_options).conditional = "sfdrArticleClassification?3:0"
     ];
     // Definition of information to be provided per Other sub fund
     message OtherSubfundResponses {
@@ -1169,7 +1171,8 @@ message RT0008FD7 {
     OtherSubfundResponses other_responses = 4 [
       json_name="otherSubfunds",
       (standards.open.v1.fdx_options).fdx_json_name="otherSubfunds",
-      (standards.open.v1.fdx_options).question = "Complete the following questions for all Subfunds subject to the SFDR disclosure obligation without being an art 8 or art 9 product array"
+      (standards.open.v1.fdx_options).question = "Complete the following questions for all Subfunds subject to the SFDR disclosure obligation without being an art 8 or art 9 product array",
+      (standards.open.v1.fdx_options).conditional = "sfdrArticleClassification?1:0"
     ];
     // Y / N requiring no further explanation
     enum YesNo {
