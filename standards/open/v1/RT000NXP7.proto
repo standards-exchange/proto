@@ -101,7 +101,7 @@ message RT000NXP7 {
     string exercise_end_date = 2 [
       json_name="exerciseEndDate",
       (standards.open.v1.fdx_options).required = true,
-      (standards.open.v1.fdx_options).question = "CSSF code of the entity"
+      (standards.open.v1.fdx_options).question = "Exercise end date"
     ];
     // List of Article 8 subfunds
     repeated Article8Subfund article8_subfunds = 3 [
@@ -704,7 +704,7 @@ message RT000NXP7 {
       (standards.open.v1.fdx_options).description = "Number corresponding to the compartment without zero in front of the number. For a stand-alone fund, please enter 0. For a multiple compartment fund, please indicate the corresponding number."
     ];
     // ISIN code available?
-    YesNo  subfund_liquidated_indicator = 2 [
+    YesNo  largest_investment_i_s_n_code_indicator = 2 [
       json_name = "largestInvestmentISINCodeIndicator",
       (standards.open.v1.fdx_options).required = true,
       (standards.open.v1.fdx_options).question = "ISIN code available?",
