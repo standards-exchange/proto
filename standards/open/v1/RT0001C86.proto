@@ -41,9 +41,9 @@ message RT0001C86 {
       (standards.open.v1.fdx_options).question = "CSSF code of the entity"
     ];
     // The reporting name of the fund
-    string fund_name = 94;
+    string subfund_name = 94;
     // The internal identifier of the sub-fund
-    string fund_internal_identifier = 95;
+    string subfund_internal_identifier = 95;
     // CSSF code of the sub-fund. Number corresponding to the compartment without zero in front of the number. For a stand-alone fund, please enter 0. For a multiple compartment fund, please indicate the corresponding number.
     google.protobuf.Int32Value subfund_cssf_code = 96 [
       json_name="subfundCssfCode",
