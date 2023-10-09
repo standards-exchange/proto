@@ -60,6 +60,14 @@ message RT0001C86 {
     }
     // The SFDR Article Classification of the Sub-fund
     SFDRArticleClassification sfdr_article_classification = 97;
+    // Is the fund an AI?
+    YesNo  aif = 2 [
+      json_name="aif",
+      (standards.open.v1.fdx_options).fdx_json_name = "aif",
+      (standards.open.v1.fdx_options).required = true,
+      (standards.open.v1.fdx_options).question = "Is the fund an AI?",
+      (standards.open.v1.fdx_options).default = "2"
+    ];
     // Definition of information to be provided per Article 8 sub fund
     message Article8SubfundResponses {
       // The sub-fund promotes Environmental/Social characteristics and while it does not have as its objective a sustainable investment, it will make sustainable investments
@@ -227,7 +235,7 @@ message RT0001C86 {
       ];
       // Minimum proportion of sustainable investments - 1#A Sustainable (in %)
       // The field is required if the value of the field sustainableInvestmentsIndicator is Y
-      google.protobuf.DoubleValue sustainable_investments_minimum_proportion2 = 17[
+      google.protobuf.DoubleValue sustainable_investments_minimum_proportion2 = 17 [
         json_name="sustainableInvestmentsMinimumProportion2",
         (standards.open.v1.fdx_options).fdx_json_name="sustainableInvestmentsMinimumProportion2",
         (standards.open.v1.fdx_options).question = "Minimum proportion of sustainable investments - 1#A Sustainable (in %)",
@@ -291,7 +299,7 @@ message RT0001C86 {
       }
       // Taxonomy-aligned activities are expressed as a share of.
       // The field is required if the value of the field environmentalObjectiveTaxonomyIndicator is Y
-      repeated TACalculationMethod taCalculationMethod = 24 [
+      repeated TACalculationMethod ta_calculation_method = 24 [
         json_name="taCalculationMethod",
         (standards.open.v1.fdx_options).fdx_json_name="taCalculationMethod",
         (standards.open.v1.fdx_options).question = "Taxonomy-aligned activities are expressed as a share of. If the answer to the question environmentalObjectiveTaxonomyIndicator is Yes, the answer should be one single selection out of the possible options.",
@@ -472,7 +480,7 @@ message RT0001C86 {
       YesNo  template_provided_to_cssf_indicator = 44 [
         json_name="templateProvidedToCssfIndicator",
         (standards.open.v1.fdx_options).fdx_json_name="templateProvidedToCssfIndicator",
-        (standards.open.v1.fdx_options).question = "Did you already provide the pre-contractual template to the CSSF for the sub-fund? The answer is only required for AIFs. Only a Yes or No answer is required. If the answer is No, you must provide the precontractual template in the archive according to the naming convention in the chapter 4.1.2.2.4.",
+        (standards.open.v1.fdx_options).question = "Did you already provide the pre-contractual template to the CSSF for the sub-fund? The answer is only required for AIFs. Only a Yes or No answer is required. If the answer is No, you must provide the precontractual template in the archive according to the naming convention in the chapter 4.1.2.2.4. Required if AIF, forbidden if UCITS or Pension fund.",
         (standards.open.v1.fdx_options).default = "0",
         (standards.open.v1.fdx_options).description = "Required if AIF, forbidden if UCITS or Pension fund"
       ];
@@ -481,7 +489,7 @@ message RT0001C86 {
       YesNo  ramp_up_period_indicator = 55 [
         json_name="rampUpPeriodIndicator",
         (standards.open.v1.fdx_options).fdx_json_name="rampUpPeriodIndicator",
-        (standards.open.v1.fdx_options).question = "Subfund still in a ramp-up period. The answer is only required for AIFs. Only a Yes or No answer is required.",
+        (standards.open.v1.fdx_options).question = "Subfund still in a ramp-up period. The answer is only required for AIFs. Only a Yes or No answer is required. Required if AIF, forbidden if UCITS or Pension fund. Required if AIF, forbidden if UCITS or Pension fund.",
         (standards.open.v1.fdx_options).default = "0",
         (standards.open.v1.fdx_options).description = "Required if AIF, forbidden if UCITS or Pension fund"
       ];
@@ -491,7 +499,7 @@ message RT0001C86 {
       string ramp_up_period_end_date = 56 [
         json_name="rampUpPeriodEndDate",
         (standards.open.v1.fdx_options).fdx_json_name="rampUpPeriodEndDate",
-        (standards.open.v1.fdx_options).question = "Ramp-up period end date (YYYY-MM-DD). The answer is only required for AIFs. If the answer to the question rampUpPeriodIndicator is Yes, provide the end date of the ramp-up period in the format YYYY-MM-DD. If the answer is No, no value is required.",
+        (standards.open.v1.fdx_options).question = "Ramp-up period end date (YYYY-MM-DD). The answer is only required for AIFs. If the answer to the question rampUpPeriodIndicator is Yes, provide the end date of the ramp-up period in the format YYYY-MM-DD. If the answer is No, no value is required. Required if AIF and if the value of the field rampUpPeriodIndicator is Y. Forbidden if UCITS or Pension fund. Format YYYY-MM-DD.",
         (standards.open.v1.fdx_options).description = "Required if AIF and if the value of the field rampUpPeriodIndicator is Y. Forbidden if UCITS or Pension fund. Format YYYY-MM-DD.",
         (standards.open.v1.fdx_options).validation = "^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$",
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article8Subfunds.0.RampUpPeriodIndicator?1:2"
@@ -501,7 +509,7 @@ message RT0001C86 {
       YesNo  template_available_to_investors_indicator = 57 [
         json_name="templateAvailableToInvestorsIndicator",
         (standards.open.v1.fdx_options).fdx_json_name="templateAvailableToInvestorsIndicator",
-        (standards.open.v1.fdx_options).question = "Please confirm that the pre-contractual template is available to investors. The answer is only required for AIFs. Only a Yes or No answer is required.",
+        (standards.open.v1.fdx_options).question = "Please confirm that the pre-contractual template is available to investors. The answer is only required for AIFs. Only a Yes or No answer is required. Required if AIF, forbidden if UCITS or Pension fund. Required if AIF, forbidden if UCITS or Pension fund",
         (standards.open.v1.fdx_options).default = "0",
         (standards.open.v1.fdx_options).description = "Required if AIF, forbidden if UCITS or Pension fund"
       ];
@@ -511,7 +519,7 @@ message RT0001C86 {
       string template_not_in_prospectus_where_and_how_available_to_investors = 58 [
         json_name="templateNotInProspectusWhereAndHowAvailableToInvestors",
         (standards.open.v1.fdx_options).fdx_json_name="templateNotInProspectusWhereAndHowAvailableToInvestors",
-        (standards.open.v1.fdx_options).question = "For AIFs not integrating the pre-contractual template in the prospectus, please advise where and how it is available to investors. The answer is only required for AIFs. If the answer to the question templateProvidedToCssfIndicator is No, please advise where and how the template is available. The answer shall not exceed 1,000 characters. If the answer is Yes, no value is required.",
+        (standards.open.v1.fdx_options).question = "For AIFs not integrating the pre-contractual template in the prospectus, please advise where and how it is available to investors. The answer is only required for AIFs. If the answer to the question templateProvidedToCssfIndicator is No, please advise where and how the template is available. The answer shall not exceed 1,000 characters. If the answer is Yes, no value is required. Required if AIF and if the value of the field templateProvidedToCssfIndicator is N. Forbidden if UCITS or Pension fund",
         (standards.open.v1.fdx_options).description = "Required if AIF and if the value of the field templateProvidedToCssfIndicator is N. Forbidden if UCITS or Pension fund",
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article8Subfunds.0.TemplateProvidedToCssfIndicator?2:1"
       ];
@@ -521,7 +529,7 @@ message RT0001C86 {
       string specific_e_s_g_investment_policy = 59 [
         json_name="specificESGInvestmentPolicy",
         (standards.open.v1.fdx_options).fdx_json_name="specificESGInvestmentPolicy",
-        (standards.open.v1.fdx_options).question = "For AIFs not integrating the pre-contractual template in the prospectus, ESG specific investment policy. The answer is only required for AIFs. If the answer to the question templateProvidedToCssfIndicator is No, please describe the ESG-specific investment policy. The answer shall not exceed 1000 characters. If the answer is Yes, no value is required.",
+        (standards.open.v1.fdx_options).question = "For AIFs not integrating the pre-contractual template in the prospectus, ESG specific investment policy. The answer is only required for AIFs. If the answer to the question templateProvidedToCssfIndicator is No, please describe the ESG-specific investment policy. The answer shall not exceed 1000 characters. If the answer is Yes, no value is required. Required if AIF and if the value of the field templateProvidedToCssfIndicator is N. Forbidden if UCITS or Pension fund",
         (standards.open.v1.fdx_options).description = "Required if AIF and if the value of the field templateProvidedToCssfIndicator is N. Forbidden if UCITS or Pension fund",
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article8Subfunds.0.TemplateProvidedToCssfIndicator?2:1"
       ];
@@ -538,7 +546,7 @@ message RT0001C86 {
       YesNo  requirements_c_d_r_compliance_indicator = 61 [
         json_name="requirementsCDRComplianceIndicator",
         (standards.open.v1.fdx_options).fdx_json_name="requirementsCDRComplianceIndicator",
-        (standards.open.v1.fdx_options).question = "They comply with the requirements set out in the CDR; especially the general principles foreseen in article 2 of the CDR. The answer is only required for AIFs. Only a Yes or No answer is required.",
+        (standards.open.v1.fdx_options).question = "They comply with the requirements set out in the CDR; especially the general principles foreseen in article 2 of the CDR. The answer is only required for AIFs. Only a Yes or No answer is required. Required if AIF, forbidden if UCITS or Pension fund",
         (standards.open.v1.fdx_options).default = "0",
         (standards.open.v1.fdx_options).description = "Required if AIF, forbidden if UCITS or Pension fund"
       ];
@@ -546,7 +554,7 @@ message RT0001C86 {
       // Required if AIF, forbidden if UCITS or Pension fund
       YesNo  no_contradiction_with_website_link_indicator = 62 [
         json_name = "noContradictionWithWebsiteLinkIndicator",
-        (standards.open.v1.fdx_options).question = "They do not contradict with the information currently published for the respective (sub-)fund on the website (link) in accordance with article 10 of the Regulation (EU) 2019/2088 on sustainability‐related disclosures in the financial services sector (SFDR). The answer is only required for AIFs. Only a Yes or No answer is required.",
+        (standards.open.v1.fdx_options).question = "They do not contradict with the information currently published for the respective (sub-)fund on the website (link) in accordance with article 10 of the Regulation (EU) 2019/2088 on sustainability‐related disclosures in the financial services sector (SFDR). The answer is only required for AIFs. Only a Yes or No answer is required. Required if AIF, forbidden if UCITS or Pension fund",
         (standards.open.v1.fdx_options).default = "0",
         (standards.open.v1.fdx_options).description = "Required if AIF, forbidden if UCITS or Pension fund"
       ];
@@ -554,7 +562,7 @@ message RT0001C86 {
       // Required if AIF, forbidden if UCITS or Pension fund
       YesNo  no_contradiction_with_disclosed_information_indicator = 63 [
         json_name = "noContradictionWithDisclosedInformationIndicator",
-        (standards.open.v1.fdx_options).question = "They do not contradict with information disclosed under article 22 and 23 of the AIFMD; information disclosed in the PRIIPs KID (if applicable) or information contained in any marketing communication according to article 13 SFDR. The answer is only required for AIFs. Only a Yes or No answer is required.",
+        (standards.open.v1.fdx_options).question = "They do not contradict with information disclosed under article 22 and 23 of the AIFMD; information disclosed in the PRIIPs KID (if applicable) or information contained in any marketing communication according to article 13 SFDR. The answer is only required for AIFs. Only a Yes or No answer is required. Required if AIF, forbidden if UCITS or Pension fund",
         (standards.open.v1.fdx_options).default = "0",
         (standards.open.v1.fdx_options).description = "Required if AIF, forbidden if UCITS or Pension fund"
       ];
@@ -562,7 +570,7 @@ message RT0001C86 {
       // Required if AIF, forbidden if UCITS or Pension fund
       YesNo  reflect_implementation_indicator = 64 [
         json_name = "reflectImplementationIndicator",
-        (standards.open.v1.fdx_options).question = "They are accurate and reflect what has been actually implemented. The answer is only required for AIFs. Only a Yes or No answer is required.",
+        (standards.open.v1.fdx_options).question = "They are accurate and reflect what has been actually implemented. The answer is only required for AIFs. Only a Yes or No answer is required. Required if AIF, forbidden if UCITS or Pension fund",
         (standards.open.v1.fdx_options).default = "0",
         (standards.open.v1.fdx_options).description = "Required if AIF, forbidden if UCITS or Pension fund"
       ];
@@ -584,7 +592,7 @@ message RT0001C86 {
       // Required if AIF, forbidden if UCITS or Pension fund
       YesNo  template_c_d_r_copy_indicator = 67 [
         json_name = "templateCDRCopyIndicator",
-        (standards.open.v1.fdx_options).question = "Confirm that the template(s) used for the pre-contractual disclosures of (sub-)funds qualifying as article 8 Product (“Product 8”) or article 9 Product (“Product 9”) under SFDR is a 1-to-1 copy of the template foreseen in annex II or III respectively of the CDR and has not been altered except eventually as regards the size and front type of characters or the color used as permitted by article 2 CDR. The answer is only required for AIFs. Only a Yes or No answer is required.",
+        (standards.open.v1.fdx_options).question = "Confirm that the template(s) used for the pre-contractual disclosures of (sub-)funds qualifying as article 8 Product (“Product 8”) or article 9 Product (“Product 9”) under SFDR is a 1-to-1 copy of the template foreseen in annex II or III respectively of the CDR and has not been altered except eventually as regards the size and front type of characters or the color used as permitted by article 2 CDR. The answer is only required for AIFs. Only a Yes or No answer is required. Required if AIF, forbidden if UCITS or Pension fund",
         (standards.open.v1.fdx_options).description = "Required if AIF, forbidden if UCITS or Pension fund",
         (standards.open.v1.fdx_options).default = "0"
       ];
@@ -614,7 +622,7 @@ message RT0001C86 {
     }
     // List of responses for Article 8 subfunds
     // Should only be completed for Article 8 subfunds
-    Article8SubfundResponses article8_responses = 2 [
+    Article8SubfundResponses article8_responses = 3 [
       json_name="article8Subfunds",
       (standards.open.v1.fdx_options).fdx_json_name="article8Subfunds",
       (standards.open.v1.fdx_options).question = "Complete the following questions for all Article 8 subfunds",
@@ -707,6 +715,7 @@ message RT0001C86 {
       // What investment strategy does the sub-fund follow?
       repeated InvestmentStrategy investments_strategies = 10 [
         json_name="investmentsStrategies",
+        (standards.open.v1.fdx_options).required = true,
         (standards.open.v1.fdx_options).question = "What investment strategy does the sub-fund follow? The list is based on the non-exhaustive list provided in point 35 of the ESMA SB. Multiple selections are possible."
       ];
       // Please specify other investment strategies
@@ -773,6 +782,7 @@ message RT0001C86 {
       // Minimum proportion of not sustainable investments - #2 Not sustainable (in %)
       google.protobuf.DoubleValue not_sustainable_investments_minimum_proportion = 19 [
         json_name="notSustainableInvestmentsMinimumProportion",
+        (standards.open.v1.fdx_options).required = true,
         (standards.open.v1.fdx_options).question = "Minimum proportion of not sustainable investments - #2 Not sustainable (in %). A positive percentage or 0 percent are possible. The percentage should be the “Investments” not falling under “#1 Sustainable”."
       ];
       // Does the sub-fund use derivative instruments as defined in Article2(1), point 29, of Regulation (EU) No 600/2014 to attain the sustainable investment objective?
@@ -1082,7 +1092,7 @@ message RT0001C86 {
     }
     // List of responses for Article 9 subfunds
     // Should only be completed for Article 9 subfunds
-    Article9SubfundResponses article9_responses = 3 [
+    Article9SubfundResponses article9_responses = 4 [
       json_name="article9Subfunds",
       (standards.open.v1.fdx_options).fdx_json_name="article9Subfunds",
       (standards.open.v1.fdx_options).question = "Complete the following questions for all Article  subfunds",
@@ -1125,7 +1135,7 @@ message RT0001C86 {
     }
     // Responses for subfunds subject to the SFDR disclosure obligation without being an art 8 or art 9 product array
     // Should only be completed for non Article 8 or 9 subfunds
-    OtherSubfundResponses other_responses = 4 [
+    OtherSubfundResponses other_responses = 5 [
       json_name="otherSubfunds",
       (standards.open.v1.fdx_options).fdx_json_name="otherSubfunds",
       (standards.open.v1.fdx_options).question = "Complete the following questions for all Subfunds subject to the SFDR disclosure obligation without being an art 8 or art 9 product array",
