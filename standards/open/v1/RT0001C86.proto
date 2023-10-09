@@ -1152,3 +1152,8 @@ message RT0001C86 {
     }
   }
 }
+
+// Batch set of RT0001C86 responses
+message RT0001C86_batch {
+  repeated RT0001C86 response = 1;
+}
