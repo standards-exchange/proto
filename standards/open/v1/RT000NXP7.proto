@@ -501,8 +501,8 @@ message RT000NXP7 {
     ];
     // If no to goodGovernancePracticesIndicator, please explain
     // The field is required if the value of the field goodGovernancePolicyIndicator is N
-    string no_good_governance_policy_description = 11 [
-      json_name = "noGoodGovernancePolicyDescription",
+    string no_good_governance_practices_description = 11 [
+      json_name = "noGoodGovernancePracticesDescription",
       (standards.open.v1.fdx_options).question = "If no, please explain",
       (standards.open.v1.fdx_options).description = "The field is required if the value of the field goodGovernancePolicyIndicator is N",
       (standards.open.v1.fdx_options).conditional = "Payload.SfdrPeriodicReport.Article9Subfunds.0.GoodGovernancePolicyIndicator?2:1"
