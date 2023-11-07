@@ -38,7 +38,6 @@ message RT000JTL0 {
     // CSSF code of the umbrella
     string umbrella_cssf_code = 93 [
       json_name="entityCssfCode",
-      (standards.open.v1.fdx_options).fdx_json_name = "entityCssfCode",
       (standards.open.v1.fdx_options).question = "CSSF code of the entity"
     ];
     // The Exercise End Date
@@ -55,7 +54,6 @@ message RT000JTL0 {
     // CSSF code of the sub-fund. Number corresponding to the compartment without zero in front of the number. For a stand-alone fund, please enter 0. For a multiple compartment fund, please indicate the corresponding number.
     google.protobuf.Int32Value subfund_cssf_code = 97 [
       json_name="subfundCssfCode",
-      (standards.open.v1.fdx_options).fdx_json_name = "subfundCssfCode",
       (standards.open.v1.fdx_options).question = "CSSF code of the sub-fund.",
       (standards.open.v1.fdx_options).description = "Number corresponding to the compartment without zero in front of the number. For a stand-alone fund, please enter 0. For a multiple compartment fund, please indicate the corresponding number."
     ];
@@ -491,8 +489,8 @@ message RT000JTL0 {
       ];
       // If no to goodGovernancePracticesIndicator, please explain
       // The field is required if the value of the field goodGovernancePolicyIndicator is N
-      string no_good_governance_policy_description = 11 [
-        json_name = "noGoodGovernancePolicyDescription",
+      string no_good_governance_practices_description = 11 [
+        json_name = "noGoodGovernancePracticesDescription",
         (standards.open.v1.fdx_options).question = "If no, please explain",
         (standards.open.v1.fdx_options).description = "Only if the answer to the question goodGovernancePracticesIndicator is No, please provide a short explanation (in English and ideally not exceeding 100 characters).",
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPeriodicReport.Article9Subfunds.0.GoodGovernancePolicyIndicator?2:1"
