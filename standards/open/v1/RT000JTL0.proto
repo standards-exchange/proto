@@ -68,13 +68,6 @@ message RT000JTL0 {
     SFDRArticleClassification sfdr_article_classification = 98;
     // Definition of information to be provided per Article 8 sub fund
     message Article8SubfundResponses {
-//      // CSSF code of the sub-fund. Number corresponding to the compartment without zero in front of the number. For a stand-alone fund, please enter 0. For a multiple compartment fund, please indicate the corresponding number.
-//      string subfund_cssf_code = 1 [
-//        json_name="subfundCssfCode",
-//        (standards.open.v1.fdx_options).required = true,
-//        (standards.open.v1.fdx_options).question = "CSSF code of the sub-fund.",
-//        (standards.open.v1.fdx_options).description = "Number corresponding to the compartment without zero in front of the number. For a stand-alone fund, please enter 0. For a multiple compartment fund, please indicate the corresponding number."
-//      ];
       // Has the subfund been liquidated during the year?
       YesNo  subfund_liquidated_indicator = 2 [
         json_name="subfundLiquidatedIndicator",
@@ -417,13 +410,6 @@ message RT000JTL0 {
     ];
     // Definition of information to be provided per Article 9 sub fund
     message Article9SubfundResponses {
-//      // CSSF code of the sub-fund. Number corresponding to the compartment without zero in front of the number. For a stand-alone fund, please enter 0. For a multiple compartment fund, please indicate the corresponding number.
-//      string subfund_cssf_code = 1 [
-//        json_name = "subfundCssfCode",
-//        (standards.open.v1.fdx_options).required = true,
-//        (standards.open.v1.fdx_options).question = "CSSF code of the sub-fund.",
-//        (standards.open.v1.fdx_options).description = "Number corresponding to the compartment without zero in front of the number. For a stand-alone fund, please enter 0. For a multiple compartment fund, please indicate the corresponding number."
-//      ];
       // Has the subfund been liquidated during the year?
       YesNo  subfund_liquidated_indicator = 2 [
         json_name = "subfundLiquidatedIndicator",
@@ -723,7 +709,14 @@ message RT000JTL0 {
       (standards.open.v1.fdx_options).conditional = "sfdrArticleClassification?3:0"
     ];
   }
-  // Definition of information to be provided per Other sub fund
+  // Responses for subfunds subject to the SFDR disclosure obligation without being an art 8 or art 9 product array
+  // Should only be completed for non Article 8 or 9 subfunds
+  repeated TopInvestmentsSubfundsResponses top_investments_subfunds = 4 [
+    json_name="topInvestmentsSubfunds",
+    (standards.open.v1.fdx_options).question = "Largest investments of the article 8 and article 9 subfunds array",
+    (standards.open.v1.fdx_options).required = true
+  ];
+    // Definition of information to be provided per Other sub fund
   message TopInvestmentsSubfundsResponses {
     // The umbrella name
     string umbrella_name = 91;
@@ -754,7 +747,7 @@ message RT000JTL0 {
       (standards.open.v1.fdx_options).description = "Number corresponding to the compartment without zero in front of the number. For a stand-alone fund, please enter 0. For a multiple compartment fund, please indicate the corresponding number."
     ];
     // ISIN code available?
-    YesNo  largest_investment_i_s_n_code_indicator = 2 [
+    YesNo  largest_investment_i_s_i_n_code_indicator = 2 [
       json_name = "largestInvestmentISINCodeIndicator",
       (standards.open.v1.fdx_options).required = true,
       (standards.open.v1.fdx_options).question = "ISIN code available?",
@@ -779,13 +772,6 @@ message RT000JTL0 {
       (standards.open.v1.fdx_options).question = "Percentage of assets. A positive percentage reflecting the percentage of assets for the investment during the year is required."
     ];
   }
-  // Responses for subfunds subject to the SFDR disclosure obligation without being an art 8 or art 9 product array
-  // Should only be completed for non Article 8 or 9 subfunds
-  repeated TopInvestmentsSubfundsResponses top_investments_subfunds = 4 [
-    json_name="topInvestmentsSubfunds",
-    (standards.open.v1.fdx_options).question = "Largest investments of the article 8 and article 9 subfunds array",
-    (standards.open.v1.fdx_options).required = true
-  ];
   // Y / N requiring no further explanation
   enum YesNo {
     // Not Applicable
@@ -798,6 +784,6 @@ message RT000JTL0 {
 }
 
 // Batch set of RT000JTL0 responses
-message RT000JTL0_batch {
-  repeated RT000JTL0 response = 1;
-}
+// message RT000JTL0_batch {
+//   repeated RT000JTL0 response = 1;
+// }
