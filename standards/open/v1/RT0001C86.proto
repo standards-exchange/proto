@@ -25,7 +25,7 @@ option go_package = "github.com/standards-exchange/protobuf-go/standards/open/v1
 // See https://www.cssf.lu/wp-content/uploads/User_Guide_-_SFDR_UCI_Data_Collection_-_practical_guide.pdf
 // https://www.cssf.lu/en/2023/03/sfdr-data-collection-exercise-applicable-to-investment-fund-managers-ifms-and-institutions-for-occupational-retirement-provision-iorps-on-precontractual-disclosures-in-relation-to-regulation-eu/
 // The CSSF SFDR PreContractual Data Collection Template is a data standard template designed to facilitate
-// data collection in a manner that can be seamlessly used to populate the CSSF format
+// data collection in a manner that can be seamlessly used to populate the CSSF format 
 message RT0001C86 {
   // Data for a particular sub-fund
   repeated SubFundData subfunds = 1;
