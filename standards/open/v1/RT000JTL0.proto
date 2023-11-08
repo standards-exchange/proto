@@ -781,7 +781,7 @@ message RT000JTL0 {
   }
   // Responses for subfunds subject to the SFDR disclosure obligation without being an art 8 or art 9 product array
   // Should only be completed for non Article 8 or 9 subfunds
-  TopInvestmentsSubfundsResponses top_investments_subfunds = 4 [
+  repeated TopInvestmentsSubfundsResponses top_investments_subfunds = 4 [
     json_name="topInvestmentsSubfunds",
     (standards.open.v1.fdx_options).question = "Largest investments of the article 8 and article 9 subfunds array",
     (standards.open.v1.fdx_options).required = true
