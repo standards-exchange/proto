@@ -14,6 +14,7 @@ import "google/protobuf/descriptor.proto";
 import "google/type/date.proto";
 import "standards/open/v1/yesno.proto";
 import "standards/open/v1/fieldOptionsExtentions.proto";
+import "standards/open/v1/RT0001C86.proto";
 
 option go_package = "github.com/standards-exchange/protobuf-go/standards/open/v1";
 
@@ -60,9 +61,12 @@ message RT000JTL0 {
     // Eumerations of SFDR Article Classifications
     enum SFDRArticleClassification {
       SFDR_CLASSIFICATION_UNSPECIFIED = 0;
-      ARTICLE_6 = 1;
-      ARTICLE_8 = 2;
-      ARTICLE_9 = 3;
+      // Product that doesn't report under either article 8 or 9 requirements
+      NEITHER_ARTICLE_8_OR_9_REPORTING = 1;
+      // Product that reports under article 8 requirements
+      ARTICLE_8_REPORTING = 2;
+      // Product that reports under article 9 requirements
+      ARTICLE_9_REPORTING = 3;
     }
     // The SFDR Article Classification of the Sub-fund
     SFDRArticleClassification sfdr_article_classification = 98;
