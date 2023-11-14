@@ -788,6 +788,6 @@ message RT000JTL0 {
 }
 
 // Batch set of RT000JTL0 responses
-// message RT000JTL0_batch {
-//   repeated RT000JTL0 response = 1;
-// }
+ message RT000JTL0_batch {
+   repeated RT000JTL0 response = 1;
+ }
