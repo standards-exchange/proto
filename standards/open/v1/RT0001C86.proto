@@ -165,8 +165,8 @@ message RT0001C86 {
         (standards.open.v1.fdx_options).conditional = "Payload.SfdrPrecontractualReport.Article8Subfunds.0.SustainableInvestmentsIndicator?1:2"
       ];
       // Does the sub-fund consider principle adverse impacts on sustainability factors?
-      YesNo  principal_adverse_impact_consideration_indicator = 11 [
-        json_name="principalAdverseImpactConsiderationIndicator",
+      YesNo  principal_advers_impact_consideration_indicator = 11 [
+        json_name="principalAdversImpactConsiderationIndicator",
         (standards.open.v1.fdx_options).required = true,
         (standards.open.v1.fdx_options).question = "Does the sub-fund consider principle adverse impacts on sustainability factors? Only a Yes or No answer is required.",
         (standards.open.v1.fdx_options).default = "2"
@@ -642,8 +642,8 @@ message RT0001C86 {
         (standards.open.v1.fdx_options).question = "What is the sustainable investment objective of the sub-fund? The list contains the objectives of Article 9 TR as well as “Social objective”. Please note that multiple selections are possible."
       ];
       // Does the sub-fund consider principal adverse impacts on sustainability factors?
-      YesNo  principal_adverse_impact_consideration_indicator = 9 [
-        json_name="principalAdverseImpactConsiderationIndicator",
+      YesNo  principal_advers_impact_consideration_indicator = 9 [
+        json_name="principalAdversImpactConsiderationIndicator",
         (standards.open.v1.fdx_options).required = true,
         (standards.open.v1.fdx_options).question = "Does the sub-fund consider principal adverse impacts on sustainability factors? Only a “Yes” or “No” answer is required.",
         (standards.open.v1.fdx_options).default = "2"
