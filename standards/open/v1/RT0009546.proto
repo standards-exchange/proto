@@ -2,9 +2,7 @@ syntax = "proto3";
 
 package standards.open.v1;
 
-import "google/protobuf/timestamp.proto";
 import "google/type/date.proto";
-import "google/api/field_behavior.proto";
 
 option go_package = "github.com/standards-exchange/protobuf-go/standards/open/v1";
 
