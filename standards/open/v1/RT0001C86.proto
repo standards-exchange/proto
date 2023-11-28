@@ -166,7 +166,14 @@ message RT0001C86 {
       ];
       // Does the sub-fund consider principle adverse impacts on sustainability factors?
       YesNo  principal_advers_impact_consideration_indicator = 11 [
+        deprecated=true,
         json_name="principalAdversImpactConsiderationIndicator",
+        (standards.open.v1.fdx_options).required = true,
+        (standards.open.v1.fdx_options).question = "Does the sub-fund consider principle adverse impacts on sustainability factors? Only a Yes or No answer is required.",
+        (standards.open.v1.fdx_options).default = "2"
+      ];
+      YesNo  principal_adverse_impact_consideration_indicator = 112 [
+        json_name="principalAdverseImpactConsiderationIndicator",
         (standards.open.v1.fdx_options).required = true,
         (standards.open.v1.fdx_options).question = "Does the sub-fund consider principle adverse impacts on sustainability factors? Only a Yes or No answer is required.",
         (standards.open.v1.fdx_options).default = "2"
@@ -643,7 +650,15 @@ message RT0001C86 {
       ];
       // Does the sub-fund consider principal adverse impacts on sustainability factors?
       YesNo  principal_advers_impact_consideration_indicator = 9 [
+        deprecated=true,
         json_name="principalAdversImpactConsiderationIndicator",
+        (standards.open.v1.fdx_options).required = true,
+        (standards.open.v1.fdx_options).question = "Does the sub-fund consider principal adverse impacts on sustainability factors? Only a “Yes” or “No” answer is required.",
+        (standards.open.v1.fdx_options).default = "2"
+      ];
+       // Does the sub-fund consider principal adverse impacts on sustainability factors?
+      YesNo  principal_adverse_impact_consideration_indicator = 92 [
+        json_name="principalAdverseImpactConsiderationIndicator",
         (standards.open.v1.fdx_options).required = true,
         (standards.open.v1.fdx_options).question = "Does the sub-fund consider principal adverse impacts on sustainability factors? Only a “Yes” or “No” answer is required.",
         (standards.open.v1.fdx_options).default = "2"
