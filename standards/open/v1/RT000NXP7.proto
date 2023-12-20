@@ -13,6 +13,8 @@ import "google/protobuf/descriptor.proto";
 import "google/type/date.proto";
 import "standards/open/v1/yesno.proto";
 import "standards/open/v1/fieldOptionsExtentions.proto";
+import "standards/open/v1/RT000JTL0.proto";
+import "standards/open/v1/RT0007VM1.proto";
 
 option go_package = "github.com/standards-exchange/protobuf-go/standards/open/v1";
 
@@ -692,6 +694,11 @@ message RT000NXP7 {
     double performance_compared_reference_benchmark = 51 [
       json_name = "performanceComparedReferenceBenchmark",
       (standards.open.v1.fdx_options).question = "Out/under performance of the subfund compared to the reference benchmark (in %):"
+    ];
+    // Proportion of Other (in %)
+    double sustainable_investments_environmental_other_proportion = 52 [
+      json_name = "sustainableInvestmentsEnvironmentalOtherProportion",
+      (standards.open.v1.fdx_options).question = "Proportion of Other (in %)"
     ];
   }
   // Definition of information to be provided for the topInvestmentsSubfunds section
