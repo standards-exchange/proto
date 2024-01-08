@@ -15,6 +15,7 @@ import "standards/open/v1/yesno.proto";
 import "standards/open/v1/fieldOptionsExtentions.proto";
 import "standards/open/v1/RT000JTL0.proto";
 import "standards/open/v1/RT0007VM1.proto";
+import "google/protobuf/wrappers.proto";
 
 option go_package = "github.com/standards-exchange/protobuf-go/standards/open/v1";
 
@@ -127,10 +128,10 @@ message RT000NXP7 {
   // Definition of information to be provided per Article 8 sub fund
   message Article8Subfund {
     // CSSF code of the sub-fund. Number corresponding to the compartment without zero in front of the number. For a stand-alone fund, please enter 0. For a multiple compartment fund, please indicate the corresponding number.
-    string subfund_cssf_code = 1 [
+    google.protobuf.Int32Value subfund_cssf_code = 1 [
       json_name="subfundCssfCode",
       (standards.open.v1.fdx_options).required = true,
-      (standards.open.v1.fdx_options).question = "CSSF code of the sub-fund.",
+      (standards.open.v1.fdx_options).question = "CSSF code of the sub-fund. (Integer)",
       (standards.open.v1.fdx_options).description = "Number corresponding to the compartment without zero in front of the number. For a stand-alone fund, please enter 0. For a multiple compartment fund, please indicate the corresponding number."
     ];
     // Has the subfund been liquidated during the year?
@@ -437,10 +438,10 @@ message RT000NXP7 {
   // Definition of information to be provided per Article 9 sub fund
   message Article9Subfund {
     // CSSF code of the sub-fund. Number corresponding to the compartment without zero in front of the number. For a stand-alone fund, please enter 0. For a multiple compartment fund, please indicate the corresponding number.
-    string subfund_cssf_code = 1 [
+    google.protobuf.Int32Value subfund_cssf_code = 1 [
       json_name = "subfundCssfCode",
       (standards.open.v1.fdx_options).required = true,
-      (standards.open.v1.fdx_options).question = "CSSF code of the sub-fund.",
+      (standards.open.v1.fdx_options).question = "CSSF code of the sub-fund. (Integer)",
       (standards.open.v1.fdx_options).description = "Number corresponding to the compartment without zero in front of the number. For a stand-alone fund, please enter 0. For a multiple compartment fund, please indicate the corresponding number."
     ];
     // Has the subfund been liquidated during the year?
@@ -703,11 +704,11 @@ message RT000NXP7 {
   }
   // Definition of information to be provided for the topInvestmentsSubfunds section
   message TopInvestmentsSubfunds {
-    // CSSF code of the sub-fund. Number corresponding to the compartment without zero in front of the number. For a stand-alone fund, please enter 0. For a multiple compartment fund, please indicate the corresponding number.
-    string subfund_cssf_code = 1 [
+     // CSSF code of the sub-fund. Number corresponding to the compartment without zero in front of the number. For a stand-alone fund, please enter 0. For a multiple compartment fund, please indicate the corresponding number.
+    google.protobuf.Int32Value subfund_cssf_code = 1 [
       json_name="subfundCssfCode",
       (standards.open.v1.fdx_options).required = true,
-      (standards.open.v1.fdx_options).question = "CSSF code of the sub-fund.",
+      (standards.open.v1.fdx_options).question = "CSSF code of the sub-fund. (Integer)",
       (standards.open.v1.fdx_options).description = "Number corresponding to the compartment without zero in front of the number. For a stand-alone fund, please enter 0. For a multiple compartment fund, please indicate the corresponding number."
     ];
     // ISIN code available?
